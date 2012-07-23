@@ -1,0 +1,47 @@
+# vim: textwidth=0
+alignment top_left
+gap_x 4
+gap_y 8
+#maximum_width 690
+maximum_width 1024
+#font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+
+use_xft yes
+#xftfont DejaVu Sans Mono:size=10
+#xftfont DejaVu Sans Mono:size=14
+xftfont Droid Sans Mono:size=16
+#xftfont Terminus:size=10
+override_utf8_locale yes
+default_color CCCCCC
+out_to_console no
+update_interval 2.5
+draw_shades no
+double_buffer yes
+text_buffer_size 8096
+# ${execi 600 /home/sbar/scripts/deadline.py}
+#${tail /home/sbar/txt/todo.txt 20}
+#${if_mpd_playing}${endif}
+#$mpd_name ($mpd_bitrate kbit/s) ($mpd_file)
+#[$mpd_status] $mpd_artist - $mpd_title ($mpd_album)
+#m/b: $acpitemp°C
+
+TEXT
+
+Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
+
+${color #FFFFFF}eth0 down: ${color #CCCCCC}${downspeedf eth0}Kb/s${offset 25}${color #FFFFFF}eth0 up: ${color #CCCCCC}${upspeedf eth0}Kb/s${offset 55}${color #FFFFFF}wlan0 down: ${color #CCCCCC}${downspeedf wlan0}Kb/s${offset 30}${color #FFFFFF}wlan0 up: ${color #CCCCCC}${upspeedf wlan0}Kb/s
+${downspeedgraph eth0 50,245 CCCCCC FFFFFF} ${upspeedgraph eth0 50,245 CCCCCC FFFFFF} ${downspeedgraph wlan0 50,245 CCCCCC FFFFFF} ${upspeedgraph wlan0 50,245 CCCCCC FFFFFF}
+${color #FFFFFF}disk I/O, ${color #CCCCCC}${hddtemp}°C${offset 102}cpu0: ${color #CCCCCC}${cpu cpu0}% ${offset 125}cpu1: ${color #CCCCCC}${cpu cpu1}%
+${diskiograph 50,245 CCCCCC FFFFFF}${color #CCCCCC} ${cpugraph cpu0 50,245 CCCCCC FFFFFF} ${cpugraph cpu1 50,245 CCCCCC FFFFFF}${color #CCCCCC}
+
+memory: $mem ${membar 10,200}      swap: $swap ${swapbar 10,200}
+
+${exec ~/scripts/temp.sh}
+
+
+
+
+
+
+
+${font DejaVu Sans Bold:size=10}${color #ffffff}${execi 5 ~/scripts/spanel/nonoften.lua}${exec ~/scripts/spanel/second_panel.lua}
