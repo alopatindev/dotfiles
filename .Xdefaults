@@ -1,0 +1,254 @@
+urxvt*color0: #000000
+urxvt*color1: #e01010
+urxvt*color2: #00AA00
+urxvt*color3: #FFFF00
+#urxvt*color4: #0e270a
+#urxvt*color4: #107E00
+#urxvt*color4: #008C8C
+#urxvt*color4: #00AEAE
+urxvt*color4: #6A6A6A
+urxvt*color5: #A020F0
+urxvt*color6: #5d9457
+urxvt*color7: #fefefe
+urxvt*color8: #6a6a6a
+urxvt*color9: #FF5555
+urxvt*color10: #00EE00
+urxvt*color11: #ffff2f
+urxvt*color12: #9E9EFF
+#urxvt*color12: #5C5CFF
+urxvt*color13: #FF0000
+#urxvt*color14: #00FFFF
+urxvt*color14: #00EFEF
+urxvt*color15: #ffffff
+
+
+urxvt*background: rgba:0000/0000/0000/dddd
+urxvt*depth: 32
+
+
+
+XTerm*selectToClipboard: true
+#XTerm*BellIsUrgent: true
+
+#urxvt*secondaryScroll: true
+#urxvt*geometry: 72x26+0+0
+#urxvt*geometry: 84x31+0+0
+urxvt*geometry: 84x25+0+0
+#urxvt*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+#urxvt*font: xft:DejaVu Sans Mono:size=15
+#urxvt*font: xft:DejaVu Sans Mono:size=15:pixelsize=15
+urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
+urxvt*foreground: white
+urxvt*background: black
+urxvt*scrollBar: false
+urxvt*cursorColor: #eee
+#urxvt*perl-ext: tabbed
+
+xterm*foreground: #cccccc
+#xterm*foreground: #eeeeee
+xterm*background: black
+#xterm*background: #222222
+#xterm*background: #002f2f
+#xterm*color0: #222222
+xterm*color0: black
+xterm*color1: #e01010
+xterm*color2: #00AA00
+xterm*color3: #FFFF00
+#xterm*color4: #0e270a
+#xterm*color4: #107E00
+#xterm*color4: #008C8C
+#xterm*color4: #00AEAE
+xterm*color4: #6A6A6A
+#xterm*color5: #A020F0
+xterm*color5: #0005A2
+xterm*color6: #5d9457
+xterm*color7: #fefefe
+xterm*color8: #6a6a6a
+xterm*color9: #FF5555
+xterm*color10: #00EE00
+xterm*color11: #ffff2f
+xterm*color12: #9E9EFF
+xterm*color13: #FF0000
+#xterm*color14: #00FFFF
+xterm*color14: #00EFEF
+xterm*color15: #ffffff
+
+xterm*secondaryScroll: true
+#xterm*geometry: 71x52+0+0
+#xterm*geometry: 80x38+0+0
+#xterm*geometry: 101x38+0+0
+#xterm*geometry: 84x30+0+0
+xterm*geometry: 84x25+0+0
+#xterm*font: -*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*
+xterm*faceName: DejaVu Sans Mono
+#xterm*faceName: Droid Sans Mono
+xterm*faceSize: 15
+#xterm*wideFont: -misc-fixed-medium-r-normal-ja-0-0-100-100-c-0-iso10646-1
+xterm*scrollBar: false
+xterm*cursorColor: #EEE
+#xterm*boldMode: true
+#xterm*colorBDMode: true
+#xterm*colorBD: rgb:fc/fc/fc
+
+
+XCalc*ti.background: #555555
+XCalc*ti.bevel.background:		#555555
+
+XCalc*ti.bevel.borderColor:		#555555
+XCalc*ti.bevel.screen*foreground:	#FFFFFF
+XCalc*ti.bevel.screen*background:	#555555
+XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*
+
+
+XCalc*ti.button1.foreground:           #FFFFFF
+XCalc*ti.button1.background:           #555555
+XCalc*ti.button2.foreground:           #FFFFFF
+XCalc*ti.button2.background:           #555555
+XCalc*ti.button3.foreground:           #FFFFFF
+XCalc*ti.button3.background:           #555555
+XCalc*ti.button4.foreground:           #FFFFFF
+XCalc*ti.button4.background:           #CC0000
+XCalc*ti.button5.foreground:           #FFFFFF
+XCalc*ti.button5.background:           #CC0000
+XCalc*ti.button6.foreground:           #FFFFFF
+XCalc*ti.button6.background:           #555555
+XCalc*ti.button7.foreground:           #FFFFFF
+XCalc*ti.button7.background:           #555555
+XCalc*ti.button8.foreground:           #FFFFFF
+XCalc*ti.button8.background:           #555555
+XCalc*ti.button9.foreground:           #FFFFFF
+XCalc*ti.button9.background:           #555555
+XCalc*ti.button10.foreground:           #FFFFFF
+XCalc*ti.button10.background:           #555555
+XCalc*ti.button11.foreground:           #FFFFFF
+XCalc*ti.button11.background:           #555555
+XCalc*ti.button12.foreground:           #FFFFFF
+XCalc*ti.button12.background:           #555555
+XCalc*ti.button13.foreground:           #FFFFFF
+XCalc*ti.button13.background:           #555555
+XCalc*ti.button14.foreground:           #FFFFFF
+XCalc*ti.button14.background:           #555555
+XCalc*ti.button15.foreground:           #FFFFFF
+XCalc*ti.button15.background:           #555555
+XCalc*ti.button16.foreground:           #FFFFFF
+XCalc*ti.button16.background:           #555555
+XCalc*ti.button17.foreground:           #FFFFFF
+XCalc*ti.button17.background:           #555555
+XCalc*ti.button18.foreground:           #FFFFFF
+XCalc*ti.button18.background:           #555555
+XCalc*ti.button19.foreground:           #FFFFFF
+XCalc*ti.button19.background:           #555555
+XCalc*ti.button20.foreground:           #FFFFFF
+XCalc*ti.button20.background:           #555555
+XCalc*ti.button21.foreground:           #FFFFFF
+XCalc*ti.button21.background:           #555555
+XCalc*ti.button22.foreground:           #FFFFFF
+XCalc*ti.button22.background:           #000088
+XCalc*ti.button23.foreground:           #FFFFFF
+XCalc*ti.button23.background:           #000088
+XCalc*ti.button24.foreground:           #FFFFFF
+XCalc*ti.button24.background:           #000088
+XCalc*ti.button25.foreground:           #FFFFFF
+XCalc*ti.button25.background:           #555555
+XCalc*ti.button26.foreground:           #FFFFFF
+XCalc*ti.button26.background:           #555555
+XCalc*ti.button27.foreground:           #FFFFFF
+XCalc*ti.button27.background:           #000088
+XCalc*ti.button28.foreground:           #FFFFFF
+XCalc*ti.button28.background:           #000088
+XCalc*ti.button29.foreground:           #FFFFFF
+XCalc*ti.button29.background:           #000088
+XCalc*ti.button30.foreground:           #FFFFFF
+XCalc*ti.button30.background:           #555555
+XCalc*ti.button31.foreground:           #FFFFFF
+XCalc*ti.button31.background:           #555555
+XCalc*ti.button32.foreground:           #FFFFFF
+XCalc*ti.button32.background:           #000088
+XCalc*ti.button33.foreground:           #FFFFFF
+XCalc*ti.button33.background:           #000088
+XCalc*ti.button34.foreground:           #FFFFFF
+XCalc*ti.button34.background:           #000088
+XCalc*ti.button35.foreground:           #FFFFFF
+XCalc*ti.button35.background:           #555555
+XCalc*ti.button36.foreground:           #FFFFFF
+XCalc*ti.button36.background:           #555555
+XCalc*ti.button37.foreground:           #FFFFFF
+XCalc*ti.button37.background:           #000088
+XCalc*ti.button38.foreground:           #FFFFFF
+XCalc*ti.button38.background:           #555555
+XCalc*ti.button39.foreground:           #FFFFFF
+XCalc*ti.button39.background:           #555555
+XCalc*ti.button40.foreground:           #FFFFFF
+XCalc*ti.button40.background:           #555555
+
+
+
+
+*background:			#555555
+*foreground:			#FFFFFF
+
+*message.scrollVertical:	Never
+*message.scrollHorizontal:	Never
+
+*Text.?.cursorColor:		rgb:5/5/5
+*Text.borderColor:		#555555
+*Text*background:		#555555
+
+*Command.borderColor:		#555555
+*Command.shapeStyle:		Rectangle
+*Command.background:		#555555
+*Command.displayList:\
+foreground	gray60;\
+lines		1,-1,-1,-1,-1,1;\
+foreground	gray90;\
+lines		-1,0,0,0,0,-1
+
+
+
+
+XClock.Clock.hourColor:		white
+XClock.Clock.minuteColor:	#555555
+XClock.Clock.secondColor:	#EBCA40
+XClock.Clock.majorColor:	#EBCA40
+XClock.Clock.minorColor:	#5D9457
+XClock.Clock.background:	black
+XClock.Clock.update:		1
+
+
+Emacs.font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+
+Xvidcap*mouse_wanted:	2
+
+gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
+
+
+
+
+
+##Xft.dpi:        120
+#Xft.rgba:       none
+
+##Xft.hinting:    false
+##Xft.hintstyle:  hintslight
+#Xft.hintstyle:  hintmedium
+
+##Xft.hintstyle:  hintfull
+#Xft.antialias:  true
+
+
+Xft.dpi: 96
+##Xft.antialias: true
+Xft.rgba: rgb
+##Xft.hinting: true
+Xft.lcdfilter: lcddefault
+
+#Xft.hinting: true
+##Xft.autohint: true
+#Xft.autohint: false
+##Xft.hintstyle: hintmedium
+##Xft.hintstyle: hintslight
+#Xft.hintstyle: hintfull
+#Xft.antialias: true
+#Xft.hintstyle: hintmedium
+
+Xft.autohint: true
