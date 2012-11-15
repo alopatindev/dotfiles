@@ -542,3 +542,10 @@ vmap <F12> <esc>:TagbarOpenAutoClose<cr>
 
 "let g:clang_user_options='|| exit 0'
 "let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
+
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+
+
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+
