@@ -1,0 +1,51 @@
+#hardstatus alwayslastline '%{= FW}%-Lw%{= gb}%n %t%{-}%+Lw%< %{= FW}%=%D-%d/%m/%y | %c%{-}'
+#hardstatus alwayslastline "%{= FW}%-Lw%{= gk}%n %t%{-}%+Lw%<"
+#hardstatus alwayslastline "%{wk}%-w%{Gk}[%n %t]%{wk}%+w%=%{Ck}%D %M"
+#hardstatus alwayslastline '%{wk}%-w%{= gk}%n %t%{-}%+w%<%=%D-%d/%m/%y | %c%{-}'
+#hardstatus alwayslastline '%{= FW}%-w%{= gk}%n %t%{-}%+w%< %{= FW}%=%D-%d/%m/%y | %c%{-}'
+hardstatus alwayslastline '%{wk}%-w%{= gk}%n %t%{-}%+w%<'
+#setenv DISPLAY :0
+
+bufferfile /tmp/.sbar-screen_exchange
+
+startup_message off
+autodetach on
+attrcolor b ".I"
+altscreen on
+#term xterm
+term screen
+vbell off
+
+#register [ ""
+#register ] ""
+#
+##screen -t torrent 9 rtorrent
+#screen -t bash 1 bash
+screen -t wiki 1 vim -c VimwikiIndex
+screen -t bash 2 bash
+#screen -t web 2 elinks
+#screen -t jabber 1 mcabber
+screen -t music 0 ncmpcpp
+#
+## hotkeys
+bind w screen -t wiki 1 vim -c VimwikiIndex
+bind m screen -t music 0 ncmpcpp
+bind j screen -t jabber 1 mcabber
+bind e screen -t web 2 elinks
+bind r screen -t rss 2 newsbeuter
+bind h screen -t htop 8 htop
+bind t screen -t torrent 9 rtorrent
+##bind l screen -t syslog 12 tail -f -n100 /var/log/messages
+bind b screen -t calc bc -ql
+bind g screen -t dict sdcv
+#
+##bind C hardstatus alwayslastline '%{wk}%-w%{= gk}%n %t%{-}%+w%< %{wk}%=%D-%d/%m/%y | %c%{-}'
+#bind C hardstatus alwayslastline '%{wk}%-w%{= gk}%n %t%{-}%+w%< %{wk}%=%c%{-}'
+#bind X hardstatus alwayslastline '%{wk}%-w%{= gk}%n %t%{-}%+w%<'
+#
+##termcap  xterm hs@:cs=\E[%i%d;%dr:im=\E[4h:ei=\E[4l
+##terminfo xterm hs@:cs=\E[%i%p1%d;%p2%dr:im=\E[4h:ei=\E[4l
+#
+#bind y eval writebuf "exec sh -c 'DISPLAY=:0 xsel -c && DISPLAY=:0 xsel < /tmp/.sbar-screen_exchange'"
+#bind P eval "exec sh -c 'DISPLAY=:0 xsel -o > /tmp/.sbar-screen_exchange'" readbuf
+#bind w eval writebuf "exec sh -c 'elinks-remote $(cat /tmp/.sbar-screen_exchange)'"

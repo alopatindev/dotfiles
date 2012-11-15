@@ -64,7 +64,9 @@ export OLDPWD=~
 export BROWSER=chromium
 #export TERM=rxvt-unicode
 #export DISPLAY=:0
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Xms256m -Xmx512m -XX:MaxHeapSize=256m'
+export ANDROID_NDK='/opt/android-ndk/'
 
 export EDITOR=vim
 

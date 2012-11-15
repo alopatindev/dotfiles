@@ -24,10 +24,11 @@ text_buffer_size 8096
 #$mpd_name ($mpd_bitrate kbit/s) ($mpd_file)
 #[$mpd_status] $mpd_artist - $mpd_title ($mpd_album)
 #m/b: $acpitemp°C
+#Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
 
 TEXT
 
-Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
+Погода  ${execi 600 /home/sbar/scripts/st-petersburg-temperature.py}
 
 ${color #FFFFFF}eth0 down: ${color #CCCCCC}${downspeedf eth0}Kb/s${offset 25}${color #FFFFFF}eth0 up: ${color #CCCCCC}${upspeedf eth0}Kb/s${offset 55}${color #FFFFFF}wlan0 down: ${color #CCCCCC}${downspeedf wlan0}Kb/s${offset 30}${color #FFFFFF}wlan0 up: ${color #CCCCCC}${upspeedf wlan0}Kb/s
 ${downspeedgraph eth0 50,245 CCCCCC FFFFFF} ${upspeedgraph eth0 50,245 CCCCCC FFFFFF} ${downspeedgraph wlan0 50,245 CCCCCC FFFFFF} ${upspeedgraph wlan0 50,245 CCCCCC FFFFFF}
