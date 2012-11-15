@@ -1,0 +1,6 @@
+style "user-font"
+{
+#   fontset="-monotype-arial-medium-r-normal-*-*-130-*-*-p-*-iso10646-1"
+   fontset="-*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*"
+}
+widget_class "*" style "user-font"
