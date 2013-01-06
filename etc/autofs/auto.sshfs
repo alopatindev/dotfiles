@@ -1,0 +1,4 @@
+#desktop    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other    :sshfs#sbar@desktop\:.
+#ssh.alwaysdata.com    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other    :sshfs#sbar@ssh.alwaysdata.com\:.
+ssh.alwaysdata.com    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other    :sshfs#fap@ssh.alwaysdata.com\:.
+#sbar.ddns.info    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other,port=55    :sshfs#sbar@sbar.ddns.info\:.

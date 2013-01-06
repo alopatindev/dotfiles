@@ -1,0 +1,2 @@
+#router router:/home/sbar/shared
+router    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other,port=55    :sshfs#sbar@sbar.ddns.info\:.

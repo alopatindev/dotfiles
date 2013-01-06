@@ -1,0 +1,15 @@
+#cdrom -fstype=auto,ro,uid=sbar,gid=cdrom,iocharset=utf8 :/dev/sr0
+flash -fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime :/dev/sdb1
+flash1_ntfs -fstype=ntfs-3g,rw,uid=0,gid=users,umask=0002,noatime,allow_other,locale=ru_RU.utf8 :/dev/sdb1
+flash2 -fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime :/dev/sdc1
+#openwrt -fstype=ext4,rw,noatime,nodiratime :/dev/disk/by-uuid/541f96a2-5fa2-4339-a5bf-5024330df7f2
+rvar -fstype=reiserfs,rw,noatime,nodiratime :/dev/disk/by-uuid/b7148616-ffd8-4225-b26d-22f6e0d3b6da
+rtest -fstype=ext4,rw,noatime,nodiratime :/dev/disk/by-uuid/3e2f18a6-360a-44a9-ab09-fd2fa0ae6bbd
+rhome -fstype=ext4,ro,noatime,nodiratime :/dev/disk/by-uuid/18b9acd9-d1f2-4220-b6fe-1219e76cdd99
+#linux_flash -fstype=auto,rw,noatime :/dev/sdb2
+#other/sdd1 -fstype=auto,rw,uid=sbar,gid=plugdev,umask=0002,noatime :/dev/sdd1
+#other/sdc3 -fstype=auto,rw,uid=sbar,gid=plugdev,umask=0002,noatime :/dev/sdc3
+sdc1 -fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime :/dev/sdc1
+sdd1 -fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime :/dev/sdd1
+sde1 -fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime :/dev/sdc1
+cam -fstype=fuse,ro,allow_other :gphotofs

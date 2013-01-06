@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+# This file must be executable to work!
+
+use strict;
+exit if $#ARGV < 0;
+my $server = $ARGV[0];
+my $options="-fstype=fuse,nodev,nosuid,nonempty,noatime,allow_other,max_read=65536,connect_timeout=10,transform_symlinks";
+my $default = "rw,codepage=cp1251,iocharset=utf-8"; # Note the read-only defaults.
+#my $default = "rw,iocharset=utf-8";
+
+# WARNING: Storing passwords here is probably insecure on multi-user systems!
+my %servers = (
+  #"localhost" => "$default,codepage=utf-8",
+  #"laptop" => "$default,codepage=utf-8",
+  # "ftp.example.tld"  => "$default,user=username:password",
+  "sbar.ddns.info:1122"  => "rw,user=ololo:trololo",
+);
+
+my $custom = $servers{$server} || $default;
+$options .= "," . $custom if defined $custom && $custom ne "";
+print "$options :curlftpfs\\#$server\n";
