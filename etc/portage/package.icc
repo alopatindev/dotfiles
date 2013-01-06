@@ -1,0 +1,18 @@
+app-arch/tar
+app-arch/bzip2
+#app-arch/bzip2 -O3 -gcc -xSSE4.1 -g0
+#app-arch/unzip
+#app-arch/cpio
+#app-arch/pbzip2
+#dev-libs/libxml2
+#media-sound/lame
+#media-libs/faac
+#media-libs/giflib
+#media-libs/speex
+#media-libs/libtheora
+#media-libs/xvid
+#media-libs/libogg
+#media-libs/libvorbis
+#dev-libs/lzo
+#media-libs/libpng
+#dev-libs/libgpg-error

@@ -1,0 +1,12 @@
+#>www-plugins/adobe-flash-10.2.152.27
+>=app-text/poppler-0.14.5
+#>=x11-drivers/xf86-video-intel-2.15.0
+
+net-misc/dhcpcd
+net-misc/networkmanager
+
+>media-libs/freetype-2.4.4
+
+#>net-im/psi-0.15_pre20110526
+
+>net-fs/autofs-5.0.4-r5
