@@ -1,0 +1,167 @@
+# vim: filetype=conf:textwidth=0
+
+"xterm -T 'terms' -e 'screen -DRm'"
+    m:0x9 + c:36
+    Shift+Alt + Return
+
+#"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
+"xterm -T 'terms' -fs 23 -geometry 55x20-0-0 -e 'screen -DRm'"
+    m:0x4c + c:36
+    Control+Alt+Mod4 + Return
+
+"~/scripts/quit_script"
+    m:0x9 + c:24
+    Shift+Alt + q
+
+"~/.bin/drun"
+    m:0x9 + c:27
+    Shift+Alt + r
+
+#"$(~/.dwm/dmenu -p 'games'<~/.gamelist.ls)"
+#    m:0x40 + c:42
+#    Mod4 + g
+
+"xterm"
+    m:0x40 + c:36
+    Mod4 + Return
+
+"~/scripts/screenshot"
+    m:0x10 + c:107
+    Mod2 + Print
+
+"~/scripts/screenshot_area"
+    m:0x50 + c:107
+    Mod2+Mod4 + Print
+
+"xkill"
+    m:0x40 + c:45
+    Mod4 + k
+
+#"eject /dev/cdrom"
+#    m:0x9 + c:26
+#    Shift+Alt + e
+
+#"eject -t /dev/cdrom"
+#    m:0x19 + c:27
+#    Shift+Alt+Mod2 + r
+
+#"for i in /media/*; do umount $i; done"
+"mount | awk '{print $3}' | egrep --color=none '^/media' | xargs umount"
+    m:0x40 + c:41
+    Mod4 + f
+
+"~/.bin/alock"
+    m:0x9 + c:46
+    Shift+Alt + l
+
+#"alock"
+#    m:0x1c + c:64
+#    Control+Alt+Mod2 + Alt_L
+
+#"alock"
+#    m:0x90 + c:46
+#    Mod2+Mod5 + l
+
+#"echo '0 exec awesome' | awesome-client"
+#    m:0x1c + c:27
+#    Control+Alt+Mod2 + r
+
+"(killall xbindkeys && xbindkeys) || notify-send 'xbindkeys: error occurred'"
+    m:0x54 + c:27
+    Control+Mod2+Mod4 + r
+
+"xgamma -q -gamma 1.0"
+    m:0x0 + c:192
+    XF86Launch5
+
+"xgamma -q -gamma $(echo $(xgamma 2> /dev/stdout | cut -d' ' -f10) - 0.5 | bc)"
+    m:0x0 + c:235
+    XF86Display
+
+"xgamma -q -gamma $(echo $(xgamma 2> /dev/stdout | cut -d' ' -f10) + 0.5 | bc)"
+    m:0x0 + c:156
+    XF86Launch1
+
+#"xgamma -q -gamma 2.0"
+#    m:0x54 + c:37
+#    Control+Mod2+Mod4 + Control_L
+
+"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
+    m:0x80 + c:19
+    Mod5 + 0
+
+"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
+    m:0x80 + c:18
+    Mod5 + 9
+
+"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
+    m:0x40 + c:19
+    Mod4 + 0
+
+"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
+    m:0x40 + c:18
+    Mod4 + 9
+
+"mpc -q prev &> /dev/null"
+    m:0x80 + c:59
+    Mod5 + comma
+
+"mpc -q next &> /dev/null ; rhythmbox-client --next --no-start &> /dev/null"
+    m:0x80 + c:60
+    Mod5 + period
+
+"mpc -q prev &> /dev/null"
+    m:0x40 + c:59
+    Mod4 + comma
+
+"mpc -q next &> /dev/null ; rhythmbox-client --next --no-start &> /dev/null"
+    m:0x40 + c:60
+    Mod4 + period
+        
+"mpc -q toggle &> /dev/null ; rhythmbox-client --play-pause --no-start &> /dev/null"
+    m:0x40 + c:33
+    Mod4 + p
+
+"mpc -q toggle &> /dev/null ; rhythmbox-client --play-pause --no-start &> /dev/null"
+    m:0x80 + c:33
+    Mod5 + p
+
+"mpc -q stop &> /dev/null"
+    m:0x80 + c:39
+    Mod5 + s
+
+"mpc -q stop &> /dev/null"
+    m:0x40 + c:39
+    Mod4 + s
+
+"~/scripts/touchpad_toggle.sh"
+    m:0x0 + c:191
+    XF86Tools
+
+"~/scripts/change_volume.sh +"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
+"~/scripts/change_volume.sh -"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
+
+"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+    m:0x10 + c:121
+    Mod2 + XF86AudioMute
+
+"galculator"
+    m:0x10 + c:148
+    Mod2 + XF86Calculator
+
+#"swarp 1024 598"
+#    m:0x4 + c:49
+#    Control + grave
+
+"echo 'awesome.restart()' | awesome-client && xsetroot -solid '#464646'"
+    m:0xc + c:27
+    Control+Alt + r
+
+"service net.wlan0 restart"
+    m:0x9 + c:22
+    Shift+Alt + BackSpace
