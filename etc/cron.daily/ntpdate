@@ -1,0 +1,2 @@
+#!/bin/sh
+ntpdate -s -t60 194.186.254.22 195.2.64.5 && hwclock --systohc && logger 'time has been updated'
