@@ -3,6 +3,14 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# mounting encrypted fs
+if [[ ! $(mount | egrep '^encfs on.*\.private type fuse.encfs') ]]
+then
+    sudo encfs --public ~/.private-encrypted ~/.private -- -o nonempty
+fi
+
+# running X
 if [[ $TERM != screen.linux &&
       ! $(ps uax | egrep 'X.*:0' | grep $USER | grep -v grep) ]]
 then
