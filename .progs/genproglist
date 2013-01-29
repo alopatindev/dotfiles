@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ls -lL `echo "$PATH" | tr : ' '` 2>|/dev/null | awk 'NF>2 && $1 ~ /^[^d].*x/ {print $NF}' | sort -u > ~/.proglist.ls
