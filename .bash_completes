@@ -1,0 +1,6 @@
+complete -W 'ffap@ssh.alwaysdata.com router desktop netbook' ssh xssh
+#complete -W 'ftp.natm.ru ftp2.natm.ru ftp3.natm.ru ftp4.natm.ru ftp5.natm.ru ftp.novgorod.ru ftp.chg.ru ftp.mxc.ru' lftp
+complete -W 'ftp.chg.ru' lftp
+complete -W '`ls --color=never /etc/init.d/`' service
+complete -cf sudo
+# vim: textwidth=0
