@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ $DISPLAY != "" ]] ; then
+	/usr/bin/mplayer "$@"
+else
+	fbmplayer "$@"
+fi

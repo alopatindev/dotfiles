@@ -1,0 +1,4 @@
+#!/bin/bash
+X :5 & DISPLAY=:5 nohup gtasa
+#PID=$(ps uax | grep X\ :5 | grep -v grep | awk '{print $2}')
+#kill ${PID} || kill -9 ${PID}

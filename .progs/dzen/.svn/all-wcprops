@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 23
+/svn/!svn/ver/271/trunk
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 29
+/svn/!svn/ver/1/trunk/LICENSE
+END
+dzen.h
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/268/trunk/dzen.h
+END
+help
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/151/trunk/help
+END
+README.dzen
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/230/trunk/README.dzen
+END
+CREDITS
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/240/trunk/CREDITS
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/270/trunk/README
+END
+util.c
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/248/trunk/util.c
+END
+action.c
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/255/trunk/action.c
+END
+action.h
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/249/trunk/action.h
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/268/trunk/main.c
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/240/trunk/TODO
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/153/trunk/INSTALL
+END
+config.mk
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/271/trunk/config.mk
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/240/trunk/Makefile
+END
+draw.c
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/270/trunk/draw.c
+END

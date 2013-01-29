@@ -1,0 +1,6 @@
+#!/bin/bash
+
+XAPATH=/tmp/.sbar-Xauthority
+
+cp -f .Xauthority $XAPATH
+XAUTHORITY=$XAPATH DISPLAY=:0 su - skype -c '/opt/bin/skype'

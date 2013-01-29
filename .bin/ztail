@@ -1,0 +1,36 @@
+#!/bin/sh
+# Uncompress file's tail to standard output.
+
+# Copyright (C) 2011 Free Software Foundation
+
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+version="ztail (gzip) 0.01
+Copyright (C) 2011 Free Software Foundation, Inc.
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+There is NO WARRANTY, to the extent permitted by law."
+
+usage=`tail --help | sed -e 's/tail/ztail/g'`
+
+while getopts c:f:Fn:q:s: name
+do
+    case $name in
+    --help)    exec echo "$usage";;
+    --version) exec echo "$version";;
+    esac
+done
+
+filename=$1
+shift
+echo $@
+
+#exec gzip -cd "$filename" | tail $@

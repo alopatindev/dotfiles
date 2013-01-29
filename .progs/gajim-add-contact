@@ -1,0 +1,4 @@
+#!/bin/bash
+
+CONTACT=$(echo "$1" | sed -e 's/^xmpp://')
+gajim-remote add_contact "$CONTACT"

@@ -1,0 +1,2 @@
+#!/bin/bash
+uploadpic ~/screens/screenshot_$(cat ~/screens/counter).png

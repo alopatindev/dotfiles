@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/262/trunk/gadgets
+END
+README.gcpubar
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/190/trunk/gadgets/README.gcpubar
+END
+README.textwidth
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/139/trunk/gadgets/README.textwidth
+END
+README.kittscanner
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/152/trunk/gadgets/README.kittscanner
+END
+dbar.c
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/262/trunk/gadgets/dbar.c
+END
+kittscanner.sh
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/170/trunk/gadgets/kittscanner.sh
+END
+dbar.h
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/192/trunk/gadgets/dbar.h
+END
+gdbar.c
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/192/trunk/gadgets/gdbar.c
+END
+noisyalert.sh
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/152/trunk/gadgets/noisyalert.sh
+END
+README.dbar
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/130/trunk/gadgets/README.dbar
+END
+gcpubar.c
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/193/trunk/gadgets/gcpubar.c
+END
+textwidth.c
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/140/trunk/gadgets/textwidth.c
+END
+dbar-main.c
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/190/trunk/gadgets/dbar-main.c
+END
+README.gdbar
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/190/trunk/gadgets/README.gdbar
+END
+config.mk
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/139/trunk/gadgets/config.mk
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/190/trunk/gadgets/Makefile
+END

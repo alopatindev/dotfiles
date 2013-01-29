@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $2 == '' ]]; then
+    echo 'webput what as_what'
+    exit 1
+fi
+
+#lftp -e "rm d/$2; exit" "ftp://ololo:trololo@sbar.ddns.info:1122"
+#wput -nv "$1" "ftp://ololo:trololo@sbar.ddns.info:1122/d/$2"
+#echo "get it with http://sbar.ddns.info/d/$2"
+rm -fv "/var/www/localhost/htdocs/d/$2"
+cp -v "$1" "/var/www/localhost/htdocs/d/$2"
+chmod o+r "/var/www/localhost/htdocs/d/$2"

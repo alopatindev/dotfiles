@@ -1,0 +1,5 @@
+#!/bin/bash
+
+setterm -cursor off
+/usr/bin/mplayer -vo fbdev2 -framedrop -quiet -msglevel all=-1  -zoom -x 640 -y 400 -vf expand=0:250:::: $@
+setterm -cursor on

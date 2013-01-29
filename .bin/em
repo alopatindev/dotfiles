@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo emerge $@
+aplay -q /usr/share/gajim/data/sounds/sent.wav

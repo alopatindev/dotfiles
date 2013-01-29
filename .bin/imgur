@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+from poster.encode import multipart_encode
+from poster.streaminghttp import register_openers
+import urllib2
+import simplejson
+import sys
+
+try:
+    input_file = open(sys.argv[1], 'rb')
+except IndexError:
+    input_file = sys.stdin
+
+API_KEY = "283c11fa23da34abb695ece9c9ea42f9"
+API_URL = 'http://api.imgur.com/2/upload.json'
+
+register_openers()
+
+datagen, headers = multipart_encode(dict(image=input_file, key=API_KEY))
+request = urllib2.Request(API_URL, datagen, headers)
+
+try:
+    result = urllib2.urlopen(request).read()
+except urllib2.HTTPError, e:
+    sys.stderr.write("Error uploading image: %s\n" % e.msg)
+    sys.exit(e.code)
+
+result = simplejson.loads(result)
+links = result['upload']['links']
+
+#print "Original:", links['original']
+#print "Page:", links['imgur_page']
+#print "Delete:", links['delete_page']
+#print "Small:", links['small_square']
+#print "Large:", links['large_thumbnail']
+print links['original']

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+logger $1
+logger $@
+
+if (echo "$1" | grep -q '^xmpp:'); then
+    gajim-remote add_contact $(echo "$1" | sed -e 's/^xmpp://')
+else
+    source /usr/bin/xdg-open
+fi

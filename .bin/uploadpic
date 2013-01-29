@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $1 == '' ]]; then
+    echo "$0 filename.png"
+    exit 1
+fi
+
+#uimge --picthost $1
+uimge --savepic $1

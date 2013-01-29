@@ -1,0 +1,141 @@
+#!/bin/sh
+# Demotivation by William Meth
+# ver. 0.4 Copyleft (C) 2009 BSD license
+#
+# Отправляйте Ваши замечания и предложения на veyko2002'at'gmail.com
+#
+# Thanks to:
+# ramok by http://linsovet.com
+# code cleaning
+#
+# TODO: Сделать так чтобы опции решали необязательные параметры, а синтаксис
+# сводился к виду demotivation [-HoFfSsC ] "входящее изображение" "текст
+# заголовка" "текст пояснения" 
+ 
+ 
+# Коды ошибок
+ERROPT="1" # Неверная опция
+ENOVALUE="2" # Не прописано значение опции
+ENOIMAGE="3" # Не дан входной файл
+ESCALE_ERR="4" # Не получилось изменить изображение
+ENODEPS="5" # Нерешенные зависимости
+ESHIT="265" # Маловероятная ошибка
+#несколько технических переменных
+MYNAME=`basename $0` #получаем имя скрипта
+RC=$HOME/.${MYNAME}rc #Место нахождения конфига.
+ 
+ 
+#Создаем файл конфигурации, если еще не существует.
+#Пожалуйста, не изменяйте свои параметры тут! Для этого есть конфиг.
+if [ ! -f "$RC" ]; then
+cat << END_OF_RC > $RC
+DEST="/home/sbar/dems/dem\$(date +%N).png" # Имя файла
+H_FONT="/usr/share/fonts/TTF/dejavu/DejaVuSerif-Roman.ttf" # Шрифт заголовка
+T_FONT="/usr/share/fonts/TTF/dejavu/DejaVuSans.ttf" # Шрифт пояснения
+H_SIZE="64" # Размер заголовка
+T_SIZE="32" # Размер пояснения
+SCALE="640" # Размер 
+END_OF_RC
+fi
+ 
+ 
+# считываем конфиг файл
+. $RC
+ 
+ 
+#Проверка наличия необходимых компонентов
+which convert &> /dev/null
+if [ $? -gt 0 ]; then
+echo 'Для корректной работы программы требуется пакет "ImageMagic"' 1>&2
+exit $ENODEPS
+fi
+ 
+ 
+motivator_help() {
+cat << END_OF_HELP
+$MYNAME - Генератор демотиваторов
+Использование:
+$MYNAME -i КАРТИНКА [-o КАРТИНКА] [-h ТЕКСТ] [-t текст]
+[-f ШРИФТ] [-F ШРИФТ] [-s РАЗМЕР] [-S РАЗМЕР] [-C ЧИСЛО]
+Опции:
+-H - Показать эту справку
+-i - Исходное изображение
+-h - Текст заголовка
+-t - Текст пояснения
+-o - Выходной файл
+-F - Шрифт заголовка
+-f - Шрифт пояснения
+-S - Размер заголовка
+-s - Размер пояснения
+-C - Размер изображения
+Для изменения параметров по умолчанию, редактируйте файл $RC
+END_OF_HELP
+} 
+ 
+ 
+motivator_getopts() { 
+while getopts ":i: h: t: o: f: F: s: S: C: H" optname; do #получаем аргументы
+case "$optname" in
+"i") IMAGE="${OPTARG}" ;;
+"h") HEAD_TEXT="${OPTARG}" ;;
+"t") TERM_TEXT="${OPTARG}" ;;
+"o") DEST="${OPTARG}" ;;
+"f") T_FONT="${OPTARG}" ;;
+"F") H_FONT="${OPTARG}" ;;
+"s") T_SIZE="${OPTARG}" ;;
+"S") H_SIZE="${OPTARG}" ;;
+"C") SCALE="${OPTARG}" ;;
+"H") motivator_help; exit 0 ;;
+"?") echo "нет опции \"${OPTARG}\"! Используйте -H для справки" 1>&2; exit $ERROPT ;;
+":") echo "Не указан аргумент для опции \"${OPTARG}\"" 1>&2; exit $ENOVALUE ;;
+*) echo "Неизвестная ошибка" 1>&2; exit $ESHIT ;;
+esac
+done
+ 
+ 
+#Проверяем наличие входного файла
+if [ -z "${IMAGE}" ]; then
+echo -e 'дайте мне исходную картинку!\n' 1>&2
+motivator_help
+exit $ENOIMAGE 
+fi
+}
+ 
+ 
+#------Основной код------
+ 
+#получаем аргументы
+motivator_getopts "${@}" 
+ 
+#Изменяем размер
+convert -scale "${SCALE}" "${IMAGE}" "${DEST}" &> /dev/null
+if [ $? -gt 0 ]; then
+echo 'Ошибка изменения размера изображения' 1>&2
+exit $ESCALE_ERR
+fi
+ 
+#Делаем рамку
+mogrify -bordercolor black -border 2 \
+-bordercolor white -border 2 \
+-bordercolor black -border 70x0 "${DEST}"
+ 
+#Пишем заголовок
+if [ -n "${HEAD_TEXT}" ]; then
+montage -geometry +0+0 -background black -fill white \
+-font "${H_FONT}" \
+-pointsize "${H_SIZE}" -label "${HEAD_TEXT}" "${DEST}" "${DEST}"
+fi
+ 
+#Пишем пояснение
+if [ -n "${TERM_TEXT}" ]; then
+montage -geometry +0+0 -background black -fill white \
+-font "${T_FONT}" \
+-pointsize "${T_SIZE}" -label "${TERM_TEXT}" "${DEST}" "${DEST}"
+fi
+ 
+#Если был заголовок или пояснение, делаем поля
+if [ -n "${HEAD_TEXT}" -o -n "${TERM_TEXT}" ]; then
+mogrify -bordercolor black -border 5x45 "${DEST}"
+fi
+ 
+exit 0 #все хорошо, закончили. Уходим отсюда!

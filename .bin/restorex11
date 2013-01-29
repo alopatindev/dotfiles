@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xrandr -s 0
+#~/scripts/change_vga_resolution.sh 1024 600 60 LVDS1
+~/scripts/change_vga_resolution.sh 1024 600
+#xrandr --output LVDS1 -s 0
+#xrandr --output LVDS1 --mode 1024x600
