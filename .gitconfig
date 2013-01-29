@@ -1,0 +1,7 @@
+[user]
+	name = Alexander Lopatin
+	email = sbar.geekATgmail.com
+[core]
+	excludesfile = /home/sbar/.gitignore
+[color]
+	ui = true
