@@ -2,12 +2,14 @@
 include "/usr/share/themes/sbar/gtk-2.0/gtkrc"
 
 style "user-font" {
-	font_name = "Ubuntu 14"
+	font_name = "Ubuntu 16"
 }
 
 widget_class "*" style "user-font"
 
-gtk-font-name="Ubuntu 14"
+gtk-font-name="Ubuntu 16"
+
+gtk-theme-name  = "sbar"
 
 include "/home/sbar/.gtkrc.mine"
 
