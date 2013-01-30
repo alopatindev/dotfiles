@@ -1,0 +1,9 @@
+[X-GNOME-Metatheme]
+Name=sbar
+Name[en]=sbar
+Comment=sbar's blackky theme
+Comment[en]=sbar's blackky theme
+Encoding=UTF-8
+GtkTheme=sbar
+IconTheme=GNOME
+MetacityTheme=Mist

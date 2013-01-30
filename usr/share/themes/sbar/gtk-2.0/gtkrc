@@ -1,0 +1,126 @@
+#pixmap_path "/usr/share/gimp/2.0/help/images"
+
+style "default"
+{
+	fg[NORMAL]              = "#FFFFFF"
+	fg[ACTIVE]              = "#FFFFFF"
+	fg[INSENSITIVE]         = "#FFFFFF"
+	fg[PRELIGHT]            = "#FFFFFF"
+	fg[SELECTED]            = "#000000"
+
+	bg[ACTIVE]              = "#444444"
+	bg[NORMAL]              = "#5B5B5B"
+	bg[INSENSITIVE]         = "#474747"
+	bg[PRELIGHT]           = "#5D9457"
+    bg[SELECTED]            = "#5D9457"
+
+	base[NORMAL]            = "#555555"
+	#base[ACTIVE]            = "#cdcdcd"
+	base[ACTIVE]            = "#C07600"
+	base[INSENSITIVE]       = "#555555"
+	base[PRELIGHT]          = "#DC780C"
+	base[SELECTED]          = "#5D9457"
+        
+	text[NORMAL]            = "#FFFFFF"
+	text[ACTIVE]            = "#000000"
+	text[PRELIGHT]          = "#000000"
+	text[SELECTED]          = "#FFFFFF"
+	text[INSENSITIVE]       = "#555555"
+
+	GtkRange::trough_border = 0
+	GtkRange::slider_width = 15
+	GtkRange::stepper_size = 15
+
+	GtkScrollbar::min_slider_length = 15
+	GtkCheckButton::indicator_size=10
+	GtkCheckMenuItem::indicator_size=10
+	GtkRadioButton::indicator_size=12
+#	GtkStatusbar::shadow_type = 
+	
+	GtkNotebook::tab_vborder = 1
+	GtkNotebook::tab_hborder = 1
+	xthickness = 1
+	ythickness = 1
+
+	NautilusIconContainer::dark_info_color="#888888"
+	NautilusIconContainer::light_info_color="#bbbbbb"
+	NautilusIconContainer::highlight_alpha=200
+
+	fontset="-*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*"
+
+	engine ""
+	{
+	}
+
+
+	# pixmaps
+	#stock["gtk-home"] =           {{ "home.png" }}
+	#stock["gtk-media-next"] =     {{ "prev.png" }}
+
+
+}
+
+style "menuitem"
+{
+	ythickness = 2
+	xthickness = 2
+	text[PRELIGHT]          = "#ffffff"
+	fg[PRELIGHT]          = "#ffffff"
+}
+
+style "menu" 
+{
+	ythickness = 2
+	xthickness = 2
+}
+
+
+style "user-font"
+{
+#   fontset="-monotype-arial-medium-r-normal-*-*-130-*-*-p-*-iso10646-1"
+   fontset="-*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*"
+}
+
+widget_class "*" style "user-font"
+
+class "GtkWidget" style "default"
+class "GtkMenu" style "menu"
+class "*MenuItem*" style "menuitem"
+
+widget_class "*MenuItem*" style "menuitem"
+widget_class "*.GtkImageMenuItem.*" style "menuitem"
+widget_class "*.GtkAccelMenuItem.*" style "menuitem"
+widget_class "*.GtkRadioMenuItem.*" style "menuitem"
+widget_class "*.GtkCheckMenuItem.*" style "menuitem"
+widget_class "*.GtkMenu.*" style "menuitem"
+
+style "default-style"
+{
+	  GtkComboBox::appears-as-list = 1
+}
+
+class "GtkWidget" style "default-style"
+
+
+#style "user-font" {
+#	font_name = "DejaVu Sans 11"
+#}
+
+#gtk-font-name="DejaVu Sans 11"
+
+
+
+
+
+
+
+
+style "user-font" {
+	font_name = "DejaVu Sans 14"
+}
+
+widget_class "*" style "user-font"
+
+gtk-font-name="DejaVu Sans 14"
+
+
