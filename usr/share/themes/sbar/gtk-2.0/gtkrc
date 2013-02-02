@@ -16,7 +16,7 @@ style "default"
 
 	base[NORMAL]            = "#555555"
 	#base[ACTIVE]            = "#cdcdcd"
-	base[ACTIVE]            = "#C07600"
+	base[ACTIVE]            = "#5D9457"
 	base[INSENSITIVE]       = "#555555"
 	base[PRELIGHT]          = "#DC780C"
 	base[SELECTED]          = "#5D9457"
