@@ -2,7 +2,7 @@
 
 /* appearance */
 //#define FONT			"fixed-12"
-#define FONT			"DejaVu Sans Mono:bold:size=20"
+#define FONT			"DejaVu Sans Mono:bold:size=34"
 //#define FONT			"snap-10"
 /*#define NORMBGCOLOR             "#cccccc"
 #define NORMFGCOLOR             "#000000"

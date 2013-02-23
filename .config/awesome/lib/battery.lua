@@ -24,8 +24,8 @@ local limits = {{10, 3}, {0}}
 local notified = 0
 
 function get_bat_state (adapter)
-    local fcur = io.open("/sys/class/power_supply/"..adapter.."/charge_now")
-    local fcap = io.open("/sys/class/power_supply/"..adapter.."/charge_full")
+    local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")
+    local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
     local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
     local cur = fcur:read()
     local cap = fcap:read()
@@ -68,6 +68,9 @@ function batclosure (adapter)
         if dir == -1 then
             dirsign = "↓"
             prefix = "Bat:"
+            if battery <= 3 then
+                os.execute("hibernate")
+            end
             if battery <= nextlim and notified == 0 then
                 naughty.notify({title = "⚡ Beware! ⚡",
                             text = "Battery charge is low ( ⚡ "..battery.."%)!",
@@ -89,6 +92,8 @@ function batclosure (adapter)
             dirsign = ""
         end
         if dir ~= 0 then battery = battery.."%" end
-        return " "..prefix.." "..dirsign..battery..dirsign.." "
+        return " "..prefix.." "..dirsign..battery..dirsign
     end
 end
+
+--print(get_bat_state ('BAT0'))

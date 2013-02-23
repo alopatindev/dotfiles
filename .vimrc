@@ -98,6 +98,9 @@ set sessionoptions=curdir,buffers,tabpages
 " Горячие клавиши
 "-------------------------
 
+
+map . /
+
 " Пробел в нормальном режиме перелистывает страницы
 " nmap <Space> <PageDown>
 

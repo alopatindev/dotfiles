@@ -2,7 +2,7 @@
 
 IFACE=wlan0
 
-(sudo /sbin/ifconfig ${IFACE} | grep UP >> /dev/null) || \
+(sudo /bin/ifconfig ${IFACE} | grep UP >> /dev/null) || \
     sudo ifconfig ${IFACE} up || exit 1
 
 sudo /sbin/iwlist wlan0 scan \

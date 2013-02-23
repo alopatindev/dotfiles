@@ -59,7 +59,7 @@ function setdsm() {
 }
 
 #export MAKEDICT_PLUGIN_DIR=/usr/share/makedict/codecs
-export PATH="${HOME}/.bin:${PATH}"
+export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
 export OLDPWD=~
 export BROWSER=chromium
 #export TERM=rxvt-unicode
@@ -67,8 +67,10 @@ export BROWSER=chromium
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Xms256m -Xmx512m -XX:MaxHeapSize=256m'
 export ANDROID_NDK='/opt/android-ndk/'
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sbar/necessitas/QtCreator/Qt/lib/"
 
 export EDITOR=vim
+export TERMINAL=xterm
 
 source ~/.bash_completes
 source ~/.bash_alias

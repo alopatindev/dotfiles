@@ -5,7 +5,8 @@ FILE=/usr/share/fortune/sbar/misc
 if [[ $1 == '' ]]; then
     cat >> "$FILE"
 else
-    echo "$@
+    echo "%
+$@
 %%" >> "$FILE"
 fi
 

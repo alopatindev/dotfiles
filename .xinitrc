@@ -6,19 +6,21 @@ synclient HorizTwoFingerScroll=1 &
 #xsetroot -solid '#464646' &
 #feh -q --bg-scale /home/sbar/pictures/wallpapers/cold_laptop.png &
 xmodmap .Xmodmap &
-~/.bin/dmenu_path >> /tmp/.dmenu &
+#~/.bin/dmenu_path > /tmp/.dmenu &
 xbindkeys
 xterm -T 'terms' -e 'screen -DRm' &
 xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages' &
-~/.bin/psi-plus &
+~/.bin/psi &
 chromium &
 conky -d
 #~/.bin/sskype &
 stardict -h &
-~/scripts/gmailcheck.sh &
+~/.progs/gmailcheck.sh &
 (~/.bin/skb 'myskb.text = " [ \%s ]"' | awesome-client) &
 exec awesome
-killall gmailcheck.sh
 #exec dwm
+#exec i3
+
+killall gmailcheck.sh
 
 # vim: textwidth=0:ft=sh

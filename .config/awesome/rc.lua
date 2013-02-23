@@ -6,11 +6,12 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
---require("lib/second_panel")
+require("lib/second_panel")
 
 beautiful.init("/home/sbar/.config/awesome/theme.lua")
 
-safeCoords = {x = 1024, y = 598}
+-- safeCoords = {x = 1024, y = 598}
+safeCoords = {x = 1366, y = 768}
 mouse.coords(safeCoords)
 
 terminal = "xterm"
@@ -39,7 +40,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "im", "term", "web", "voip", "media", "graphics", "misc", "downloads", "doc", "logs" }, s, layouts[2])
+    tags[s] = awful.tag({ "1 im", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, layouts[2])
 
 --    -- FIXME: ugly hack, just to set the 3rd tag's layout to max
 --    awful.tag.viewonly(tags[s][3])
@@ -79,15 +80,16 @@ mylayoutbox = {}
 mytaglist = {}
 mytasklist = {}
 
---spanelwi = widget({type = "textbox", name = "spanelwi"})
---spaneltimer = timer({timeout = 1})
---spaneltimer:add_signal("timeout",
---    function()
---        spanelwi.text = second_panel()
---    end
---)
---spanelwi.text = "lol"
---spaneltimer:start()
+spanelwi = widget({type = "textbox", name = "spanelwi"})
+spaneltimer = timer({timeout = 1})
+spaneltimer:add_signal("timeout",
+    function()
+        spanelwi.text = second_panel()
+--        spanelwi.text = "nya"
+    end
+)
+spanelwi.text = "lol"
+spaneltimer:start()
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -106,7 +108,7 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
-    --box2[s] = awful.wibox({ position = "bottom", height = "16", screen = s })
+    box2[s] = awful.wibox({ position = "bottom", height = "16", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -123,7 +125,7 @@ for s = 1, screen.count() do
         mytasklist[s],
     }
 
-    --box2[s].widgets = { spanelwi }
+    box2[s].widgets = { spanelwi }
 end
 -- }}}
 
@@ -343,8 +345,10 @@ awful.rules.rules = {
     { rule = { class = "[Cc]hrome" },
        properties = { tag = tags[1][3] } },
     { rule = { class = "XTerm", name = "terms" }, properties = { tag = tags[1][2]}},
+    { rule = { class = "XTerm", name = "index.wiki .*" }, properties = { tag = tags[1][2]}},
 
 
+    { rule =  { class = "Qtcreator"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Gimp"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Openshot" }, properties = { tag = tags[1][6] }},
     { rule =  { class = "Gimp", name = "Open Image"}, properties = { floating = true }},
@@ -384,6 +388,7 @@ awful.rules.rules = {
     { rule =  { class = "Skype" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Mangler" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Gucharmap" }, properties = { tag = tags[1][1] }},
+    { rule =  { class = "emulator64-arm" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Googleearth-bin", name = "googleearth-bin*" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Gajim.py", name = "Gajim: Account Creation Wizard" }, properties = { tag = tags[1][1], floating = true }},
     { rule =  { class = "Gajim.py", name = "Subscription Request" }, properties = { tag = tags[1][1], floating = true }},
@@ -474,6 +479,7 @@ awful.rules.rules = {
     { rule =  { class = "Blender", name = "Render"  }, properties = { tag = tags[1][6], floating = true }},
     { rule =  { class = "XVkbd"}, properties = { floating = true }},
     { rule =  { class = "Evince" }, properties = { tag = tags[1][9], floating = false }},
+    { rule =  { class = "Zathura" }, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "Pybr" }, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "Apvlv" }, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "Epdfview", name = "epdfview*" }, properties = { tag = tags[1][9] }},
@@ -483,6 +489,7 @@ awful.rules.rules = {
     { rule =  { class = "Xvidcap" }, properties = { floating = true }},
     { rule =  { class = "XTerm", name = "wget*" }, properties = { tag = tags[1][8] }},
     { rule =  { class = "XTerm", name = "lftpget download*" }, properties = { tag = tags[1][8] }},
+    { rule =  { class = "Android SDK Manager", name = "Android SDK Manager" }, properties = { tag = tags[1][8] }},
     { rule =  { class = "Deluge" }, properties = { tag = tags[1][8] }},
     { rule =  { class = "Transmission-gtk" }, properties = { tag = tags[1][8] }},
     { rule =  { class = "Transmission" }, properties = { tag = tags[1][8] }},

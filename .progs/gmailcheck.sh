@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# vim: textwidth=0
+
 #GMUSER=
 #PASSWD=
 source ~/.private/googlerc
@@ -14,7 +16,7 @@ while [ 1 -eq 1 ] ; do
     MCOUNT=${MCOUNT#<*>} # strips <fullcount>
     MCOUNT=${MCOUNT%<*>} # strips </fullcount>
     if [ $MCOUNT -ne 0 ] ; then
-        echo "^fg(#ffffff)^bg(#5D9457)$MCOUNT unread messages!" | ~/.progs/dzen/dzen2-svn -fn "DejaVu Sans:size=50" -p 2 -ta l -y 20
+        echo "^fg(#ffffff)^bg(#5D9457)$MCOUNT unread messages!" | ~/.progs/dzen/dzen2-svn -fn "DejaVu Sans:size=70" -p 2 -ta l -y 20
     fi
     sleep $INTERVAL"m"
 done

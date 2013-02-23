@@ -46,7 +46,7 @@
 #    Shift+Alt+Mod2 + r
 
 #"for i in /media/*; do umount $i; done"
-"mount | awk '{print $3}' | egrep --color=none '^/media' | xargs umount"
+"mount | awk '{print $3}' | egrep --color=none '^/media' | xargs sudo umount"
     m:0x40 + c:41
     Mod4 + f
 
@@ -139,12 +139,16 @@
     XF86Tools
 
 "~/scripts/change_volume.sh +"
-    m:0x0 + c:123
-    XF86AudioRaiseVolume
+    m:0x44 + c:19
+    Control+Mod4 + 0
+    #m:0x0 + c:123
+    #XF86AudioRaiseVolume
 
 "~/scripts/change_volume.sh -"
-    m:0x0 + c:122
-    XF86AudioLowerVolume
+    m:0x44 + c:18
+    Control+Mod4 + 9
+    #m:0x0 + c:122
+    #XF86AudioLowerVolume
 
 "amixer -q sset Master toggle && ~/scripts/sound_status.sh"
     m:0x10 + c:121
@@ -165,3 +169,7 @@
 "service net.wlan0 restart"
     m:0x9 + c:22
     Shift+Alt + BackSpace
+
+"~/scripts/slowpokecast-toggle.sh"
+    m:0x48 + c:27
+    Alt+Mod4 + r
