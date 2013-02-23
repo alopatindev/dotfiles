@@ -27,6 +27,7 @@ text_buffer_size 8096
 #Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
 #Погода  ${execi 600 /home/sbar/scripts/st-petersburg-temperature.py}
 #${color #ffffff}${execi 5 ~/scripts/spanel/nonoften.lua}${exec ~/scripts/spanel/second_panel.lua}
+#${hddtemp}°C
 
 TEXT
 
@@ -34,7 +35,7 @@ TEXT
 
 ${color #FFFFFF}eth0 down: ${color #CCCCCC}${downspeedf eth0}Kb/s${offset 25}${color #FFFFFF}eth0 up: ${color #CCCCCC}${upspeedf eth0}Kb/s${offset 55}${color #FFFFFF}wlan0 down: ${color #CCCCCC}${downspeedf wlan0}Kb/s${offset 30}${color #FFFFFF}wlan0 up: ${color #CCCCCC}${upspeedf wlan0}Kb/s
 ${downspeedgraph eth0 50,245 CCCCCC FFFFFF} ${upspeedgraph eth0 50,245 CCCCCC FFFFFF} ${downspeedgraph wlan0 50,245 CCCCCC FFFFFF} ${upspeedgraph wlan0 50,245 CCCCCC FFFFFF}
-${color #FFFFFF}disk I/O, ${color #CCCCCC}${hddtemp}°C
+${color #FFFFFF}disk I/O
 ${diskiograph 50,245 CCCCCC FFFFFF}${color #CCCCCC}
 
 ${color #CCCCCC}${cpu cpu0}%${offset 70} ${color #CCCCCC}${cpu cpu1}%${offset 70} ${color #CCCCCC}${cpu cpu2}%${offset 70} ${color #CCCCCC}${cpu cpu3}%${offset 70} ${color #CCCCCC}${cpu cpu4}%${offset 70} ${color #CCCCCC}${cpu cpu5}%${offset 70} ${color #CCCCCC}${cpu cpu6}%${offset 70} ${color #CCCCCC}${cpu cpu7}%${offset 70}
