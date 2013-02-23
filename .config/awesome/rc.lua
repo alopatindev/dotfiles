@@ -85,10 +85,9 @@ spaneltimer = timer({timeout = 1})
 spaneltimer:add_signal("timeout",
     function()
         spanelwi.text = second_panel()
---        spanelwi.text = "nya"
     end
 )
-spanelwi.text = "lol"
+spanelwi.text = ""
 spaneltimer:start()
 
 for s = 1, screen.count() do
@@ -108,7 +107,7 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
-    box2[s] = awful.wibox({ position = "bottom", height = "16", screen = s })
+    box2[s] = awful.wibox({ position = "bottom", height = "17", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
