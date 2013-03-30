@@ -1,11 +1,13 @@
 # vim: filetype=conf:textwidth=0
 
-"xterm -T 'terms' -e 'screen -DRm'"
+#"xterm -T 'terms' -e 'screen -DRm'"
+"xterm -T 'terms' -e 'tmux attach || tmux'"
     m:0x9 + c:36
     Shift+Alt + Return
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
-"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
+#"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
+"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
     m:0x4c + c:36
     Control+Alt+Mod4 + Return
 
