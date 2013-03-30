@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec /opt/android-sdk-update-manager/tools/emulator64-arm -noaudio -avd test

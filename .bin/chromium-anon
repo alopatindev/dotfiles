@@ -1,0 +1,3 @@
+#!/bin/bash
+
+chromium --incognito --user-data-dir=/home/sbar/.private/chromium-anon $@
