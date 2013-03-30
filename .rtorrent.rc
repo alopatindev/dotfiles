@@ -5,7 +5,7 @@ upload_rate = 0
 directory = /home/sbar/downloads
 session = /home/sbar/.sessions
 
-# rtorrent каждые 5 секунд проверяет этот каталог на новые *.torrent файлы и если они есть то ставит их на закачку
+# check out new *.torrent files once per 5 seconds
 schedule = watch_directory,5,5,load_start=/home/sbar/Downloads/*.torrent
 
 port_range = 6881-6889
