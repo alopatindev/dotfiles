@@ -339,7 +339,7 @@ endfunction
 
 
 
-vmap h :call PythonCommentSelection()<CR>
+vmap H :call PythonCommentSelection()<CR>
 
 "let python_highlight_space_errors = 1
 

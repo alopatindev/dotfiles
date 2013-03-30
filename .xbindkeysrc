@@ -5,7 +5,7 @@
     Shift+Alt + Return
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
-"xterm -T 'terms' -fs 23 -geometry 55x20-0-0 -e 'screen -DRm'"
+"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
     m:0x4c + c:36
     Control+Alt+Mod4 + Return
 

@@ -236,19 +236,19 @@ gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
 #Xft.antialias:  true
 
 
-Xft.dpi: 96
-##Xft.antialias: true
-Xft.rgba: rgb
+#Xft.dpi: 96
+###Xft.antialias: true
+#Xft.rgba: rgb
+###Xft.hinting: true
+#Xft.lcdfilter: lcddefault
+
 ##Xft.hinting: true
-Xft.lcdfilter: lcddefault
-
-#Xft.hinting: true
-##Xft.autohint: true
-#Xft.autohint: false
+###Xft.autohint: true
+##Xft.autohint: false
+###Xft.hintstyle: hintmedium
+###Xft.hintstyle: hintslight
+##Xft.hintstyle: hintfull
+##Xft.antialias: true
 ##Xft.hintstyle: hintmedium
-##Xft.hintstyle: hintslight
-#Xft.hintstyle: hintfull
-#Xft.antialias: true
-#Xft.hintstyle: hintmedium
 
-Xft.autohint: true
+#Xft.autohint: true
