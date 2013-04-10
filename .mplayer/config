@@ -11,8 +11,11 @@ fontconfig = 1
 
 subfont-osd-scale=4
 subfont-text-scale=3
-#ass-font-scale=3
-ass-font-scale=1.5
+subfont-outline=3
+ass-font-scale=3
+#ass-font-scale=1.5
+
+double=yes
 
 subcp = "enca:ru:utf8"
 font  = "verdana"
