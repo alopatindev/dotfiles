@@ -7,7 +7,8 @@ if [[ $1 == '' ]]; then
 else
     echo "%
 $@
-%%" >> "$FILE"
+%
+" >> "$FILE"
 fi
 
 strfile "$FILE"

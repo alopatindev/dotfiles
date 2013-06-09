@@ -1,4 +1,5 @@
 #!/bin/bash
 
+source ~/.bashrc
 [[ -f /tmp/.dmenu ]] || ~/.bin/dmenu_path > /tmp/.dmenu
 exec $(cat /tmp/.dmenu | ~/.bin/dmenu)

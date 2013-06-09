@@ -175,3 +175,8 @@
 "~/scripts/slowpokecast-toggle.sh"
     m:0x48 + c:27
     Alt+Mod4 + r
+
+# workaround for pasting from chromium to vim
+"xclip -o|xclip -i"
+    m:0x40 + c:29
+    Mod4 + y

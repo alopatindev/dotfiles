@@ -1,6 +1,9 @@
 #!/bin/sh
-CACHE=$HOME/.dmenu_cache
+#CACHE=$HOME/.dmenu_cache
+CACHE="/tmp/.${USER}-dmenu_cache"
 IFS=:
+
+source ~/.bashrc
 
 uptodate() {
 	test ! -f $CACHE && return 1
