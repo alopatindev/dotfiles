@@ -68,6 +68,7 @@ alias pac='sudo pacman-color'
 alias powertop='sudo powertop'
 alias xlogs="xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages'"
 alias less='less -R'
+alias diff='colordiff'
 
 #for i in alsamixer vim vi mc
 for i in alsamixer mc w3m
