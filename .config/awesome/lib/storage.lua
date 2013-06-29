@@ -3,7 +3,7 @@ function storage_widget()
 
     devices = ""
     for i in f:lines() do
-        local device = string.match(i, "/media/(%w+)")
+        local device = string.match(i, "/media/([%w_]+)")
         if device then
             if #devices == 0 then
                 devices = device
