@@ -1,0 +1,2 @@
+#SUBSYSTEMS=="usb", KERNEL=="sd?", ATTRS{vendor}=="Rockbox ", RUN+="/usr/local/sbin/sansa_try_scrobble.sh"
+SUBSYSTEMS=="usb", KERNEL=="sd?", RUN+="/usr/local/sbin/sansa_try_scrobble.sh"

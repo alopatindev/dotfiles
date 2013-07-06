@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo /usr/bin/emerge $@
+#beep -f 5000
+aplay -q /usr/share/gajim/data/sounds/sent.wav

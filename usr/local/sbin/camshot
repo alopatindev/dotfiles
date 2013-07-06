@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DT="$(date '+%s_%T_%F')"
+FN="/home/sbar/camvideos/video_$DT"
+VID="$FN.avi"
+THUMB="$FN.png"
+mencoder -endpos 0:00:05 \
+    -tv driver=v4l2:alsa:amode=1:adevice=hw.0,0:input=1 tv:// \
+    -ovc lavc -oac pcm -msglevel all=-1 -o "$VID";
+ffmpeg -i "$VID" -ss 00:00:00.500 -f image2 -vframes 1 "$THUMB";
+chmod a+r "$FN"*

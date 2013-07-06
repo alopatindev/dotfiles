@@ -1,0 +1,35 @@
+#!/bin/bash
+
+su sbar -c 'DISPLAY=:0 XAUTHORITY=~sbar/.Xauthority /home/sbar/.bin/alock' &
+#su sbar -c 'echo disconnect >> /home/sbar/.mcabber/mcabber.fifo'
+#su sbar -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
+su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline'
+mpc stop
+/etc/init.d/alsasound restore
+umount /nfs/router &
+chvt 5
+
+echo -n mem > /sys/power/state
+
+hdparm -B 254 /dev/sda >> /dev/null
+echo "keycode 14 = BackSpace" | loadkeys &
+(sleep 3 && /etc/init.d/net.wlan0 restart && /etc/init.d/mpdscribble restart) &
+#/etc/init.d/hddtemp restart &
+#/etc/init.d/consolefont restart
+#/etc/init.d/hwclock restart
+#(sleep 10 && /etc/cron.daily/ntpdate) &
+#amixer sset Master unmute &
+#v4l2ctrl -l /etc/v4l2ctrl/7fpsLight.vbi 2&>> /dev/null &
+v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
+
+
+#DT="$(date '+%s_%T_%F')"
+#FN="/home/sbar/camvideos/video_$DT"
+#VID="$FN.avi"
+#THUMB="$FN.png"
+#(mencoder -endpos 0:00:05 \
+#    -tv driver=v4l2:alsa:amode=1:adevice=hw.0,0:input=1 tv:// \
+#    -ovc lavc -oac pcm -msglevel all=-1 -o "$VID";
+#ffmpeg -i "$VID" -ss 00:00:00.500 -f image2 -vframes 1 "$THUMB";
+#chmod a+r "$FN"* ) &
+/usr/local/sbin/camshot &

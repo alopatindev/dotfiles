@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $1 == '' ]] ; then
+	printf "\033[31m * \033[0mneed in parametrs\n\n\n"
+	exit 1
+fi
+
+if [ "`id -u`" != "0" ] ; then
+	sudo /etc/init.d/$@
+else
+	/etc/init.d/$@
+fi

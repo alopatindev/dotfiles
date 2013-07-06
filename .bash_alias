@@ -66,7 +66,7 @@ alias cal='cal -m'
 alias ya='sudo yaourt'
 alias pac='sudo pacman-color'
 alias powertop='sudo powertop'
-alias xlogs="xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages'"
+alias xlogs="sudo chmod +r /var/log/messages; xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages'"
 alias less='less -R'
 alias diff='colordiff'
 

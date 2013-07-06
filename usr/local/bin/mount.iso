@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Put something like that in your /etc/fstab:
+# /tmp/.img.iso /mnt/iso iso9660 defaults,noauto,users,ro 0 0
+
+if [ -e "/$1" ] ; then
+    FILENAME=${1}
+else
+    FILENAME="$(pwd)/$1"
+fi
+ln -fs "${FILENAME}" /tmp/.img.iso && mount /mnt/iso
