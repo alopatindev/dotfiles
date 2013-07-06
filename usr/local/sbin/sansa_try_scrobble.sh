@@ -12,7 +12,7 @@ sleep 10s
 ## save config only
 #python3 "$SCRIPT_PATH" -sc -f "$PLAYER_MOUNTPOINT/.scrobbler.log" -t +4 -u "$LASTFM_LOGIN" -p "$LASTFM_PASSWORD"
 
-python3 "$SCRIPT_PATH" -c
+python3 "$SCRIPT_PATH" -cb
 EXIT_STATUS=$?
 
 umount "$PLAYER_MOUNTPOINT"
