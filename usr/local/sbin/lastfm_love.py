@@ -63,5 +63,6 @@ def backup():
 
 
 load_config()
-love(get_loved_songs())
-backup()
+if os.path.exists(FILE) and os.path.isfile(FILE):
+    love(get_loved_songs())
+    backup()
