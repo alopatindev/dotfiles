@@ -11,7 +11,8 @@ synclient HorizTwoFingerScroll=1 TapButton3=3 FastTaps=1 &
 xmodmap .Xmodmap &
 #~/.bin/dmenu_path > /tmp/.dmenu &
 xbindkeys
-xterm -T 'terms' -e 'screen -DRm' &
+#xterm -T 'terms' -e 'screen -DRm' &
+xterm -T 'terms' -e 'tmux attach || tmux' &
 xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages' &
 ~/.bin/psi &
 chromium &
