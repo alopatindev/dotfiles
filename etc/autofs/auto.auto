@@ -10,6 +10,9 @@ die()
 # TODO: check filesystem type
 
 FAT32_OPTS="-fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime"
+EXT4_OPTS="-fstype=auto,rw,noatime,nodiratime"
+MOUNT_OPTS=""
+
 DEV="/dev/disk/by-label/$1"
 
 [ -L "$DEV" ] || DEV="/dev/$1"
@@ -17,6 +20,10 @@ DEV="/dev/disk/by-label/$1"
 
 REAL_PATH=$(readlink -f "$DEV")
 
+file -sL /dev/disk/by-label/CLIP_PLUS | grep ' , FAT (' >> /dev/null
+[ $? -eq 0 ] && MOUNT_OPTS="${FAT32_OPTS}" || MOUNT_OPTS="${EXT4_OPTS}"
+
 mount | awk '{print $1}' | egrep '^/dev' | grep "$REAL_PATH" && die "$DEV ($REAL_PATH) is already mounted"
 
-echo "$FAT32_OPTS :$DEV"
+logger "'${MOUNT_OPTS} :${DEV}'"
+echo "${MOUNT_OPTS} :${DEV}"
