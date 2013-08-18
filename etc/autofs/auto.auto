@@ -20,7 +20,7 @@ DEV="/dev/disk/by-label/$1"
 
 REAL_PATH=$(readlink -f "$DEV")
 
-file -sL /dev/disk/by-label/CLIP_PLUS | grep ' , FAT (' >> /dev/null
+file -sL "${DEV}" | grep ' , FAT (' >> /dev/null
 [ $? -eq 0 ] && MOUNT_OPTS="${FAT32_OPTS}" || MOUNT_OPTS="${EXT4_OPTS}"
 
 mount | awk '{print $1}' | egrep '^/dev' | grep "$REAL_PATH" && die "$DEV ($REAL_PATH) is already mounted"

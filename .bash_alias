@@ -69,6 +69,7 @@ alias powertop='sudo powertop'
 alias xlogs="sudo chmod +r /var/log/messages; xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages'"
 alias less='less -R'
 alias diff='colordiff'
+alias logcat='adb logcat'
 
 #for i in alsamixer vim vi mc
 for i in alsamixer mc w3m
