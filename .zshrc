@@ -50,3 +50,7 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.bash_env
 source ~/.bash_alias
+
+bindkey \^U backward-kill-line
+bindkey '<ctrl-v><ctrl+left-arrow>' backward-word
+bindkey '<ctrl-v><ctrl+right-arrow>' forward-word
