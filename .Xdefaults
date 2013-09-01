@@ -82,7 +82,7 @@ xterm*geometry: 84x25+0+0
 #xterm*font: -*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*
 xterm*faceName: DejaVu Sans Mono
 #xterm*faceName: Droid Sans Mono
-xterm*faceSize: 26
+xterm*faceSize: 20
 #xterm*wideFont: -misc-fixed-medium-r-normal-ja-0-0-100-100-c-0-iso10646-1
 xterm*scrollBar: false
 xterm*cursorColor: #EEE
