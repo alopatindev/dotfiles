@@ -1,0 +1,34 @@
+#!/sbin/runscript
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+opts="${opts} reload"
+U=sbar
+
+depend() {
+	after local
+}
+
+start() {
+	ebegin 'Starting mydm'
+	touch /var/log/mydm.log
+	chown $U:$U /var/log/mydm.log
+	#su - $U -lc '/bin/bash -lc startx'
+	#su - $U -c '. /etc/profile && PATH="${HOME}/bin:${PATH}" startx 2&> /var/log/mydm.log' &
+	su $U -c '. /etc/profile && cd "${HOME}" && PATH="${HOME}/bin:${PATH}" startx 2&> /var/log/mydm.log' &
+	eend 0
+}
+
+stop() {
+	ebegin 'Stopping mydm'
+	PID=$(ps uax | egrep 'X.*:0' | grep "$U" | grep -v grep | awk '{print $2}')
+	(kill ${PID} || kill -9 ${PID}) &> /dev/null
+	eend 0
+}
+
+reload() {
+	stop
+	sleep 1
+	start
+}
