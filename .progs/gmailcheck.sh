@@ -11,6 +11,8 @@ INTERVAL=5
 DISPLAY=:0
 LOCKFILE="/tmp/.X0-lock"
 
+unalias wget
+
 while [ 1 -eq 1 ] ; do
     MCOUNT=$(wget -qO- --http-user=$GMUSER --http-password=$PASSWD $GURL | grep fullcount)
     MCOUNT=${MCOUNT#<*>} # strips <fullcount>

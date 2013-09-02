@@ -5,3 +5,5 @@
 	excludesfile = /home/sbar/.gitignore
 [color]
 	ui = true
+[push]
+	default = matching

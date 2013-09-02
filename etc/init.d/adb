@@ -1,0 +1,23 @@
+#!/sbin/runscript
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+ANDROID_SDK="/opt/android-sdk-update-manager"
+ADB="${ANDROID_SDK}/platform-tools/adb"
+
+depend() {
+	need net
+}
+
+start() {
+    ebegin "Starting adb daemon"
+    "${ADB}" start-server >> /dev/null
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping adb daemon"
+    "${ADB}" kill-server >> /dev/null
+    eend $?
+}

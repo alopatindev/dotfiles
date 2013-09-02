@@ -9,7 +9,8 @@ maximum_width 1366
 use_xft yes
 #xftfont DejaVu Sans Mono:size=10
 #xftfont DejaVu Sans Mono:size=14
-xftfont Droid Sans Mono:size=23
+#xftfont Droid Sans Mono:size=23
+xftfont Droid Sans Mono:size=18
 #xftfont Terminus:size=10
 override_utf8_locale yes
 default_color CCCCCC
