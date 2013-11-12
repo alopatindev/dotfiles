@@ -45,6 +45,9 @@ plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlight
 
 source $ZSH/oh-my-zsh.sh
 
+# don't kill background processes when exiting zsh
+setopt NO_HUP
+
 # Customize to your needs...
 # git://github.com/robbyrussell/oh-my-zsh.git
 

@@ -1,0 +1,58 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>        <dir>         <type>    <options>          <dump> <pass>
+devpts                 /dev/pts      devpts    defaults            0      0
+shm                    /dev/shm      tmpfs     nodev,nosuid        0      0
+none                   /proc         proc      noauto,defaults     0      0
+
+#/dev/cdrom             /media/cd   auto    ro,user,noauto,unhide   0      0
+#/dev/dvd               /media/dvd  auto    ro,user,noauto,unhide   0      0
+#/dev/fd0               /media/fl   auto    user,noauto             0      0
+
+# use it with SSD:
+# noatime,nodiratime,discard,errors=remount-ro
+
+LABEL=gentoo / ext4 defaults,noatime,nodiratime,discard,errors=remount-ro 0 1
+LABEL=home /home ext4 defaults,noatime,nodiratime,discard,errors=remount-ro 0 1
+
+
+#LABEL=var /var reiserfs defaults,noatime,nodiratime 0 1
+#LABEL=boot /boot ext4 defaults,noauto,noatime,nodiratime,discard,errors=remount-ro 0 1
+LABEL=swap swap swap defaults,noauto 0 0
+
+/dev/sdb1 /media/flash auto defaults,noauto,users,noatime,nodiratime 0 0
+LABEL=android /media/android auto defaults,noauto,users,noatime,nodiratime 0 0
+#/dev/sdb1 /media/flash1_ntfs auto defaults,noauto,users,noatime,nodiratime 0 0
+#/dev/sdc1 /media/flash2 auto defaults,noauto,users,noatime,nodiratime 0 0
+
+#gphotofs /media/cam fuse.gphotofs defaults,noauto,users,noatime,nodiratime 0 0
+
+#/dev/sdc1 /media/sdc1 auto defaults,noauto,users,noatime,nodiratime 0 0
+#/dev/sdd1 /media/sdd1 auto defaults,noauto,users,noatime,nodiratime 0 0
+#/dev/sde1 /media/sde1 auto defaults,noauto,users,noatime,nodiratime 0 0
+
+#/dev/disk/by-uuid/541f96a2-5fa2-4339-a5bf-5024330df7f2 /media/openwrt auto defaults,noauto,users,noatime,nodiratime,errors=remount-ro 0 0
+/dev/disk/by-uuid/b7148616-ffd8-4225-b26d-22f6e0d3b6da /media/rvar auto defaults,noauto,users,noatime,nodiratime 0 0
+/dev/disk/by-uuid/3e2f18a6-360a-44a9-ab09-fd2fa0ae6bbd /media/rtest auto defaults,noauto,users,noatime,nodiratime,errors=remount-ro 0 0
+/dev/disk/by-uuid/18b9acd9-d1f2-4220-b6fe-1219e76cdd99 /media/rhome auto defaults,noauto,users,noatime,nodiratime,errors=remount-ro 0 0
+
+tmpfs /tmp tmpfs defaults,nodev,nosuid,mode=1777 0 0
+tmpfs /var/tmp tmpfs defaults,nodev,nosuid,mode=1777,size=5G 0 0
+tmpfs /var/lock tmpfs defaults,nodev,nosuid,noexec,mode=1777 0 0
+tmpfs /var/run tmpfs defaults,nodev,nosuid,noexec,mode=0755 0 0
+
+#/usr/portage/distfiles /home/ftp/distfiles none bind
+#/home/music /home/ftp/music none bind
+
+#LABEL=debian /mnt/debian ext4 defaults,noauto,noatime,nodiratime 0 0
+#LABEL=music /home/music ext4 defaults,noatime,nodiratime 0 0
+#/dev /mnt/arch/dev none noauto,bind
+#none /mnt/arch/proc proc noauto,defaults
+
+/tmp/.img.iso /mnt/iso iso9660 defaults,noauto,users,ro 0 0
+
+#/usr/share/fonts /home/.chroot/usr/share/fonts none ro,bind 0 0
+
+#router:/home/sbar/shared /nfs/router
+
