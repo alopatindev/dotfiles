@@ -61,3 +61,4 @@ class BitcoinInfo:
 
 wallet_id = sys.argv[1]
 BitcoinInfo(wallet_id, ('BTC', 'USD', 'RUB'))
+print()
