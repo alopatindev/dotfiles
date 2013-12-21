@@ -1,5 +1,14 @@
 #!/bin/bash
 
+LOCK=/var/run/poweroff.lock
+if [ ! -f $LOCK ]; then
+    touch $LOCK
+    logger 'gonna stand by'
+else
+    logger 'not gonna stand by'
+    exit 0
+fi
+
 su sbar -c 'DISPLAY=:0 XAUTHORITY=~sbar/.Xauthority /home/sbar/.bin/alock' &
 #su sbar -c 'echo disconnect >> /home/sbar/.mcabber/mcabber.fifo'
 #su sbar -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
@@ -33,3 +42,5 @@ v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
 #ffmpeg -i "$VID" -ss 00:00:00.500 -f image2 -vframes 1 "$THUMB";
 #chmod a+r "$FN"* ) &
 /usr/local/sbin/camshot &
+
+(sleep 10s && rm -f $LOCK) &
