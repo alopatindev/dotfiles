@@ -251,6 +251,8 @@ globalkeys = awful.util.table.join(
 --              end)
 )
 
+mspeed = 80
+
 clientkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
@@ -258,13 +260,32 @@ clientkeys = awful.util.table.join(
     -- awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     -- awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     -- awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end)
+    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
 --    awful.key({ modkey,           }, "n",      function (c) c.minimized = not c.minimized    end),
 --    awful.key({ modkey,           }, "m",
 --        function (c)
 --            c.maximized_horizontal = not c.maximized_horizontal
 --            c.maximized_vertical   = not c.maximized_vertical
 --        end)
+-- resize windows with the keyboard
+    awful.key({ "Mod4", "Shift" }, "Down",
+        function () awful.client.moveresize(0, 0, 0, mspeed) end),
+    awful.key({ "Mod4", "Shift" }, "Up",
+        function () awful.client.moveresize(0, 0, 0, -mspeed) end),
+    awful.key({ "Mod4", "Shift" }, "Left",
+        function () awful.client.moveresize(0, 0, -mspeed, 0) end),
+    awful.key({ "Mod4", "Shift" }, "Right",
+        function () awful.client.moveresize(-0, 0, mspeed, 0) end),
+
+-- move windows with the keyboard
+    awful.key({ modkey, "Shift" }, "Down",
+        function () awful.client.moveresize(0,  mspeed, 0, 0) end),
+    awful.key({ modkey, "Shift" }, "Up",
+        function () awful.client.moveresize(0, -mspeed, 0, 0) end),
+    awful.key({ modkey, "Shift" }, "Left",
+        function () awful.client.moveresize(-mspeed, 0, 0, 0) end),
+    awful.key({ modkey, "Shift" }, "Right",
+        function () awful.client.moveresize(mspeed, 0, 0, 0) end)
 )
 
 -- Compute the maximum number of digit we need, limited to 9
@@ -539,6 +560,7 @@ awful.rules.rules = {
     { rule =  { class = "Edb", name = "edb" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "ArmoryQt.py" }, properties = { tag = tags[1][7] }},
     { rule =  { class = "Litecoin-qt" }, properties = { tag = tags[1][7] }},
+    { rule =  { name = "Ponic" }, properties = { tag = tags[1][2], floating = true }},
 }
 
 
