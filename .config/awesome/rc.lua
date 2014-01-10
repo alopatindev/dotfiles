@@ -537,6 +537,8 @@ awful.rules.rules = {
     { rule =  { class = "Wine", name = "gta_sa.exe" }, properties = { tag = tags[1][7] }},
     { rule =  { class = "Gconf-editor" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Edb", name = "edb" }, properties = { tag = tags[1][1] }},
+    { rule =  { class = "ArmoryQt.py" }, properties = { tag = tags[1][7] }},
+    { rule =  { class = "Litecoin-qt" }, properties = { tag = tags[1][7] }},
 }
 
 
