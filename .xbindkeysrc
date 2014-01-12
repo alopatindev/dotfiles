@@ -53,8 +53,11 @@
     Mod4 + f
 
 "~/.bin/alock"
-    m:0x9 + c:46
-    Shift+Alt + l
+    m:0x40 + c:46
+    Mod4 + l
+
+    #m:0x9 + c:46
+    #Shift+Alt + l
 
 #"alock"
 #    m:0x1c + c:64

@@ -268,23 +268,23 @@ clientkeys = awful.util.table.join(
 --            c.maximized_vertical   = not c.maximized_vertical
 --        end)
 -- resize windows with the keyboard
-    awful.key({ "Mod4", "Shift" }, "Down",
+    awful.key({ "Mod4", "Shift" }, "j",
         function () awful.client.moveresize(0, 0, 0, mspeed) end),
-    awful.key({ "Mod4", "Shift" }, "Up",
+    awful.key({ "Mod4", "Shift" }, "k",
         function () awful.client.moveresize(0, 0, 0, -mspeed) end),
-    awful.key({ "Mod4", "Shift" }, "Left",
+    awful.key({ "Mod4", "Shift" }, "h",
         function () awful.client.moveresize(0, 0, -mspeed, 0) end),
-    awful.key({ "Mod4", "Shift" }, "Right",
+    awful.key({ "Mod4", "Shift" }, "l",
         function () awful.client.moveresize(-0, 0, mspeed, 0) end),
 
 -- move windows with the keyboard
-    awful.key({ modkey, "Shift" }, "Down",
+    awful.key({ modkey, "Shift" }, "j",
         function () awful.client.moveresize(0,  mspeed, 0, 0) end),
-    awful.key({ modkey, "Shift" }, "Up",
+    awful.key({ modkey, "Shift" }, "k",
         function () awful.client.moveresize(0, -mspeed, 0, 0) end),
-    awful.key({ modkey, "Shift" }, "Left",
+    awful.key({ modkey, "Shift" }, "h",
         function () awful.client.moveresize(-mspeed, 0, 0, 0) end),
-    awful.key({ modkey, "Shift" }, "Right",
+    awful.key({ modkey, "Shift" }, "l",
         function () awful.client.moveresize(mspeed, 0, 0, 0) end)
 )
 
