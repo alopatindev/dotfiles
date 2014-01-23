@@ -3,6 +3,7 @@ require("lib/storage")
 require("lib/sound")
 require("lib/mpd_widget")
 require("lib/battery")
+require("lib/network_status")
 
 function battery_widget()
     return "[ " .. battery.batclosure("BAT0")() .. "]"
@@ -18,5 +19,5 @@ function second_panel()
     else
         t = t + 1
     end
-    return skb_widget() .. storage_widget() .. nonoften_widgets .. mpd_widget()
+    return skb_widget() .. storage_widget() .. nonoften_widgets .. network_status() .. mpd_widget()
 end

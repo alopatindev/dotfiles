@@ -57,6 +57,19 @@ postup() {
         su sbar -c "DISPLAY=:0 notify-send '${IFACE}: connection established'"
         #echo -e "nameserver 8.8.8.8\nnameserver 8.8.4.4" > /etc/resolv.conf
     fi
+
+    if [[ ${IFACE} == ppp0 ]]; then
+        WLAN0_GW=$(ip route | egrep '^default via.* dev wlan0' | cut -d' ' -f3)
+        ip route delete default dev wlan0
+        ip route add 74.125.103.0/24 via $WLAN0_GW
+        ip route add 74.125.170.0/24 via $WLAN0_GW
+        ip route add 74.125.214.22/24 via $WLAN0_GW
+        ip route add 87.240.156.0/24 via $WLAN0_GW
+        ip route add 91.207.58.0/24 via $WLAN0_GW
+        ip route add 91.207.59.0/24 via $WLAN0_GW
+        ip route add 173.194.25.0/24 via $WLAN0_GW
+        ip route add 194.190.77.0/24 via $WLAN0_GW
+    fi
 }
 
 ## datacom
