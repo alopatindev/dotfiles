@@ -2,11 +2,25 @@ function network_status()
     local text = ''
     p = io.popen('ip route')
 
+    local lines = {}
+    local k = 1
     for i in p:lines() do
-        if string.match(i, "default via.* dev wlan0") ~= nil then
-            text = '<b>[ NOT SECURED CONNECTION! ]</b>'
-        elseif string.match(i, "default via.* dev ppp0") ~= nil then
-            text = '[ secured connection ]'
+        lines[k] = i
+        k = k + 1
+    end
+
+    for i = 1, table.getn(lines) do
+        if string.match(lines[i], "default via.* dev wlan0") ~= nil then
+            text = '<b>[ NON-SECURED CONNECTION! ]</b>'
+            break
+        end
+    end
+    if text == '' then
+        for i = 1, table.getn(lines) do
+            if string.match(lines[i], "default via.* dev ppp0") ~= nil then
+                text = '[ secured connection ]'
+                break
+            end
         end
     end
 
@@ -18,5 +32,3 @@ function network_status()
 
     return text
 end
-
-print(network_status())
