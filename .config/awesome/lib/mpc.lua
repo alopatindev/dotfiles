@@ -9,9 +9,11 @@ function mpc_widget()
         if status ~= nil then
             text = text .. '<b>' .. status .. '</b> '
         end
-    end
-    if artist_title ~= nil then
-        text = text .. artist_title
+        if artist_title ~= nil then
+            text = text .. artist_title
+        end
+    else
+        text = 'stopped'
     end
     return "[ " .. text .. " ]"
 end
