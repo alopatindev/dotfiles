@@ -1,7 +1,8 @@
 require("lib/skb")
 require("lib/storage")
 require("lib/sound")
-require("lib/mpd_widget")
+--require("lib/mpd_widget")
+require("lib/mpc")
 require("lib/battery")
 require("lib/network_status")
 
@@ -19,5 +20,6 @@ function second_panel()
     else
         t = t + 1
     end
-    return skb_widget() .. storage_widget() .. nonoften_widgets .. network_status() .. mpd_widget()
+    --return skb_widget() .. storage_widget() .. nonoften_widgets .. network_status() .. mpd_widget()
+    return skb_widget() .. storage_widget() .. nonoften_widgets .. network_status() .. mpc_widget()
 end
