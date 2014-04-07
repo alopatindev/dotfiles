@@ -1,5 +1,5 @@
 min_peers = 1
-max_peers = 15
+max_peers = 1000
 download_rate = 0
 upload_rate = 0
 directory = /home/sbar/downloads
