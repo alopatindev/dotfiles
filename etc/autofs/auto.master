@@ -11,4 +11,4 @@
 /var/ssh /etc/autofs/auto.sshfs --timeout=120 --ghost uid=0,gid=100
 #/nfs /etc/autofs/auto.nfs --timeout=120 --ghost uid=0,gid=100
 /ftp /etc/autofs/auto.ftp uid=0,gid=100,--timeout=45
-
+/webdav /etc/autofs/auto.webdav --timeout=120

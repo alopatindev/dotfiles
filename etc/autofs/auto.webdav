@@ -1,0 +1,1 @@
+ya -fstype=davfs,rw,uid=sbar,gid=sbar :https://webdav.yandex.ru
