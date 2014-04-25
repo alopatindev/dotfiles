@@ -6,7 +6,8 @@ theme = {}
 
 --theme.font          = "snap 11"
 --theme.font          = "Terminus 11"
-theme.font          = "Ubuntu 11"
+-- theme.font          = "Ubuntu 11"
+theme.font          = "Ubuntu 25"
 
 theme.bg_normal     = "#555555"
 theme.bg_focus      = "#5d9457"
@@ -18,7 +19,7 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.border_width  = "1"
+theme.border_width  = "3"
 theme.border_normal = "#000000"
 theme.border_focus  = "#ebca40"
 theme.border_marked = "#91231c"

@@ -184,9 +184,9 @@ statusbar_color = "yellow"
 #
 #active_window_border = "red"
 #
-lyrics_database = "2"
+#lyrics_database = "2"
 
-allow_physical_files_deletion = "yes"
+#allow_physical_files_deletion = "yes"
 
 visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
 

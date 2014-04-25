@@ -12,8 +12,8 @@ fontconfig = 1
 subfont-osd-scale=4
 subfont-text-scale=3
 subfont-outline=3
-ass-font-scale=3
-#ass-font-scale=1.5
+#ass-font-scale=3
+ass-font-scale=1.5
 
 double=yes
 

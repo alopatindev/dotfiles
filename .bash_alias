@@ -69,7 +69,7 @@ alias xlogs="sudo chmod +r /var/log/messages; xterm -geometry 141x59+0+0 -fg whi
 alias less='less -R'
 alias diff='colordiff'
 alias logcat='adb logcat'
-alias find='find -regextype posix-egrep'
+#alias find='find -regextype posix-egrep'
 
 #for i in alsamixer vim vi mc
 for i in alsamixer mc w3m

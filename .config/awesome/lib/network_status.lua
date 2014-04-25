@@ -9,8 +9,10 @@ function network_status()
         k = k + 1
     end
 
+    --TODO: check /var/run/shuttle.pid exists and if the process exists
+
     for i = 1, table.getn(lines) do
-        if string.match(lines[i], "default via.* dev wlan0") ~= nil then
+        if string.match(lines[i], "default via.* dev wlp3s0") ~= nil then
             text = '<b>[ NON-SECURED CONNECTION! ]</b>'
             break
         end

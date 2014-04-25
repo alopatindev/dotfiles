@@ -1,3 +1,8 @@
 #!/bin/bash
 
-exec /opt/android-sdk-update-manager/tools/emulator64-arm -noaudio -avd test
+#NAME=test2
+NAME=test3
+#NAME=android-4.0
+
+#exec /opt/android-sdk-update-manager/tools/emulator64-arm -noaudio -avd ${NAME}
+/opt/android-sdk-update-manager/tools/emulator64-arm -avd ${NAME}

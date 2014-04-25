@@ -57,3 +57,4 @@ source ~/.bash_alias
 bindkey \^U backward-kill-line
 #bindkey '<ctrl-v><ctrl+left-arrow>' backward-word
 #bindkey '<ctrl-v><ctrl+right-arrow>' forward-word
+

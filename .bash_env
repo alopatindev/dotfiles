@@ -1,12 +1,13 @@
 #export MAKEDICT_PLUGIN_DIR=/usr/share/makedict/codecs
-export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
+#export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
+export PATH="${HOME}/.bin:${PATH}"
 export OLDPWD=~
 export BROWSER=chromium
 #export TERM=rxvt-unicode
 #export DISPLAY=:0
 SAL_USE_VCLPLUGIN=gtk
 
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Xms256m -Xmx512m -XX:MaxHeapSize=256m'
+#export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd -Xms256m -Xmx512m -XX:MaxHeapSize=256m'
 export ANDROID_NDK='/opt/android-ndk/'
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sbar/necessitas/QtCreator/Qt/lib/"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/android-sdk-update-manager/tools/lib/"

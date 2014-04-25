@@ -15,7 +15,8 @@ safeCoords = {x = 1366, y = 768}
 mouse.coords(safeCoords)
 
 terminal = "xterm"
-modkey = "Mod1"
+-- modkey = "Mod1"
+modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -106,8 +107,10 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
-    box2[s] = awful.wibox({ position = "bottom", height = "17", screen = s })
+    --mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "38", screen = s })
+    --box2[s] = awful.wibox({ position = "bottom", height = "17", screen = s })
+    box2[s] = awful.wibox({ position = "bottom", height = "38", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -215,7 +218,7 @@ globalkeys = awful.util.table.join(
     -- awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     -- awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     -- awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ "Mod1",           }, "Tab",
+    awful.key({ modkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
             if client.focus then
@@ -235,8 +238,8 @@ globalkeys = awful.util.table.join(
     --awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
-    awful.key({ "Mod1",           }, "space", function () awful.layout.inc(layouts,  1) end),
-    awful.key({ "Mod1", "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end)
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end)
 
     -- Prompt
     -- awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end)
@@ -475,6 +478,7 @@ awful.rules.rules = {
     { rule =  { class = "Kchmviewer", name = "kchmviewer" }, properties = { tag = tags[1][9] }},
     { rule =  { class = "OpenOffice.org"}, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "LibreOffice [0-9]*.[0-9]*"}, properties = { tag = tags[1][9], floating = false }},
+    { rule =  { class = "libreoffice-.*"}, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "OpenOffice.org [0-9]*.[0-9]*", name = "VCLSalFrame.DocumentWindow" }, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "LibreOffice [0-9]*.[0-9]*", name = "VCLSalFrame.DocumentWindow" }, properties = { tag = tags[1][9], floating = false }},
     { rule =  { class = "OpenOffice.org [0-9]*.[0-9]*", name = "VCLSalFrame:Стили и форматирование" }, properties = { tag = tags[1][9], floating = true }},
@@ -489,6 +493,7 @@ awful.rules.rules = {
     { rule =  { class = "Gnomebaker" }, properties = { tag = tags[1][7], floating = false }},
     { rule =  { class = "Graveman" }, properties = { tag = tags[1][7], floating = false }},
     { rule =  { class = "psi*" }, properties = { tag = tags[1][1], floating = false }},
+    { rule =  { class = "Psi*" }, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "Xchm", name = "xchm" }, properties = { tag = tags[1][9] }},
     { rule =  { class = "Avidemux2_gtk"  }, properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Blender", name = "Blender"  }, properties = { tag = tags[1][6], floating = false }},

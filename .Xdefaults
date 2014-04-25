@@ -237,6 +237,7 @@ gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
 
 
 #Xft.dpi: 96
+Xft.dpi: 160
 ###Xft.antialias: true
 #Xft.rgba: rgb
 ###Xft.hinting: true
@@ -252,3 +253,9 @@ gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
 ##Xft.hintstyle: hintmedium
 
 #Xft.autohint: true
+
+#Xcursor.theme:~/.cursors/FlatbedCursors.Blue.Regular
+#Xcursor.size: 64
+#Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
+#Xcursor.theme: Bluecurve
+

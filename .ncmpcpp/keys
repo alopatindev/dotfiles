@@ -12,9 +12,9 @@
 ## will be used to switch between columns.
 ##
 #
-#key_up = 259 'k'
+key_up = 259 'k'
 #
-#key_down = 258 'j'
+key_down = 258 'j'
 #
 #key_page_up = 339
 #
@@ -28,7 +28,7 @@
 #
 #key_enter = 10
 #
-#key_delete = 330 'd'
+key_delete = 330 'd'
 #
 #key_volume_up = 261 '+'
 #

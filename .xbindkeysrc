@@ -12,12 +12,16 @@
     Control+Alt+Mod4 + Return
 
 "~/scripts/quit_script"
-    m:0x9 + c:24
-    Shift+Alt + q
+    m:0x41 + c:24
+    Shift+Mod4 + q
+    #m:0x9 + c:24
+    #Shift+Alt + q
 
 "~/.bin/drun"
-    m:0x9 + c:27
-    Shift+Alt + r
+    m:0x41 + c:27
+    Shift+Mod4 + r
+    #m:0x9 + c:27
+    #Shift+Alt + r
 
 #"$(~/.dwm/dmenu -p 'games'<~/.gamelist.ls)"
 #    m:0x40 + c:42
@@ -91,21 +95,25 @@
 #    m:0x54 + c:37
 #    Control+Mod2+Mod4 + Control_L
 
-"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
-    m:0x80 + c:19
-    Mod5 + 0
+#"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
+#    m:0x80 + c:19
+#    Mod5 + 0
 
-"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
-    m:0x80 + c:18
-    Mod5 + 9
+#"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
+#    m:0x80 + c:18
+#    Mod5 + 9
 
-"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
-    m:0x40 + c:19
-    Mod4 + 0
+#"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
+#    m:0x8 + c:19
+#    Alt + 0
+#    #m:0x40 + c:19
+#    #Mod4 + 0
 
-"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
-    m:0x40 + c:18
-    Mod4 + 9
+#"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
+#    m:0x8 + c:18
+#    Alt + 9
+#    #m:0x40 + c:18
+#    #Mod4 + 9
 
 "mpc -q prev &> /dev/null"
     m:0x80 + c:59
@@ -143,13 +151,15 @@
     m:0x0 + c:191
     XF86Tools
 
-"~/scripts/change_volume.sh +"
+#"~/scripts/change_volume.sh +"
+"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
     m:0x44 + c:19
     Control+Mod4 + 0
     #m:0x0 + c:123
     #XF86AudioRaiseVolume
 
-"~/scripts/change_volume.sh -"
+#"~/scripts/change_volume.sh -"
+"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
     m:0x44 + c:18
     Control+Mod4 + 9
     #m:0x0 + c:122
@@ -168,10 +178,14 @@
 #    Control + grave
 
 "echo 'awesome.restart()' | awesome-client && xsetroot -solid '#464646'"
-    m:0xc + c:27
-    Control+Alt + r
+    m:0x44 + c:27
+    Control+Mod4 + r
+    #m:0xc + c:27
+    #Control+Alt + r
 
-"service net.wlan0 restart"
+#"service net.ppp0 restart"
+#"service net.wlan0 stop && service net.ppp0 restart"
+"/usr/local/bin/service net.wlp3s0 restart"
     m:0x9 + c:22
     Shift+Alt + BackSpace
 
@@ -183,3 +197,28 @@
 "xclip -o|xclip -i"
     m:0x40 + c:29
     Mod4 + y
+
+"/usr/local/sbin/bl-brightness.sh down"
+  m:0x0 + c:232
+
+"/usr/local/sbin/bl-brightness.sh up"
+  m:0x0 + c:233
+
+"/usr/local/sbin/kb-brightness.sh down"
+  m:0x0 + c:237
+
+"/usr/local/sbin/kb-brightness.sh up"
+  m:0x0 + c:238
+
+#"amixer set Master playback 1+ unmute"
+"~/scripts/change_volume.sh +"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+#"amixer set Master playback 1-"
+"~/scripts/change_volume.sh -"
+   XF86AudioLowerVolume
+
+#"amixer set Master toggle"
+#   XF86AudioMute
+

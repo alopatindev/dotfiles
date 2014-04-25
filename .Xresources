@@ -1,2 +1,7 @@
 font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
 Emacs*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+#Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
+#Xcursor.theme: RezoBlack
+#Xcursor.theme: MacOSxLike
+Xcursor.theme: Adwaita
+#Xcursor.size: 64

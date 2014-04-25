@@ -3,7 +3,8 @@ alignment top_left
 gap_x 4
 gap_y 8
 #maximum_width 690
-maximum_width 1366
+#maximum_width 1366
+maximum_width 2560
 #font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 
 use_xft yes
@@ -29,20 +30,17 @@ text_buffer_size 8096
 #Погода  ${execi 600 /home/sbar/scripts/st-petersburg-temperature.py}
 #${color #ffffff}${execi 5 ~/scripts/spanel/nonoften.lua}${exec ~/scripts/spanel/second_panel.lua}
 #${hddtemp}°C
+#${execi 60 ~/scripts/my_btc.py 1CMjkPor1K9VuwrY5R8gus3McGtSSa7N8N}
 
 TEXT
 
-
-
-${color #FFFFFF}eth0 down: ${color #CCCCCC}${downspeedf eth0}Kb/s${offset 25}${color #FFFFFF}eth0 up: ${color #CCCCCC}${upspeedf eth0}Kb/s${offset 55}${color #FFFFFF}wlan0 down: ${color #CCCCCC}${downspeedf wlan0}Kb/s${offset 30}${color #FFFFFF}wlan0 up: ${color #CCCCCC}${upspeedf wlan0}Kb/s
-${downspeedgraph eth0 50,245 CCCCCC FFFFFF} ${upspeedgraph eth0 50,245 CCCCCC FFFFFF} ${downspeedgraph wlan0 50,245 CCCCCC FFFFFF} ${upspeedgraph wlan0 50,245 CCCCCC FFFFFF}
+${color #FFFFFF}wlp3s0 down: ${color #CCCCCC}${downspeedf wlp3s0}Kb/s${offset 30}${color #FFFFFF}wlp3s0 up: ${color #CCCCCC}${upspeedf wlp3s0}Kb/s
+${downspeedgraph wlp3s0 100,400 CCCCCC FFFFFF} ${upspeedgraph wlp3s0 100,400 CCCCCC FFFFFF}
 ${color #FFFFFF}disk I/O
-${diskiograph 50,245 CCCCCC FFFFFF}${color #CCCCCC}
+${diskiograph 100,400 CCCCCC FFFFFF}${color #CCCCCC}
+${color #CCCCCC}${cpu cpu0}%${offset 100} ${color #CCCCCC}${cpu cpu1}%${offset 100} ${color #CCCCCC}${cpu cpu2}%${offset 100} ${color #CCCCCC}${cpu cpu3}%
+${cpugraph cpu0 100,200 CCCCCC FFFFFF} ${cpugraph cpu1 100,200 CCCCCC FFFFFF} ${cpugraph cpu2 100,200 CCCCCC FFFFFF} ${cpugraph cpu3 100,200 CCCCCC FFFFFF}
 
-${color #CCCCCC}${cpu cpu0}%${offset 70} ${color #CCCCCC}${cpu cpu1}%${offset 70} ${color #CCCCCC}${cpu cpu2}%${offset 70} ${color #CCCCCC}${cpu cpu3}%${offset 70} ${color #CCCCCC}${cpu cpu4}%${offset 70} ${color #CCCCCC}${cpu cpu5}%${offset 70} ${color #CCCCCC}${cpu cpu6}%${offset 70} ${color #CCCCCC}${cpu cpu7}%${offset 70}
-${cpugraph cpu0 50,100 CCCCCC FFFFFF} ${cpugraph cpu1 50,100 CCCCCC FFFFFF} ${cpugraph cpu2 50,100 CCCCCC FFFFFF} ${cpugraph cpu3 50,100 CCCCCC FFFFFF} ${cpugraph cpu4 50,100 CCCCCC FFFFFF} ${cpugraph cpu5 50,100 CCCCCC FFFFFF} ${cpugraph cpu6 50,100 CCCCCC FFFFFF} ${cpugraph cpu7 50,100 CCCCCC FFFFFF}
-
-memory: $mem ${membar 10,200}      swap: $swap ${swapbar 10,200}
+memory: $mem ${membar 20,300}      swap: $swap ${swapbar 20,300}
 
 ${exec ~/scripts/temp.sh}
-
