@@ -11,7 +11,8 @@ require("lib/second_panel")
 beautiful.init("/home/sbar/.config/awesome/theme.lua")
 
 -- safeCoords = {x = 1024, y = 598}
-safeCoords = {x = 1366, y = 768}
+-- safeCoords = {x = 1366, y = 768}
+safeCoords = {x = 2560, y = 1600}
 mouse.coords(safeCoords)
 
 terminal = "xterm"
@@ -199,7 +200,7 @@ globalkeys = awful.util.table.join(
             c = awful.tag.getproperty(t, "mouse")
             mouse.coords(c or safeCoords)
         end),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
+    --awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
 
     awful.key({ modkey,           }, "j",
         function ()
