@@ -374,6 +374,8 @@ def_key "9"
 #
 #def_key "."
 #  next_found_item
+def_key "n"
+  next_found_item
 #
 #def_key ","
 #  previous_found_item
