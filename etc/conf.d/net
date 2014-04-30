@@ -9,7 +9,7 @@ config_wlp3s0="dhcp"
 
 postup() {
     if [[ ${IFACE} == wlp3s0 ]]; then
-        rfkill block 0
+        #rfkill block 0
         iwconfig wlp3s0 power off
 
         su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=online' || echo -n
