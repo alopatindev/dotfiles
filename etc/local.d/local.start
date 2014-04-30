@@ -1,15 +1,14 @@
 #!/bin/bash
 
+echo -n 2 > /sys/module/hid_apple/parameters/fnmode
+
 #/usr/bin/synclient TouchpadOff=0
-hdparm -B 254 /dev/sda 2&>> /dev/null
-#echo powersave > /sys/module/pcie_aspm/parameters/policy
-#echo min_power > /sys/class/scsi_host/host0/link_power_management_policy
 
 # handling interruptions with only one core
-echo 1 > /proc/irq/16/smp_affinity
-#echo 1 > /proc/irq/18/smp_affinity
-#echo 1 > /proc/irq/19/smp_affinity
-echo 1 > /proc/irq/23/smp_affinity
+#echo 1 > /proc/irq/16/smp_affinity
+##echo 1 > /proc/irq/18/smp_affinity
+##echo 1 > /proc/irq/19/smp_affinity
+#echo 1 > /proc/irq/23/smp_affinity
 
 (sleep 10 && /etc/cron.daily/ntpdate) &>> /dev/null &
 mkdir -p /var/run/screen

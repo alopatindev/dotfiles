@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rfkill block 0
+rfkill block bluetooth
+rfkill unblock 1
