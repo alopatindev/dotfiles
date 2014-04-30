@@ -191,3 +191,5 @@ statusbar_color = "yellow"
 visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
 
 ask_before_clearing_main_playlist = "yes"
+
+display_bitrate = "yes"

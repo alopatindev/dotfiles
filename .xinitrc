@@ -5,9 +5,14 @@ xrandr --dpi 160
 # xmodmap -e "pointer = 1 3 2"
 setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp_led:scroll,compose:ralt &
 
-#synclient HorizTwoFingerScroll=1 TapButton3=3 FastTaps=1 &
-synclient HorizTwoFingerScroll=1 PalmDetect=1 FingerLow=8 FingerHigh=8 TapButton1=0 TapButton2=0 TapButton3=2 RBCornerButton=3 RTCornerButton=2 VertScrollDelta=170 HorizScrollDelta=170 &
-#syndaemon -t -i 1 -d &
+(synclient HorizTwoFingerScroll=1 \
+          PalmDetect=1 PalmMinWidth=100 \
+          FingerLow=8 FingerHigh=8 \
+          TapButton1=0 TapButton2=0 TapButton3=0 \
+          RBCornerButton=3 RTCornerButton=2 \
+          VertScrollDelta=120 HorizScrollDelta=120 \
+          MinSpeed=1.8 MaxSpeed=2 && \
+syndaemon -t -k -i 1 -d ) &
 
 
 #xsetroot -solid '#464646' &
