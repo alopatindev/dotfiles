@@ -1,0 +1,36 @@
+This is a dirty workaround for proprietary
+=net-wireless/broadcom-sta-6.30.223.141 driver that loses connection
+when you run iwconfig or something that calls iw_get_ext(... SIOCGIWTXPOW ...).
+
+In this case I get those error messages:
+
+kernel: ERROR @wl_dev_intvar_get : error (-1)
+kernel: ERROR @wl_cfg80211_get_tx_power : error (-1)
+
+I have this issue on Macbook Pro 2013 (MacBookPro11,1) with
+
+03:00.0 Network controller [0280]: Broadcom Corporation BCM4360 802.11ac
+Wireless Network Adapter [14e4:43a0] (rev 03)
+
+I hope it will help someone else.
+
+--- /tmp/wireless.h	2014-05-02 04:38:22.403321811 +0400
++++ ./include/uapi/linux/wireless.h	2014-05-02 04:29:15.291996332 +0400
+@@ -283,7 +283,7 @@
+ #define SIOCSIWFRAG	0x8B24		/* set fragmentation thr (bytes) */
+ #define SIOCGIWFRAG	0x8B25		/* get fragmentation thr (bytes) */
+ #define SIOCSIWTXPOW	0x8B26		/* set transmit power (dBm) */
+-#define SIOCGIWTXPOW	0x8B27		/* get transmit power (dBm) */
++//#define SIOCGIWTXPOW	0x8B27		/* get transmit power (dBm) */
+ #define SIOCSIWRETRY	0x8B28		/* set retry limits and lifetime */
+ #define SIOCGIWRETRY	0x8B29		/* get retry limits and lifetime */
+ 
+@@ -294,6 +294,8 @@
+ #define SIOCSIWPOWER	0x8B2C		/* set Power Management settings */
+ #define SIOCGIWPOWER	0x8B2D		/* get Power Management settings */
+ 
++#define SIOCGIWTXPOW	SIOCGIWPOWER
++
+ /* WPA : Generic IEEE 802.11 informatiom element (e.g., for WPA/RSN/WMM).
+  * This ioctl uses struct iw_point and data buffer that includes IE id and len
+  * fields. More than one IE may be included in the request. Setting the generic
