@@ -1,5 +1,10 @@
 #!/bin/bash
 
-#rfkill block 0
-rfkill block bluetooth
-#rfkill unblock 1
+logger "running $0"
+
+(while [ 1 ] ; do
+    rfkill unblock 0
+    rfkill unblock 1
+    rfkill block bluetooth
+    sleep 3s
+done) &

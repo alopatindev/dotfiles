@@ -10,7 +10,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp
           FingerLow=8 FingerHigh=8 \
           TapButton1=0 TapButton2=0 TapButton3=0 \
           RBCornerButton=3 RTCornerButton=2 \
-          VertScrollDelta=120 HorizScrollDelta=120 \
+          VertScrollDelta=115 HorizScrollDelta=115 \
           MinSpeed=1.8 MaxSpeed=2 && \
 syndaemon -t -k -i 1 -d ) &
 

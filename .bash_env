@@ -1,5 +1,6 @@
 #export MAKEDICT_PLUGIN_DIR=/usr/share/makedict/codecs
 #export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
+#export PATH="${HOME}/.bin:/usr/lib64/qt5/bin/:${PATH}"
 export PATH="${HOME}/.bin:${PATH}"
 export OLDPWD=~
 export BROWSER=chromium

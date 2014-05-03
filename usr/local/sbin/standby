@@ -22,7 +22,8 @@ echo -n mem > /sys/power/state
 
 hdparm -B 254 /dev/sda >> /dev/null
 echo "keycode 14 = BackSpace" | loadkeys &
-(sleep 3 && /etc/init.d/net.wlan0 restart && /etc/init.d/mpdscribble restart) &
+#(sleep 3 && /etc/init.d/net.ppp0 restart && /etc/init.d/mpdscribble restart) &
+(sleep 3 && /etc/init.d/mpdscribble restart) &
 #/etc/init.d/hddtemp restart &
 #/etc/init.d/consolefont restart
 #/etc/init.d/hwclock restart

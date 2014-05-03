@@ -19,14 +19,14 @@ umount /nfs/router &
 /etc/init.d/alsasound restore
 chvt 5
 
-swapon /dev/disk/by-label/swap
+swapon /dev/disk/by-label/mswap
 echo -n disk > /sys/power/state
 swapoff -a
 
 hdparm -B 254 /dev/sda >> /dev/null
 echo "keycode 14 = BackSpace" | loadkeys &
 #service mpdscribble restart
-(sleep 3 && service net.wlan0 restart) &
+#(sleep 3 && service net.ppp0 restart) &
 (service acpid restart; service acpid restart; service cpufreqd start) &
 service hddtemp restart &
 #/etc/init.d/consolefont restart
@@ -40,3 +40,4 @@ v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
 /usr/local/sbin/camshot &
 
 (sleep 10s && rm -f $LOCK) &
+/etc/local.d/00-fix-ssd-issues.start
