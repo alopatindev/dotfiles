@@ -1,10 +1,10 @@
 #!/bin/bash
 
-IFACE=wlan0
+IFACE=wlp3s0
 
 (sudo /bin/ifconfig ${IFACE} | grep UP >> /dev/null) || \
     sudo ifconfig ${IFACE} up || exit 1
 
-sudo /sbin/iwlist wlan0 scan \
+sudo /sbin/iwlist ${IFACE} scan \
     | egrep -i '(encr|essid|quali)' \
     | sed 's/^ *//g;s/^Quality/\nQuality/g'
