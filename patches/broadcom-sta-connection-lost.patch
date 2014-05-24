@@ -1,4 +1,4 @@
-This is a dirty workaround for proprietary
+This is a dirty Linux kernel workaround for proprietary
 =net-wireless/broadcom-sta-6.30.223.141 driver that loses connection
 when you run iwconfig or something that calls iw_get_ext(... SIOCGIWTXPOW ...).
 
