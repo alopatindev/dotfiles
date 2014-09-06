@@ -34,7 +34,7 @@ text_buffer_size 8096
 
 TEXT
 
-${color #FFFFFF}wlp3s0 down: ${color #CCCCCC}${downspeedf wlp3s0}Kb/s${offset 30}${color #FFFFFF}wlp3s0 up: ${color #CCCCCC}${upspeedf wlp3s0}Kb/s
+${color #FFFFFF}wlp3s0 down: ${color #CCCCCC}${downspeedf wlp3s0}KiB/s${offset 30}${color #FFFFFF}wlp3s0 up: ${color #CCCCCC}${upspeedf wlp3s0}KiB/s
 ${downspeedgraph wlp3s0 100,400 CCCCCC FFFFFF} ${upspeedgraph wlp3s0 100,400 CCCCCC FFFFFF}
 ${color #FFFFFF}disk I/O
 ${diskiograph 100,400 CCCCCC FFFFFF}${color #CCCCCC}
