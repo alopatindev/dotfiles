@@ -1,3 +1,5 @@
+require("lib/htmlentities")
+
 function mpc_widget()
     p = io.popen("/usr/bin/mpc")
     artist_title = p:read()
@@ -15,5 +17,6 @@ function mpc_widget()
     else
         text = 'stopped'
     end
+    text = string_to_htmlentities(text)
     return "[ " .. text .. " ]"
 end
