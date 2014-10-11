@@ -1,3 +1,6 @@
+local PPP_IFACE="ppp0"
+local WLAN_IFACE="wlp7s0"
+
 function network_status()
     local text = ''
     p = io.popen('ip route')
@@ -12,14 +15,14 @@ function network_status()
     --TODO: check /var/run/shuttle.pid exists and if the process exists
 
     for i = 1, table.getn(lines) do
-        if string.match(lines[i], "default via.* dev wlp3s0") ~= nil then
+        if string.match(lines[i], "default via.* dev " .. WLAN_IFACE) ~= nil then
             text = '<b>[ NON-SECURED CONNECTION! ]</b>'
             break
         end
     end
     if text == '' then
         for i = 1, table.getn(lines) do
-            if string.match(lines[i], "default via.* dev ppp0") ~= nil then
+            if string.match(lines[i], "default via.* dev " .. PPP_IFACE) ~= nil then
                 text = '[ secured connection ]'
                 break
             end
