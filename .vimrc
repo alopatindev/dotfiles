@@ -1,3 +1,5 @@
+set directory=/tmp/.vimswaps
+
 set textwidth=80
 
 " цвет статусбара
