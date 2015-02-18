@@ -1,4 +1,4 @@
-set directory=/tmp/.vimswaps
+set directory=/tmp/.vimswaps//
 
 set textwidth=80
 
