@@ -229,15 +229,15 @@ function InsertTabWrapper()
 endfunction
 "imap <S-tab> <c-r>=InsertTabWrapper()<cr>
 
-" Слова откуда будем завершать
+"" Слова откуда будем завершать
 set complete=""
-" Из текущего буфера
+"" Из текущего буфера
 set complete+=.
-" Из словаря
+"" Из словаря
 set complete+=k
-" Из других открытых буферов
+"" Из других открытых буферов
 set complete+=b
-" из тегов 
+"" из тегов
 set complete+=t
 
 " Включаем filetype плугин. Настройки, специфичные для определынных файлов мы разнесём по разным местам
@@ -359,14 +359,6 @@ vmap H :call PythonCommentSelection()<CR>
 "endfunction
 
 "imap <S-tab> <C-r>=InsertTabWrapper()<cr>
-
-set complete=""
-set complete+=.
-set complete+=k
-set complete+=b
-set complete+=t
-set completeopt-=preview
-set completeopt+=longest
 
 
 colorscheme evening
@@ -543,9 +535,6 @@ imap <F12> <esc>:TagbarOpenAutoClose<cr>
 vmap <F12> <esc>:TagbarOpenAutoClose<cr>
 
 
-"let g:clang_user_options='|| exit 0'
-"let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
-
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
 
 
@@ -555,6 +544,55 @@ let g:tagbar_autofocus = 1
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" C++ completion {
+"let g:clang_user_options='|| exit 0'
+"let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
+"let g:clang_complete_auto = 0
+let g:clang_use_library = 1
+let g:clang_periodic_quickfix = 0
+let g:clang_close_preview = 1
+"let g:clang_snippets_engine = 'ultisnips'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-
 let g:ycm_extra_conf_globlist = ['~/git/*']
+" }
+
+" Rainbow Parentheses options {
+    function! Config_Rainbow()
+        call rainbow_parentheses#load(0) " Load Round brackets
+        call rainbow_parentheses#load(1) " Load Square brackets
+        call rainbow_parentheses#load(2) " Load Braces
+        autocmd! TastetheRainbow VimEnter * call Load_Rainbow() " 64bit Hack - Set VimEnter after syntax load
+    endfunction
+
+    function! Load_Rainbow()
+        call rainbow_parentheses#activate()
+    endfunction
+
+    augroup TastetheRainbow
+        autocmd!
+        autocmd Syntax * call Config_Rainbow() " Load rainbow_parentheses on syntax load
+        autocmd VimEnter * call Load_Rainbow()
+    augroup END
+
+    " rainbow_parentheses toggle
+    nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<CR>
+
+    let g:rbpt_colorpairs = [
+        \ ['blue',       'RoyalBlue3'],
+        \ ['white',    'SeaGreen3'],
+        \ ['darkyellow',       'DarkOrchid3'],
+        \ ['darkgreen',   'firebrick3'],
+        \ ['blue',    'RoyalBlue3'],
+        \ ['white',     'SeaGreen3'],
+        \ ['darkyellow', 'DarkOrchid3'],
+        \ ['darkgreen',       'firebrick3'],
+        \ ['blue',    'RoyalBlue3'],
+        \ ['white',  'SeaGreen3'],
+        \ ['darkyellow', 'DarkOrchid3'],
+        \ ['darkgreen',    'firebrick3'],
+        \ ['blue',   'RoyalBlue3'],
+        \ ['white',    'SeaGreen3'],
+        \ ['darkyellow',     'DarkOrchid3'],
+        \ ['darkgreen',         'firebrick3'],
+        \ ]
+" }
