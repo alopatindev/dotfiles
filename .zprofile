@@ -1,3 +1,5 @@
+ulimit -c unlimited
+
 mount | egrep '^encfs on.*\.private type fuse.encfs' >> /dev/null
 # mounting encrypted fs
 if [[ $? -ne 0 ]]
@@ -15,7 +17,9 @@ then
     read ANSWER
     #[[ $ANSWER == n ]] || (service mydm restart ; exit)
     if [[ $ANSWER != n ]]; then
-        service mydm restart
+        sudo /etc/init.d/mydm restart
         exit
     fi
 fi
+
+mkdir -p /tmp/.vimswaps
