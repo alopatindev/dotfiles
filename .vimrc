@@ -432,10 +432,10 @@ endfunction
 
 map \w :call Browser ()<cr><cr>
 
-function! CompileAndRun ()
-   exec "!OUT=$(echo -n % | sed 's/\.c[cpp]$//') && g++ -ggdb % -o $OUT && gdb --eval-command=r --eval-command=q ./$OUT"
-"   exec "!fpc % && ./$(echo % | sed 's/\.pas$//')"
-endfunction
+"function! CompileAndRun ()
+"   exec "!OUT=$(echo -n % | sed 's/\.c[cpp]$//') && g++ -ggdb % -o $OUT && gdb --eval-command=r --eval-command=q ./$OUT"
+""   exec "!fpc % && ./$(echo % | sed 's/\.pas$//')"
+"endfunction
 
 map <F11> :call CompileAndRun()<CR>
 
