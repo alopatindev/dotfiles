@@ -1,8 +1,13 @@
 #!/bin/sh
 
 DIR=$HOME'/screens'
-COUNTER=.counter
-#FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
-NUM=$(($(cat "$DIR/$COUNTER") + 1)) && echo $NUM > "$DIR/$COUNTER"
-FILENAME="$DIR/screenshot_$NUM.png"
-scrot ${FILENAME} && feh ${FILENAME}
+CF="$DIR/.counter"
+
+NUM=$(($(cat "${CF}") + 1)) && echo $NUM > "${CF}"
+FILENAME="$DIR/screenshot_$(printf '%08d\n' "${NUM}").png"
+
+if [[ $1 == area ]]; then
+    (import $FILENAME && feh $FILENAME) || xmessage 'import failed'
+else
+    scrot ${FILENAME} && feh ${FILENAME}
+fi

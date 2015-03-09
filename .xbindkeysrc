@@ -35,7 +35,7 @@
     m:0x10 + c:107
     Mod2 + Print
 
-"~/scripts/screenshot_area"
+"~/scripts/screenshot area"
     m:0x50 + c:107
     Mod2+Mod4 + Print
 
@@ -43,7 +43,7 @@
     m:0x40 + c:61
     Mod4 + slash
 
-"~/scripts/screenshot_area"
+"~/scripts/screenshot area"
     m:0x41 + c:61
     Shift+Mod4 + slash
 
@@ -189,7 +189,7 @@
 #    m:0x4 + c:49
 #    Control + grave
 
-"echo 'awesome.restart()' | awesome-client && xsetroot -solid '#464646'"
+"echo 'awesome.restart()' | awesome-client"
     m:0x44 + c:27
     Control+Mod4 + r
     #m:0xc + c:27
@@ -197,7 +197,7 @@
 
 #"service net.ppp0 restart"
 #"service net.wlan0 stop && service net.ppp0 restart"
-"/usr/local/bin/service net.wlp3s0 restart"
+"sudo /etc/init.d/net.wlp7s0 restart"
     m:0x9 + c:22
     Shift+Alt + BackSpace
 
