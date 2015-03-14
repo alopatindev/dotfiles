@@ -1,6 +1,6 @@
 set directory=/tmp/.vimswaps//
 
-set textwidth=80
+"set textwidth=80
 
 " цвет статусбара
 " highlight StatusLine ctermfg=15 ctermbg=8 gui=none
@@ -175,7 +175,7 @@ nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
 " F2 - быстрое сохранение
 nmap <F2> :w<cr>
-vmap <F2> <esc>:w<cr>i
+vmap <F2> <esc>:w<cr>v
 imap <F2> <esc>:w<cr>i
 
 " F8 - список закладок
@@ -220,147 +220,147 @@ imap {<CR> {<CR>}<Esc>O
 " map <C-Q> <Esc>:qa<cr>
 
 
-" Автозавершение слов по tab =)
-function InsertTabWrapper()
-	let col = col('.') - 1
-	if !col || getline('.')[col - 2] !~ '\k'
-		return "\<tab>"
-	else
-		return "\<c-p>"
-	endif
-endfunction
-"imap <S-tab> <c-r>=InsertTabWrapper()<cr>
-
-"" Слова откуда будем завершать
-set complete=""
-"" Из текущего буфера
-set complete+=.
-"" Из словаря
-set complete+=k
-"" Из других открытых буферов
-set complete+=b
-"" из тегов
-set complete+=t
-
+"" Автозавершение слов по tab =)
+"function InsertTabWrapper()
+"	let col = col('.') - 1
+"	if !col || getline('.')[col - 2] !~ '\k'
+"		return "\<tab>"
+"	else
+"		return "\<c-p>"
+"	endif
+"endfunction
+""imap <S-tab> <c-r>=InsertTabWrapper()<cr>
+"
+""" Слова откуда будем завершать
+"set complete=""
+""" Из текущего буфера
+"set complete+=.
+""" Из словаря
+"set complete+=k
+""" Из других открытых буферов
+"set complete+=b
+""" из тегов
+"set complete+=t
+"
 " Включаем filetype плугин. Настройки, специфичные для определынных файлов мы разнесём по разным местам
 filetype on
 filetype plugin on
-au BufRead,BufNewFile *.phps    set filetype=php
-au BufRead,BufNewFile *.thtml    set filetype=php
-
-" Настройки для SessionMgr
-let g:SessionMgr_AutoManage = 0
-let g:SessionMgr_DefaultName = "mysession"
-
-" Настройки для Tlist (показвать только текущий файл в окне навигации по коду)
-let g:Tlist_Show_One_File = 1
-
-set completeopt-=preview
-set completeopt+=longest
-set mps-=[:]
-
-"-------------------------
-" PHP настройки
-"-------------------------
-
-" Используем словарь PHP для автодополнения,
-" который можно скачать отсюда http://lerdorf.com/funclist.txt
-"set dictionary=~/.vim/dic/php
-
-" Сделаем удобную навигацию по мануалу PHP
-"set keywordprg=~/.vim/bin/php_doc 
-set keywordprg=~/.vim/bin/cpp_doc
-"set keywordprg=/usr/bin/man
-
-" Проверка синтаксиса PHP
-"set makeprg=php\ -l\ %
-
-" Формат вывода ошибок PHP
-"set errorformat=%m\ in\ %f\ on\ line\ %l
-
-" Полезные "быстрые шаблоны"
-" Вывод отладочной информации
-iabbrev dbg echo '<pre>';var_dump( );echo '</pre>';
-iabbrev tm echo 'Test message in file: '.__FILE__.', on line: '.__LINE__;
-
-let g:pdv_cfg_Uses = 1
-
-" Vim постовляется с достаточно мощным плугином подстветки синтаксиса PHP.
-" Помимо прочего он умеет:
-
-" Включаем фолдинг для блоков классов/функций
-" let php_folding = 1
-
-" Не использовать короткие теги PHP для поиска PHP блоков
-let php_noShortTags = 1
-
-" Подстветка SQL внутри PHP строк
-let php_sql_query=1
-
-" Подстветка HTML внутри PHP строк
-let php_htmlInStrings=1 
-
-" Подстветка базовых функций PHP
-let php_baselib = 1
-
-
-
-" Python!
-
-function! PythonCommentSelection()  range
-  let commentString = "#"
-  let cl = a:firstline
-  let ind = 1000    " I hope nobody use so long lines! :)
-
-  " Look for smallest indent
-  while (cl <= a:lastline)
-    if strlen(getline(cl))
-      let cind = indent(cl)
-      let ind = ((ind < cind) ? ind : cind)
-    endif
-    let cl = cl + 1
-  endwhile
-  if (ind == 1000)
-    let ind = 1
-  else
-    let ind = ind + 1
-  endif
-
-  let cl = a:firstline
-  execute ":".cl
-  " Insert commentString in each non-empty line, in column ind
-  while (cl <= a:lastline)
-    if strlen(getline(cl))
-      execute "normal ".ind."|i".commentString
-    endif
-    execute "normal \<Down>"
-    let cl = cl + 1
-  endwhile
-endfunction
-
-
-
-
-vmap H :call PythonCommentSelection()<CR>
-
-"let python_highlight_space_errors = 1
-
-
-"set cursorline
-
-
-
-" Tab autocompletion
-"function InsertTabWrapper()
-"let col = col('.') - 1
-"if !col || getline('.')[col - 1] !~ '\k'
-"return "\<tab>"
-"else
-"return "\<c-p>"
-"endif
+"au BufRead,BufNewFile *.phps    set filetype=php
+"au BufRead,BufNewFile *.thtml    set filetype=php
+"
+"" Настройки для SessionMgr
+"let g:SessionMgr_AutoManage = 0
+"let g:SessionMgr_DefaultName = "mysession"
+"
+"" Настройки для Tlist (показвать только текущий файл в окне навигации по коду)
+"let g:Tlist_Show_One_File = 1
+"
+"set completeopt-=preview
+"set completeopt+=longest
+"set mps-=[:]
+"
+""-------------------------
+"" PHP настройки
+""-------------------------
+"
+"" Используем словарь PHP для автодополнения,
+"" который можно скачать отсюда http://lerdorf.com/funclist.txt
+""set dictionary=~/.vim/dic/php
+"
+"" Сделаем удобную навигацию по мануалу PHP
+""set keywordprg=~/.vim/bin/php_doc 
+"set keywordprg=~/.vim/bin/cpp_doc
+""set keywordprg=/usr/bin/man
+"
+"" Проверка синтаксиса PHP
+""set makeprg=php\ -l\ %
+"
+"" Формат вывода ошибок PHP
+""set errorformat=%m\ in\ %f\ on\ line\ %l
+"
+"" Полезные "быстрые шаблоны"
+"" Вывод отладочной информации
+"iabbrev dbg echo '<pre>';var_dump( );echo '</pre>';
+"iabbrev tm echo 'Test message in file: '.__FILE__.', on line: '.__LINE__;
+"
+"let g:pdv_cfg_Uses = 1
+"
+"" Vim постовляется с достаточно мощным плугином подстветки синтаксиса PHP.
+"" Помимо прочего он умеет:
+"
+"" Включаем фолдинг для блоков классов/функций
+"" let php_folding = 1
+"
+"" Не использовать короткие теги PHP для поиска PHP блоков
+"let php_noShortTags = 1
+"
+"" Подстветка SQL внутри PHP строк
+"let php_sql_query=1
+"
+"" Подстветка HTML внутри PHP строк
+"let php_htmlInStrings=1 
+"
+"" Подстветка базовых функций PHP
+"let php_baselib = 1
+"
+"
+"
+"" Python!
+"
+"function! PythonCommentSelection()  range
+"  let commentString = "#"
+"  let cl = a:firstline
+"  let ind = 1000    " I hope nobody use so long lines! :)
+"
+"  " Look for smallest indent
+"  while (cl <= a:lastline)
+"    if strlen(getline(cl))
+"      let cind = indent(cl)
+"      let ind = ((ind < cind) ? ind : cind)
+"    endif
+"    let cl = cl + 1
+"  endwhile
+"  if (ind == 1000)
+"    let ind = 1
+"  else
+"    let ind = ind + 1
+"  endif
+"
+"  let cl = a:firstline
+"  execute ":".cl
+"  " Insert commentString in each non-empty line, in column ind
+"  while (cl <= a:lastline)
+"    if strlen(getline(cl))
+"      execute "normal ".ind."|i".commentString
+"    endif
+"    execute "normal \<Down>"
+"    let cl = cl + 1
+"  endwhile
 "endfunction
-
-"imap <S-tab> <C-r>=InsertTabWrapper()<cr>
+"
+"
+"
+"
+"vmap H :call PythonCommentSelection()<CR>
+"
+""let python_highlight_space_errors = 1
+"
+"
+""set cursorline
+"
+"
+"
+"" Tab autocompletion
+""function InsertTabWrapper()
+""let col = col('.') - 1
+""if !col || getline('.')[col - 1] !~ '\k'
+""return "\<tab>"
+""else
+""return "\<c-p>"
+""endif
+""endfunction
+"
+""imap <S-tab> <C-r>=InsertTabWrapper()<cr>
 
 
 colorscheme evening
@@ -436,19 +436,19 @@ map \w :call Browser ()<cr><cr>
 "   exec "!OUT=$(echo -n % | sed 's/\.c[cpp]$//') && g++ -ggdb % -o $OUT && gdb --eval-command=r --eval-command=q ./$OUT"
 ""   exec "!fpc % && ./$(echo % | sed 's/\.pas$//')"
 "endfunction
-
-map <F11> :call CompileAndRun()<CR>
-
+"
+"map <F11> :call CompileAndRun()<CR>
+"
 map <C-o> :!<cr>
 imap <C-o> <esc>:!<cr>
 vmap <C-o> <esc>:!<cr>
 
 
 
-let g:manpageview_winopen="only"
-
-let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-"set nocompatible
+"let g:manpageview_winopen="only"
+"
+"let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
+""set nocompatible
 
 
 hi Todo ctermfg=gray ctermbg=darkblue
@@ -532,13 +532,11 @@ if &term ==? "xterm"
 endif
 
 
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+
 map <F12> :TagbarOpenAutoClose<cr>
 imap <F12> <esc>:TagbarOpenAutoClose<cr>
 vmap <F12> <esc>:TagbarOpenAutoClose<cr>
-
-
-au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
-
 
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
@@ -546,17 +544,18 @@ let g:tagbar_autofocus = 1
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-" C++ completion {
-"let g:clang_user_options='|| exit 0'
-"let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
-"let g:clang_complete_auto = 0
-let g:clang_use_library = 1
-let g:clang_periodic_quickfix = 0
-let g:clang_close_preview = 1
-"let g:clang_snippets_engine = 'ultisnips'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/git/*']
-" }
+"" C++ completion {
+""let g:clang_user_options='|| exit 0'
+""let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
+""let g:clang_complete_auto = 0
+"
+"let g:clang_use_library = 1
+"let g:clang_periodic_quickfix = 0
+"let g:clang_close_preview = 1
+""let g:clang_snippets_engine = 'ultisnips'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_extra_conf_globlist = ['~/git/*']
+"" }
 
 " Rainbow Parentheses options {
     function! Config_Rainbow()
@@ -607,3 +606,27 @@ se ts=4 sw=4 et
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 "let g:indent_guides_enable_on_vim_startup = 1
+
+
+command! E Explore
+se nohlsearch
+filetype plugin indent on
+set completeopt=longest,menuone
+
+
+" open omni completion menu closing previous if open and opening new menu without changing the text
+"inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
+"            \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+" open user completion menu closing previous if open and opening new menu without changing the text
+"inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
+"            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
+
+
+" Shift tab is autocompletion
+"inoremap <S-Tab> <C-x><C-u>
+
+
+let g:EclimShowCurrentError = 0
+let g:EclimSignLevel = 'off'
+let g:EclimLogLevel = 'off'
+let g:EclimScalaValidate = 0
