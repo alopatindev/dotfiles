@@ -103,6 +103,8 @@ set sessionoptions=curdir,buffers,tabpages
 
 map . /
 
+map U <esc>:redo<cr>
+
 " Пробел в нормальном режиме перелистывает страницы
 " nmap <Space> <PageDown>
 
