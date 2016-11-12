@@ -10,8 +10,8 @@ fi
 # running X
 #if [[ $TERM != screen.linux &&
 #      ! $(ps uax | egrep 'X.*:0' | grep $USER | grep -v grep) ]]
-ps uax | egrep 'X.*:0' | grep $USER | grep -v grep >> /dev/null
-if [[ $? -ne 0 ]]
+ps uax | egrep 'X.*:[0-9]' | grep $USER | grep -v grep >> /dev/null
+if [[ $? -ne 0 && $TERM != screen ]]
 then
     echo -n '>>> X11 is not running. Run X11 (and GTFO from the shell)? [Y/n] '
     read ANSWER
@@ -21,5 +21,3 @@ then
         exit
     fi
 fi
-
-mkdir -p /tmp/.vimswaps

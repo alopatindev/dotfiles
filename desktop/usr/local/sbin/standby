@@ -22,6 +22,7 @@ echo -n mem > /sys/power/state
 
 hdparm -B 254 /dev/sda >> /dev/null
 echo "keycode 14 = BackSpace" | loadkeys &
+/etc/local.d/99-non-blinking-block-cursor.start &
 #(sleep 3 && /etc/init.d/net.ppp0 restart && /etc/init.d/mpdscribble restart) &
 (sleep 3 && /etc/init.d/mpdscribble restart) &
 #/etc/init.d/hddtemp restart &
@@ -30,8 +31,9 @@ echo "keycode 14 = BackSpace" | loadkeys &
 #(sleep 10 && /etc/cron.daily/ntpdate) &
 #amixer sset Master unmute &
 #v4l2ctrl -l /etc/v4l2ctrl/7fpsLight.vbi 2&>> /dev/null &
-v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
+#v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
 
+su sbar -c 'DISPLAY=:0 synclient HorizTwoFingerScroll=1'
 
 #DT="$(date '+%s_%T_%F')"
 #FN="/home/sbar/camvideos/video_$DT"
@@ -42,6 +44,8 @@ v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
 #    -ovc lavc -oac pcm -msglevel all=-1 -o "$VID";
 #ffmpeg -i "$VID" -ss 00:00:00.500 -f image2 -vframes 1 "$THUMB";
 #chmod a+r "$FN"* ) &
-/usr/local/sbin/camshot &
+#/usr/local/sbin/camshot &
+
+/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
 
 (sleep 10s && rm -f $LOCK) &

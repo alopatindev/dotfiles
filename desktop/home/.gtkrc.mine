@@ -26,3 +26,5 @@ style "default"
 }
 
 #gtk-icon-theme-name="Tango"
+
+#gtk-cursor-theme-size=128

@@ -1,1 +1,6 @@
-pointer = 1 3 2
+keycode 94 = grave asciitilde Cyrillic_io Cyrillic_IO
+keycode 191 = Print Sys_Req Print Sys_Req Print Sys_Req
+keycode 192 = Scroll_Lock NoSymbol Scroll_Lock NoSymbol Scroll_Lock
+keycode 193 = Pause Break Pause Break Pause Break
+! keycode 49 = less greater less greater
+! keycode 108 = Multi_key Alt_L Multi_key Alt_L

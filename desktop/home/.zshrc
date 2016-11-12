@@ -58,3 +58,9 @@ bindkey \^U backward-kill-line
 #bindkey '<ctrl-v><ctrl+left-arrow>' backward-word
 #bindkey '<ctrl-v><ctrl+right-arrow>' forward-word
 
+mkdir -p /tmp/.vimswaps/
+
+~/.private/sync_vimwiki.sh
+
+# added by travis gem
+[ -f /home/sbar/.travis/travis.sh ] && source /home/sbar/.travis/travis.sh

@@ -35,7 +35,7 @@
     m:0x10 + c:107
     Mod2 + Print
 
-"~/scripts/screenshot area"
+"~/scripts/screenshot_area"
     m:0x50 + c:107
     Mod2+Mod4 + Print
 
@@ -43,7 +43,7 @@
     m:0x40 + c:61
     Mod4 + slash
 
-"~/scripts/screenshot area"
+"~/scripts/screenshot_area"
     m:0x41 + c:61
     Shift+Mod4 + slash
 

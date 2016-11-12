@@ -1,25 +1,69 @@
 modules=( "wpa_supplicant" "dhclient" "!udhcpc" )
-config_wlp3s0="dhcp"
+config_wlp7s0="dhcp"
+
+dns_servers_wlp7s0="8.8.8.8 8.8.4.4"
+
+WLAN_IFACE="wlp7s0"
 
 #preup() {
-#    if [[ ${IFACE} == wlp3s0 ]]; then
+#    if [[ ${IFACE} == $WLAN_IFACE ]]; then
 #        rfkill block 0
 #    fi
 #}
 
-postup() {
-    if [[ ${IFACE} == wlp3s0 ]]; then
-        #rfkill block 0
-        iwconfig wlp3s0 power off
+#update_blocks() {
+#    rfkill block bluetooth
+#    rfkill unblock 0
+#    rfkill unblock 1
+#}
 
-        su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=online' || echo -n
+#preup() {
+#    if [[ ${IFACE} == $WLAN_IFACE ]]; then
+#        update_blocks
+#    fi
+#}
+
+postup() {
+    if [[ ${IFACE} == $WLAN_IFACE ]]; then
+        iwconfig wlp7s0 power off
+
+        #update_blocks
+
+        #iptables -t nat -A POSTROUTING -o wlp7s0 -j MASQUERADE
+
+        #su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=online' || echo -n
         su sbar -c "DISPLAY=:0 notify-send '${IFACE}: connection established'"
+    fi
+
+    if [[ ${IFACE} == ppp0 ]]; then
+        ip route delete dev $WLAN_IFACE
     fi
 }
 
 predown() {
-    if [[ ${IFACE} == wlp3s0 ]]; then
+    if [[ ${IFACE} == $WLAN_IFACE ]]; then
+
+        #iptables -t nat -F
+        #iptables -t nat -X
+
         #rfkill block 0
-        su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline' || echo -n
+        #su sbar -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline' || echo -n
     fi
 }
+
+
+# PPTP/VPN connection
+VPN_SERVER="fasty"
+config_ppp0="ppp"
+link_ppp0="pty \"pptp ${VPN_SERVER} --nolaunchpppd --nobuffer --loglevel 0\""
+username_ppp0="alopatindev"
+pppd_ppp0="lock require-mppe noauth defaultroute nobsdcomp nodeflate name sbar remotename fasty ipparam fasty"
+routes_ppp0="default via ${VPN_SERVER}"
+rc_net_ppp0_need="net.wlp7s0"
+dns_servers_ppp0="8.8.8.8 8.8.4.4"
+# dns_servers_ppp0="2001:4860:4860::8888 2001:4860:4860::8844"
+
+
+
+config_eno1="192.168.2.9/24"
+

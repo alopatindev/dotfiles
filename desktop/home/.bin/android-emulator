@@ -1,8 +1,16 @@
 #!/bin/bash
 
-#NAME=test2
-NAME=test3
-#NAME=android-4.0
+TARGET='android-18'
+NAME='android'
+RECREATE=1
 
-#exec /opt/android-sdk-update-manager/tools/emulator64-arm -noaudio -avd ${NAME}
-/opt/android-sdk-update-manager/tools/emulator64-arm -avd ${NAME}
+APATH=$ANDROID_SDK/tools/android
+LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${ANDROID_SDK}/tools/lib64"
+
+[ ${RECREATE} = 1 ] && (
+    # $APATH delete avd -n ${NAME}
+    echo no | $APATH create avd -f -n ${NAME} -t ${TARGET} -c 512M
+    sed -i 's!vm\.heapSize=[0-9]*!64!;s!vm\.ramSize=[0-9]*!vm.ramSize=2048!;s!hw.mainKeys=no!hw.mainKeys=yes!' ~/.android/avd/${NAME}.avd/config.ini
+)
+
+${ANDROID_SDK}/tools/emulator64-arm -avd ${NAME} -gpu on

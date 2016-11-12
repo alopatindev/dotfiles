@@ -1,5 +1,0 @@
-#!/bin/bash
-
-sudo /etc/init.d/distccd -q start
-sudo emerge $@
-aplay -q /usr/local/share/gajim/data/sounds/sent.wav

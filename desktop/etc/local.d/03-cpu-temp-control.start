@@ -2,7 +2,7 @@
 
 logger "running $0"
 
-MAX_ALLOWED_TEMP=90
+MAX_ALLOWED_TEMP=95
 
 (while [ 1 ] ; do
     MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort | tail -n1)
@@ -10,7 +10,7 @@ MAX_ALLOWED_TEMP=90
         /usr/local/sbin/switch-governor.sh powersave
         sleep 1m
     else
-        /usr/local/sbin/switch-governor.sh ondemand
+        /usr/local/sbin/switch-governor.sh performance
     fi
     sleep 3s
 done) &

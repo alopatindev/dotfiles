@@ -61,8 +61,10 @@
 # Defaults!/usr/bin/sudoreplay !log_output
 # Defaults!/usr/local/bin/sudoreplay !log_output
 # Defaults!/sbin/reboot !log_output
+# Cmnd_Alias   REBOOT = /sbin/halt, /sbin/reboot, /sbin/poweroff
 
-Defaults env_keep += "DISPLAY GENTOO_MIRRORS USE ANDROID_SWT"
+#Defaults env_keep += "DISPLAY GENTOO_MIRRORS USE ANDROID_SWT",timestamp_timeout=20,!tty_tickets
+Defaults env_keep += "DISPLAY GENTOO_MIRRORS USE ANDROID_SWT CFLAGS CXXFLAGS ACCEPT_KEYWORDS MAKEOPTS"
 
 ##
 ## Runas alias specification
@@ -91,27 +93,29 @@ root ALL=(ALL) ALL
 ## (the '#' here does not indicate a comment)
 #includedir /etc/sudoers.d
 
-guest ALL=(root) NOPASSWD: /etc/init.d/net.wlan0, /sbin/iwlist, /sbin/ifconfig
+guest ALL=(root) NOPASSWD: /etc/init.d/net.wlan0, /etc/init.d/net.ppp0, /sbin/iwlist, /sbin/ifconfig
 
 sbar ALL=(root) NOPASSWD: \
     /usr/bin/encfs, \
     /bin/umount, \
     /sbin/halt, \
     /sbin/reboot, \
-    /usr/local/bin/hibernate, \
-    /usr/local/bin/standby, \
+    /usr/local/sbin/hibernate, \
+    /usr/local/sbin/standby, \
     /usr/sbin/gparted, \
     /etc/init.d/mydm, \
     /usr/bin/emerge, \
     /usr/bin/revdep-rebuild, \
-    /usr/local/bin/makemehappy, \
     /usr/bin/powertop, \
     /usr/bin/nmap, \
     /etc/init.d/network, \
-    /etc/init.d/net.eth0, \
-    /etc/init.d/net.wlan0, \
+    /etc/init.d/net.*, \
+    /etc/init.d/distccd, \
     /usr/share/wicd/daemon/wicd-daemon.py, \
     /sbin/iwlist, \
     /sbin/ifconfig, \
+    /bin/ifconfig, \
     /home/sbar/scripts/suspend-usb-device.sh, \
-    /usr/sbin/python-updater
+    /usr/sbin/python-updater, \
+    /usr/bin/layman, \
+    /usr/sbin/dispatch-conf

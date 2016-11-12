@@ -1,7 +1,7 @@
 require("lib/htmlentities")
 
 function mpc_widget()
-    p = io.popen("/usr/bin/mpc")
+    p = io.popen("/usr/bin/mpc -h /var/lib/mpd/socket")
     artist_title = p:read()
     status = p:read()
     p:close()

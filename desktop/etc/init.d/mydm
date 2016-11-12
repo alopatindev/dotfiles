@@ -16,7 +16,7 @@ start() {
 	chown $U:$U /var/log/mydm.log
 	#su - $U -lc '/bin/bash -lc startx'
 	#su - $U -c '. /etc/profile && PATH="${HOME}/bin:${PATH}" startx 2&> /var/log/mydm.log' &
-	su $U -c '. /etc/profile && cd "${HOME}" && PATH="${HOME}/bin:${PATH}" startx 2&> /var/log/mydm.log' &
+	su $U -c '. /etc/profile && cd "${HOME}" && PATH="${HOME}/bin:${PATH}" startx -- :0 2&> /var/log/mydm.log' &
 	eend 0
 }
 

@@ -4,7 +4,9 @@
 #vo=xv,x11,fbdev2
 #ao=alsa:device=dmix
 #ao=pulse
+vo=gl_nosw
 ao=alsa
+af=scaletempo
 
 fontconfig=yes
 fontconfig = 1

@@ -1,6 +1,6 @@
 function sound_widget()
     local text = ""
-    p = io.popen("amixer sget Master")
+    p = io.popen("amixer sget Headphone")
 
     for i in p:lines() do
         if string.find(i, "off") ~= nil then

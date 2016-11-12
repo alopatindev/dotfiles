@@ -7,7 +7,7 @@ theme = {}
 --theme.font          = "snap 11"
 --theme.font          = "Terminus 11"
 -- theme.font          = "Ubuntu 11"
-theme.font          = "Ubuntu 25"
+theme.font          = "Ubuntu 14"
 
 theme.bg_normal     = "#555555"
 theme.bg_focus      = "#5d9457"
@@ -79,7 +79,10 @@ theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/defau
 -- You can use your own command to set your wallpaper
 -- theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
 -- theme.wallpaper_cmd = { "awsetbg /home/sbar/pictures/wallpapers/cold_laptop.png" }
-theme.wallpaper_cmd = { "feh -q --bg-scale /home/sbar/pictures/wallpapers/1355648569458.png" }
+-- theme.wallpaper_cmd = { "feh -q --bg-scale /home/sbar/pictures/wallpapers/1355648569458.png" }
+-- theme.wallpaper_cmd = { "feh -q --bg-scale /home/sbar/pictures/wallpapers/5cf70ded98d151667bbd298b577f7217.png" }
+theme.wallpaper_cmd = { "feh -q --bg-scale /home/sbar/pictures/wallpapers/pine_trees_forest-wallpaper-2560x1440_1.png" }
+-- theme.wallpaper_cmd = { "feh -q --bg-scale /home/sbar/pictures/wallpapers/ass.jpg" }
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"
 theme.layout_fairv = "/usr/share/awesome/themes/default/layouts/fairvw.png"

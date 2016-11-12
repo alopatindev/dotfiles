@@ -1,0 +1,4 @@
+#!/bin/bash
+
+FILENAME="${@: -1}"
+lbunzip2 -n8 $@ || bzip2 $@ || cat "${FILENAME}"

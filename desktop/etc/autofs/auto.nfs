@@ -1,2 +1,4 @@
-#router router:/home/sbar/shared
-router    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other,port=55    :sshfs#sbar@sbar.ddns.info\:.
+router router:/home/sbar/shared
+#mlaptop mlaptop:/home/shared
+#mlaptop mlaptop:/Users/Shared
+#router    -fstype=fuse,rw,nodev,nosuid,nonempty,noatime,allow_other,port=55    :sshfs#sbar@sbar.ddns.info\:.

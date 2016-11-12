@@ -10,7 +10,7 @@ die()
 # TODO: check filesystem type
 
 FAT32_OPTS="-fstype=auto,rw,uid=0,gid=users,iocharset=utf8,codepage=866,umask=0002,noatime,nodiratime"
-EXT4_OPTS="-fstype=auto,rw,noatime,nodiratime"
+EXT4_OPTS="-fstype=auto,ro,noatime,nodiratime"
 MOUNT_OPTS=""
 
 DEV="/dev/disk/by-label/$1"

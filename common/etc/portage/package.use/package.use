@@ -1,0 +1,1226 @@
+dev-util/anjuta glade scintilla sourceview
+
+#media-video/vlc dvd ffmpeg mpeg mad wxwindows aac dts a52 ogg flac theora oggvorbis matroska freetype bidi xv svga gnutls stream vlm httpd cdda vcd cdio live  aalib -avahi cddb corba daap dvb esd ggi libcaca libnotify lirc mod musepack nsplugin optimisememory rtsp sdl-image shout speex svg upnp xinerama xosd X alsa -arts hal mp3 opengl -oss png sdl -seamonkey truetype vorbis win32codecs x264 xml -skins modplug vcdinfo vcdx taglib
+
+media-video/vlc dvd ffmpeg mpeg mad wxwindows aac dts a52 ogg flac theora oggvorbis matroska freetype bidi xv svga gnutls stream vlm -httpd cdda vcd cdio live  aalib -avahi cddb corba daap dvb esd ggi -libcaca -libnotify -lirc mod musepack nsplugin optimisememory rtsp sdl-image shout speex svg upnp xinerama xosd X alsa -arts hal mp3 opengl -oss png sdl -seamonkey truetype vorbis win32codecs x264 xml -skins modplug vcdinfo vcdx taglib ncurses qt4 libass v4l2 libv4l2 twolame wma-fixed -shine mtp httpd httpd  lua xcb -qt4 qt5
+
+#media-video/mplayer unicode -oss aac aalib amr live xvid dvdread ggi libcaca dvdnav enca truetype srt
+#media-video/mplayer unicode -oss aac aalib amr live xvid dvdread ggi libcaca dvdnav enca truetype srt X alsa dvd encode gif gtk jpeg mad mp3 opengl  png quicktime radio real sdl vorbis win32codecs xv a52
+
+#media-video/mplayer unicode -oss aac aalib amr live xvid dvdread ggi libcaca dvdnav enca truetype srt X alsa dvd encode gif gtk jpeg mad mp3 opengl  png quicktime radio real sdl vorbis win32codecs xv a52 bidi bindist bl cddb cdio cdparanoia cpudetection dga dts dv dvb esd ftp jack joystick lirc lzo md5sum mmx mmxext mp2 musepack openal pnm rar rtc speex sse sse2 ssse3 svga teletext tga theora tivo v4l2 vidix x264 xanim xinerama xvmc zoran
+
+
+#media-video/mplayer unicode -oss aac aalib amr live xvid dvdread ggi libcaca dvdnav enca truetype srt X alsa dvd encode gif gtk jpeg mad mp3 opengl  png quicktime radio real sdl vorbis win32codecs xv a52 bidi bindist bl cddb cdio cdparanoia cpudetection -dga dts dv dvb -esd ftp -jack joystick lirc lzo md5sum -mmx -mmxext mp2 musepack -openal -pnm rar rtc speex sse sse2 -ssse3 -svga -teletext tga theora tivo v4l2 vidix x264 xanim -xinerama xvmc zoran
+
+#media-video/mplayer unicode oss aac amr live xvid dvdread ggi libcaca dvdnav enca truetype srt X alsa dvd encode gtk mp3 quicktime radio sdl real vorbis win32codecs xv a52 mmx mmxext musepack sse sse2 tga rtc theora xanim v4l2 cpudetection speex -aalib gif jpeg png radio -speex mmx mmxext lzo x264 -lirc gmplayer nas
+
+media-video/mplayer unicode oss aac -amr live xvid dvdread ggi libcaca dvdnav enca truetype srt X alsa dvd encode gtk mp3 quicktime radio sdl real vorbis win32codecs xv a52 mmx mmxext musepack sse sse2 tga rtc theora xanim v4l2 cpudetection speex -aalib gif jpeg png radio -speex mmx mmxext lzo x264 -lirc gmplayer nas -faac ladspa
+
+media-libs/imlib2 jpeg
+app-office/openoffice -kde
+app-emulation/qemu kqemu vde
+net-misc/tightvnc server
+media-sound/audiotag flac
+app-misc/mc -ncurses slang unicode nls 7zip -X
+media-sound/mpd aac alsa audiofile flac icecast mikmod mp3 musepack unicode vorbis ao -oss -pulseaudio curl id3 wavpack libsamplerate -doc oggflac libmms fifo cdio lastfmradio -bipz2 cue sqlite
+media-sound/ncmpc clock-screen search-screen key-screen -mouse colors artist-screen lyrics-screen song-screen
+dev-lang/php apache2 ipv6 mysql bzip2 ftp xpm zip gd curl pcre postgres session cgi sqlite xmlreader xmlrpc xmlwriter sockets pdo
+www-servers/nginx fastcgi
+app-cdr/k3b -alsa -arts dvdr -hal -mp3
+www-client/elinks unicode bzip2 ftp -javascript -X -bittorrent
+media-video/transcode -X -gtk -jpeg -mp3 -mpeg -ogg -quicktime -sdl
+#sys-kernel/gentoo-sources symlink
+www-client/links javascript tiff
+net-im/gajim -jingle -libnotify
+media-gfx/k3d tiff svg
+sys-libs/glibc build nls debug
+media-sound/exaile aac flac -oss equalizer
+app-editors/vim bash-completion vim-with-x cscope ruby
+app-editors/vim-core bash-completion
+www-client/firefox xprint -java
+www-client/chromium -bindist -cups system-sqlite system-v8 gecko-mediaplayer -32bit -aura -custom-cflags proprietary-codecs hidpi
+www-client/seamonkey java moznoirc moznomail mozdevelop nocompose xprint
+app-admin/conky hddtemp -mpd vim-syntax -rss wifi
+media-sound/moc flac
+media-sound/mpg123 alsa -oss sdl
+media-video/ffmpeg aac a52 amr ieee1394 v41 x264 xvid theora mmx sdl vpx qt-faststart -frei0r oss network -bindist webp librtmp fdk
+media-gfx/blender ffmpeg openal openexr blender-game
+dev-lang/perl berkdb -build -doc gdbm ithreads
+net-im/ejabberd -ldap -mod_irc -mod_muc -mod_pubsub -odbc ssl web
+x11-terms/aterm -cjk
+media-sound/sound-juicer flac
+x11-libs/gtk+ tiff -doc
+media-sound/easytag flac mp3 vorbis aac
+media-gfx/inkscape -doc inkjar dia lcms postscript jabber
+media-plugins/audacious-plugins flac aac -esd chardet -oss -arts sndfile timidity musepack
+dev-ml/lablgtk svg
+media-sound/cmus ao aac
+media-sound/audacious chardet
+sys-block/gparted fat ntfs reiser4 reiserfs  xfs hfs jfs
+dev-python/gnome-python-extras -firefox
+media-sound/alsaplayer -gtk -opengl
+dev-lang/python tk -doc -examples sqlite
+dev-db/sqlite extensions secure-delete
+net-print/bjfilter ip1500 -servicetools
+sys-apps/initng -as_init initng_plugins_ctrlaltdel initng_plugins_dbus_event initng_plugins_interactive initng_plugins_logfile initng_plugins_netdev initng_plugins_netprobe initng_plugins_syslog
+sys-apps/initng-ifiles fixes net runlevels vim-syntax
+net-im/jabberd mysql ssl
+media-video/dvdrip mplayer subtitles xvid
+dev-lang/fpc source
+x11-drivers/nvidia-drivers -gtk
+net-misc/wget socks5
+app-emulation/virtualbox-ose additions nowrapper sdk vboxbfe
+app-emulation/virtualbox-bin additions nowrapper sdk
+dev-python/imaging doc tk scanner examples
+media-libs/gd fontconfig xpm
+media-gfx/sane-backends usb
+media-gfx/gimp gimpprint -doc pdf svg python -webkit
+sys-apps/pciutils -zlib
+games-strategy/wesnoth -kde
+www-client/firefox java
+dev-lang/spidermonkey threadsafe
+sys-apps/man-pages nls
+dev-libs/openssl -bindist
+net-misc/openssh -bindist X -kerberos -ldap
+media-sound/aumix gtk nls gpm
+net-print/cups nls pam ppds ssl tiff X dbus jpeg ldap -php png
+media-video/totem ogg dvd ffmpeg gnome hal mad mpeg vorbis
+#media-plugins/gst-plugins-meta X alsa xv taglib
+app-admin/testdisk jpeg ntfs reiserfs
+kde-base/kdelibs utempter -fam -jpeg2k -openexr
+media-libs/win32codecs quicktime real
+app-crypt/mit-krb5 -doc
+app-doc/xorg-docs -doc
+x11-apps/xneur -gstreamer
+net-im/tkabber plugins
+dev-python/urwid examples
+app-cdr/k3b mp3 vcd
+media-video/avidemux xvid aac x264
+sys-fs/ntfs3g ntfsprogs fuse
+dev-libs/boost threads
+media-video/realplayer nsplugin
+gnome-base/nautilus -gnome -X
+net-p2p/deluge browser
+media-sound/sonata lyrics taglib -trayicon
+dev-java/sun-jdk -doc nsplugin
+games-fps/nexuiz maps dedicated
+x11-themes/gtk-engines-qtcurve mozilla
+net-libs/webkit-gtk sqlite svg pang
+# move x11-libs/qt-webkit dev-qt/qtwebkit
+dev-qt/qtwebkit kde
+dev-vcs/git curl bash-completion
+sys-devel/gcc doc gcjh gtk fortran -objc -objc++ -objc-gc -go
+x11-libs/cairo svg xcb -qt4 lcdfilter -cleartype
+media-libs/fontconfig -cleartype
+app-cdr/brasero libburn
+dev-scheme/guile deprecated discouraged threads
+app-misc/twin ggi
+net-misc/hamachi pentium
+dev-util/glade doc -gnome
+dev-python/pygtk doc examples
+dev-python/pysqlite examples
+net-p2p/transmission gtk -wxwindows daemon
+dev-python/PyQt4 doc -examples -phonon
+net-p2p/gnunet sqlite
+www-plugins/gnash fbcon nsplugin gtk mad ffmpeg agg opengl sdl cairo sdl
+dev-java/sun-jre-bin nsplugin
+media-gfx/pstoedit plotutils
+app-editors/emacs -X -gif -gtk -jpeg -png -spell -tiff -xpm -sound
+app-text/poppler-bindings cairo
+app-portage/eix sqlite strong-optimization optimization
+dev-python/pyinotify examples
+app-text/djvu threads
+dev-games/cegui devil
+net-libs/gnutls guile
+dev-scheme/guile networking
+app-accessibility/festival -mbrola
+dev-cpp/gtkmm accessibility examples doc
+dev-cpp/libglademm doc examples
+media-sound/jack-audio-connection-kit oss
+
+media-sound/xmms2 aac airplay ao asf asx avcodec cdda clientonly coreaudio cpp curl daap diskwrite eq fam ffmpeg flac -gnome gvfs ices -jack lastfm libvisual mac mad mms modplug mp3 mp4 mpg123 musepack oss perl python rss ruby server shout sid speex ssl vocoder vorbis wavpack wma xml xspf
+
+media-sound/audacity id3tag twolame libsamplerate vamp ladspa sbsms soundtouch midi
+games-sports/xmoto editor
+app-admin/eselect -vim-syntax
+sys-libs/pam -vim-syntax
+app-misc/figlet bash-completion
+x11-wm/fluxbox vim-syntax
+sys-apps/paludis portage
+sys-apps/portage -python3
+net-nds/openldap minimal
+media-gfx/gthumb raw
+media-sound/ncmpcpp curl taglib clock -visualizer
+www-client/midori sourceview
+net-dns/bind mysql threads resolvconf
+dev-python/matplotlib -gtk -wxwindows -qt4 -doc -examples -latex
+games-action/armagetronad client moviepack moviesounds music
+www-servers/lighttpd php -minimal -bzip2 -ssl -gdbm
+net-p2p/rtorrent xmlrpc
+
+x11-libs/pixman -sse2
+
+x11-wm/wmii python
+#sys-apps/sysvinit compat-only
+#sys-apps/upstart-jobs sysv
+#sys-apps/upstart sysv
+
+www-client/opera qt-static
+
+net-voip/linphone video
+
+dev-python/pycups doc examples
+
+
+gnome-base/gnome -cdr -dvdr
+gnome-base/gnome-vfs -hal
+
+net-news/liferea gtkhtml
+
+media-gfx/fbida -X fbcon pdf png tiff jpeg gif curl
+
+dev-cpp/gtkmm doc examples
+
+net-im/psi plugins jingle iconsets -webkit extras -enchant -powersave
+
+app-office/dia cairo
+x11-misc/pcmanfm -hal
+
+www-client/kazehakase webkit
+
+dev-php/smarty doc
+
+# move x11-libs/qt-sql dev-qt/qtsql
+dev-qt/qtsql -mysql -postgres
+# move x11-libs/qt-gui dev-qt/qtgui
+dev-qt/qtgui private-headers accessibility evdev
+# move x11-libs/qt-svg dev-qt/qtsvg
+dev-qt/qtsvg accessibility
+# move x11-libs/qt-core dev-qt/qtcore
+dev-qt/qtcore private-headers icu
+# move x11-libs/qt-script dev-qt/qtscript
+dev-qt/qtscript private-headers
+# move x11-libs/qt-declarative dev-qt/qtdeclarative
+dev-qt/qtdeclarative private-headers
+#media-sound/phonon xcb
+#media-libs/xine-lib xcb
+#x11-libs/qt-qt3support -accessibility kde
+cross-i486-pc-mingw32/binutils -selinux
+cross-i486-pc-mingw32/w32api -selinux
+cross-i486-pc-mingw32/mingw-runtime -selinux
+cross-i486-pc-mingw32/gcc -selinux -boundschecking -d -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -openmp
+
+cross-i686-mingw32/binutils -selinux
+
+
+sys-apps/hal -crypt
+
+
+app-office/dia doc
+
+
+media-sound/tuxguitar fluidsynth oss
+media-sound/timidity++ oss
+
+net-im/centerim -irc
+
+media-sound/mixxx recording
+
+dev-vcs/subversion java
+app-portage/layman cvs bazaar cvs -darcs git mercurial subversion
+
+media-sound/rhythmbox -brasero taglib musicbrainz
+
+sys-apps/pmount -crypt
+
+app-dicts/lightlang -gtk
+app-text/qstardict plugin_stardict
+
+net-dns/avahi qt3 dbus
+
+dev-libs/boost doc
+
+dev-python/PyQt4 sql phonon xmlpatterns assistant
+media-sound/mpg321 -symlink
+
+net-im/qutim jabber vkontakte chess
+
+media-libs/mlt frei0r melt
+
+www-client/uzbl dmenu
+
+media-video/qdvdauthor mplayer
+
+games-misc/fretsonfire guitarhero psyco
+
+sci-visualization/gnuplot gd wxwidgets latex
+
+www-client/w3m -imlib lynxkeymap
+
+net-analyzer/nmap lua
+
+dev-tex/dot2texi pgf pstricks
+app-office/lyx dia html latex rtf
+dev-tex/feynmf doc
+
+sys-boot/grub multislot
+
+dev-ml/camlimages gs
+
+app-text/texlive cyrillic graphics extra
+media-libs/freetype kpathsea -bindist -cleartype -infinality
+x11-libs/libXft -cleartype
+
+app-text/lcdf-typetools kpathsea
+
+net-im/mcabber vim-syntax aspell idn otr -spell
+
+dev-libs/stfl python examples
+x11-libs/libX11 xcb
+
+# move dev-util/qt-creator dev-qt/qt-creator
+dev-qt/qt-creator qtscript git bineditor bookmarks -examples designer qml android git valgrind
+dev-qt/qt-creator qtscript git bineditor bookmarks -examples designer qml android git valgrind
+
+dev-python/tagpy examples
+
+app-misc/tmux vim-syntax
+
+sys-fs/udev extras
+
+net-proxy/tsocks tordns
+
+app-text/evince -dbus
+
+media-libs/opencv examples openmp python opencl #-ffmpeg
+sys-cluster/openmpi romio
+sci-libs/hdf5 mpi
+
+net-voip/ekiga -gstreamer
+
+app-office/abiword math openxml grammar wordperfect
+
+x11-wm/dwm xinerama
+
+#app-emulation/wine -win64 xcomposite gstreamer openal
+app-emulation/wine X alsa -cups dbus fontconfig gecko gnutls gstreamer jpeg mp3 nas ncurses nls openal opengl oss perl png samba scanner ssl threads truetype v4l win32 xcomposite xml -capi -custom-cflags -esd -gphoto2 -gsm -hal -jack -lcms -ldap -pulseaudio -test -win64 -xinerama
+
+#sys-auth/pambase consolekit
+#net-wireless/bluez usb
+#dev-libs/openobex usb
+#app-mobilephone/obexftp bluetooth
+
+#www-plugins/adobe-flash nspluginwrapper
+www-plugins/adobe-flash -32bit -nspluginwrapper -vdpau
+
+dev-db/mysql -embedded
+
+net-wireless/wpa_supplicant -qt4
+
+media-gfx/splashutils fbcondecor
+
+# vim: textwidth=0
+#required by virtual/ffmpeg-0.6-r1, required by media-sound/mpd-0.16.3[ffmpeg], required by @selected, required by @world (argument)
+>=media-video/ffmpeg-9999 -vaapi
+
+
+
+dev-python/django mysql postgres -sqlite examples doc bash-completion vhost
+dev-python/django-extensions mysql postgres s3 -sqlite
+www-servers/nginx addition aio ipv6 securelink sub static-gzip ssl zlib fastcgi
+#required by virtual/ffmpeg-0.6.90, required by media-video/vlc-1.1.11, required by media-libs/phonon-vlc-0.4.0, required by media-libs/phonon-4.5.0[vlc], required by x11-libs/qt-webkit-4.7.3[kde], required by x11-libs/qt-meta-4.7, required by @selected, required by @world (argument)
+>=media-video/ffmpeg-9999 vaapi
+
+
+www-apps/trac fastcgi mysql sqlite postgres cgi -i18n
+www-apps/tikiwiki postgres -mysql
+
+media-gfx/graphicsmagick -imagemagick
+
+media-sound/cue2tracks flac mp3 vorbis -mac
+
+sci-mathematics/octave -fftw curl
+
+net-im/skype qt-static
+
+app-arch/p7zip::rusxmms rcc
+
+dev-lang/ghc binary
+
+x11-wm/xmonad hscolour profile
+x11-wm/xmonad-contrib xft doc hscolour profile
+#required by dev-haskell/x11-1.5.0.1, required by dev-haskell/x11-xft-0.3.1, required by x11-wm/xmonad-contrib-0.10[xft], required by xmonad-contrib (argument)
+>=dev-haskell/syb-0.3.6 profile
+#required by dev-haskell/random-1.0.1.1, required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+=dev-haskell/time-1.2.0.3 profile
+#required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+>=dev-haskell/random-1.0.1.1 profile
+#required by x11-wm/xmonad-contrib-0.10[xft], required by xmonad-contrib (argument)
+>=dev-haskell/x11-xft-0.3.1 profile
+#required by x11-wm/xmonad-0.10, required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+=dev-haskell/utf8-string-0.3.6 profile
+#required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+>=dev-haskell/x11-1.5.0.1 profile
+#required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+=dev-haskell/mtl-1.1.1.1 profile
+
+
+cross-i686-pc-mingw32/gdb sys-devel gdb
+cross-i686-pc-mingw32/insight dev-util insight
+cross-i686-pc-mingw32/binutils -selinux multilib
+cross-i686-pc-mingw32/w32api -selinux multilib
+cross-i686-pc-mingw32/mingw-runtime -selinux multilib
+cross-i686-pc-mingw32/gcc -selinux -boundschecking -d -gtk -gcj -libffi -mudflap -objc -objc++ -objc-gc -fortran cxx -nocxx openmp multilib
+
+
+dev-python/pygame X doc examples test
+#required by dev-python/pygame-1.9.2_pre20120101[test], required by =pygame-1.9.2_pre20120101 (argument)
+=x11-base/xorg-server-1.11.2-r2 xvfb
+
+app-editors/yi -gtk vty hscolour
+app-editors/yi-contrib hscolour
+#required by x11-drivers/xf86-video-ati-6.14.4-r1, required by x11-drivers/xf86-video-ati (argument)
+=x11-libs/libdrm-2.4.33 video_cards_nouveau libkms video_cards_vmware video_cards_radeon
+
+
+net-libs/webkit-gtk -introspection
+#required by media-sound/rhythmbox-2.96[webkit,python], required by @selected, required by @world (argument)
+>=net-libs/webkit-gtk-1.8.1-r301 introspection
+#required by dev-java/netbeans-platform-7.1.2, required by dev-java/netbeans-apisupport-7.1.2, required by dev-util/netbeans-7.1.2[netbeans_modules_apisupport], required by @selected, required by @world (argument)
+>=dev-java/swing-layout-1.0.4 source
+
+dev-games/clanlib doc sound -sqlite -static-libs
+
+
+media-sound/mangler celt
+
+dev-python/pyusb examples
+
+dev-util/cppcheck htmlreport qt4
+
+media-libs/mesa gles gles1 gles2 openvg g3dvl -llvm
+
+media-libs/glfw examples
+
+media-libs/libsfml doc examples -static-libs
+
+dev-games/irrlicht doc
+#required by dev-lang/python-2.7.3-r2[gdbm,-build], required by dev-java/dom4j-1.6.1-r4, required by dev-java/netbeans-java-7.1.2-r1, required by dev-java/netbeans-profiler-7.1.2, required by dev-util/netbeans-7.1.2[netbeans_modules_profiler], required by @selected, required by @world (argument)
+=sys-libs/gdbm-1.8.3-r4 berkdb
+#required by media-video/openshot-1.4.2, required by @selected, required by @world (argument)
+=media-libs/mlt-0.7.8 python
+#required by x11-libs/qt-webkit-4.8.2[gstreamer], required by www-client/arora-0.11.0, required by @selected, required by @world (argument)
+
+x11-drivers/xf86-video-intel uxa
+#required by x11-libs/glamor-0.5, required by x11-drivers/xf86-video-intel-2.20.1[glamor], required by @selected, required by @world (argument)
+=media-libs/mesa-8.0.3 gbm
+#required by media-video/vlc-2.0.4, required by =media-video/vlc-2.0.4::gentoo (argument)
+>=sys-libs/zlib-1.2.7 minizip
+
+
+app-office/gnucash cxx -webkit -mysql -postgres python sqlite -ofx
+# required by net-misc/openssh-6.6_p1-r1[-static]
+# required by virtual/ssh-0[-minimal]
+# required by @system
+# required by @world (argument)
+=dev-libs/openssl-1.0.1g bindist
+# required by net-p2p/bitcoind-0.8.5
+# required by net-p2p/bitcoind::gentoo (argument)
+=dev-libs/leveldb-1.9.0-r5 -snappy
+# required by media-libs/sk1libs-0.9.1
+# required by media-gfx/uniconvertor-1.1.5
+# required by media-gfx/inkscape-0.48.4-r1
+# required by media-gfx/inkscape::gentoo (argument)
+=media-libs/lcms-1.19 python
+# required by net-p2p/bitcoind-0.8.5
+# required by net-p2p/bitcoind::gentoo (argument)
+=dev-libs/openssl-1.0.1g -bindist
+# required by gnome-base/gvfs-1.18.3[udev]
+# required by app-cdr/brasero-3.10.0
+# required by media-gfx/gthumb-3.2.6[cdr]
+# required by media-gfx/gthumb::gentoo (argument)
+=virtual/udev-208-r1 gudev
+# required by app-vim/vim-spell-ru-20070506
+# required by app-vim/vim-spell-ru::gentoo (argument)
+=app-editors/vim-7.3.762 python
+# required by dev-python/tagpy-0.94.8-r1
+# required by media-sound/sonata-1.6.2.1[taglib]
+# required by media-sound/sonata::gentoo (argument)
+=dev-libs/boost-1.52.0-r6 python
+# required by sys-devel/prelink-20110511
+# required by app-emulation/wine-1.6.1[prelink]
+# required by app-emulation/wine::gentoo (argument)
+>=dev-libs/elfutils-0.158 static-libs
+# required by x11-libs/glamor-0.6.0
+# required by x11-drivers/xf86-video-intel-2.21.15[glamor]
+# required by x11-base/xorg-drivers-1.15[video_cards_intel]
+# required by x11-base/xorg-server-1.15.0[xorg]
+# required by x11-drivers/xf86-input-mouse-1.9.0
+=media-libs/mesa-10.0.4 gbm
+# required by dev-qt/qtwebkit-4.8.5[gstreamer]
+# required by app-text/kchmviewer-6.0-r1
+# required by app-text/kchmviewer::gentoo (argument)
+# required by app-vim/youcompleteme-20130910
+# required by app-vim/youcompleteme::gentoo (argument)
+=app-editors/vim-7.4.193 python
+# required by sys-devel/clang-3.4-r100
+# required by app-vim/youcompleteme-20130910[clang]
+# required by app-vim/youcompleteme::gentoo (argument)
+#sys-devel/llvm clang debug python gold
+sys-devel/llvm clang python lldb gold
+# required by net-print/cups-1.7.1-r1
+# required by net-print/cups-filters-1.0.43-r1
+=app-text/ghostscript-gpl-9.10-r2 -cups
+# required by virtual/udev-208-r1
+# required by gnome-base/gvfs-1.18.3[udev]
+# required by app-cdr/brasero-3.10.0
+# required by media-gfx/gthumb-3.2.6[cdr]
+# required by media-gfx/gthumb::gentoo (argument)
+=sys-fs/udev-208 gudev
+# required by www-client/chromium-34.0.1847.116
+# required by www-client/chromium::gentoo (argument)
+
+x11-themes/redhat-artwork cursors
+# required by net-im/psi-9999::rion[jingle]
+# required by net-im/psi-otr-0.9.4::rion
+# required by psi-otr (argument)
+>=net-im/psimedia-9999 extras
+# required by dev-qt/qtcore-5.2.1::qt
+# required by =dev-qt/qtcore-5.2.1 (argument)
+=dev-libs/libpcre-8.33 pcre16
+
+dev-qt/qtgui:5 xcb
+# required by dev-qt/qtgui-5.2.1::qt[xcb]
+# required by =qtgui-5.2.1 (argument)
+>=x11-libs/libxcb-1.10 xkb
+# required by net-print/cups-1.7.1-r1
+# required by net-print/cups-filters-1.0.53
+=app-text/ghostscript-gpl-9.10-r2 cups
+
+sys-devel/clang python
+
+net-analyzer/wireshark gtk3 -qt -gtk2
+
+
+# required by sys-devel/clang-3.4.2-r100
+# required by clang (argument)
+# required by sys-devel/clang-9999-r100
+# required by sys-devel/lldb-9999::sbar
+# required by =sys-devel/lldb-9999 (argument)
+
+
+x11-misc/xdotool examples
+
+
+# required by dev-lang/python-3.3.5-r1[-build,gdbm]
+# required by x11-libs/libxcb-1.10
+# required by x11-libs/libX11-1.6.2
+# required by dev-lang/tk-8.5.15
+# required by dev-tcltk/blt-2.4z-r10
+# required by dev-lang/python-2.7.7[tk,-build]
+# required by x11-proto/xcb-proto-1.10[python_targets_python2_7]
+>=sys-libs/gdbm-1.11 berkdb
+# required by app-vim/youcompleteme-20130910
+# required by app-vim/youcompleteme::gentoo (argument)
+=app-editors/vim-7.4.273 python
+# required by dev-qt/qtcore-5.3.1-r3
+# required by dev-qt/qtxml-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-libs/libpcre-8.35 pcre16
+# required by dev-python/tagpy-0.94.8-r1
+# required by media-sound/sonata-1.6.2.1[taglib]
+# required by media-sound/sonata::gentoo (argument)
+=dev-libs/boost-1.52.0-r7 python
+# required by media-libs/sk1libs-0.9.1-r3
+# required by media-gfx/uniconvertor-1.1.5
+# required by media-gfx/inkscape-0.48.4-r1
+# required by media-gfx/inkscape::gentoo (argument)
+=media-libs/lcms-1.19-r1 python
+
+
+media-video/libav -bindist
+
+
+
+
+
+
+
+#dev-qt/assistant debug
+#dev-qt/designer debug
+#dev-qt/linguist debug
+#dev-qt/linguist-tools debug
+#dev-qt/pixeltool debug
+#dev-qt/qdbus debug
+#dev-qt/qdbusviewer debug
+#dev-qt/qdoc debug
+#dev-qt/qt-creator debug
+#dev-qt/qt-meta debug
+#dev-qt/qt-mobility debug
+#dev-qt/qt3support debug
+#dev-qt/qtbearer debug
+#dev-qt/qtconcurrent debug
+#dev-qt/qtcore debug
+#dev-qt/qtdbus debug
+#dev-qt/qtdeclarative debug
+#dev-qt/qtdemo debug
+#dev-qt/qtdiag debug
+#dev-qt/qtgraphicaleffects debug
+#dev-qt/qtgui debug
+#dev-qt/qthelp debug
+#dev-qt/qtimageformats debug
+#dev-qt/qtlockedfile debug
+#dev-qt/qtmultimedia debug
+#dev-qt/qtnetwork debug
+#dev-qt/qtopengl debug
+#dev-qt/qtopenvg debug
+#dev-qt/qtpaths debug
+#dev-qt/qtphonon debug
+#dev-qt/qtprintsupport debug
+#dev-qt/qtquick1 debug
+#dev-qt/qtquickcontrols debug
+#dev-qt/qtscript debug
+#dev-qt/qtserialport debug
+#dev-qt/qtsingleapplication debug
+#dev-qt/qtsql debug
+#dev-qt/qtsvg debug
+#dev-qt/qttest debug
+#dev-qt/qttranslations debug
+#dev-qt/qtwebkit debug
+#dev-qt/qtwebsockets debug
+#dev-qt/qtwidgets debug
+#dev-qt/qtx11extras debug
+#dev-qt/qtxml debug
+#dev-qt/qtxmlpatterns debug
+#dev-qt/qt3d debug
+#dev-qt/qtchooser debug
+#dev-qt/qtlocation debug
+#dev-qt/qtsensors debug
+#dev-qt/qtwayland debug
+
+sys-apps/dbus debug
+
+dev-embedded/libftdi examples python tools doc
+
+#media-libs/opencv opencl qt4
+
+dev-embedded/arduino examples
+
+sys-devel/gdb multitarget lzma
+
+net-ftp/lftp openssl -gnutls idn
+
+media-tv/kodi -upower
+
+dev-util/oprofile java
+# required by media-video/openshot-1.4.3
+# required by openshot (argument)
+>=media-libs/mlt-0.9.0 python
+
+#dev-java/icedtea -jamvm
+# required by dev-java/icedtea-7.2.5.3[X]
+# required by dev-java/icedtea-web-1.5.1-r1[icedtea7]
+=media-libs/freetype-2.5.3-r1 infinality
+
+dev-java/commons-httpclient examples
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/gmp-ecm-6.4.4-r2 -openmp
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=sci-mathematics/maxima-5.35.1-r2 ecls
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=sci-libs/libsingular-3.1.7_p1-r2 flint
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=dev-python/ipython-3.0.0 notebook
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/pari-2.7.1-r2 gmp data
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=sci-mathematics/lcalc-1.23-r7 pari
+# required by sci-libs/scipy-0.14.0-r1
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/numpy-1.9.0-r1 lapack
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=sci-mathematics/eclib-20140921-r1 flint
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/flint-2.4.4-r1 ntl
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+>=sci-libs/linbox-1.3.2 sage
+
+
+sci-libs/fftw -fortran
+# required by www-client/chromium-43.0.2357.130
+# required by @selected
+# required by @world (argument)
+=media-libs/libvpx-1.4.0 postproc
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=media-video/ffmpeg-2.6.3 webp v4l
+
+sys-apps/paludis pink doc pbins search-index
+
+dev-java/icedtea-bin nsplugin -webstart
+
+dev-python/ipython notebook matplotlib
+
+dev-libs/protobuf python
+
+sci-libs/hdf5 -mpi -cxx -fortran
+
+dev-libs/caffe python
+# required by sci-libs/scikits_image-0.10.1
+# required by dev-libs/caffe-9999::maksbotan[python]
+# required by caffe::maksbotan (argument)
+=sci-libs/scipy-0.15.1 sparse
+# required by dev-python/pytables-3.1.1-r2
+# required by dev-python/pandas-0.16.2
+# required by dev-libs/caffe-9999::maksbotan[python]
+# required by caffe::maksbotan (argument)
+=dev-libs/c-blosc-1.3.5 hdf5
+# required by net-im/psi-9999::gentoo[crypt]
+# required by psi (argument)
+>=app-crypt/qca-2.1.0.3 gpg
+
+
+app-editors/neovim python
+
+dev-lang/rust clang -debug libcxx -system-llvm
+# required by dev-texlive/texlive-xetex-2015::gentoo
+# required by dev-texlive/texlive-formatsextra-2015::gentoo
+# required by app-text/texlive-2014::gentoo[extra]
+# required by texlive (argument)
+>=app-text/texlive-core-2015 xetex
+# required by gnome-base/gnome-keyring-3.16.0-r1::gentoo
+# required by app-crypt/libsecret-0.18.3::gentoo
+>=app-crypt/pinentry-0.9.5 gnome-keyring
+# required by dev-util/android-sdk-update-manager-24.4.1::gentoo
+# required by @selected
+# required by @world (argument)
+>=sys-libs/zlib-1.2.8-r1 abi_x86_32
+# required by net-wireless/aircrack-ng-1.2_rc1-r1::gentoo[airdrop-ng]
+# required by @selected
+# required by @world (argument)
+>=net-wireless/lorcon-0.0_p20150109 python
+# required by dev-qt/qtcore-5.5.1-r1::gentoo
+# required by dev-qt/qtdbus-5.5.1::gentoo
+# required by dev-qt/qtgui-5.5.1-r1::gentoo[dbus]
+# required by app-text/poppler-0.32.0::gentoo[qt5]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libpcre-8.38 pcre16
+# required by app-emulation/wine-1.6.2::gentoo[X,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXi-1.7.5 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[X,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXcursor-1.1.14 abi_x86_32
+# required by media-libs/freetype-2.5.5::gentoo[bzip2]
+# required by dev-python/pillow-3.1.1::gentoo[truetype]
+# required by media-gfx/uniconvertor-2.0_pre379-r1::gentoo
+# required by media-gfx/inkscape-0.91-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=app-arch/bzip2-1.0.6-r6 abi_x86_32
+# required by media-libs/gst-plugins-base-0.10.36-r2::gentoo
+# required by media-libs/gst-plugins-ugly-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-lame-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[lame]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=media-libs/gstreamer-0.10.36-r2:0.10 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[abi_x86_32,gstreamer]
+# required by @selected
+# required by @world (argument)
+>=media-libs/gst-plugins-base-0.10.36-r2:0.10 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[ncurses,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=sys-libs/ncurses-5.9-r5:0 abi_x86_32
+# required by dev-libs/glib-2.46.2-r2::gentoo[xattr]
+# required by media-plugins/gst-plugins-resindvd-0.10.23-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[dvd]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=sys-apps/attr-2.4.47-r2 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[xml,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libxslt-1.1.28-r5 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[X,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXxf86vm-1.1.4 abi_x86_32
+# required by media-libs/fontconfig-2.11.1-r2::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/freetype-2.5.5 abi_x86_32
+# required by x11-libs/libXrandr-1.5.0::gentoo
+# required by media-libs/libsdl-1.2.15-r9::gentoo[X]
+# required by x11-libs/wxGTK-3.0.2.0-r1::gentoo[sdl]
+# required by sci-mathematics/wxmaxima-15.08.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/renderproto-0.11.1-r1 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[openal,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-libs/openal-1.15.1-r2 abi_x86_32
+# required by x11-proto/fixesproto-5.0-r1::gentoo
+# required by x11-libs/libXfixes-5.0.1::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/xextproto-7.3.0 abi_x86_32
+# required by media-libs/gstreamer-0.10.36-r2::gentoo
+# required by media-plugins/gst-plugins-mad-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[mp3]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/glib-2.46.2-r2 abi_x86_32
+# required by x11-libs/libXi-1.7.5::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/xproto-7.0.28 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[v4l,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libv4l-1.6.2 abi_x86_32
+# required by net-print/cups-2.0.3::gentoo
+# required by net-print/cups-filters-1.5.0::gentoo
+>=app-text/ghostscript-gpl-9.15-r1 cups
+# required by net-libs/gnutls-3.3.17.1::gentoo
+# required by media-video/vlc-2.2.1-r1::gentoo[gnutls]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libtasn1-4.5 abi_x86_32
+# required by x11-libs/libXi-1.7.5::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/inputproto-2.3.1 abi_x86_32
+# required by sys-libs/gpm-1.20.7-r2::gentoo
+# required by sys-libs/ncurses-5.9-r5::gentoo[gpm]
+# required by sys-apps/less-481::gentoo
+# required by dev-db/postgresql-9.5.1::gentoo
+# required by dev-libs/redland-1.0.16::gentoo[postgres]
+# required by app-office/libreoffice-bin-5.0.5.2-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=sys-libs/ncurses-5.9-r99 abi_x86_32
+# required by sys-libs/ncurses-5.9-r5::gentoo[gpm]
+# required by sys-libs/ncurses-5.9-r99::gentoo
+# required by sys-process/procps-3.3.10-r1::gentoo[ncurses]
+# required by @system
+# required by @world (argument)
+>=sys-libs/gpm-1.20.7-r2 abi_x86_32
+# required by x11-libs/libXxf86vm-1.1.4::gentoo
+# required by x11-apps/xdpyinfo-1.3.2::gentoo
+# required by x11-base/xorg-x11-7.4-r2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/xf86vidmodeproto-2.3.1-r1 abi_x86_32
+# required by dev-libs/libgcrypt-1.6.5::gentoo
+# required by app-crypt/gcr-3.18.0::gentoo
+# required by gnome-base/gvfs-1.26.3::gentoo
+# required by app-cdr/brasero-3.12.1-r1::gentoo
+# required by media-gfx/gthumb-3.4.1::gentoo[cdr]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libgpg-error-1.19 abi_x86_32
+# required by x11-libs/libXrandr-1.5.0::gentoo
+# required by media-libs/libsdl-1.2.15-r9::gentoo[X]
+# required by x11-libs/wxGTK-3.0.2.0-r1::gentoo[sdl]
+# required by sci-mathematics/wxmaxima-15.08.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/randrproto-1.5.0 abi_x86_32
+# required by x11-libs/libX11-1.6.3::gentoo
+# required by x11-misc/xkeyboard-config-2.16::gentoo
+# required by x11-base/xorg-server-1.17.4::gentoo
+# required by x11-drivers/xf86-input-synaptics-1.8.2::gentoo
+# required by x11-base/xorg-drivers-1.17::gentoo[input_devices_synaptics]
+# required by x11-base/xorg-server-1.15.0::gentoo
+# required by x11-drivers/xf86-input-keyboard-1.8.1::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/kbproto-1.0.7 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[xcomposite,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXcomposite-0.4.4-r1 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[abi_x86_32,png]
+# required by @selected
+# required by @world (argument)
+>=media-libs/libpng-1.6.19 abi_x86_32
+# required by x11-libs/libXext-1.3.3::gentoo
+# required by x11-libs/libXrandr-1.5.0::gentoo
+# required by media-libs/libsdl-1.2.15-r9::gentoo[X]
+# required by x11-libs/wxGTK-3.0.2.0-r1::gentoo[sdl]
+# required by sci-mathematics/wxmaxima-15.08.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libX11-1.6.3 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[scanner,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-gfx/sane-backends-1.0.24-r5 abi_x86_32
+# required by media-libs/gst-plugins-base-0.10.36-r2::gentoo
+# required by media-libs/gst-plugins-ugly-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-lame-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[lame]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libxml2-2.9.3 abi_x86_32
+# required by x11-libs/libXi-1.7.5::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXext-1.3.3 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[mp3,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-sound/mpg123-1.18.1 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[X,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXrandr-1.5.0 abi_x86_32
+# required by media-gfx/sane-backends-1.0.24-r5::gentoo[sane_backends_dell1600n_net]
+# required by app-emulation/wine-1.6.2::gentoo[abi_x86_64,scanner]
+# required by @selected
+# required by @world (argument)
+>=media-libs/tiff-4.0.3-r6 abi_x86_32
+# required by x11-libs/libXi-1.7.5::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXfixes-5.0.1 abi_x86_32
+# required by net-libs/gnutls-3.3.17.1::gentoo
+# required by media-video/vlc-2.2.1-r1::gentoo[gnutls]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/nettle-3.2 abi_x86_32
+# required by dev-libs/libxml2-2.9.3::gentoo[icu]
+# required by media-libs/netpbm-10.66.00::gentoo[xml]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/icu-55.1 abi_x86_32
+# required by dev-libs/libxslt-1.1.28-r5::gentoo[crypt]
+# required by dev-util/cppcheck-1.72::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libgcrypt-1.6.5 abi_x86_32
+# required by dev-libs/nettle-3.2::gentoo[gmp]
+# required by net-libs/gnutls-3.3.17.1::gentoo
+# required by media-video/vlc-2.2.1-r1::gentoo[gnutls]
+# required by @selected
+# required by @world (argument)
+>=dev-libs/gmp-6.0.0a abi_x86_32
+# required by media-libs/fontconfig-2.11.1-r2::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/expat-2.1.0-r5 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[ssl,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=net-libs/gnutls-3.3.17.1 abi_x86_32
+# required by x11-libs/libXrandr-1.5.0::gentoo
+# required by media-libs/libsdl-1.2.15-r9::gentoo[X]
+# required by x11-libs/wxGTK-3.0.2.0-r1::gentoo[sdl]
+# required by sci-mathematics/wxmaxima-15.08.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXrender-0.9.9 abi_x86_32
+# required by x11-libs/libX11-1.6.3::gentoo
+# required by x11-misc/xkeyboard-config-2.16::gentoo
+# required by x11-base/xorg-server-1.17.4::gentoo
+# required by x11-drivers/xf86-input-synaptics-1.8.2::gentoo
+# required by x11-base/xorg-drivers-1.17::gentoo[input_devices_synaptics]
+# required by x11-base/xorg-server-1.15.0::gentoo
+# required by x11-drivers/xf86-input-keyboard-1.8.1::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libxcb-1.11.1 abi_x86_32
+# required by x11-libs/libxcb-1.11.1::gentoo
+# required by x11-apps/xdpyinfo-1.3.2::gentoo
+# required by x11-base/xorg-x11-7.4-r2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXau-1.0.8 abi_x86_32
+# required by media-libs/openal-1.15.1-r2::gentoo[alsa]
+# required by net-im/qtox-1.1::sbar
+# required by @selected
+# required by @world (argument)
+>=media-libs/alsa-lib-1.0.29 abi_x86_32
+# required by media-libs/gst-plugins-base-0.10.36-r2::gentoo[orc]
+# required by media-libs/gst-plugins-ugly-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-lame-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[lame]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=dev-lang/orc-0.4.24 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[fontconfig,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=media-libs/fontconfig-2.11.1-r2 abi_x86_32
+# required by x11-libs/libXfixes-5.0.1::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/fixesproto-5.0-r1 abi_x86_32
+# required by x11-libs/libxcb-1.11.1::gentoo
+# required by x11-apps/xdpyinfo-1.3.2::gentoo
+# required by x11-base/xorg-x11-7.4-r2::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-libs/libXdmcp-1.1.2 abi_x86_32
+# required by app-emulation/wine-1.6.2::gentoo[nls,abi_x86_32]
+# required by @selected
+# required by @world (argument)
+>=sys-devel/gettext-0.19.4 abi_x86_32
+# required by x11-libs/libxcb-1.11.1::gentoo
+# required by x11-apps/xdpyinfo-1.3.2::gentoo
+# required by x11-base/xorg-x11-7.4-r2::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libpthread-stubs-0.3-r1 abi_x86_32
+# required by x11-libs/libXcomposite-0.4.4-r1::gentoo
+# required by x11-libs/gtk+-2.24.29::gentoo
+# required by media-libs/mlt-0.9.0::gentoo[gtk]
+# required by media-video/openshot-1.4.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/compositeproto-0.4.2-r1 abi_x86_32
+# required by media-libs/tiff-4.0.3-r6::gentoo[jbig]
+# required by app-text/djvu-3.5.27::gentoo[tiff]
+# required by media-gfx/imagemagick-6.9.0.3::gentoo[djvu]
+# required by media-gfx/uniconvertor-2.0_pre379-r1::gentoo
+# required by media-gfx/inkscape-0.91-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/jbigkit-2.1 abi_x86_32
+# required by x11-libs/libX11-1.6.3::gentoo
+# required by x11-misc/xkeyboard-config-2.16::gentoo
+# required by x11-base/xorg-server-1.17.4::gentoo
+# required by x11-drivers/xf86-input-synaptics-1.8.2::gentoo
+# required by x11-base/xorg-drivers-1.17::gentoo[input_devices_synaptics]
+# required by x11-base/xorg-server-1.15.0::gentoo
+# required by x11-drivers/xf86-input-keyboard-1.8.1::gentoo
+# required by @selected
+# required by @world (argument)
+>=x11-proto/xf86bigfontproto-1.2.0-r1 abi_x86_32
+# required by x11-libs/libxcb-1.11.1::gentoo
+# required by x11-libs/libX11-1.6.3::gentoo
+# required by x11-apps/xinit-1.3.4-r1::gentoo
+# required by x11-base/xorg-server-1.17.4::gentoo
+# required by x11-drivers/xf86-input-mouse-1.9.1::gentoo
+# required by x11-base/xorg-drivers-1.17::gentoo[input_devices_mouse]
+>=x11-proto/xcb-proto-1.11 abi_x86_32
+# required by media-libs/tiff-4.0.3-r6::gentoo[jpeg]
+# required by x11-libs/gdk-pixbuf-2.32.3::gentoo[tiff]
+# required by app-office/libreoffice-bin-5.0.5.2-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/jpeg-0-r2:0 abi_x86_32
+# required by dev-libs/glib-2.46.2-r2::gentoo
+# required by x11-libs/gtksourceview-3.18.2::gentoo
+# required by dev-util/meld-3.14.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/libiconv-0-r2 abi_x86_32
+# required by virtual/jpeg-0-r2::gentoo
+# required by app-office/libreoffice-bin-5.0.5.2-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/libjpeg-turbo-1.4.2 abi_x86_32
+# required by dev-libs/glib-2.46.2-r2::gentoo
+# required by x11-libs/gtksourceview-3.18.2::gentoo
+# required by dev-util/meld-3.14.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=virtual/libffi-3.0.13-r1 abi_x86_32
+# required by virtual/pkgconfig-0-r1::gentoo
+# required by sys-block/gparted-0.25.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-util/pkgconfig-0.28-r2 abi_x86_32
+# required by virtual/libffi-3.0.13-r1::gentoo
+# required by dev-lua/lgi-0.9.0::gentoo
+# required by x11-wm/awesome-3.5.6-r2::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libffi-3.2.1 abi_x86_32
+# required by dev-libs/libgpg-error-1.19::gentoo[nls]
+# required by app-crypt/pinentry-0.9.5::gentoo
+# required by gnome-base/gnome-keyring-3.18.3::gentoo
+# required by app-crypt/libsecret-0.18.4::gentoo
+>=virtual/libintl-0-r2 abi_x86_32
+# required by media-libs/gstreamer-0.10.36-r2::gentoo
+# required by media-plugins/gst-plugins-lame-0.10.19-r1::gentoo
+# required by media-plugins/gst-plugins-meta-0.10-r10::gentoo[lame]
+# required by net-im/pidgin-2.10.11::gentoo[gstreamer]
+# required by @selected
+# required by @world (argument)
+>=virtual/pkgconfig-0-r1 abi_x86_32
+# required by dev-java/icedtea-bin-7.2.6.4::gentoo[nsplugin]
+# required by icedtea-bin (argument)
+>=dev-java/icedtea-web-1.5.1-r1 nsplugin
+# required by dev-python/tagpy-0.94.8-r1::gentoo
+# required by @preserved-rebuild (argument)
+>=dev-libs/boost-1.56.0-r1 python
+
+dev-lang/coffee-script examples
+# required by dev-ruby/json-1.8.3::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+>=virtual/rubygems-11 ruby_targets_ruby23
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+>=dev-ruby/json-1.8.3 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/minitest-5.8.4 ruby_targets_ruby23
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/net-telnet-0.1.1-r1::gentoo
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/rubygems-2.6.3 ruby_targets_ruby23
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/json-1.8.3::gentoo[ruby_targets_ruby20,-doc,-test]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/racc-1.4.14 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/did_you_mean-1.0.0 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/rake-11.1.2 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby20]
+>=dev-ruby/power_assert-0.2.7 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+>=dev-ruby/rdoc-4.2.2 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+>=dev-ruby/test-unit-3.1.8 ruby_targets_ruby23
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+>=dev-ruby/net-telnet-0.1.1-r1 ruby_targets_ruby23
+# required by app-editors/neovim-0.1.4::gentoo
+# required by dev-python/neovim-python-client-0.1.7::gentoo
+# required by =neovim-python-client-0.1.7 (argument)
+>=dev-lua/lpeg-1.0.0-r1 luajit
+# required by app-editors/neovim-0.1.4::gentoo
+# required by dev-python/neovim-python-client-0.1.7::gentoo
+# required by =neovim-python-client-0.1.7 (argument)
+>=dev-lua/mpack-1.0.2 luajit
+# required by dev-qt/qtwebengine-5.6.0::gentoo
+# required by =dev-qt/qtwebengine-5.6.0 (argument)
+>=dev-qt/qtwebchannel-5.6.0 qml
+
+dev-qt/qtwebengine widgets
+
+net-firewall/iptables conntrack netlink
+
+
+#krita
+sys-fs/udisks -gptfdisk
+media-libs/phonon -vlc -gstreamer
+kde-frameworks/kauth -policykit
+kde-frameworks/kio -handbook -kwallet
+kde-frameworks/kde-init -caps
+media-gfx/krita -raw -tiff fftw -pdf
+
+
+dev-libs/libxml2 icu
+dev-libs/boost icu
+media-libs/harfbuzz icu
+
+sys-power/cpupower cpufreq_bench
+
+media-video/obs-studio fdk
+# required by dev-libs/glib-2.48.2::gentoo
+# required by dev-qt/qtcore-5.6.1::gentoo
+# required by dev-util/cmake-3.6.2::gentoo[qt5]
+# required by sys-devel/llvm-3.8.1-r2::gentoo
+# required by sys-devel/clang-3.8.1-r100::gentoo
+# required by clang (argument)
+>=dev-libs/libpcre-8.38-r1 abi_x86_32
+# required by www-client/chromium-54.0.2840.59::gentoo
+# required by chromium (argument)
+>=media-libs/libvpx-1.5.0 svc

@@ -34,13 +34,14 @@ text_buffer_size 8096
 
 TEXT
 
-${color #FFFFFF}wlp3s0 down: ${color #CCCCCC}${downspeedf wlp3s0}KiB/s${offset 30}${color #FFFFFF}wlp3s0 up: ${color #CCCCCC}${upspeedf wlp3s0}KiB/s
-${downspeedgraph wlp3s0 100,400 CCCCCC FFFFFF} ${upspeedgraph wlp3s0 100,400 CCCCCC FFFFFF}
+${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp7s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp7s0}KiB/s
+${downspeedgraph wlp7s0 100,200 CCCCCC FFFFFF} ${upspeedgraph wlp7s0 100,200 CCCCCC FFFFFF}
 ${color #FFFFFF}disk I/O
-${diskiograph 100,400 CCCCCC FFFFFF}${color #CCCCCC}
-${color #CCCCCC}${cpu cpu0}%${offset 100} ${color #CCCCCC}${cpu cpu1}%${offset 100} ${color #CCCCCC}${cpu cpu2}%${offset 100} ${color #CCCCCC}${cpu cpu3}%
-${cpugraph cpu0 100,200 CCCCCC FFFFFF} ${cpugraph cpu1 100,200 CCCCCC FFFFFF} ${cpugraph cpu2 100,200 CCCCCC FFFFFF} ${cpugraph cpu3 100,200 CCCCCC FFFFFF}
+${diskiograph 100,415 CCCCCC FFFFFF}${color #CCCCCC}
+${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20} ${color #CCCCCC}${cpu cpu2}%${offset 20} ${color #CCCCCC}${cpu cpu3}%${offset 20}${cpu cpu4}%${offset 20} ${color #CCCCCC}${cpu cpu5}%${offset 20} ${color #CCCCCC}${cpu cpu6}%${offset 20} ${color #CCCCCC}${cpu cpu7}%
+${cpugraph cpu0 100,50 CCCCCC FFFFFF} ${cpugraph cpu1 100,50 CCCCCC FFFFFF} ${cpugraph cpu2 100,50 CCCCCC FFFFFF} ${cpugraph cpu3 100,50 CCCCCC FFFFFF} ${cpugraph cpu4 100,50 CCCCCC FFFFFF} ${cpugraph cpu5 100,50 CCCCCC FFFFFF} ${cpugraph cpu6 100,50 CCCCCC FFFFFF} ${cpugraph cpu7 100,50 CCCCCC FFFFFF}
 
-memory: $mem ${membar 20,300}      swap: $swap ${swapbar 20,300}
+${membar 20,300} memory: $mem
+${swapbar 20,300} swap: $swap
 
 ${exec ~/scripts/temp.sh}

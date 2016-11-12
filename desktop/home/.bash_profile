@@ -4,6 +4,8 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+ulimit -c unlimited
+
 # mounting encrypted fs
 if [[ ! $(mount | egrep '^encfs on.*\.private type fuse.encfs') ]]
 then
@@ -12,7 +14,7 @@ fi
 
 # running X
 if [[ $TERM != screen.linux &&
-      ! $(ps uax | egrep 'X.*:0' | grep $USER | grep -v grep) ]]
+      ! $(ps uax | egrep 'X.*:[0-9]' | grep $USER | grep -v grep) ]]
 then
     echo -n '>>> X11 is not running. Run X11 (and GTFO from the shell)? [Y/n] '
     read ANSWER

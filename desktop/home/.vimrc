@@ -1,4 +1,30 @@
+"set viminfo='100,n~/.config/nvim/nviminfo'
+
 set directory=/tmp/.vimswaps//
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'git@github.com:vimwiki/vimwiki.git'
+Plug 'git@github.com:vim-scripts/rainbow_parentheses.vim'
+Plug 'git@github.com:vim-scripts/taglist.vim'
+Plug 'git@github.com:vim-scripts/Indent-Guides.git'
+Plug 'git@github.com:vim-scripts/Tagbar.git'
+"Plug 'git@github.com:vim-scripts/vim-gitgutter'
+Plug 'git@github.com:airblade/vim-gitgutter'
+Plug 'git@github.com:gentoo/gentoo-syntax'
+Plug 'git@github.com:derekwyatt/vim-scala'
+Plug 'git@github.com:zaiste/tmux.vim'
+Plug 'git@github.com:rust-lang/rust.vim'
+Plug 'git@github.com:editorconfig/editorconfig-vim'
+Plug 'git@github.com:cespare/vim-toml'
+Plug 'git@github.com:Chiel92/vim-autoformat'
+Plug 'git@github.com:kchmck/vim-coffee-script.git'
+"Plug 'git@github.com:kassio/neoterm'
+"Plug 'git@github.com:fidian/hexmode.git'
+"Plug 'git@github.com:timburgess/extempore.vim.git'
+" :PlugInstall
+
+call plug#end()
 
 "set textwidth=80
 
@@ -46,7 +72,8 @@ set novisualbell
 set t_vb=   
 
 " Поддержка мыши
-set mouse=a
+"set mouse=a
+set mouse=n
 set mousemodel=popup
 
 " Кодировка текста по умолчанию
@@ -104,6 +131,21 @@ set sessionoptions=curdir,buffers,tabpages
 map . /
 
 map U <esc>:redo<cr>
+map Г <esc>:redo<cr>
+
+map К R
+map y y
+map з p
+
+map о j
+map л k
+map д l
+map р h
+
+map ш i
+map к r
+
+map П G
 
 " Пробел в нормальном режиме перелистывает страницы
 " nmap <Space> <PageDown>
@@ -139,8 +181,8 @@ vmap <F3> <esc>:tabnew<cr>:Ex<cr>
 
 " хэлп
 map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
-imap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
-vmap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
+"imap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
+"vmap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
 
 " следущий, предыдущий таб
 "map <S-Right> :tabn<cr>
@@ -151,12 +193,16 @@ vmap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
 "vmap <S-Left> <esc>:tabp<cr>
 map <S-l> :tabn<cr>
 map <S-h> :tabp<cr>
+map Д :tabn<cr>
+map Р :tabp<cr>
 "map <S-j> :tabnew<cr>
 "imap <S-l> <esc>:tabn<cr>
 "imap <S-h> <esc>:tabp<cr>
 "imap <S-j> :tabnew<cr>
 vmap <S-l> <esc>:tabn<cr>
 vmap <S-h> <esc>:tabp<cr>
+vmap Д <esc>:tabn<cr>
+vmap Р <esc>:tabp<cr>
 "vmap <S-j> :tabnew<cr>
 
 " C-n - новый split
@@ -176,9 +222,9 @@ imap <C-d> <esc>yypi
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
 " F2 - быстрое сохранение
-nmap <F2> :w<cr>
-vmap <F2> <esc>:w<cr>v
-imap <F2> <esc>:w<cr>i
+nmap <F2> :wa<cr>
+vmap <F2> <esc>:wa<cr>v
+imap <F2> <esc>:wa<cr>i
 
 " F8 - список закладок
 "map <F8> :MarksBrowser<cr>
@@ -249,6 +295,11 @@ filetype on
 filetype plugin on
 "au BufRead,BufNewFile *.phps    set filetype=php
 "au BufRead,BufNewFile *.thtml    set filetype=php
+
+au BufNewFile,BufRead *.toml set filetype=toml
+" Rust uses Cargo.toml and Cargo.lock (both are toml files).
+au BufNewFile,BufRead Cargo.lock set filetype=toml
+
 "
 "" Настройки для SessionMgr
 "let g:SessionMgr_AutoManage = 0
@@ -365,11 +416,40 @@ filetype plugin on
 ""imap <S-tab> <C-r>=InsertTabWrapper()<cr>
 
 
-colorscheme evening
-hi clear
+"colorscheme evening
+colorscheme peachpuff
+"hi clear
+hi SpellBad cterm=underline
 
 
 
+hi ModeMsg term=bold cterm=bold gui=bold
+"hi StatusLine term=reverse,bold cterm=reverse,bold gui=reverse,bold
+hi DiffText term=reverse cterm=bold gui=bold guibg=Red
+hi Directory term=bold
+hi MoreMsg term=bold gui=bold
+hi NonText term=bold gui=bold
+hi Question term=standout gui=bold
+hi SpecialKey term=bold
+hi Title term=bold gui=bold
+hi DiffAdd term=bold
+hi DiffChange term=bold
+hi DiffDelete term=bold gui=bold
+hi Special term=bold
+hi Statement term=bold cterm=bold gui=bold
+hi Type ctermfg=4 cterm=bold
+hi String ctermfg=5 cterm=bold
+hi Comment ctermfg=6 cterm=bold
+hi LineNr ctermfg=3 cterm=bold
+hi Search ctermfg=0
+hi Constant cterm=bold
+hi StatusLineNC cterm=bold ctermfg=0
+hi StatusLine cterm=bold ctermfg=2
+hi Title ctermfg=LightBlue ctermbg=Magenta
+"hi TabLineFill cterm=bold ctermfg=2
+"hi TabLine cterm=bold ctermfg=2
+"hi TabLineSel cterm=bold ctermbg=4
+hi PreProc cterm=bold ctermfg=4
 
 " colors
 " colorscheme slate
@@ -628,7 +708,23 @@ set completeopt=longest,menuone
 "inoremap <S-Tab> <C-x><C-u>
 
 
-let g:EclimShowCurrentError = 0
-let g:EclimSignLevel = 'off'
-let g:EclimLogLevel = 'off'
-let g:EclimScalaValidate = 0
+"let g:EclimShowCurrentError = 0
+"let g:EclimSignLevel = 'off'
+"let g:EclimLogLevel = 'off'
+"let g:EclimScalaValidate = 0
+
+let g:formatdef_rustfmt = '"rustfmt"'
+let g:formatters_rust = ['rustfmt']
+"au BufWrite *.rs :Autoformat
+
+set tags=tags,.tags,rusty-tags.vi
+
+autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
+let g:rustfmt_autosave = 1
+
+autocmd BufEnter,FocusGained * checktime
+
+se number
+" se relativenumber
+
+set shortmess=aoOtIT

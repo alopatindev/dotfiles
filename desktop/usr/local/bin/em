@@ -1,5 +1,7 @@
 #!/bin/bash
 
-sudo /usr/bin/emerge $@
-#beep -f 5000
-aplay -q /usr/share/gajim/data/sounds/sent.wav
+sudo /etc/init.d/distccd -q start
+#ping -W 1 -c1 mlaptop >> /dev/null && export MAKEOPTS="-j32 -l12"
+ping -W 1 -c1 mlaptop >> /dev/null && export MAKEOPTS="-j12 -l8" # 8(desktop) + 4(mlaptop)
+sudo emerge $@
+aplay -q /usr/local/share/gajim/data/sounds/sent.wav

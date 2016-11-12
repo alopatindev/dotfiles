@@ -121,17 +121,17 @@ style "user-font" {
 
 widget_class "*" style "user-font"
 
-gtk-font-name="DejaVu Sans 14"
+#gtk-font-name="DejaVu Sans 14"
 
-#gtk-cursor-theme-name="Bluecurve"
-#gtk-cursor-theme-size=32
+##gtk-cursor-theme-name="Bluecurve"
+##gtk-cursor-theme-size=32
 
 
 
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
-gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
-gtk-button-images=1
-gtk-menu-images=1
+#gtk-toolbar-style=GTK_TOOLBAR_BOTH
+#gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+#gtk-button-images=1
+#gtk-menu-images=1
 
-gtk-icon-sizes = "gtk-button=50,50:gtk-dialog=50,50:gtk-menu=50,50:gtk-small-toolbar=50,50:gtk-large-toolbar=50,50:gtk-dnd=50,50"
+#gtk-icon-sizes = "gtk-button=50,50:gtk-dialog=50,50:gtk-menu=50,50:gtk-small-toolbar=50,50:gtk-large-toolbar=50,50:gtk-dnd=50,50"
 

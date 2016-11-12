@@ -10,3 +10,12 @@ net-misc/networkmanager
 #>net-im/psi-0.15_pre20110526
 
 >net-fs/autofs-5.0.4-r5
+
+>app-text/evince-2.32.0-r4
+<sys-process/procps-3.3.9-r2
+
+>x11-wm/awesome-3.4.15
+
+www-plugins/adobe-flash
+
+dev-libs/icu:0/55

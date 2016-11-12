@@ -11,7 +11,7 @@
 mpd_music_dir = "/home/music"
 
 #external_editor = "/usr/bin/leafpad"
-external_editor = "/usr/bin/vim"
+external_editor = "/usr/bin/nvim"
 use_console_editor = "yes"
 
 #mpd_host = "localhost"
@@ -190,6 +190,6 @@ statusbar_color = "yellow"
 
 visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
 
-ask_before_clearing_main_playlist = "yes"
+#ask_before_clearing_main_playlist = "yes"
 
 display_bitrate = "yes"

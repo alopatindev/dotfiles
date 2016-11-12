@@ -1,5 +1,9 @@
 #!/bin/bash
+
+W=2560
+H=1600
+
 setterm -cursor off
-/usr/bin/mplayer -vo fbdev2 -framedrop -zoom -x 640 -y 400 -quiet -msglevel all=-1 "$@"
+/usr/bin/mplayer -vo fbdev2 -framedrop -zoom -x "$W" -y "$H" -quiet -msglevel all=-1 "$@"
 #echo $@
 setterm -cursor on

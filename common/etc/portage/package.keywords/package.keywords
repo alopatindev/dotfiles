@@ -1,0 +1,2332 @@
+=app-misc/gnome-commander-1.2.5 ~amd64
+=gnome-extra/gnome-commander-1* ~amd64
+=dev-lang/lazarus-0.9* ~amd64
+=media-sound/alsaplayer-0.99.80 ~amd64
+=media-video/istanbul-0.2.2 ~amd64
+=net-firewall/quicktables-2.3 ~amd64
+=net-misc/aria2-0.15.1_p2 ~amd64
+=sys-devel/libtool-2.2.4 ~amd64
+
+=app-emulation/wine-1.3* ~amd64
+=app-emulation/winetricks-185* ~amd64
+
+=net-print/bjfilter-2.50* ~amd64
+=app-cdr/isomaster-1.3.1 ~amd64
+app-emulation/ies4linux ~amd64
+=media-libs/flac-1.2.1-r3 ~amd64
+=media-video/avidemux-2.4* ~amd64
+=dev-python/xmpppy-0.4* ~amd64
+=net-libs/libgmail-0.1* ~amd64
+=dev-python/fuse-python-0.2 ~amd64
+=sys-fs/gmailfs-0.8.0 ~amd64
+=media-libs/mesa-7.0.3
+=x11-base/x11-drm-20071019-r1
+=app-misc/pcmanfm-0.3.2.2 ~amd64
+=sys-libs/libixp-0.4 ~amd64
+=media-sound/lastfmplayer-1.5* ~amd64
+=gnome-base/nautilus-2.22.5.1 ~amd64
+=games-emulation/mednafen-0.8.9 ~amd64
+=app-cdr/k3b-1.0.5-r1 ~amd64
+=www-client/links-2* ~amd64
+=www-client/elinks-0.12* ~amd64
+=sys-fs/ntfsprogs-2.0.0-r1 ~amd64
+=dev-python/pygments-0.10 ~amd64
+=sys-apps/paludis-0* ~amd64
+=app-admin/eselect-1.0.11-r1 ~amd64
+=app-admin/eselect-news-20080320 ~amd64
+=net-misc/hamachi-0* ~amd64
+=net-misc/ghamachi-0* ~amd64
+=dev-libs/confuse-2.6 ~amd64
+=sys-apps/rlocate-0.5.6 ~amd64
+=media-sound/mpdscribble-0* ~amd64
+=media-sound/mpd-0* **
+=media-libs/libmpd-0* ~amd64
+#=media-sound/mpd-9999 **
+=media-libs/wildmidi-0* ~amd64
+=media-libs/libmms-0* ~amd64
+=app-text/xmlto-0* ~amd64
+=media-sound/shell-fm-0.5 ~amd64
+=media-sound/last-exit-6 ~amd64
+=games-fps/nexuiz-2.4* ~amd64
+=x11-misc/superswitcher-0.6 ~amd64
+=media-gfx/gpicview-0* ~amd64
+=dev-perl/Danga-Socket-1.57 ~amd64
+=sys-apps/hal-0.5.10 ~amd64
+=net-libs/libsoup-2.4.0 ~amd64
+=media-video/pitivi-0.11.1 ~amd64
+=media-libs/gavl-1* **
+=dev-python/django-1* ~amd64
+=app-text/gnochm-0.9.11 ~amd64
+=dev-python/pyrex-0.9.5.1a ~amd64
+=sys-block/gparted-0* ~amd64
+=games-strategy/wormux-0* ~amd64
+=games-strategy/hedgewars-0* ~amd64
+=games-arcade/ppracer-0* ~amd64
+=media-fonts/proggy-fonts-1 ~amd64
+=games-action/supertuxkart-0* ~amd64
+=dev-lang/python-2.5.2-r7 ~amd64
+=app-portage/udept-0.5.99.0.2.95-r1 ~amd64
+=x11-libs/gtk+-cursed-2.2.2 ~amd64
+=net-im/mcabber-0.9* ~amd64
+=games-util/playonlinux-3.0.8 ~amd64
+app-office/openoffice-infra-bin ~amd64
+=games-action/extreme-tuxracer-0.4 ~amd64
+#=x11-drivers/nvidia-drivers-100.14.11 ~amd64
+=x11-drivers/nvidia-drivers-96.43.19 x86
+=media-video/vloopback-9999 ~amd64
+#=x11-drivers/nvidia-drivers-173.14.12-r1 **
+=sys-kernel/tuxonice-sources-2.6.26 ~amd64
+=games-fps/sauerbraten-2008.06.17 ~amd64
+
+#=app-emulation/virtualbox-bin-4* ~amd64
+#=app-emulation/virtualbox-modules-4* ~amd64
+
+#=sci-mathematics/wxmaxima-0* ~amd64
+#=media-fonts/jsmath-1* ~amd64
+
+=net-libs/webkit-gtk-1* ~amd64
+=www-client/midori-0* **
+=www-client/arora-0* ~amd64
+
+=sys-apps/baselayout-2* ~amd64
+=sys-apps/openrc-0* ~amd64
+
+=dev-lang/tk-8.5.1 ~amd64
+=dev-lang/tcl-8.5.1 ~amd64
+
+=games-sports/xmoto-0.4.2 ~amd64
+=dev-lang/boo-0.8.2.2960 ~amd64
+
+=www-plugins/gnash-0* ~amd64
+=dev-libs/boost-1.35.0-r1 ~amd64
+=dev-util/boost-build-1.35.0-r1 ~amd64
+=x11-libs/agg-2.5 ~amd64
+
+=net-p2p/transmission-1.3* ~amd64
+=app-text/cuneiform-0* ~amd64
+=dev-util/cmake-2.4.8 ~amd64
+
+=media-gfx/gthumb-2.10.9 ~amd64
+
+=media-sound/rhythmbox-0.11.6 ~amd64
+
+=media-video/ffmpeg-0* ~amd64
+=media-sound/lame-3.98* ~amd64
+
+=media-sound/ncmpcpp-0* ~amd64
+#=media-sound/ncmpcpp-9999 **
+=media-libs/libmpdclient-9999 **
+=net-news/raggle-0.4* ~amd64
+=net-news/nrss-0.3* ~amd64
+
+=net-misc/tor-0.2.0.30 ~amd64
+
+=media-sound/pulseaudio-0.9.11-r2 ~amd64
+=media-libs/alsa-lib-1.0.17-r1 ~amd64
+=media-sound/alsa-headers-1.0.17 ~amd64
+
+=x11-wm/echinus-0* ~amd64
+
+=games-board/pychess-0* ~amd64
+
+=media-video/mplayer-resume-1.5 ~amd64
+=games-action/armagetronad-0* ~amd64
+
+=app-portage/eix-0* ~amd64
+
+=www-apache/mod_scgi-1.12 ~amd64
+=games-emulation/gens-2.15* ~amd64
+
+=media-sound/xmms2-git-9999 **
+
+=media-gfx/gimp-2.7* ~amd64
+#=media-gfx/gimp-9999 **
+#=media-libs/babl-9999 **
+#=media-libs/gegl-9999 **
+
+
+
+
+=net-analyzer/nmapsi-0* ~amd64
+
+
+
+=media-libs/babl-0* ~amd64
+=media-libs/gegl-0* ~amd64
+=x11-libs/pango-1.22.0 ~amd64
+=x11-libs/cairo-1.8.0 ~amd64
+=x11-libs/pixman-0.12.0 ~amd64
+=dev-libs/glib-2.18.1 ~amd64
+=dev-util/intltool-0.40.5 ~amd64
+
+
+=dev-python/webpy-0* ~amd64
+
+=x11-wm/wmii-3.6-r2 ~amd64
+=x11-wm/awesome-3.0 ~amd64
+
+=media-gfx/xzgv-0* ~amd64
+
+=app-misc/tmux-0.4a ~amd64
+
+
+=dev-lang/esco-0* ~amd64
+
+=x11-libs/fltk-2.0.0 **
+
+=app-text/kchmviewer-4.0* ~amd64
+=app-text/xchm-1.16 ~amd64
+
+=www-plugins/adobe-flash-10.0.22.87 ~amd64
+
+=sys-kernel/vanilla-sources-3.5* ~amd64
+=sys-kernel/pf-sources-3.2* ~amd64
+
+#=sys-kernel/linux-headers-2.6.35* ~amd64
+=sys-kernel/gentoo-sources-2.6.39* ~amd64
+
+=sys-apps/rlocate-0* ~amd64
+
+#=net-fs/autofs-5* ~amd64
+#=sys-apps/upstart-0* ~amd64
+#=sys-apps/upstart-jobs-0* ~amd64
+
+=sys-process/htop-0* ~amd64
+
+#=media-libs/x264-0 ~amd64
+#=media-libs/x264-0.0.20090629 ~amd64
+#=media-libs/x264-0.0* ~amd64
+dev-lang/gpc ~amd64
+=app-cdr/isomaster-1.3* ~amd64
+=dev-lang/lua-5.1.4 ~amd64
+=dev-libs/libffi-3* ~amd64
+=media-video/transcode-1.0.7* ~amd64
+#=sys-apps/portage-2.2* **
+=media-sound/audacity-1.3* ~amd64
+
+#=app-text/evince-2.32* ~amd64
+=app-text/djvu-3.5* ~amd64
+=x11-libs/gtk+-2.22* ~amd64
+=dev-libs/glib-2.26* ~amd64
+=x11-libs/gdk-pixbuf-2.22* ~amd64
+
+=games-fps/worldofpadman-1.2 ~amd64
+
+
+
+
+=media-video/ffmpeg-0.4.9_p20081014 ~amd64
+=media-libs/x264-0.0.20081006 ~amd64
+=media-video/x264-encoder-0.0.20081006 ~amd64
+
+
+
+
+=dev-python/pycups-1.9* ~amd64
+
+#=media-video/kdenlive-0.7 ~amd64
+
+
+=x11-misc/glipper-1* ~amd64
+
+#=sys-devel/gcc-4.4.5* ~amd64
+#=sys-devel/gcc-4.5* ~amd64
+
+=x11-misc/xvidcap-1.1* ~amd64
+
+=dev-util/qtcreator-0* ~amd64
+
+dev-util/unetbootin ~amd64
+
+=sys-fs/udev-135* ~amd64
+#=sys-fs/udev-133* ~amd64
+=sys-apps/sysvinit-2.86-r12 ~amd64
+
+=sys-apps/hal-0.5.11-r8 ~amd64
+=app-misc/hal-info-20090202 ~amd64
+
+=media-sound/mpc-0.14 ~amd64
+
+#=net-im/coccinella-0.95.10 ~amd64
+=net-im/coccinella-0* ~amd64
+
+=net-libs/libjingle-0.3.12 ~amd64
+
+=media-sound/ncmpc-0.12 ~amd64
+
+=app-arch/tar-1.21-r1 ~amd64
+
+=x11-misc/pcmanfm-0.5 ~amd64
+
+=www-client/kazehakase-0* ~amd64
+
+=net-fs/curlftpfs-0* ~amd64
+
+=lxde-base/lxde-meta-0* ~amd64
+=lxde-base/lxappearance-0* ~amd64
+=lxde-base/lxde-common-0* ~amd64
+=lxde-base/lxlauncher-0* ~amd64
+=lxde-base/lxpanel-0* ~amd64
+=lxde-base/lxrandr-0* ~amd64
+=lxde-base/lxsession-0* ~amd64
+=lxde-base/lxtask-0* ~amd64
+=lxde-base/lxterminal-0* ~amd64
+
+=sys-fs/flashrom-9999 **
+=sys-apps/superiotool-9999 **
+
+=dev-perl/Danga-Socket-1.61 ~amd64
+
+sys-devel/crossdev ~amd64
+cross-i486-mingw32-4.3.2/binutils x86 ~amd64
+cross-i486-mingw32-4.3.2/gcc x86 ~amd64
+cross-i486-mingw32-4.3.2/w32api x86 ~amd64
+cross-i486-mingw32-4.3.2/mingw-runtime x86 ~amd64
+cross-i486-mingw32-4.3.2/gdb x86 ~amd64
+cross-i486-mingw32-4.3.2/insight x86 ~amd64
+cross-mingw32/binutils * ~* -x86 -~amd64
+cross-mingw32/gcc * ~* -x86 -~amd64
+cross-mingw32/w32api * ~* -x86 -~amd64
+cross-mingw32/mingw-runtime * ~* -x86 -~amd64
+cross-mingw32/gdb * ~* -x86 -~amd64
+cross-mingw32/insight * ~* -x86 -~amd64
+
+
+
+
+
+
+
+=www-client/firefox-bin-7* ~amd64
+
+=dev-libs/nss-3.12.2 ~amd64
+=net-libs/xulrunner-1.9* ~amd64
+
+=dev-util/cmake-2.6.2-r1 ~amd64
+
+=sys-libs/glibc-2.9_p20081201-r1 ~amd64
+
+=mail-mta/ssmtp-2.65-r5 ~amd64
+
+=gnome-base/gail-1000 ~amd64
+
+=media-sound/oggsplit-9999 **
+
+=dev-python/sphinx-0.5.1 ~amd64
+=dev-python/jinja-1.2 ~amd64
+
+=media-sound/soundconverter-1.4.1 ~amd64
+
+
+
+
+
+
+# move x11-libs/qt x11-libs/qt-meta
+=x11-libs/qt-meta-4.7* ~amd64
+=x11-libs/qt-webkit-4.7.2* ~amd64
+=x11-libs/qt-gui-4.7.2* ~amd64
+=x11-libs/qt-dbus-4.7.2* ~amd64
+=x11-libs/qt-core-4.7.2* ~amd64
+=x11-libs/qt-script-4.7.2* ~amd64
+=x11-libs/qt-sql-4.7.2* ~amd64
+=x11-libs/qt-opengl-4.7.2* ~amd64
+=x11-libs/qt-xmlpatterns-4.7.2* ~amd64
+=x11-libs/qt-svg-4.7.2* ~amd64
+=x11-libs/qt-test-4.7.2* ~amd64
+=x11-libs/qt-assistant-4.7.2* ~amd64
+=x11-libs/qt-phonon-4.7.2* ~amd64
+=x11-libs/qt-qt3support-4.7.2* ~amd64
+=x11-libs/qt-multimedia-4.7.2* ~amd64
+=x11-libs/qt-declarative-4.7.2* ~amd64
+=x11-libs/qt-demo-4.7.2* ~amd64
+
+
+=net-news/newsbeuter-2* ~amd64
+
+# move dev-util/qt-creator dev-qt/qt-creator
+=dev-qt/qt-creator-2* ~amd64
+
+=dev-libs/glib-2.18.4 ~amd64
+
+=games-puzzle/worldofgoo-demo-1* ~amd64
+
+=sys-fs/cdfs-2.6.27 ~amd64
+
+=dev-util/dbdesigner-4* ~amd64
+=x11-libs/kylixlibs3-borqt-3* ~amd64
+
+=app-emulation/qemu-user-0* ~amd64
+# move app-emulation/qemu-softmmu app-emulation/qemu
+=app-emulation/qemu-0* ~amd64
+=app-emulation/qemu-0* ~amd64
+=app-emulation/kqemu-1.4* ~amd64
+
+=dev-util/bouml-4* ~amd64
+=dev-util/astade-0* ~amd64
+
+=games-emulation/mednafen-0* ~amd64
+=media-libs/win32codecs-20071007-r4 ~amd64
+
+
+
+cross-i486-pc-mingw32/binutils x86 ~amd64
+cross-i486-pc-mingw32/gcc x86 ~amd64
+cross-i486-pc-mingw32/w32api x86 ~amd64
+cross-i486-pc-mingw32/mingw-runtime x86 ~amd64
+cross-i486-pc-mingw32/gdb x86 ~amd64
+cross-i486-pc-mingw32/insight x86 ~amd64
+
+
+=media-sound/qtractor-0* ~amd64
+=media-sound/lastfmproxy-1* **
+
+=dev-util/monodevelop-2* ~amd64
+=dev-dotnet/libgdiplus-2.8* ~amd64
+=dev-dotnet/gnome-sharp-2.24* ~amd64
+=dev-dotnet/art-sharp-2.24* ~amd64
+=dev-dotnet/gnomevfs-sharp-2.24* ~amd64
+=dev-dotnet/gtk-sharp-gapi-2.12* ~amd64
+=dev-dotnet/gtk-sharp-2.12* ~amd64
+=dev-lang/mono-2* ~amd64
+=dev-dotnet/libgdiplus-2.0* ~amd64
+=dev-dotnet/mono-addins-0* ~amd64
+=virtual/monodoc-2* ~amd64
+=dev-dotnet/xsp-2* ~amd64
+=dev-dotnet/glade-sharp-2.12* ~amd64
+=dev-dotnet/gconf-sharp-2.24* ~amd64
+=dev-dotnet/glib-sharp-2.12* ~amd64
+=dev-dotnet/atk-sharp-2.12* ~amd64
+=dev-dotnet/pango-sharp-2.12* ~amd64
+=dev-dotnet/gdk-sharp-2.12* ~amd64
+=dev-dotnet/libgdiplus-2.2* ~amd64
+
+#=media-video/mplayer-1* ~amd64
+
+=net-ftp/lftp-4* ~amd64
+=net-ftp/lftp-3* ~amd64
+
+=sys-devel/binutils-2.19.1* ~amd64
+
+=app-misc/vifm-9999 ~amd64
+
+#=kde-base/umbrello-4* ~amd64
+##=sys-apps/sandbox-1.9* ~amd64
+#=kde-base/kdelibs-4* ~amd64
+#=kde-base/kdebase-data-4* ~amd64
+#=media-sound/phonon-4* ~amd64
+#=app-misc/strigi-0* ~amd64
+#=dev-libs/soprano-2* ~amd64
+#=kde-base/automoc-0* ~amd64
+#=dev-libs/rasqal-0* ~amd64
+#=dev-libs/redland-1* ~amd64
+#=x11-misc/xdg-utils-1.0.2* ~amd64
+#=kde-base/kde-env-4* ~amd64
+#=kde-base/qimageblitz-0* ~amd64
+
+dev-db/mysql++ ~amd64
+
+=sci-geosciences/googleearth-4* ~amd64
+
+=sys-fs/udev-141 ~amd64
+
+=dev-libs/nspr-4.7.4 ~amd64
+
+=dev-lang/fpc-2* ~amd64
+
+=x11-terms/mlterm-2.9.4* ~amd64
+
+media-sound/tuxguitar **
+media-plugins/tuxguitar-plugins-alsa **
+
+=media-sound/mixxx-1.6.0-r1 ~amd64
+
+#=media-sound/rhythmbox-0.12* ~amd64
+#=dev-libs/totem-pl-parser-2.26* ~amd64
+>=www-plugins/moonlight-2.3 ~amd64
+=media-libs/alsa-lib-1.0.20 ~amd64
+=media-sound/alsa-headers-1.0.20 ~amd64
+
+=media-gfx/fontmatrix-0* ~amd64
+
+=net-libs/libsoup-2.26.2 ~amd64
+=media-libs/libcue-1.3* ~amd64
+
+=www-client/chromium-9* ~amd64
+=www-client/chromium-bin-9* ~amd64
+#=dev-lang/v8-3* ~amd64
+=dev-util/chromium-tools-0* ~amd64
+#=www-client/chromium-bin-9999 ~amd64
+
+=app-text/pdfcube-0* ~amd64
+
+=media-gfx/keyjnote-0* ~amd64
+=app-text/pdftk-1.41* ~amd64
+
+=media-fonts/droid-112 ~amd64
+=app-dicts/lightlang-0* ~amd64
+
+=sys-libs/glibc-2.10* ~amd64
+
+=media-video/kino-1.3.3 ~amd64
+
+=x11-wm/dwm-5.5 ~amd64
+=x11-wm/wmfs-9999 ~amd64
+
+x11-wm/qlwm ~amd64
+
+=dev-python/PyQt4-4.5* ~amd64
+=dev-python/sip-4.8* ~amd64
+
+=dev-util/kdbg-2.1.1 ~amd64
+=dev-util/cgdb-0* ~amd64
+
+=www-client/conkeror-0* ~amd64
+=media-fonts/dejavu-2.29* ~amd64
+
+
+=x11-base/xorg-server-1.5.3-r7 ~amd64
+
+#=x11-base/xorg-server-1.6* ~amd64
+=app-admin/eselect-opengl-1.0.7 ~amd64
+#=x11-libs/libXfont-1.4* ~amd64
+#=x11-proto/randrproto-1.3.0 ~amd64
+=app-admin/eselect-1* ~amd64
+
+#=x11-base/xorg-x11-7.4* ~amd64
+#=media-fonts/font-xfree86-type1-1* ~amd64
+#=x11-libs/libFS-1.0.1* ~amd64
+
+#=x11-libs/libdrm-2.4.11* ~amd64
+
+=media-sound/lame-3.98.2* ~amd64
+
+=net-im/qutim-0* **
+=x11-plugins/qutim-jabber-0* **
+=x11-plugins/qutim-chess-0* **
+=x11-plugins/qutim-vkontakte-0* **
+
+=games-emulation/mednafenfe-0* ~amd64
+=dev-python/configobj-4.5.3* ~amd64
+
+#=media-video/vlc-1* ~amd64
+=media-video/vlc-1.1* ~amd64
+=media-libs/schroedinger-1.0.7* ~amd64
+=dev-libs/liboil-0* ~amd64
+=media-libs/libdvbpsi-0* ~amd64
+
+=app-office/dia-0* ~amd64
+=app-text/docbook-xml-dtd-4.5* ~amd64
+
+=games-emulation/gfceux-0* ~amd64
+
+=media-video/aegisub-9999* ~amd64
+
+=www-client/lynx-2.8.7* ~amd64
+=virtual/poppler-qt4-0* ~amd64
+
+
+=kde-base/okular-4.3* ~amd64
+=media-libs/qimageblitz-0* ~amd64
+=kde-base/kdelibs-4.3* ~amd64
+=app-misc/strigi-0* ~amd64
+=dev-libs/soprano-2.2* ~amd64
+=kde-base/kdebase-data-4.2* ~amd64
+=kde-base/kde-env-4.2* ~amd64
+
+=x11-libs/goocanvas-0* ~amd64
+=dev-python/pygoocanvas-0.14.0 ~amd64
+#=dev-python/pycairo-1.8* ~amd64
+#=media-libs/mlt-0* ~amd64
+=media-plugins/frei0r-plugins-1* ~amd64
+
+=x11-drivers/xf86-video-nouveau-9999 ~amd64
+=x11-libs/libdrm-9999 ~amd64
+
+=www-client/uzbl-9999 ~amd64
+
+=media-video/qdvdauthor-1.2* ~amd64
+=media-video/dv2sub-0* ~amd64
+=media-video/videotrans-1.6* ~amd64
+
+=games-emulation/lxdream-0* ~amd64
+
+=app-office/abiword-2.6.8 ~amd64
+
+media-gfx/qfontviewer ~amd64
+
+=net-im/psi-0* ~amd64
+
+=games-misc/fretsonfire-1* ~amd64
+
+=x11-libs/cairo-1.8.8* ~amd64
+=dev-libs/nspr-4.8* ~amd64
+=dev-libs/nss-3.12.3* ~amd64
+
+=dev-lang/fpc-2.2* ~amd64
+
+=sys-process/iotop-0* ~amd64
+
+=media-plugins/gmpc-jamendo-0* ~amd64
+=media-sound/gmpc-0* ~amd64
+=dev-lang/vala-0* ~amd64
+
+=www-client/w3m-0* ~amd64
+
+=dev-python/python-xlib-0* ~amd64
+
+=net-analyzer/nmap-5.0* ~amd64
+
+games-sports/vdrift ~amd64
+
+=app-admin/eselect-python-2009* ~amd64
+
+=app-text/noweb-2.11b* ~amd64
+
+=www-client/opera-10* ~amd64
+
+=dev-util/edb-0* ~amd64
+
+=x11-misc/stalonetray-0* ~amd64
+
+=media-sound/lingot-0* ~amd64
+
+=x11-terms/sakura-2.3* ~amd64
+
+=gnome-base/librsvg-2.32.1* ~amd64
+=net-libs/farsight2-0* **
+=net-libs/libnice-0* ~amd64
+=media-libs/gst-plugins-bad-0* ~amd64
+
+#=media-libs/gst-plugins-base-0* ~amd64
+#=media-libs/gstreamer-0* ~amd64
+
+=net-p2p/btpd-0* ~amd64
+
+=dev-tex/herm-pic-1* **
+
+=app-admin/eselect-opengl-1.0.7* ~amd64
+
+#=net-print/cups-1* ~amd64
+
+media-video/openshot ~amd64
+
+net-im/skype ~amd64
+
+=net-im/qutecom-2.2* ~amd64
+
+
+=app-cdr/k3b-2* ~amd64
+=net-im/gajim-0* ~amd64
+=media-libs/gstreamer-0.10.32* ~amd64
+=media-libs/gst-plugins-base-0.10.32* ~amd64
+
+
+=sys-boot/unetbootin-4* ~amd64
+
+=dev-python/beautifulsoup-3.1* ~amd64
+
+=media-libs/mutagen-1.20* ~amd64
+
+=dev-embedded/urjtag-0* ~amd64
+
+=media-sound/pyjama-0* ~amd64
+
+=dev-lang/orc-0* ~amd64
+
+=app-text/apvlv-0* ~amd64
+#=app-text/apvlv-9999 ~amd64
+
+=games-simulation/secondlife-bin-2* ~amd64
+=dev-libs/elfio-1* ~amd64
+
+=media-video/linux-uvc-0* ~amd64
+=media-video/came-1* ~amd64
+=media-video/mjpg-streamer-63* ~amd64
+
+=media-sound/fische-2* ~amd64
+
+=media-video/guvcview-1.4.2 ~amd64
+=media-video/v4l2ucp-2* ~amd64
+
+=media-fonts/jsmath-1* ~amd64
+
+=net-misc/miredo-1* ~amd64
+
+=app-text/mathtex-1* ~amd64
+
+=games-arcade/gridwars-2* ~amd64
+
+=media-libs/opencv-2.2* ~amd64
+
+=app-misc/utimer-0* ~amd64
+
+=net-voip/ekiga-3* ~amd64
+=net-libs/opal-3* ~amd64
+=net-libs/ptlib-2* ~amd64
+
+=media-fonts/ubuntu-font-family-0* ~amd64
+
+dev-texlive/texlive* ~amd64
+=app-text/texlive-2010* ~amd64
+=app-text/texlive-core-2010* ~amd64
+=dev-tex/dot2texi-3.0* ~amd64
+=dev-tex/latex-beamer-3.10* ~amd64
+=dev-libs/kpathsea-6* ~amd64
+=app-text/ps2pkm-1* ~amd64
+=app-text/dvipsk-5* ~amd64
+=dev-tex/bibtexu-3.71* ~amd64
+=dev-tex/latexmk-418* ~amd64
+=app-text/dvisvgm-1.0* ~amd64
+=dev-tex/mh-2010* ~amd64
+
+=media-sound/deadbeef-0* ~amd64
+
+=x11-misc/parcellite-0* ~amd64
+
+=games-fps/doomsday-1.8* **
+
+=gnome-extra/ubuntuone-client-1.5* ~amd64
+=dev-python/ubuntuone-storage-protocol-1.2* ~amd64
+=dev-python/oauth-1* ~amd64
+=dev-python/configglue-0* ~amd64
+
+=dev-lisp/newlisp-10* ~amd64
+
+=dev-python/fuse-python-0.2* ~amd64
+
+=dev-lua/luasocket-2* ~amd64
+
+=x11-apps/skb-0* ~amd64
+
+=dev-python/xmpppy-0* ~amd64
+
+=net-analyzer/nessus-2* ~amd64
+=net-analyzer/libnasl-2* ~amd64
+=net-analyzer/nessus-plugins-2* ~amd64
+=net-analyzer/nessus-core-2* ~amd64
+=net-analyzer/nessus-libraries-2* ~amd64
+
+=sys-fs/diskdev_cmds-332.14* ~amd64
+
+=www-plugins/google-talkplugin-1* ~amd64
+
+=sys-fs/obexfs-0* ~amd64
+
+=dev-java/gnu-classpath-0* ~amd64
+
+#=dev-util/eclipse-sdk-3.6.2* ~amd64
+
+=net-p2p/linuxdcpp-1.0.3* ~amd64
+
+=media-libs/gphotofs-0* ~amd64
+=media-gfx/gtkam-0* ~amd64
+
+=games-emulation/advancemame-0* ~amd64
+
+=games-emulation/gens-9999 **
+
+=app-dicts/stardict-ruspack-0* ~amd64
+
+=sci-libs/clapack-3.2.1* ~amd64
+
+=x11-terms/cxterm-5.2.3* **
+=sci-libs/flann-1.6.8* ~amd64
+
+=fontconfig/fontconfig-2.8* ~amd64
+=x11-libs/libXft-2.2* ~amd64
+=media-libs/fontconfig-2.8* ~amd64
+=media-libs/freetype-2.4.4* ~amd64
+=x11-libs/cairo-1.10.2* ~amd64
+
+=games-emulation/dgen-sdl-1.23* **
+=games-emulation/regen-gtk-0* ~amd64
+
+=dev-python/pip-1* ~amd64
+
+=media-video/luvcview-0* ~amd64
+
+
+=net-im/python-otr-0* ~amd64
+#required by net-im/qutim-0.3.9999[unreadmessageskeeper], required by x11-plugins/qutim-jabber-0.3.9999
+>=x11-plugins/qutim-unreadmessageskeeper-0.3.9999 **
+#required by net-im/qutim-0.3.9999[kineticpopups], required by x11-plugins/qutim-jabber-0.3.9999
+>=x11-plugins/qutim-kineticpopups-0.3.9999 **
+#required by net-im/qutim-0.3.9999[sdl], required by x11-plugins/qutim-jabber-0.3.9999
+>=x11-plugins/qutim-sdlsound-0.3.9999 **
+#required by net-im/qutim-0.3.9999[dbus], required by x11-plugins/qutim-jabber-0.3.9999
+>=x11-plugins/qutim-dbusapi-0.3.9999 **
+#required by net-im/qutim-0.3.9999[irc], required by x11-plugins/qutim-jabber-0.3.9999
+>=x11-plugins/qutim-irc-0.3.9999 **
+
+
+=media-tv/xbmc-10* ~amd64
+
+
+=app-text/yagf-0* ~amd64
+=app-text/cuneiform-1* ~amd64
+
+=www-client/luakit-2011* ~amd64
+
+=app-portage/smart-live-rebuild-0* ~amd64
+
+=dev-embedded/u-boot-tools-2010* ~amd64
+#required by media-video/ffmpeg-9999[encode,aac], required by net-libs/ptlib-2.6.7[ffmpeg], required by net-libs/opal-3.6.8-r1, required by net-voip/ekiga-3.2.7, required by @selected, required by @world (argument)
+=media-libs/vo-aacenc-0.1.1 ~amd64
+#required by media-video/ffmpeg-9999[vpx], required by net-libs/ptlib-2.6.7[ffmpeg], required by net-libs/opal-3.6.8-r1, required by net-voip/ekiga-3.2.7, required by @selected, required by @world (argument)
+>=media-libs/libvpx-9999 **
+#required by net-print/cups-1.4.6-r21[ldap], required by app-emulation/wine-1.3.21[cups], required by @selected, required by @world (argument)
+>=net-nds/openldap-2.4.25 ~amd64
+#required by media-video/ffmpeg-9999[encode,amr], required by net-libs/ptlib-2.6.7[ffmpeg], required by net-libs/opal-3.6.8-r1, required by net-voip/ekiga-3.2.7, required by @selected, required by @world (argument)
+=media-libs/vo-amrwbenc-0.1.1 ~amd64
+#required by net-libs/ptlib-2.6.7[ffmpeg], required by net-libs/opal-3.6.8-r1, required by net-voip/ekiga-3.2.7, required by @selected, required by @world (argument)
+#>=media-video/ffmpeg-9999 **
+
+
+=sys-fs/dmg2img-1.6.2* ~amd64
+#required by media-video/ffmpeg-9999[x264,encode], required by virtual/ffmpeg-0.6-r1, required by @selected, required by @world (argument)
+#>=media-libs/x264-9999 **
+
+
+=net-misc/wondershaper-1.1a-r2 ~amd64
+
+=app-text/pybookreader-0* ~amd64
+#required by dev-python/django-extensions-0.5[graphviz], required by django-extensions (argument)
+>=dev-python/pygraphviz-1.0-r1 ~amd64
+#required by django-extensions (argument)
+>=dev-python/django-extensions-0.5 ~amd64
+
+
+=media-gfx/pencil-0* ~amd64
+#required by =app-emulation/virtualbox-modules-4.0.8 (argument)
+=app-emulation/virtualbox-modules-4.1.8 ~amd64
+#required by =app-emulation/virtualbox-modules-4.0.8 (argument)
+=app-emulation/virtualbox-modules-4.1.8 ~amd64
+#required by dev-vcs/subversion-1.6.16[java], required by app-portage/layman-1.4.1[subversion], required by @selected, required by @world (argument)
+>=dev-vcs/subversion-java-1.6.16 ~amd64
+
+#=media-sound/xmms2-0* ~amd64
+=media-sound/xmms2-9999 ~amd64
+
+# move app-emulation/qemu-kvm app-emulation/qemu
+=app-emulation/qemu-0* ~amd64
+#required by =app-emulation/virtualbox-modules-4.0.10 (argument)
+=app-emulation/virtualbox-modules-4.0.10 ~amd64
+
+=dev-python/pep8-0* ~amd64
+
+media-libs/amd64codecs **
+#required by dev-texlive/texlive-bibtexextra-2011, required by app-text/texlive-2010-r2[extra], required by @selected, required by @world (argument)
+>=app-text/texlive-core-2011-r3 ~amd64
+
+
+#www-plugins/chromium-pdf
+##required by www-plugins/chromium-pdf-14.0.835.94_beta96725, required by www-plugins/chromium-pdf (argument)
+#=www-client/chromium-14.0.836.0 ~amd64
+
+=dev-python/miniupnpc-1* ~amd64
+
+=gnome-extra/nm-applet-0.8.2* ~amd64
+#required by media-libs/opencv-2.2.0-r10, required by @preserved-rebuild (argument)
+>=dev-util/cmake-2.8.5-r2 ~amd64
+#required by app-emulation/emul-linux-x86-soundlibs-20110722, required by app-emulation/emul-linux-x86-sdl-20110722, required by app-emulation/wine-1.3.27[-win64,win32,openal], required by @selected, required by @world (argument)
+>=app-emulation/emul-linux-x86-baselibs-20110722-r99 ~amd64
+#required by =xmms2-9999 (argument)
+>=media-sound/xmms2-9999 **
+#required by adobe-flash (argument)
+=www-plugins/adobe-flash-11.0.1.152 ~amd64
+
+=www-apps/moinmoin-1.9* ~amd64
+#required by dev-python/imaging-1.1.7, required by media-video/openshot-1.3.1, required by @selected, required by @world (argument)
+=dev-lang/python-2.6.7-r2 ~amd64
+
+=www-apps/mantisbt-1.2* ~amd64
+
+=www-apps/trac-9999 **
+
+=media-sound/cue2tracks-0* ~amd64
+#required by media-sound/cue2tracks-0.2.11-r1[mac,wavpack], required by cue2tracks (argument)
+=media-sound/apetag-1.12 ~amd64
+
+=sci-mathematics/octave-3.4* ~amd64
+=x11-libs/fltk-1.3.0 ~amd64
+
+=net-p2p/i2p-0 ~amd64
+
+games-action/minecraft ~amd64
+#required by dev-java/lwjgl-2.7.1, required by games-action/minecraft-20110223-r3, required by minecraft (argument)
+=dev-java/jutils-1_pre20070306 ~amd64
+#required by games-action/minecraft-20110223-r3, required by minecraft (argument)
+=dev-java/jinput-1_pre20100416 ~amd64
+#required by games-action/minecraft-20110223-r3, required by minecraft (argument)
+=dev-java/lwjgl-2.7.1 ~amd64
+#required by pf-sources (argument)
+=sys-kernel/pf-sources-3.1.1 ~amd64
+#required by @selected, required by @world (argument)
+=app-portage/smart-live-rebuild-1.2 ~amd64
+#required by app-text/apvlv-0.1.2-r1, required by @selected, required by @world (argument)
+=app-text/poppler-0.18.1 ~amd64
+#required by @selected, required by @world (argument)
+=www-plugins/google-talkplugin-2.5.6.0 ~amd64
+#required by cross-i686-pc-mingw32/binutils-2.22, required by cross-i686-pc-mingw32/gcc-4.5.3-r1, required by @selected, required by @world (argument)
+=sys-devel/patch-2.6.1 ~amd64
+#required by games-action/minecraft-20110223-r6, required by @selected, required by @world (argument)
+=dev-java/lwjgl-2.7.1-r1 ~amd64
+#required by @selected, required by @world (argument)
+=app-emulation/winetricks-696 ~amd64
+#required by app-text/dvisvgm-1.0.9-r1, required by app-text/texlive-2010-r2[extra], required by @selected, required by @world (argument)
+=media-gfx/potrace-1.10-r1 ~amd64
+
+
+=media-gfx/fbv-1* ~amd64
+
+
+gnome-extra/ubuntuone-client ~amd64
+dev-python/ubuntuone-storage-protocol ~amd64
+#required by fortune-mod-gentoo-ru (argument)
+=games-misc/fortune-mod-gentoo-ru-0.25 ~amd64
+
+
+=x11-terms/st-9999 **
+
+=media-sound/entagged-tageditor-0* ~amd64
+
+=app-portage/g-ctan-2011* ~amd64
+#required by app-portage/g-ctan-2011.1, required by g-ctan (argument)
+=app-text/texlive-2011 ~amd64
+#required by app-text/texlive-2011[extra], required by app-portage/g-ctan-2011.1, required by g-ctan (argument)
+=dev-tex/mh-20111011 ~amd64
+
+
+dev-util/jenkins-bin ~amd64
+
+
+=app-vim/omnicppcomplete-0* ~amd64
+=sys-devel/clang-3* ~amd64
+#required by clang (argument)
+=sys-devel/clang-2.9-r1 ~amd64
+
+
+=app-text/pdfedit-0* ~amd64
+
+=app-text/mht-rip-0* ~amd64
+
+=kde-base/okular-4* ~amd64
+
+#=dev-haskell/haskell-platform-2009* ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/glut-2.1.1.2 ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/happy-1.18.6 ~amd64
+##required by dev-lang/ghc-6.10.4-r1[-ghcbootstrap], required by dev-haskell/cgi-3001.1.7.1, required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=app-admin/haskell-updater-0.9.1.0 ~amd64
+##required by dev-haskell/mtl-2.0.1.0, required by dev-haskell/http-4000.2.2, required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/transformers-0.2.2.0 ~amd64
+##required by dev-haskell/http-4000.2.2, required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/mtl-2.0.1.0 ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/quickcheck-1.2.0.0 ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-lang/ghc-6.10.4-r1 ~amd64
+##required by dev-haskell/cabal-install-0.13.3, required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/cabal-1.14.0 ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/editline-0.2.1.0 ~amd64
+##required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/cabal-install-0.13.3 ~amd64
+##required by dev-haskell/cabal-install-0.13.3, required by dev-haskell/haskell-platform-2009.2.0.2-r1, required by haskell-platform (argument)
+#=dev-haskell/http-4000.2.2 ~amd64
+
+=app-misc/gcalcli-2* ~amd64
+
+=games-util/dzip-2.9* ~amd64
+
+=x11-wm/xmonad-contrib-0* ~amd64
+=x11-wm/xmonad-0* ~amd64
+#required by x11-wm/xmonad-contrib-0.10[xft], required by xmonad-contrib (argument)
+=dev-haskell/x11-xft-0.3.1 ~amd64
+#required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+=dev-haskell/x11-1.5.0.1 ~amd64
+#required by dev-haskell/x11-1.5.0.1, required by dev-haskell/x11-xft-0.3.1, required by x11-wm/xmonad-contrib-0.10[xft], required by xmonad-contrib (argument)
+=dev-haskell/syb-0.3.6 ~amd64
+#required by x11-wm/xmonad-contrib-0.10, required by xmonad-contrib (argument)
+=dev-haskell/random-1.0.1.1 ~amd64
+
+
+=gnome-extra/gnome-tweak-tool-3.2.2* ~amd64
+cross-i686-pc-mingw32/binutils x86 ~x86 -amd64 -~amd64
+cross-i686-pc-mingw32/gcc x86 ~x86 -amd64 -~amd64
+cross-i686-pc-mingw32/w32api x86 ~x86 -amd64 -~amd64
+cross-i686-pc-mingw32/mingw-runtime x86 ~x86 -amd64 -~amd64
+cross-i686-pc-mingw32/gdb x86 ~x86 -amd64 -~amd64
+cross-i686-pc-mingw32/insight x86 ~x86 -amd64 -~amd64
+
+=dev-python/pygame-1.9.2_pre20120101 ~amd64
+
+# move net-wireless/reaver-wps net-wireless/reaver
+=net-wireless/reaver-1.4* ~amd64
+
+=app-editors/yi-0* ~amd64
+=app-editors/yi-contrib-0* ~amd64
+#required by dev-haskell/crypto-api-0.10.2, required by dev-haskell/puremd5-2.1.0.3, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/cereal-0.3.5.1 ~amd64
+#required by dev-haskell/dyre-0.8.6, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/io-storage-0.3 ~amd64
+#required by dev-haskell/hint-0.3.3.4, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/monadcatchio-mtl-0.3.0.4 ~amd64
+#required by dev-haskell/vty-4.7.0.12, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/vector-0.9.1 ~amd64
+#required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/split-0.1.4.2 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/cautious-file-1.0.1 ~amd64
+#required by dev-haskell/vector-0.9.1, required by dev-haskell/vty-4.7.0.12, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/primitive-0.4.1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/dlist-0.5 ~amd64
+#required by dev-haskell/data-accessor-template-0.2.1.9, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/utility-ht-0.0.8 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/concrete-typerep-0.1.0.1 ~amd64
+#required by dev-haskell/unordered-containers-0.2.1.0, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/hashable-1.1.2.3 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/ghc-paths-0.1.0.8 ~amd64
+#required by dev-haskell/puremd5-2.1.0.3, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/crypto-api-0.10.2 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/hint-0.3.3.4 ~amd64
+#required by dev-haskell/crypto-api-0.10.2, required by dev-haskell/puremd5-2.1.0.3, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/largeword-1.0.1 ~amd64
+#required by dev-haskell/dyre-0.8.6, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/executable-path-0.0.3 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/derive-2.5.8 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/data-accessor-monads-fd-0.2.0.3-r1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/unordered-containers-0.2.1.0 ~amd64
+#required by dev-haskell/vty-4.7.0.12, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/deepseq-1.3.0.0 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/puremd5-2.1.0.3 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/dyre-0.8.6 ~amd64
+#required by dev-haskell/unordered-containers-0.2.1.0, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-lang/ghc-7.4.1-r1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/pointedlist-0.3.5 ~amd64
+#required by dev-haskell/dyre-0.8.6, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/xdg-basedir-0.2.1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/regex-tdfa-1.1.8 ~amd64
+#required by dev-haskell/derive-2.5.8, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/uniplate-1.6.7 ~amd64
+#required by dev-haskell/crypto-api-0.10.2, required by dev-haskell/puremd5-2.1.0.3, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/tagged-0.4.2.1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/data-accessor-mtl-0.2.0.3 ~amd64
+#required by dev-haskell/vty-4.7.0.12, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/parallel-3.2.0.2 ~amd64
+#required by dev-haskell/crypto-api-0.10.2, required by dev-haskell/puremd5-2.1.0.3, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/entropy-0.2.1 ~amd64
+#required by dev-haskell/data-accessor-monads-fd-0.2.0.3-r1, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/monads-fd-0.1.0.4-r1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/rosezipper-0.2 ~amd64
+#required by dev-haskell/hashable-1.1.2.3, required by dev-haskell/concrete-typerep-0.1.0.1, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/text-0.11.2.0 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/data-accessor-template-0.2.1.9 ~amd64
+#required by dev-haskell/hint-0.3.3.4, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/ghc-mtl-1.0.1.1 ~amd64
+#required by dev-haskell/derive-2.5.8, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/haskell-src-exts-1.13.2 ~amd64
+#required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/data-accessor-0.2.2.2 ~amd64
+#required by dev-haskell/derive-2.5.8, required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/transformers-0.3.0.0 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/fingertree-0.0.1.0 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/unix-compat-0.3.0.1 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/vty-4.7.0.12 ~amd64
+#required by app-editors/yi-0.6.5.0, required by app-editors/yi-contrib-0.6.5.0, required by yi-contrib (argument)
+=dev-haskell/diff-0.1.3 ~amd64
+
+
+=x11-libs/cairo-1.10.2-r2 ~amd64
+
+=media-gfx/openvrml-0* ~amd64
+
+=dev-lang/dmd-bin-2.031 ~amd64
+#required by media-sound/rhythmbox-0.12.8-r1, required by @selected, required by @world (argument)
+=net-libs/libsoup-2.38.1 ~amd64
+#required by sys-devel/clang-3.1-r2, required by @selected, required by @world (argument)
+=sys-devel/llvm-3.1 ~amd64
+#required by app-portage/eix-0.25.5, required by @selected, required by @world (argument)
+=app-shells/push-1.5 ~amd64
+
+=app-arch/p7zip-9.20* ~amd64
+
+=dev-haskell/monadrandom-0* ~amd64
+
+=dev-games/clanlib-2.3* ~amd64
+
+=app-misc/rockbox-util-1.2* ~amd64
+
+=sys-apps/usbmon-6* ~amd64
+
+=dev-python/pyusb-1* ~amd64
+
+=sys-power/powertop-2* ~amd64
+
+=dev-util/cppcheck-1* ~amd64
+
+=dev-python/pybox2d-2* ~amd64
+=dev-libs/box2d-2* ~amd64
+=sci-physics/bullet-2* ~amd64
+
+=media-libs/libsfml-1.6* ~amd64
+#required by x11-drivers/xf86-video-intel-2.20.1[glamor], required by @selected, required by @world (argument)
+=x11-libs/glamor-0.5 ~amd64
+
+dev-util/android-sdk-update-manager ~amd64
+dev-util/android-ndk ~amd64
+
+dev-java/oracle-jdk-bin ~amd64
+
+=net-p2p/i2p-0* ~amd64
+
+=dev-util/qshaderedit-0* ~amd64
+
+=media-video/vlc-2.0.4 ~amd64
+
+=app-vim/tagbar-2.4* ~amd64
+
+=dev-util/radare2-0* ~amd64
+
+=net-im/vacuum-1.2.0 ~amd64
+
+=media-sound/clementine-1.1.0 ~amd64
+
+=media-gfx/gimp-2.8.2 ~amd64
+# required by dev-python/virtualenvwrapper::gentoo (argument)
+=dev-python/virtualenvwrapper-4.2 ~amd64
+# required by app-vim/youcompleteme::gentoo (argument)
+=app-vim/youcompleteme-20130910 ~amd64
+# required by app-editors/vim-7.4.193[-minimal]
+# required by app-vim/youcompleteme-20130910
+# required by app-vim/youcompleteme::gentoo (argument)
+=app-editors/vim-core-7.4.193 ~amd64
+# required by dev-util/cppcheck-1.64
+# required by dev-util/cppcheck::gentoo (argument)
+=dev-libs/tinyxml2-2.0.2 ~amd64
+# required by sys-devel/clang-3.4-r100
+# required by app-vim/youcompleteme-20130910[clang]
+# required by app-vim/youcompleteme::gentoo (argument)
+=sys-devel/llvm-3.4-r1 ~amd64
+# required by dev-lang/dmd-bin::gentoo (argument)
+=dev-lang/dmd-bin-2.008-r1 ~amd64
+# required by dev-util/scanmem::gentoo (argument)
+=dev-util/scanmem-0.13 ~amd64
+# required by app-text/texlive-core-2013-r1
+# required by dev-texlive/texlive-langcyrillic-2013
+# required by dev-texlive/texlive-langcyrillic::gentoo (argument)
+=dev-tex/luatex-0.76.0 ~amd64
+# required by app-vim/vimcommander-80
+# required by app-vim/vimcommander::gentoo (argument)
+=app-editors/vim-7.4.193 ~amd64
+# required by media-video/mplayer-1.2_pre20130729
+# required by media-video/mplayer::gentoo (argument)
+=media-video/ffmpeg-1.2.6 ~amd64
+# required by net-wireless/blueman::gentoo (argument)
+=net-wireless/blueman-1.23-r2 ~amd64
+# required by dev-python/stevedore-0.15
+# required by dev-python/virtualenvwrapper-4.2
+# required by dev-python/virtualenvwrapper::gentoo (argument)
+=dev-python/pbr-0.8.0 ~amd64
+# required by dev-python/virtualenvwrapper-4.2
+# required by dev-python/virtualenvwrapper::gentoo (argument)
+=dev-python/stevedore-0.15 ~amd64
+# required by net-p2p/rtorrent-0.9.3
+# required by =rtorrent-0.9.3::gentoo (argument)
+=net-libs/libtorrent-0.13.3 ~amd64
+# required by =rtorrent-0.9.3::gentoo (argument)
+=net-p2p/rtorrent-0.9.3 ~amd64
+# required by bdfresize::sunrise (argument)
+=app-misc/bdfresize-1.5 ~amd64
+# required by =ncmpcpp-9999 (argument)
+=media-sound/ncmpcpp-9999 **
+# required by psi-otr (argument)
+=net-im/psi-otr-0.9.4 ~amd64
+# required by net-im/psi-9999::rion[jingle]
+# required by net-im/psi-otr-0.9.4::rion
+# required by psi-otr (argument)
+=net-im/psimedia-9999 **
+# required by net-im/psimedia-9999::rion[extras]
+=net-im/psi-9999 **
+# required by =dev-qt/qtcore-5.2.1 (argument)
+=dev-qt/qtcore-5.2.1 ~amd64
+# required by =dev-qt/qtscript-5.2.1 (argument)
+=dev-qt/qtscript-5.2.1 ~amd64
+# required by =qtgui-5.2.1 (argument)
+=dev-qt/qtgui-5.2.1 ~amd64
+# required by =dev-qt/qtwebkit-5.2.1 (argument)
+=dev-qt/qtwebkit-5.2.1 ~amd64
+# required by =qtnetwork-5.2.1 (argument)
+=dev-qt/qtnetwork-5.2.1 ~amd64
+# required by =dev-qt/qtdbus-5.2.1 (argument)
+=dev-qt/qtdbus-5.2.1 ~amd64
+# required by =dev-qt/qtxmlpatterns-5.2.1 (argument)
+=dev-qt/qtxmlpatterns-5.2.1 ~amd64
+# required by =qtwidgets-5.2.1 (argument)
+=dev-qt/qtwidgets-5.2.1 ~amd64
+# required by =qtopengl-5.2.1 (argument)
+=dev-qt/qtopengl-5.2.1 ~amd64
+# required by =qtsql-5.2.1 (argument)
+=dev-qt/qtsql-5.2.1 ~amd64
+# required by =dev-qt/designer-5.2.1 (argument)
+=dev-qt/designer-5.2.1 ~amd64
+# required by dev-qt/designer-5.2.1::qt
+# required by =dev-qt/designer-5.2.1 (argument)
+=dev-qt/qtprintsupport-5.2.1 ~amd64
+# required by dev-qt/designer-5.2.1::qt
+# required by =dev-qt/designer-5.2.1 (argument)
+=dev-qt/qtxml-5.2.1 ~amd64
+# required by b43-firmware (argument)
+=sys-firmware/b43-firmware-5.100.138 ~amd64
+# required by swt:4.2::gentoo (argument)
+=dev-java/swt-4.2-r2 ~amd64
+# required by =broadcom-sta-6.30.223.248-r1 (argument)
+=net-wireless/broadcom-sta-6.30.223.248-r1 ~amd64
+# required by sys-devel/clang-3.4.2-r100
+# required by clang (argument)
+=sys-devel/llvm-3.4.2 ~amd64
+# required by =sys-devel/lldb-9999 (argument)
+=sys-devel/lldb-9999 ~amd64
+# required by sys-devel/lldb-9999::sbar
+# required by =sys-devel/lldb-9999 (argument)
+#=sys-devel/llvm-9999 **
+# required by sys-devel/llvm-9999[clang]
+# required by sys-devel/lldb-9999::sbar
+# required by =sys-devel/lldb-9999 (argument)
+#=sys-devel/clang-9999-r100 **
+# required by =procps-3.3.9-r1 (argument)
+=sys-process/procps-3.3.9-r1 ~amd64
+# required by >=sys-fs/udev-init-scripts-27 (argument)
+=sys-fs/udev-init-scripts-27 ~amd64
+# required by @system
+# required by @world (argument)
+=sys-process/procps-3.3.9-r2 ~amd64
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/designer-5.3.1-r3 ~amd64
+# required by dev-python/virtualenvwrapper::gentoo (argument)
+=dev-python/virtualenvwrapper-4.3 ~amd64
+# required by dev-qt/qtgui-5.3.1-r3[xcb]
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=x11-libs/libxkbcommon-0.4.1 ~amd64
+# required by dev-python/virtualenvwrapper-4.3
+# required by dev-python/virtualenvwrapper::gentoo (argument)
+=dev-python/stevedore-0.15-r1 ~amd64
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtnetwork-5.3.1-r3 ~amd64
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtprintsupport-5.3.1-r3 ~amd64
+# required by dev-qt/qtnetwork-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtcore-5.3.1-r3 ~amd64
+# required by dev-qt/qtprintsupport-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtwidgets-5.3.1-r3 ~amd64
+# required by dev-qt/qtprintsupport-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtgui-5.3.1-r3 ~amd64
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+=dev-qt/qtxml-5.3.1-r3 ~amd64
+# required by =linux-firmware-20140809 (argument)
+=sys-kernel/linux-firmware-20140809 ~amd64
+# required by =linux-firmware-99999999 (argument)
+=sys-kernel/linux-firmware-99999999 **
+# required by =vanilla-sources-3.16.2 (argument)
+=sys-kernel/vanilla-sources-3.16.2 ~amd64
+# required by www-client/google-chrome (argument)
+=www-client/google-chrome-37.0.2062.120_p1 ~amd64
+# required by psi-otr::rion (argument)
+=net-im/psi-otr-9999 **
+# required by linssid::sbar (argument)
+=net-wireless/linssid-2.7 ~amd64
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+=dev-qt/qtwidgets-5.3.2 ~amd64
+# required by =dev-qt/qtsvg-5.3.2::gentoo (argument)
+=dev-qt/qtsvg-5.3.2 ~amd64
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+=dev-qt/qtcore-5.3.2 ~amd64
+# required by dev-qt/qtwidgets-5.3.2
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+=dev-qt/qtgui-5.3.2 ~amd64
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+=dev-qt/qtopengl-5.3.2 ~amd64
+# required by dev-qt/qtxml (argument)
+=dev-qt/qtxml-5.3.2 ~amd64
+# required by qtconcurrent::gentoo (argument)
+=dev-qt/qtconcurrent-5.3.2 ~amd64
+# required by tinc::gentoo (argument)
+=net-misc/tinc-1.0.24-r1 ~amd64
+# required by =vanilla-sources-3.17.0::gentoo (argument)
+=sys-kernel/vanilla-sources-3.17.0 ~amd64
+# required by =chromium-39.0.2171.13::gentoo (argument)
+#=www-client/chromium-39.0.2171.13 ~amd64
+# required by www-client/chromium-39.0.2171.13
+# required by =chromium-39.0.2171.13::gentoo (argument)
+=dev-libs/protobuf-2.5.0-r1 ~amd64
+# required by dev-qt/designer-5.3.1-r3
+# required by @selected
+# required by @world (argument)
+=dev-qt/qtnetwork-5.3.2 ~amd64
+# required by dev-qt/designer-5.3.1-r3
+# required by @selected
+# required by @world (argument)
+=dev-qt/qtprintsupport-5.3.2 ~amd64
+# required by =diffuse-0.4.8::gentoo (argument)
+=dev-util/diffuse-0.4.8 ~amd64
+# required by sys-devel/clang-3.5.0-r100
+# required by clang::gentoo (argument)
+=sys-devel/llvm-3.5.0 ~amd64
+# required by =app-emulation/virtualbox-modules-4.3.16 (argument)
+=app-emulation/virtualbox-modules-4.3.16 ~amd64
+# required by =app-emulation/virtualbox-bin-4.3.16* (argument)
+=app-emulation/virtualbox-bin-4.3.16.95972 ~amd64
+# required by virtual/ffmpeg-9-r1
+# required by @selected
+# required by @world (argument)
+=media-video/ffmpeg-2.2.9 ~amd64
+# required by =vanilla-sources-3.17.1 (argument)
+=sys-kernel/vanilla-sources-3.17.1 ~amd64
+# required by app-emulation/virtualbox-bin-4.3.18.96516
+# required by @selected
+# required by @world (argument)
+=app-emulation/virtualbox-modules-4.3.18 ~amd64
+# required by =virtualbox-bin-4.3.18* (argument)
+=app-emulation/virtualbox-bin-4.3.18.96516 ~amd64
+# required by =timezone-data-2014h (argument)
+=sys-libs/timezone-data-2014h ~amd64
+# required by teamviewer (argument)
+=net-misc/teamviewer-9.0.30203 ~amd64
+# required by dev-python/pygobject-2.28.6-r55
+# required by dev-python/pygtksourceview-2.10.1-r1
+# required by dev-vcs/git-2.0.4[python,gtk]
+# required by sys-apps/etckeeper-1.11-r1[-bazaar]
+# required by @selected
+# required by @world (argument)
+=dev-lang/python-exec-2.9999 **
+# required by dev-python/stevedore-0.15-r1
+# required by dev-python/virtualenvwrapper-4.3
+# required by @selected
+# required by @world (argument)
+=dev-python/pbr-0.8.2 ~amd64
+# required by @selected
+# required by @world (argument)
+=dev-python/virtualenv-1.11.6 ~amd64
+# required by dev-python/chardet-2.2.1
+# required by dev-python/requests-2.3.0
+# required by dev-python/ssl-fetch-0.2
+# required by app-portage/mirrorselect-2.2.2
+# required by @selected
+# required by @world (argument)
+=dev-python/setuptools-6.1 ~amd64
+# required by dev-python/virtualenvwrapper-4.3
+# required by @selected
+# required by @world (argument)
+=dev-python/virtualenv-clone-0.2.4-r2 ~amd64
+# required by =vanilla-sources-3.17.3 (argument)
+=sys-kernel/vanilla-sources-3.17.3 ~amd64
+# required by =arduino-1.0.6 (argument)
+=dev-embedded/arduino-1.0.6 ~amd64
+# required by games-emulation/gens::gentoo (argument)
+=games-emulation/gens-2.15.5 **
+# required by dev-embedded/stlink::stuff (argument)
+=dev-embedded/stlink-9999 ~amd64
+# required by openocd::gentoo (argument)
+=dev-embedded/openocd-0.8.0 ~amd64
+# required by dev-embedded/openocd-0.8.0
+# required by openocd::gentoo (argument)
+=dev-lang/jimtcl-0.75-r1 ~amd64
+# required by travis-yaml (argument)
+=dev-util/travis-yaml-0.1.0 ~amd64
+# required by dev-util/travis-yaml-0.1.0[ruby_targets_ruby19]
+# required by travis-yaml (argument)
+=dev-ruby/psych-2.0.6 ~amd64
+# required by google-chrome (argument)
+=www-client/google-chrome-39.0.2171.71_p1 ~amd64
+# required by google-chrome (argument)
+=www-client/google-chrome-39.0.2171.95_p1 ~amd64
+# required by dev-qt/qtwidgets-5.3.2
+# required by dev-qt/qtsvg-5.3.2
+# required by qtsvg (argument)
+=dev-qt/qtchooser-0_p20140613 ~amd64
+# required by qdevicemonitor (argument)
+=dev-util/qdevicemonitor-9999 ~amd64
+# required by android-tools (argument)
+=dev-util/android-tools-0_p20130218 ~amd64
+# required by =vanilla-sources-3.18.1::gentoo (argument)
+=sys-kernel/vanilla-sources-3.18.1 ~amd64
+# required by =virtualbox-modules-4.3.20 (argument)
+=app-emulation/virtualbox-modules-4.3.20 ~amd64
+# required by =virtualbox-bin-4.3.20.96996 (argument)
+=app-emulation/virtualbox-bin-4.3.20.96996 ~amd64
+# required by neovim (argument)
+=app-editors/neovim-0* ~amd64
+#=app-editors/neovim-9999 **
+# required by dev-lua/cmsgpack-0.3.0::sbar
+# required by app-editors/neovim-9999::sbar
+# required by neovim (argument)
+=dev-libs/msgpack-0.5.9 ~amd64
+# required by app-editors/neovim-9999::sbar
+# required by neovim (argument)
+=dev-lua/cmsgpack-0.3.0 ~amd64
+# required by =cmsgpack-9999 (argument)
+=dev-lua/cmsgpack-9999 **
+# required by photoqt (argument)
+=media-gfx/photoqt-1.0 ~amd64
+# required by kodi::sbar (argument)
+=media-tv/kodi-14.0 ~amd64
+# required by v4l2loopback (argument)
+=media-video/v4l2loopback-0.8.0 ~amd64
+# required by =hwids-20141214 (argument)
+=sys-apps/hwids-20141214 ~amd64
+# required by jd-gui::fw-overlay (argument)
+=dev-util/jd-gui-0.3.5-r2 ~amd64
+# required by =vanilla-sources-3.18.3 (argument)
+=sys-kernel/vanilla-sources-3.18.3 ~amd64
+# required by dev-lang/scala::gentoo (argument)
+=dev-lang/scala-2.11.4 ~amd64
+# required by dev-lang/scala-2.11.4
+# required by dev-lang/scala::gentoo (argument)
+=dev-java/hawtjni-runtime-1.8 ~amd64
+# required by =vanilla-sources-3.19.0 (argument)
+=sys-kernel/vanilla-sources-3.19.0 ~amd64
+# required by dev-util/crash (argument)
+=dev-util/crash-7.0.7 ~amd64
+# required by gitgutter::gentoo (argument)
+=app-vim/gitgutter-20141101 ~amd64
+# required by dev-java/icedtea:7 (argument)
+=dev-java/icedtea-7.2.5.3 ~amd64
+# required by dev-java/icedtea-7.2.5.3[webstart]
+# required by dev-java/icedtea:7 (argument)
+=dev-java/icedtea-web-1.5.1-r1 ~amd64
+# required by =icedtea-7.2.5.4::java (argument)
+=dev-java/icedtea-7.2.5.4 ~amd64
+# required by =sbt-bin-0.13.7::sbar (argument)
+=dev-java/sbt-bin-0.13.7 ~amd64
+# required by dev-python/flask-openid-1.2.4
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/python-openid-2.2.5-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/m4ri-20140914 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/gsl-1.16 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/pynac-0.3.2-r1 ~amd64
+# required by dev-python/flask-autoindex-0.5::sage-on-gentoo
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/flask-silk-0.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-libs/ppl-1.1 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/twisted-web-14.0.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/ipython-3.0.0 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/sympy-0.7.6 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-baselayout-6.5 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/flask-autoindex-0.5 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/gap-4.7.5 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/flask-openid-1.2.4 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-data-combinatorial_designs-20140630 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/maxima-5.35.1-r2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+=sci-mathematics/sage-data-conway_polynomials-0.4-r2 ~amd64
+# required by dev-python/ipython-3.0.0[notebook]
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/terminado-0.5 ~amd64
+# required by dev-python/cvxopt-1.1.7::sage-on-gentoo[dsdp]
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/dsdp-5.8-r2 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/webassets-0.10.1 ~amd64
+# required by dev-python/rpy-2.5.6
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/pandas-0.15.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/libsingular-3.1.7_p1-r2 ~amd64
+# required by =sci-mathematics/sage-6.5 (argument)
+=sci-mathematics/sage-6.5 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/twisted-mail-14.0.2 ~amd64
+# required by dev-python/sympy-0.7.6[-test,system-mpmath]
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/mpmath-0.19 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-lang/R-3.1.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-libs/ntl-6.2.1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/givaro-3.7.1 ~amd64
+# required by dev-python/twisted-web-14.0.2
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/twisted-core-14.0.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/symmetrica-2.0-r4 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/flask-oldsessions-0.10 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/optimal-20040603-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/eclib-20140921-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/gmp-ecm-6.4.4-r2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/gdmodule-0.56-r2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/polybori-0.8.3-r2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-notebook-0.11.4 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/sage-pexpect-2.0-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/lrcalc-1.1.7 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/libcliquer-1.21_p1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/libgap-4.7.5-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/pari-2.7.1-r2 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo[java]
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-chemistry/sage-jmol-bin-14.2.11 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-data-elliptic_curves-0.7-r2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/singular-3.1.7_p1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/cu2-20060223 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/linbox-1.3.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=media-gfx/tachyon-0.98.9-r2 ~amd64
+# required by dev-python/ipython-3.0.0[notebook,-nbconvert]
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/mistune-0.5 ~amd64
+# required by dev-python/twisted-mail-14.0.2
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/twisted-names-14.0.2 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/networkx-1.9.1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/palp-2.1-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-data-polytopes_db-20120220 ~amd64
+# required by sci-mathematics/sage-notebook-0.11.4::sage-on-gentoo
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/flask-babel-0.8-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/m4rie-20140914 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sympow-1.018.1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-data-graphs-20130920 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/cvxopt-1.1.7 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/ratpoints-2.1.3-r4 ~amd64
+# required by dev-python/pandas-0.15.2
+# required by dev-python/rpy-2.5.6
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/matplotlib-1.4.3 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/mcube-20051209 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/python-pkgconfig-1.1.0 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/cubex-20060128 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/dikcube-20070912-r1 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/flintqs-20070817 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/iml-1.0.4 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/sage-clib-6.5 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/fplll-4.0.4 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=dev-python/rpy-2.5.6 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-mathematics/lcalc-1.23-r7 ~amd64
+# required by sci-mathematics/sage-6.5::sage-on-gentoo
+# required by sci-mathematics/sage-data-conway_polynomials-0.4-r2::sage-on-gentoo
+=sci-libs/zn_poly-0.9-r3 ~amd64
+# required by scala-ide (argument)
+=dev-util/scala-ide-4.0.0 ~amd64
+# required by =ardour-4.0 (argument)
+=media-sound/ardour-4.0 ~amd64
+# required by =idea-14.1.1.141.178 (argument)
+=dev-util/idea-14.1.1.141.178 ~amd64
+# required by =idea-community-14.1.141.104.1 (argument)
+=dev-util/idea-community-14.1.141.104.1 ~amd64
+# required by =vanilla-sources-4.0.0 (argument)
+=sys-kernel/vanilla-sources-4.0.0 ~amd64
+# required by =vanilla-sources-4.0.4 (argument)
+=sys-kernel/vanilla-sources-4.0.4 ~amd64
+# required by =virtualbox-bin-4.3.28* (argument)
+=app-emulation/virtualbox-bin-4.3.28.100309 ~amd64
+# required by =virtualbox-modules-4.3.28 (argument)
+=app-emulation/virtualbox-modules-4.3.28 ~amd64
+# required by media-plugins/calf (argument)
+=media-plugins/calf-0.0.60 ~amd64
+# required by media-plugins/calf-0.0.60::bar[lash]
+# required by media-plugins/calf (argument)
+=virtual/liblash-1 ~amd64
+# required by =audacity-2.1.0 (argument)
+=media-sound/audacity-2.1.0 ~amd64
+# required by =audacity-2.0.5 (argument)
+=media-sound/audacity-2.0.5 ~amd64
+# required by minted (argument)
+=dev-tex/minted-2.0 ~amd64
+# required by =maven-bin-3.2.5 (argument)
+=dev-java/maven-bin-3.2.5 ~amd64
+
+=net-im/qtox-9999 **
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtopengl-5.4.2 ~amd64
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtconcurrent-5.4.2 ~amd64
+# required by dev-qt/linguist-tools-5.4.2
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtxml-5.4.2 ~amd64
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtsql-5.4.2 ~amd64
+# required by dev-qt/qtgui-5.4.2-r1[dbus]
+# required by dev-qt/qtwidgets-5.4.2
+# required by dev-qt/qtsvg-5.4.2
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtdbus-5.4.2 ~amd64
+# required by net-im/qtox-9999::tox-overlay[filter_audio]
+# required by net-im/qtox::tox-overlay (argument)
+=media-libs/libfilteraudio-9999 **
+# required by dev-qt/qtwidgets-5.4.2
+# required by dev-qt/qtsvg-5.4.2
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtgui-5.4.2-r1 ~amd64
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtsvg-5.4.2 ~amd64
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/linguist-tools-5.4.2 ~amd64
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=net-libs/tox-9999 **
+# required by dev-qt/qtconcurrent-5.4.2
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtcore-5.4.2 ~amd64
+# required by dev-qt/qtopengl-5.4.2
+# required by net-im/qtox-9999::tox-overlay
+# required by net-im/qtox::tox-overlay (argument)
+=dev-qt/qtwidgets-5.4.2 ~amd64
+# required by caffe::maksbotan (argument)
+=dev-libs/caffe-9999 **
+
+=lmdb/lmdb-0.9.14 **
+# required by dev-libs/caffe-9999::maksbotan[python]
+# required by caffe::maksbotan (argument)
+=sci-libs/scikits_image-0.10.1 ~amd64
+
+dev-lang/rust ~arm64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/kan-extensions-4.2.3 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/semigroupoids-5.0.0.4 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/ltk-0.15.0.4 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/cpphs-1.19.3 ~amd64
+# required by app-editors/leksah::haskell (argument)
+=app-editors/leksah-0.15.1.3 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/free-4.12.1 ~amd64
+# required by idea-community::mrueg (argument)
+=dev-util/idea-community-15.0.0.143.381.42 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=app-editors/leksah-server-0.15.0.9 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo
+# required by app-editors/neovim::gentoo (argument)
+=dev-libs/libtermkey-0.17 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/bifunctors-5 ~amd64
+# required by dev-haskell/free-4.12.1::haskell
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/prelude-extras-0.4.0.2 ~amd64
+# required by app-editors/leksah-server-0.15.0.9::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/attoparsec-conduit-1.1.0 ~amd64
+# required by dev-haskell/hlint-1.9.22::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/extra-1.4.2 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/glib-0.13.2.1 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo
+# required by app-editors/neovim::gentoo (argument)
+=dev-lua/messagepack-0.3.2 ~amd64
+# required by virtual/editor-0::gentoo
+# required by @system
+# required by @world (argument)
+=app-editors/neovim-0.1.0 ~amd64
+# required by dev-haskell/free-4.12.1::haskell
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/comonad-4.2.7.2 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/gtk3-0.13.9 ~amd64
+# required by dev-haskell/contravariant-1.3.3::haskell[semigroups]
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/semigroups-0.16.2.2 ~amd64
+# required by dev-haskell/semigroupoids-5.0.0.4::haskell
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/base-orphans-0.4.4 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/reflection-2.1 ~amd64
+# required by dev-haskell/contravariant-1.3.3::haskell[statevar]
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/statevar-1.1.0.1 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/gtksourceview3-0.13.2.0 ~amd64
+# required by dev-haskell/webkitgtk3-0.13.1.3::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/gtk2hs-buildtools-0.13.0.4-r3 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/binary-shared-0.8.3 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/unordered-containers-0.2.5.1 ~amd64
+# required by dev-haskell/gtk3-0.13.9::haskell
+# required by dev-haskell/vcsgui-0.1.3.0::haskell[gtk3]
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/cairo-0.13.1.0 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/shakespeare-2.0.7 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/vado-0.0.5 ~amd64
+# required by dev-haskell/hlint-1.9.22::haskell[gpl]
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/hscolour-1.23-r1 ~amd64
+# required by dev-haskell/hlint-1.9.22::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/uniplate-1.6.12 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/hlint-1.9.22 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/jsaddle-0.2.1.0-r1 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo
+# required by app-editors/neovim::gentoo (argument)
+=dev-libs/libvterm-0.0_pre20151022 ~amd64
+# required by dev-haskell/gtk3-0.13.9::haskell
+# required by dev-haskell/vcsgui-0.1.3.0::haskell[gtk3]
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/pango-0.13.1.0 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/ghcjs-codemirror-0.0.0.1 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo
+# required by app-editors/neovim::gentoo (argument)
+=dev-libs/msgpack-1.1.0 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/stm-2.4.4 ~amd64
+# required by dev-haskell/jsaddle-0.2.1.0-r1::haskell[gtk3]
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/webkitgtk3-javascriptcore-0.13.1.0 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/regex-tdfa-text-1.0.0.3 ~amd64
+# required by dev-haskell/hlint-1.9.22::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/refact-0.3.0.1 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo
+# required by app-editors/neovim::gentoo (argument)
+=dev-libs/unibilium-1.1.4 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/contravariant-1.3.3 ~amd64
+# required by dev-haskell/jsaddle-0.2.1.0-r1::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/lens-4.13 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/ghcjs-dom-0.1.1.3 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/gio-0.13.1.0 ~amd64
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/profunctors-5.1.1 ~amd64
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/adjunctions-4.2.2 ~amd64
+# required by dev-haskell/ghcjs-dom-0.1.1.3::haskell[gtk3]
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/webkitgtk3-0.13.1.3 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/vcswrapper-0.1.2 ~amd64
+# required by dev-haskell/profunctors-5.1.1::haskell
+# required by dev-haskell/adjunctions-4.2.2::haskell
+# required by dev-haskell/kan-extensions-4.2.3::haskell
+# required by dev-haskell/lens-4.13::haskell
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/distributive-0.4.4 ~amd64
+# required by app-editors/leksah-0.15.1.3::haskell
+# required by app-editors/leksah::haskell (argument)
+=dev-haskell/vcsgui-0.1.3.0 ~amd64
+# required by app-editors/neovim-0.1.0::gentoo[python]
+# required by app-editors/neovim::gentoo (argument)
+=dev-python/neovim-python-client-0.0.38 ~amd64
+# required by dev-python/neovim-python-client-0.0.38::gentoo
+# required by app-editors/neovim-0.1.0::gentoo[python]
+# required by app-editors/neovim::gentoo (argument)
+=virtual/python-greenlet-1.0 ~amd64
+# required by =qdevicemonitor-1.0.0 (argument)
+=dev-util/qdevicemonitor-1.0.0 ~amd64
+# required by =qtox-1.1::sbar (argument)
+=net-im/qtox-1.1 **
+# required by =dev-lang/rust-1.5.0::rust (argument)
+=dev-lang/rust-1.5.0 ~amd64
+# required by dev-lang/rust-1.5.0::rust
+# required by =dev-lang/rust-1.5.0::rust (argument)
+=app-eselect/eselect-rust-0.3_pre20150428 ~amd64
+# required by dev-lang/rust-1.5.0::rust
+# required by =dev-lang/rust-1.5.0::rust (argument)
+=sys-libs/libcxx-3.7.0 ~amd64
+# required by sys-libs/libcxx-3.7.0::gentoo
+# required by dev-lang/rust-1.5.0::rust
+# required by =dev-lang/rust-1.5.0::rust (argument)
+=sys-libs/libcxxrt-0.0_p20150423 ~amd64
+# required by dev-util/cargo::rust (argument)
+=dev-util/cargo-0* ~amd64
+# required by dev-util/cargo-0.7.0::rust
+# required by dev-util/cargo::rust (argument)
+=virtual/rust-1.5.0 ~amd64
+# required by =scala-2.11.7-r1 (argument)
+=dev-lang/scala-2.11.7-r1 ~amd64
+# required by app-text/texlive-core-2015::gentoo[xetex]
+# required by dev-texlive/texlive-pstricks-2015::gentoo
+# required by dev-tex/dot2texi-3.0::gentoo[pstricks]
+# required by app-text/texlive-2014::gentoo[graphics]
+# required by texlive (argument)
+=app-text/teckit-2.5.3 ~amd64
+# required by sys-devel/clang-3.7.1-r100::gentoo
+# required by clang (argument)
+=sys-devel/llvm-3.7.1 ~amd64
+# required by =voltron-9999::necromancy-overlay (argument)
+=sys-devel/voltron-9999 ~amd64
+# required by sys-devel/voltron-9999::necromancy-overlay
+# required by =voltron-9999::necromancy-overlay (argument)
+=dev-python/rl-2.4 ~amd64
+# required by truecrypt (argument)
+=app-crypt/truecrypt-7.1a ~amd64
+# required by =vanilla-sources-4.4.0 (argument)
+=sys-kernel/vanilla-sources-4.4.0 ~amd64
+# required by =dev-lang/rust-1.6.0-r1::rust (argument)
+=dev-lang/rust-1.6.0-r1 ~amd64
+# required by app-shells/rust-zshcomp (argument)
+=app-shells/rust-zshcomp-1_beta20150411 ~amd64
+# required by =neovim-0.1.1-r1 (argument)
+=app-editors/neovim-0.1.1-r1 ~amd64
+# required by rust-bin:nightly::rust (argument)
+=dev-lang/rust-bin-999 **
+# required by dev-qt/qtimageformats-5.5.1-r1::gentoo
+# required by media-gfx/photoqt-1.3::gentoo
+# required by =photoqt-1.3 (argument)
+=dev-qt/qtgui-5.5.1-r1 ~amd64
+# required by dev-qt/qtdbus-5.5.1::gentoo
+# required by dev-qt/qtgui-5.5.1-r1::gentoo[dbus]
+# required by dev-qt/qtimageformats-5.5.1-r1::gentoo
+# required by media-gfx/photoqt-1.3::gentoo
+# required by =photoqt-1.3 (argument)
+=dev-qt/qtcore-5.5.1-r1 ~amd64
+# required by =photoqt-1.3 (argument)
+=media-gfx/photoqt-1.3 ~amd64
+# required by dev-qt/qtgui-5.5.1-r1::gentoo[dbus]
+# required by dev-qt/qtimageformats-5.5.1-r1::gentoo
+# required by media-gfx/photoqt-1.3::gentoo
+# required by =photoqt-1.3 (argument)
+=dev-qt/qtdbus-5.5.1 ~amd64
+# required by media-gfx/photoqt-1.3::gentoo
+# required by =photoqt-1.3 (argument)
+=dev-qt/qtimageformats-5.5.1-r1 ~amd64
+# required by @preserved-rebuild (argument)
+=dev-ruby/psych-2.0.17 ~amd64
+# required by =vanilla-sources-4.4.4 (argument)
+=sys-kernel/vanilla-sources-4.4.4 ~amd64
+# required by sys-libs/binutils-libs-2.25.1-r2::gentoo
+# required by sys-devel/llvm-3.7.1::gentoo[gold]
+# required by sys-devel/llvm (argument)
+=sys-devel/binutils-config-5-r2 ~amd64
+# required by sys-devel/llvm-3.7.1::gentoo[gold]
+# required by sys-devel/llvm (argument)
+=sys-libs/binutils-libs-2.25.1-r2 ~amd64
+# required by =vanilla-sources-4.5.0 (argument)
+=sys-kernel/vanilla-sources-4.5.0 ~amd64
+# required by x11-base/xorg-server-1.18.2::gentoo[xorg]
+# required by x11-drivers/xf86-video-intel-2.99.917_p20160316::gentoo[dri]
+# required by =xf86-video-intel-2.99.917_p20160316 (argument)
+=x11-base/xorg-drivers-1.18-r1 ~amd64
+# required by =xf86-video-intel-2.99.917_p20160316 (argument)
+=x11-drivers/xf86-video-intel-2.99.917_p20160316 ~amd64
+# required by x11-drivers/xf86-video-intel-2.99.917_p20160316::gentoo[dri]
+# required by x11-base/xorg-drivers-1.18-r1::gentoo[video_cards_intel]
+# required by x11-base/xorg-server-1.17.4::gentoo[xorg]
+# required by @selected
+# required by @world (argument)
+=x11-base/xorg-server-1.18.2 ~amd64
+# required by =x11-drivers/xf86-input-evdev-2.10.0 (argument)
+=x11-drivers/xf86-input-evdev-2.10.0 ~amd64
+# required by =weechat-1.4-r1 (argument)
+=net-irc/weechat-1.4-r1 ~amd64
+# required by =virtual/rust-999 (argument)
+=virtual/rust-999 **
+# required by =dev-lang/coffee-script-1.10.0 (argument)
+=dev-lang/coffee-script-1.10.0 ~amd64
+# required by ruby:2.3 (argument)
+=dev-lang/ruby-2.3.0 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/did_you_mean-1.0.0 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/rake-11.1.2 ~amd64
+# required by dev-ruby/json-1.8.3::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+=virtual/rubygems-11 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+=dev-ruby/test-unit-3.1.8 ~amd64
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby21]
+# required by dev-ruby/net-telnet-0.1.1-r1::gentoo
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/rubygems-2.6.3 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/net-telnet-0.1.1-r1 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby20]
+=dev-ruby/power_assert-0.2.7 ~amd64
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+=dev-ruby/json-1.8.3 ~amd64
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/json-1.8.3::gentoo[ruby_targets_ruby20,-doc,-test]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/racc-1.4.14 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=dev-ruby/minitest-5.8.4 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo[rdoc]
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+=dev-ruby/rdoc-4.2.2 ~amd64
+# required by dev-lang/ruby-2.3.0::gentoo
+# required by dev-ruby/rake-11.1.2::gentoo[ruby_targets_ruby23]
+# required by dev-ruby/racc-1.4.14::gentoo[ruby_targets_ruby23,-test]
+# required by dev-ruby/rdoc-4.2.2::gentoo[ruby_targets_ruby21]
+# required by dev-lang/ruby-2.0.0_p647-r1::gentoo[rdoc]
+# required by dev-ruby/power_assert-0.2.7::gentoo[ruby_targets_ruby20]
+# required by dev-ruby/test-unit-3.1.8::gentoo[ruby_targets_ruby21]
+=app-eselect/eselect-ruby-20151229 ~amd64
+# required by app-editors/neovim-0.1.4::gentoo
+# required by dev-python/neovim-python-client-0.1.7::gentoo
+# required by =neovim-python-client-0.1.7 (argument)
+=dev-lua/lpeg-1.0.0-r1 ~amd64
+# required by =neovim-0.1.4 (argument)
+=app-editors/neovim-0.1.4 ~amd64
+# required by =neovim-python-client-0.1.7 (argument)
+=dev-python/neovim-python-client-0.1.7 ~amd64
+# required by app-editors/neovim-0.1.4::gentoo
+# required by dev-python/neovim-python-client-0.1.7::gentoo
+# required by =neovim-python-client-0.1.7 (argument)
+=dev-lua/mpack-1.0.2 ~amd64
+# required by =vanilla-sources-4.6.0 (argument)
+=sys-kernel/vanilla-sources-4.6.0 ~amd64
+# required by =virtualbox-bin-5.0.20.106931 (argument)
+=app-emulation/virtualbox-bin-5.0.20.106931 ~amd64
+# required by app-emulation/virtualbox-bin-5.0.20.106931::gentoo
+# required by =virtualbox-bin-5.0.20.106931 (argument)
+=app-emulation/virtualbox-modules-5.0.20 ~amd64
+# required by =dev-qt/designer-5.6.0 (argument)
+=dev-qt/designer-5.6.0 ~amd64
+# required by =dev-qt/linguist-tools-5.6.0 (argument)
+=dev-qt/linguist-tools-5.6.0 ~amd64
+# required by =dev-qt/qtconcurrent-5.6.0 (argument)
+=dev-qt/qtconcurrent-5.6.0 ~amd64
+# required by =dev-qt/qtdbus-5.6.0 (argument)
+=dev-qt/qtdbus-5.6.0 ~amd64
+# required by =dev-qt/qtcore-5.6.0 (argument)
+=dev-qt/qtcore-5.6.0 ~amd64
+# required by =dev-qt/qtdeclarative-5.6.0 (argument)
+=dev-qt/qtdeclarative-5.6.0 ~amd64
+# required by =dev-qt/qtsql-5.6.0 (argument)
+=dev-qt/qtsql-5.6.0 ~amd64
+# required by =dev-qt/qtnetwork-5.6.0 (argument)
+=dev-qt/qtnetwork-5.6.0 ~amd64
+# required by =dev-qt/qtx11extras-5.6.0 (argument)
+=dev-qt/qtx11extras-5.6.0 ~amd64
+# required by =dev-qt/qtgui-5.6.0-r1 (argument)
+=dev-qt/qtgui-5.6.0-r1 ~amd64
+# required by =dev-qt/qtprintsupport-5.6.0 (argument)
+=dev-qt/qtprintsupport-5.6.0 ~amd64
+# required by =dev-qt/qtxml-5.6.0 (argument)
+=dev-qt/qtxml-5.6.0 ~amd64
+# required by =dev-qt/qtwebkit-5.6.0 (argument)
+=dev-qt/qtwebkit-5.6.0 ~amd64
+# required by =dev-qt/qtxmlpatterns-5.6.0 (argument)
+=dev-qt/qtxmlpatterns-5.6.0 ~amd64
+# required by =dev-qt/qttest-5.6.0 (argument)
+=dev-qt/qttest-5.6.0 ~amd64
+# required by =dev-qt/qtopengl-5.6.0 (argument)
+=dev-qt/qtopengl-5.6.0 ~amd64
+# required by =dev-qt/qttranslations-5.6.0 (argument)
+=dev-qt/qttranslations-5.6.0 ~amd64
+# required by =dev-qt/qtscript-5.6.0 (argument)
+=dev-qt/qtscript-5.6.0 ~amd64
+# required by =dev-qt/qtmultimedia-5.6.0 (argument)
+=dev-qt/qtmultimedia-5.6.0 ~amd64
+# required by =dev-qt/qtsvg-5.6.0 (argument)
+=dev-qt/qtsvg-5.6.0 ~amd64
+# required by =dev-qt/qtwidgets-5.6.0 (argument)
+=dev-qt/qtwidgets-5.6.0 ~amd64
+# required by =dev-qt/qtwebengine-5.6.0 (argument)
+=dev-qt/qtwebengine-5.6.0 ~amd64
+# required by dev-qt/qtwebengine-5.6.0::gentoo
+# required by =dev-qt/qtwebengine-5.6.0 (argument)
+=dev-qt/qtwebchannel-5.6.0 ~amd64
+# required by =dev-qt/designer-5.7.0 (argument)
+=dev-qt/designer-5.7.0 ~amd64
+# required by =dev-qt/linguist-tools-5.7.0 (argument)
+=dev-qt/linguist-tools-5.7.0 ~amd64
+# required by =dev-qt/qtdeclarative-5.7.0 (argument)
+=dev-qt/qtdeclarative-5.7.0 ~amd64
+# required by =dev-qt/qtwidgets-5.7.0 (argument)
+=dev-qt/qtwidgets-5.7.0 ~amd64
+# required by =dev-qt/qtconcurrent-5.7.0 (argument)
+=dev-qt/qtconcurrent-5.7.0 ~amd64
+# required by =dev-qt/qtsql-5.7.0 (argument)
+=dev-qt/qtsql-5.7.0 ~amd64
+# required by =dev-qt/qttest-5.7.0 (argument)
+=dev-qt/qttest-5.7.0 ~amd64
+# required by =dev-qt/qtxmlpatterns-5.7.0 (argument)
+=dev-qt/qtxmlpatterns-5.7.0 ~amd64
+# required by =dev-qt/qtopengl-5.7.0 (argument)
+=dev-qt/qtopengl-5.7.0 ~amd64
+# required by =dev-qt/qtsvg-5.7.0 (argument)
+=dev-qt/qtsvg-5.7.0 ~amd64
+# required by =dev-qt/qtx11extras-5.7.0 (argument)
+=dev-qt/qtx11extras-5.7.0 ~amd64
+# required by =dev-qt/qtdbus-5.7.0 (argument)
+=dev-qt/qtdbus-5.7.0 ~amd64
+# required by =dev-qt/qtwebchannel-5.7.0 (argument)
+=dev-qt/qtwebchannel-5.7.0 ~amd64
+# required by =dev-qt/qtprintsupport-5.7.0 (argument)
+=dev-qt/qtprintsupport-5.7.0 ~amd64
+# required by =dev-qt/qtcore-5.7.0 (argument)
+=dev-qt/qtcore-5.7.0 ~amd64
+# required by =dev-qt/qtgui-5.7.0 (argument)
+=dev-qt/qtgui-5.7.0 ~amd64
+# required by =dev-qt/qtnetwork-5.7.0 (argument)
+=dev-qt/qtnetwork-5.7.0 ~amd64
+# required by =dev-qt/qtwebengine-5.7.0 (argument)
+=dev-qt/qtwebengine-5.7.0 ~amd64
+# required by =dev-qt/qttranslations-5.7.0 (argument)
+=dev-qt/qttranslations-5.7.0 ~amd64
+# required by =dev-qt/qtmultimedia-5.7.0 (argument)
+=dev-qt/qtmultimedia-5.7.0 ~amd64
+# required by =dev-qt/qtwebkit-5.7.0 (argument)
+=dev-qt/qtwebkit-5.7.0 ~amd64
+# required by =dev-qt/qtxml-5.7.0 (argument)
+=dev-qt/qtxml-5.7.0 ~amd64
+# required by =dev-qt/qtscript-5.7.0 (argument)
+=dev-qt/qtscript-5.7.0 ~amd64
+# required by =qtox-1.4.0 (argument)
+=net-im/qtox-1.4.0 ~amd64
+# required by torbrowser::torbrowser (argument)
+=www-client/torbrowser-45.2.0_p602 ~amd64
+# required by =qdevicemonitor-1.0.1::alopatindev-overlay (argument)
+=dev-util/qdevicemonitor-1.0.1 ~amd64
+
+
+# required by krita (argument)
+=media-gfx/krita-3.0 ~amd64
+=media-libs/phonon-4.9.0 ~amd64
+# required by =vanilla-sources-4.6.4 (argument)
+=sys-kernel/vanilla-sources-4.6.4 ~amd64
+# required by =cargo-bin-999::rust (argument)
+=dev-util/cargo-bin-999 **
+# required by =dev-util/glade-3.20.0 (argument)
+=dev-util/glade-3.20.0 ~amd64
+# required by app-crypt/gcr-3.18.0::gentoo[gtk]
+# required by gnome-base/gvfs-1.26.3::gentoo
+# required by app-cdr/brasero-3.12.1-r1::gentoo
+# required by media-gfx/gthumb-3.4.1::gentoo[cdr]
+# required by @selected
+# required by @world (argument)
+=x11-libs/gtk+-3.20.6 ~amd64
+# required by =vanilla-sources-4.7.1 (argument)
+=sys-kernel/vanilla-sources-4.7.1 ~amd64
+# required by =virtualbox-bin-5.1.4.110228 (argument)
+=app-emulation/virtualbox-bin-5.1.4.110228 ~amd64
+# required by =virtualbox-modules-5.1.4 (argument)
+=app-emulation/virtualbox-modules-5.1.4 ~amd64
+# required by =rust-bin-1.11.0::rust (argument)
+=dev-lang/rust-bin-1.11.0 ~amd64
+# required by =dev-qt/qtquickcontrols-5.7.0 (argument)
+=dev-qt/qtquickcontrols-5.7.0 ~amd64
+# required by obs-studio (argument)
+=media-video/obs-studio-0.15.3 ~amd64
+# required by =obs-studio-0.15.4::alopatindev-overlay (argument)
+=media-video/obs-studio-0.15.4 ~amd64
+# required by =torbrowser-45.3.0* (argument)
+=www-client/torbrowser-45.3.0_p604 ~amd64
+# required by bless (argument)
+=dev-util/bless-0.6.0-r2 ~amd64
+# required by =torbrowser-45.4.0_p605 (argument)
+=www-client/torbrowser-45.4.0_p605 ~amd64
+# required by =htop-2.0.2 (argument)
+=sys-process/htop-2.0.2 ~amd64
+# required by app-text/multitail-6.4.1::gentoo
+# required by @selected
+# required by @world (argument)
+=sys-libs/ncurses-6.0-r1 ~amd64
+# required by horst (argument)
+=net-wireless/horst-5.0 ~amd64
+# required by =rust-bin-1.12.0 (argument)
+=dev-lang/rust-bin-1.12.0 ~amd64
+# required by app-misc/slider (argument)
+=app-misc/slider-0_pre20140811 ~amd64
+# required by sys-devel/clang-3.8.1-r100::gentoo
+# required by clang (argument)
+=sys-devel/llvm-3.8.1-r2 ~amd64
+# required by =sys-kernel/vanilla-sources-4.8.2 (argument)
+=sys-kernel/vanilla-sources-4.8.2 ~amd64
+# required by =virtualbox-bin-5.1.6.110634 (argument)
+=app-emulation/virtualbox-bin-5.1.6.110634 ~amd64
+# required by app-emulation/virtualbox-bin-5.1.6.110634::gentoo
+# required by @selected
+# required by @world (argument)
+=app-emulation/virtualbox-modules-5.1.6 ~amd64
+# required by sys-devel/icecream (argument)
+=sys-devel/icecream-1.0.0-r1 ~amd64
+# required by =vanilla-sources-4.8.3 (argument)
+=sys-kernel/vanilla-sources-4.8.3 ~amd64
+# required by dnscrypt-proxy (argument)
+=net-dns/dnscrypt-proxy-1.7.0 ~amd64

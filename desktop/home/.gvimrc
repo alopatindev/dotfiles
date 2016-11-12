@@ -1,7 +1,7 @@
 "colors slate
 colors pablo
 "set guifont=terminus
-set guifont=DejaVu\ Sans\ Mono\ 12
+set guifont=DejaVu\ Sans\ Mono\ 20
 "set nu
 map <C-o> :browse tabnew<CR>
 map <C-n> :tabnew<CR>
@@ -32,3 +32,5 @@ hi Folded ctermfg=grey ctermbg=black
 hi Visual ctermbg=darkcyan
 
 "set grepprg=grep\ -nH\ $*
+
+se spell

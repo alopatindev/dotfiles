@@ -213,3 +213,200 @@ media-libs/amd64codecs
 # /var/lib/layman/calculate/profiles/calculate/package.mask:
 #Gentoo Bug 353814 http://bugs.gentoo.org/show_bug.cgi?id=353814
 =sys-libs/glibc-2.14.1-r3
+# required by media-libs/fontconfig-infinality-20130404
+# /etc/portage/package.mask:
+=media-libs/freetype-2.4.11
+# required by app-office/libreoffice-bin-4.1.4.2
+# required by app-office/libreoffice-bin::gentoo (argument)
+# /etc/portage/package.mask:
+#>www-plugins/adobe-flash-10.2.152.27
+=app-text/poppler-0.24.5
+# required by sys-power/cpufreqd::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Pacho Ramos <pacho@gentoo.org> (06 Apr 2014)
+# Multiple issues and dead for ages (#327735).
+# You can use cpupower (from sys-power/cpupower or
+# sys-apps/linux-misc-apps). Removal in a month.
+=sys-power/cpufreqd-2.4.2
+# required by net-fs/autofs::gentoo (argument)
+# /etc/portage/package.mask:
+=net-fs/autofs-5.0.7-r4
+# required by dev-lang/tk-8.5.15
+# required by dev-tcltk/tix-8.4.3-r1
+# required by dev-lang/python-3.3.5-r1[tk,-build]
+# required by sys-apps/portage-2.2.8-r1[python_targets_python3_3]
+# required by app-admin/python-updater-0.11
+# required by dev-lang/python-2.7.7
+# required by x11-proto/xcb-proto-1.10[python_targets_python2_7]
+# required by x11-libs/libxcb-1.10
+# required by x11-libs/libX11-1.6.2
+# required by x11-apps/xauth-1.0.8
+# required by net-misc/openssh-6.6_p1-r1[X]
+# required by virtual/ssh-0[-minimal]
+# required by @system
+# required by @world (argument)
+# /etc/portage/package.mask:
+=media-libs/freetype-2.5.3-r1
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtnetwork-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtprintsupport-5.3.1-r3
+# required by dev-qt/qtnetwork-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtcore-5.3.1-r3
+# required by dev-qt/qtprintsupport-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtwidgets-5.3.1-r3
+# required by dev-qt/qtprintsupport-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtgui-5.3.1-r3
+# required by dev-qt/designer-5.3.1-r3
+# required by dev-qt/designer:5::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtxml-5.3.1-r3
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtwidgets-5.3.2
+# required by =dev-qt/qtsvg-5.3.2::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtsvg-5.3.2
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtcore-5.3.2
+# required by dev-qt/qtwidgets-5.3.2
+# required by dev-qt/qtopengl-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtgui-5.3.2
+# required by =dev-qt/qtopengl-5.3.2::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtopengl-5.3.2
+# required by dev-qt/qtxml (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtxml-5.3.2
+# required by qtconcurrent::gentoo (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtconcurrent-5.3.2
+# required by dev-qt/designer-5.3.1-r3
+# required by @selected
+# required by @world (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtnetwork-5.3.2
+# required by dev-qt/designer-5.3.1-r3
+# required by @selected
+# required by @world (argument)
+# /usr/portage/profiles/package.mask:
+# Davide Pesavento <pesa@gentoo.org> (11 Sep 2014)
+# Mask Qt 5.3.x for wider testing to ensure that it does
+# not break or conflict with other packages (bug #454132)
+=dev-qt/qtprintsupport-5.3.2
+# required by virtual/perl-Getopt-Long-2.390.0-r1
+# required by app-text/texlive-core-2013-r1
+# required by dev-texlive/texlive-basic-2013
+# required by dev-texlive/texlive-langcyrillic-2013
+# required by @selected
+# required by @world (argument)
+# /usr/portage/profiles/package.mask:
+# Andreas K. Huettel <dilfridge@gentoo.org> (29 Mar 2015)
+# Mask Perl 5.18 for removal. Please upgrade to Perl 5.20
+=dev-lang/perl-5.18.2-r2
+# required by app-office/libreoffice-bin-4.4.4.3
+# required by libreoffice-bin (argument)
+# /etc/portage/package.mask/package.mask:
+#>www-plugins/adobe-flash-10.2.152.27
+=app-text/poppler-0.32.0
+
+=lmdb/lmdb-0.9.14
+# required by truecrypt (argument)
+# /usr/portage/profiles/package.mask:
+# Pacho Ramos <pacho@gentoo.org> (08 Jan 2016)
+# Security issues, too hard to maintain, bug #561952. Removal in a month.
+=app-crypt/truecrypt-7.1a
+# required by media-libs/imlib2-1.4.6-r2::gentoo
+# required by app-admin/conky-1.9.0-r3::gentoo[X,imlib,-lua-imlib]
+# required by @selected
+# required by @world (argument)
+# /etc/portage/package.mask/package.mask:
+=media-libs/freetype-2.5.5
+# required by media-libs/imlib2-1.4.7::gentoo
+# required by x11-misc/alock-94::gentoo[imlib]
+# required by @selected
+# required by @world (argument)
+# /etc/portage/package.mask/package.mask:
+=media-libs/freetype-2.6.3-r1
+# required by @__auto_slot_operator_replace_installed__ (argument)
+# /etc/portage/package.mask/package.mask:
+#>www-plugins/adobe-flash-10.2.152.27
+=app-text/poppler-0.42.0
+# required by =dev-qt/qtquickcontrols-5.7.0 (argument)
+# /usr/portage/profiles/package.mask:
+# Michael Palimaka <kensington@gentoo.org> (12 Aug 2016)
+# Requires revdeps to build with at least C++11. Bug 589412.
+# Masked for wider testing.
+=dev-qt/qtquickcontrols-5.7.0
+# required by app-office/libreoffice-bin-5.1.4.2::gentoo
+# required by @selected
+# required by @world (argument)
+# /etc/portage/package.mask/package.mask:
+#>www-plugins/adobe-flash-10.2.152.27
+=app-text/poppler-0.45.0

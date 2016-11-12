@@ -1,4 +1,10 @@
 #!/bin/bash
 
+CDIR="/tmp/chromium-cache-anon-proxy-${USER}"
+
+mkdir -p ${CDIR}
+
 chromium --incognito --proxy-server=socks5://127.0.0.1:9050 \
-         --user-data-dir=/home/sbar/.private/chromium-anon $@
+         --disk-cache-dir=${CDIR} \
+         --ppapi-flash-path=/usr/lib64/nsbrowser/plugins/PepperFlash/libpepflashplayer.so --ppapi-flash-version=15.0.0.152 \
+         --user-data-dir=/home/sbar/.private/chromium-anon-proxy $@

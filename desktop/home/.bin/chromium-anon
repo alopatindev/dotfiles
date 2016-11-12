@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CDIR="/tmp/chromium-cache-anon"
+CDIR="/tmp/chromium-cache-anon-${USER}"
 mkdir -p "${CDIR}"
 chmod 700 "${CDIR}"
-/usr/bin/chromium --incognito --user-data-dir=/home/sbar/.private/chromium-anon --disk-cache-dir=${CDIR} $@
+exec /usr/bin/chromium --incognito --user-data-dir=/home/sbar/.private/chromium-anon --disk-cache-dir=${CDIR} --ppapi-flash-path=/usr/lib64/nsbrowser/plugins/PepperFlash/libpepflashplayer.so --ppapi-flash-version=15.0.0.152 $@

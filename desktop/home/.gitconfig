@@ -1,9 +1,39 @@
 [user]
-	name = Alexander Lopatin
-	email = sbar.geek@gmail.com
+    name = Alexander Lopatin
+    email = alopatindev@gmail.com
+
 [core]
-	excludesfile = /home/sbar/.gitignore
+    excludesfile = ~/.gitignore.global
+    ignorecase = false
+
 [color]
-	ui = true
+    ui = true
+
 [push]
-	default = matching
+    default = matching
+
+[merge]
+    conflictstyle = diff3
+
+[alias]
+    s = status -s
+    l = log --oneline --decorate --all --graph
+    please = push --force-with-lease
+    g = grep --extended-regexp --break --heading --line-number
+    search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
+
+[color "diff"]
+    meta = yellow bold
+    frag = cyan
+    old = red bold
+    new = blue bold
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[grep]
+    break = true
+    heading = true
+    lineNumber = true

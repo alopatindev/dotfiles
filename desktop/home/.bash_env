@@ -1,7 +1,7 @@
 #export MAKEDICT_PLUGIN_DIR=/usr/share/makedict/codecs
 #export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
 #export PATH="${HOME}/.bin:/usr/lib64/qt5/bin/:${PATH}"
-export PATH="${HOME}/.bin:${PATH}"
+export PATH="${HOME}/.bin:${HOME}/.cargo/bin:${HOME}/.gem/ruby/2.3.0/bin:/usr/lib64/qt5/bin:${PATH}"
 export OLDPWD=~
 export BROWSER=chromium
 #export TERM=rxvt-unicode
@@ -13,5 +13,10 @@ export ANDROID_NDK='/opt/android-ndk/'
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sbar/necessitas/QtCreator/Qt/lib/"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/android-sdk-update-manager/tools/lib/"
 
-export EDITOR=vim
+export EDITOR=nvim
 export TERMINAL=xterm
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export ANDROID_TOOLCHAIN="/home/sbar/android-ndk-toolchain/"
+export PATH="$PATH:$ANDROID_TOOLCHAIN/bin"

@@ -16,18 +16,18 @@ function network_status()
 
     for i = 1, table.getn(lines) do
         if string.match(lines[i], "default via.* dev " .. WLAN_IFACE) ~= nil then
-            text = '<b>[ NON-SECURED CONNECTION! ]</b>'
+            text = '<b>[ connected ]</b>'
             break
         end
     end
-    if text == '' then
-        for i = 1, table.getn(lines) do
-            if string.match(lines[i], "default via.* dev " .. PPP_IFACE) ~= nil then
-                text = '[ secured connection ]'
-                break
-            end
-        end
-    end
+--    if text == '' then
+--        for i = 1, table.getn(lines) do
+--            if string.match(lines[i], "default via.* dev " .. PPP_IFACE) ~= nil then
+--                text = '[ secured connection ]'
+--                break
+--            end
+--        end
+--    end
 
     if text == '' then
         text = '<b>[ WRONG connection? ]</b>'

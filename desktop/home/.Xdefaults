@@ -2,93 +2,92 @@ urxvt*color0: #000000
 urxvt*color1: #e01010
 urxvt*color2: #00AA00
 urxvt*color3: #FFFF00
-#urxvt*color4: #0e270a
-#urxvt*color4: #107E00
-#urxvt*color4: #008C8C
-#urxvt*color4: #00AEAE
+! urxvt*color4: #0e270a
+! urxvt*color4: #107E00
+! urxvt*color4: #008C8C
+! urxvt*color4: #00AEAE
 urxvt*color4: #6A6A6A
 urxvt*color5: #A020F0
 urxvt*color6: #5d9457
-urxvt*color7: #fefefe
+urxvt*color7: #fafafa
 urxvt*color8: #6a6a6a
 urxvt*color9: #FF5555
 urxvt*color10: #00EE00
 urxvt*color11: #ffff2f
 urxvt*color12: #9E9EFF
-#urxvt*color12: #5C5CFF
+! urxvt*color12: #5C5CFF
 urxvt*color13: #FF0000
-#urxvt*color14: #00FFFF
+! urxvt*color14: #00FFFF
 urxvt*color14: #00EFEF
 urxvt*color15: #ffffff
 
 
-urxvt*background: rgba:0000/0000/0000/dddd
+! urxvt*background: rgba:0000/0000/0000/dddd
 urxvt*depth: 32
 
 
 
 XTerm*selectToClipboard: true
-#XTerm*BellIsUrgent: true
+! XTerm*BellIsUrgent: true
 
-#urxvt*secondaryScroll: true
-#urxvt*geometry: 72x26+0+0
-#urxvt*geometry: 84x31+0+0
+! urxvt*secondaryScroll: true
+! urxvt*geometry: 72x26+0+0
+! urxvt*geometry: 84x31+0+0
 urxvt*geometry: 84x25+0+0
-#urxvt*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
-#urxvt*font: xft:DejaVu Sans Mono:size=15
-#urxvt*font: xft:DejaVu Sans Mono:size=15:pixelsize=15
+! urxvt*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+! urxvt*font: xft:DejaVu Sans Mono:size=15
+! urxvt*font: xft:DejaVu Sans Mono:size=15:pixelsize=15
 urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
 urxvt*foreground: white
 urxvt*background: black
 urxvt*scrollBar: false
 urxvt*cursorColor: #eee
-#urxvt*perl-ext: tabbed
+! urxvt*perl-ext: tabbed
 
 xterm*foreground: #cccccc
-#xterm*foreground: #eeeeee
+! xterm*foreground: #eeeeee
 xterm*background: black
-#xterm*background: #222222
-#xterm*background: #002f2f
-#xterm*color0: #222222
+! xterm*background: #222222
+! xterm*background: #002f2f
+! xterm*color0: #222222
 xterm*color0: black
-xterm*color1: #e01010
-xterm*color2: #00AA00
-xterm*color3: #FFFF00
-#xterm*color4: #0e270a
-#xterm*color4: #107E00
-#xterm*color4: #008C8C
-#xterm*color4: #00AEAE
-xterm*color4: #6A6A6A
-#xterm*color5: #A020F0
-xterm*color5: #0005A2
-xterm*color6: #5d9457
-xterm*color7: #fefefe
-xterm*color8: #6a6a6a
-xterm*color9: #FF5555
-xterm*color10: #00EE00
-xterm*color11: #ffff2f
-xterm*color12: #9E9EFF
-xterm*color13: #FF0000
-#xterm*color14: #00FFFF
-xterm*color14: #00EFEF
+xterm*color1: #E53935
+xterm*color2: #009688
+xterm*color3: #FFAB00
+xterm*color4: #616161
+#xterm*color5: #80D8FF
+xterm*color5: #F06292
+xterm*color6: #4CAF50
+xterm*color7: white
+xterm*color8: #9E9E9E
+xterm*color9: #DD2C00
+xterm*color10: #76FF03
+xterm*color11: #FFCA28
+xterm*color12: #039BE5
+xterm*color13: #F50057
+! xterm*color14: #00FFFF
+xterm*color14: #80D8FF
 xterm*color15: #ffffff
 
 xterm*secondaryScroll: true
-#xterm*geometry: 71x52+0+0
-#xterm*geometry: 80x38+0+0
-#xterm*geometry: 101x38+0+0
-#xterm*geometry: 84x30+0+0
+! xterm*geometry: 71x52+0+0
+! xterm*geometry: 80x38+0+0
+! xterm*geometry: 101x38+0+0
+! xterm*geometry: 84x30+0+0
 xterm*geometry: 84x25+0+0
-#xterm*font: -*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*
-xterm*faceName: DejaVu Sans Mono
-#xterm*faceName: Droid Sans Mono
-xterm*faceSize: 20
-#xterm*wideFont: -misc-fixed-medium-r-normal-ja-0-0-100-100-c-0-iso10646-1
+! xterm*font: -*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*
+! xterm*faceName: DejaVu Sans Mono
+xterm*faceName: PragmataPro
+!xterm*faceName: Pragmata
+! xterm*faceName: Droid Sans Mono
+! xterm*faceSize: 17
+xterm*faceSize: 18
+! xterm*wideFont: -misc-fixed-medium-r-normal-ja-0-0-100-100-c-0-iso10646-1
 xterm*scrollBar: false
 xterm*cursorColor: #EEE
-#xterm*boldMode: true
-#xterm*colorBDMode: true
-#xterm*colorBD: rgb:fc/fc/fc
+! xterm*boldMode: true
+! xterm*colorBDMode: true
+! xterm*colorBD: rgb:fc/fc/fc
 
 
 XCalc*ti.background: #555555
@@ -225,37 +224,38 @@ gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
 
 
 
-##Xft.dpi:        120
-#Xft.rgba:       none
+! #Xft.dpi:        120
+! Xft.rgba:       none
 
-##Xft.hinting:    false
-##Xft.hintstyle:  hintslight
-#Xft.hintstyle:  hintmedium
+! #Xft.hinting:    false
+! Xft.hintstyle:  hintslight
+! Xft.hintstyle:  hintmedium
+Xft.hintstyle:  hintfull
 
-##Xft.hintstyle:  hintfull
-#Xft.antialias:  true
+! Xft.antialias:  true
 
 
-#Xft.dpi: 96
-Xft.dpi: 160
-###Xft.antialias: true
-#Xft.rgba: rgb
-###Xft.hinting: true
-#Xft.lcdfilter: lcddefault
+! Xft.dpi: 96
+Xft.dpi: 110
+! Xft.dpi: 160
+! ##Xft.antialias: true
+!Xft.rgba: rgb
+!Xft.hinting: true
+!Xft.lcdfilter: lcddefault
 
-##Xft.hinting: true
-###Xft.autohint: true
-##Xft.autohint: false
-###Xft.hintstyle: hintmedium
-###Xft.hintstyle: hintslight
-##Xft.hintstyle: hintfull
-##Xft.antialias: true
-##Xft.hintstyle: hintmedium
+! #Xft.hinting: true
+! ##Xft.autohint: true
+! #Xft.autohint: false
+! ##Xft.hintstyle: hintmedium
+! ##Xft.hintstyle: hintslight
+! #Xft.hintstyle: hintfull
+! #Xft.antialias: true
+! #Xft.hintstyle: hintmedium
 
-#Xft.autohint: true
+! Xft.autohint: true
 
-#Xcursor.theme:~/.cursors/FlatbedCursors.Blue.Regular
-#Xcursor.size: 64
-#Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
-#Xcursor.theme: Bluecurve
+! Xcursor.theme:~/.cursors/FlatbedCursors.Blue.Regular
+! Xcursor.size: 64
+! Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
+! Xcursor.theme: Bluecurve
 

@@ -6,7 +6,9 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
-require("lib/second_panel")
+-- require("lib/second_panel")
+
+-- io.stderr:write(package.path)
 
 beautiful.init("/home/sbar/.config/awesome/theme.lua")
 
@@ -70,9 +72,10 @@ mymainmenu = awful.menu({ items = {} })
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
-mytextclock = awful.widget.textclock({ align = "right" }, "[ %a %d %b, %H:%M (%p) ] ", 2)
+mytextclock = awful.widget.textclock({ align = "right" }, "[ %a %d %b, %I:%M %p ] ", 2)
 mysystray = widget({ type = "systray" })
 myskb = widget({type = "textbox", name = "myskb"})
+myskb.text = ''
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -83,14 +86,22 @@ mytaglist = {}
 mytasklist = {}
 
 spanelwi = widget({type = "textbox", name = "spanelwi"})
-spaneltimer = timer({timeout = 1})
-spaneltimer:add_signal("timeout",
-    function()
-        spanelwi.text = second_panel()
-    end
-)
+--spaneltimer = timer({timeout = 0.4})
+--spaneltimer:add_signal("timeout",
+--    function()
+--        f = io.open('/tmp/.sbar_secondpanel')
+--        if f ~= nil then
+--            text = f:read()
+--            if text ~= nil then
+--                spanelwi.text = text
+--            end
+--            f:close()
+--        end
+--    end
+--)
 spanelwi.text = ""
-spaneltimer:start()
+--awful.widget.layout.margins[spanelwi.widget] = { left = 10 }
+--spaneltimer:start()
 
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
@@ -108,10 +119,10 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    --mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
-    mywibox[s] = awful.wibox({ position = "top", height = "38", screen = s })
-    --box2[s] = awful.wibox({ position = "bottom", height = "17", screen = s })
-    box2[s] = awful.wibox({ position = "bottom", height = "38", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
+    --mywibox[s] = awful.wibox({ position = "top", height = "38", screen = s })
+    box2[s] = awful.wibox({ position = "bottom", height = "22", screen = s })
+    --box2[s] = awful.wibox({ position = "bottom", height = "38", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -123,12 +134,16 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         layout = awful.widget.layout.horizontal.rightleft,
         mytextclock,
-        myskb,
+        -- myskb,
         s == 1 and mysystray or nil,
         mytasklist[s],
     }
 
-    box2[s].widgets = { spanelwi }
+    box2[s].widgets = {
+        layout = awful.widget.layout.horizontal.leftright,
+        myskb,
+        spanelwi
+    }
 end
 -- }}}
 
@@ -366,13 +381,13 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     -- Set chromium to always map on tags number 2 of screen 1.
-    { rule = { class = "[Cc]hrome" },
+    { rule = { class = "chromium-browser-chromium" },
        properties = { tag = tags[1][3] } },
     { rule = { class = "XTerm", name = "terms" }, properties = { tag = tags[1][2]}},
     { rule = { class = "XTerm", name = "index.wiki .*" }, properties = { tag = tags[1][2]}},
 
 
-    { rule =  { class = "Qtcreator"} , properties = { tag = tags[1][6], floating = false }},
+    { rule =  { class = "Qtcreator"} , properties = { tag = tags[1][4], floating = false }},
     { rule =  { class = "Gimp"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Openshot" }, properties = { tag = tags[1][6] }},
     { rule =  { class = "Gimp", name = "Open Image"}, properties = { floating = true }},
@@ -409,6 +424,7 @@ awful.rules.rules = {
     { rule =  { class = "Pidgin" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Gajim.py"  }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Qutim" }, properties = { tag = tags[1][1] }},
+    { rule =  { class = "qTox" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Skype" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Mangler" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Gucharmap" }, properties = { tag = tags[1][1] }},
@@ -429,6 +445,8 @@ awful.rules.rules = {
     { rule =  { class = "XTerm", name = "python*"   }, properties = { tag = tags[1][1], floating = false}},
     { rule =  { class = "XTerm", name = "MOC*"  }, properties = { tag = tags[1][5], floating = false }},
     { rule =  { class = "XTerm", name = "/var/log/*" }, properties = { tag = tags[1][10], floating = false }},
+    { rule =  { class = "QDeviceMonitor" }, properties = { tag = tags[1][10], floating = false }},
+    { rule =  { class = "Monitor" }, properties = { tag = tags[1][10], floating = false }},
     { rule =  { class = "Sonata" }, properties = { tag = tags[1][5], floating = false }},
     { rule =  { class = "Gmpc", name = "gmpc"        }, properties = { tag = tags[1][5], floating = false}},
     { rule =  { class = "Last.fm*"    }, properties = { tag = tags[1][5] }},
@@ -460,7 +478,7 @@ awful.rules.rules = {
     { rule =  { class = "config.hs", name = "config.hs:config.hs"}, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "[gG]ens", name = "gens"  }, properties = { tag = tags[1][7], floating = true }},
     { rule =  { class = "Wine", name = "Gens32 Surreal.exe" }, properties = { tag = tags[1][7], floating = true }},
-    { rule =  { class = "Gvim" }, properties = { tag = tags[1][1] }},
+    { rule =  { class = "Gvim" }, properties = { tag = tags[1][3] }},
     { rule =  { class = "Leafpad" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Audacity" }, properties = { tag = tags[1][5] }},
     { rule =  { class = "Qtractor" }, properties = { tag = tags[1][1] }},
@@ -468,6 +486,7 @@ awful.rules.rules = {
     { rule =  { class = "Jokosher", name = "jokosher" }, properties = { tag = tags[1][1] }},
     { rule =  { name = "Qt Designer" }, properties = { tag = tags[1][6], floating = false }},
     { rule =  { name = "Qtcreator" }, properties = { tag = tags[1][6], floating = false }},
+    { rule =  { name = "jetbrains-idea-ce" }, properties = { tag = tags[1][6], floating = false }},
     { rule =  { name = "MonoDevelop" }, properties = { tag = tags[1][6], floating = false }},
     { rule =  { name = "Wxmaxima" }, properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "java-lang-Thread" }, properties = { tag = tags[1][6], floating = false }},
@@ -567,6 +586,8 @@ awful.rules.rules = {
     { rule =  { class = "ArmoryQt.py" }, properties = { tag = tags[1][7] }},
     { rule =  { class = "Litecoin-qt" }, properties = { tag = tags[1][7] }},
     { rule =  { name = "Ponic" }, properties = { tag = tags[1][2], floating = true }},
+    { rule =  { class = "obs" }, properties = { tag = tags[1][7], floating = false }},
+    { rule =  { class = "Bless" }, properties = { tag = tags[1][4], floating = false }},
 }
 
 

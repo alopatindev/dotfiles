@@ -7,6 +7,8 @@ logger $@
 #    gajim-remote add_contact $(echo "$1" | sed -e 's/^xmpp://')
 if (echo "$1" | grep -q '\.pdf$'); then
     evince "$1"
+elif (echo "$1" | egrep -q '\.(txt|log)$'); then
+    gvim "$1"
 else
     source /usr/bin/xdg-open
 fi

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #CHOICE=$(printf "quit\nhibernate\nreboot\nhalt\n"|~/.dwm/dmenu -p 'quit??!!')
-~/.bin/$(echo -e 'hibernate\nreboot\nhalt\n'|~/.bin/dmenu -p 'quit??!!')
+~/.bin/$(echo -e 'standby\nreboot\nhalt\n'|~/.bin/dmenu -p 'quit??!!')
+#~/.bin/$(echo -e 'hibernate\nreboot\nhalt\n'|~/.bin/dmenu -p 'quit??!!')
 
 #case $CHOICE in
 #	#quit)

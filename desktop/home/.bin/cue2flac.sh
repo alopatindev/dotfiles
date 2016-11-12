@@ -11,7 +11,9 @@ fi
 
 #for i in *.wv.cue *.flac.cue */*.flac.cue
 for i in *.cue
+#for i in $(find . -type f -iname '*.cue*')
 do
+    echo $i
     cue2tracks -R -c flac -o "${MUSICDIR}/%P/%D - %A/%N - %t" "$i"
 done
 

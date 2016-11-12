@@ -1,9 +1,9 @@
 source ~/.bashrc
 
-xrandr --dpi 160
+#xrandr --dpi 160
 
 # xmodmap -e "pointer = 1 3 2"
-setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp_led:scroll,compose:ralt &
+(setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp_led:scroll,compose:rwin && xmodmap .Xmodmap) &
 
 (synclient HorizTwoFingerScroll=1 \
           PalmDetect=1 PalmMinWidth=40 \
@@ -17,28 +17,32 @@ syndaemon -t -k -i 1 -d ) &
 
 #xsetroot -solid '#464646' &
 #feh -q --bg-scale /home/sbar/pictures/wallpapers/cold_laptop.png &
-xmodmap .Xmodmap &
 #~/.bin/dmenu_path > /tmp/.dmenu &
 xbindkeys
 #xterm -T 'terms' -e 'screen -DRm' &
 xterm -T 'terms' -e 'tmux attach || tmux' &
-xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -f -n 1000 /var/log/messages' &
+#xterm -geometry 141x59+0+0 -fg white -bg black -sb -T '/var/log/messages' -e 'tail -F -n 1000 /var/log/messages' &
+~/git/qdevicemonitor/qdevicemonitor/qdevicemonitor &
 ~/.bin/psi &
+#qtox &
 chromium &
 conky -d
 #~/.bin/sskype &
 stardict -h &
-~/.progs/gmailcheck.sh &
+#~/.progs/gmailcheck.sh &
+~/scripts/edit-server &
+~/.config/awesome/lib/second_panel.sh &
 
 #xscreensaver -no-splash &
 #~/coding/lightsOn/lightsOn.sh &
 
-(~/.bin/skb 'myskb.text = " [ \%s ]"' | awesome-client) &
+skb | while read x ; do echo "myskb.text = '<b>[ $x ]</b>'" | awesome-client ; done &
 exec awesome
 #exec dwm
 #exec i3
 
-killall gmailcheck.sh
+#killall gmailcheck.sh
 killall lightsOn.sh
+killall edit-server
 
 # vim: textwidth=0:ft=sh

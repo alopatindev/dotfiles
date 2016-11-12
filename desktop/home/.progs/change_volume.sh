@@ -2,16 +2,16 @@
 
 WIDTH=700
 HEIGHT=65
-STEP=10
+STEP=3
 #DISPLAY=:0
 
-VOL=$(amixer sget Master|grep 'Mono:'|awk '{print $4}'|sed 's/\[//g'|sed 's/\%\]//g')
-amixer -q sset Master "${STEP}%${1}"
-VOL=$(amixer sget Master|grep 'Mono:'|awk '{print $4}'|sed 's/\[//g'|sed 's/\%\]//g')
+VOL=$(amixer sget Headphone|grep 'Front Left:'|awk '{print $5}'|sed 's/\[//g'|sed 's/\%\]//g')
+amixer -q sset Headphone "${STEP}%${1}"
+VOL=$(amixer sget Headphone|grep 'Front Left:'|awk '{print $5}'|sed 's/\[//g'|sed 's/\%\]//g')
 echo 'volume:'$VOL
 P=$((${VOL}*${WIDTH}/100))
 
-MUT=$(amixer sget Master|grep 'Mono:'|awk '{print $6}')
+MUT=$(amixer sget Headphone|grep 'Front Left:'|awk '{print $7}')
 if [ $MUT == "[on]" ]; then
     MUT=""
 else
