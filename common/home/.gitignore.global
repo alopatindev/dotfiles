@@ -1,0 +1,62 @@
+# temporary
+tags
+*.swp
+.DS_Store
+*.bak
+*~
+
+# C++
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.dll
+*.dylib
+
+# Qt
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+*-build-*
+*build-*
+.qmake.stash
+*.autosave
+*.qmlproject.user
+*.qmlproject.user.*
+
+# Rust
+rusty-tags.vi
+*.rs.bk
+target
+Cargo.lock
+
+# Python
+__pycache__
+*.py[co]
+*.egg-info
+
+# TeX
+*.eps
+*.dvi
+*.log
+*.out
+*.aux
+*.lof
+*.lot
+*.fls
+*.toc
+*-converted-to.*
+
+# cmake
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
