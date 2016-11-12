@@ -21,23 +21,12 @@ urxvt*color13: #FF0000
 urxvt*color14: #00EFEF
 urxvt*color15: #ffffff
 
-
 ! urxvt*background: rgba:0000/0000/0000/dddd
 urxvt*depth: 32
-
-
 
 XTerm*selectToClipboard: true
 ! XTerm*BellIsUrgent: true
 
-! urxvt*secondaryScroll: true
-! urxvt*geometry: 72x26+0+0
-! urxvt*geometry: 84x31+0+0
-urxvt*geometry: 84x25+0+0
-! urxvt*font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
-! urxvt*font: xft:DejaVu Sans Mono:size=15
-! urxvt*font: xft:DejaVu Sans Mono:size=15:pixelsize=15
-urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
 urxvt*foreground: white
 urxvt*background: black
 urxvt*scrollBar: false
@@ -45,17 +34,12 @@ urxvt*cursorColor: #eee
 ! urxvt*perl-ext: tabbed
 
 xterm*foreground: #cccccc
-! xterm*foreground: #eeeeee
 xterm*background: black
-! xterm*background: #222222
-! xterm*background: #002f2f
-! xterm*color0: #222222
 xterm*color0: black
 xterm*color1: #E53935
 xterm*color2: #009688
 xterm*color3: #FFAB00
 xterm*color4: #616161
-#xterm*color5: #80D8FF
 xterm*color5: #F06292
 xterm*color6: #4CAF50
 xterm*color7: white
@@ -70,25 +54,9 @@ xterm*color14: #80D8FF
 xterm*color15: #ffffff
 
 xterm*secondaryScroll: true
-! xterm*geometry: 71x52+0+0
-! xterm*geometry: 80x38+0+0
-! xterm*geometry: 101x38+0+0
-! xterm*geometry: 84x30+0+0
-xterm*geometry: 84x25+0+0
-! xterm*font: -*-terminus-bold-r-*-*-24-*-*-*-*-*-iso10646-*
-! xterm*faceName: DejaVu Sans Mono
 xterm*faceName: PragmataPro
-!xterm*faceName: Pragmata
-! xterm*faceName: Droid Sans Mono
-! xterm*faceSize: 17
-xterm*faceSize: 18
-! xterm*wideFont: -misc-fixed-medium-r-normal-ja-0-0-100-100-c-0-iso10646-1
 xterm*scrollBar: false
 xterm*cursorColor: #EEE
-! xterm*boldMode: true
-! xterm*colorBDMode: true
-! xterm*colorBD: rgb:fc/fc/fc
-
 
 XCalc*ti.background: #555555
 XCalc*ti.bevel.background:		#555555
@@ -96,8 +64,6 @@ XCalc*ti.bevel.background:		#555555
 XCalc*ti.bevel.borderColor:		#555555
 XCalc*ti.bevel.screen*foreground:	#FFFFFF
 XCalc*ti.bevel.screen*background:	#555555
-XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*
-
 
 XCalc*ti.button1.foreground:           #FFFFFF
 XCalc*ti.button1.background:           #555555
@@ -180,9 +146,6 @@ XCalc*ti.button39.background:           #555555
 XCalc*ti.button40.foreground:           #FFFFFF
 XCalc*ti.button40.background:           #555555
 
-
-
-
 *background:			#555555
 *foreground:			#FFFFFF
 
@@ -203,8 +166,6 @@ foreground	gray90;\
 lines		-1,0,0,0,0,-1
 
 
-
-
 XClock.Clock.hourColor:		white
 XClock.Clock.minuteColor:	#555555
 XClock.Clock.secondColor:	#EBCA40
@@ -213,49 +174,4 @@ XClock.Clock.minorColor:	#5D9457
 XClock.Clock.background:	black
 XClock.Clock.update:		1
 
-
-Emacs.font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
-
 Xvidcap*mouse_wanted:	2
-
-gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
-
-
-
-
-
-! #Xft.dpi:        120
-! Xft.rgba:       none
-
-! #Xft.hinting:    false
-! Xft.hintstyle:  hintslight
-! Xft.hintstyle:  hintmedium
-Xft.hintstyle:  hintfull
-
-! Xft.antialias:  true
-
-
-! Xft.dpi: 96
-Xft.dpi: 110
-! Xft.dpi: 160
-! ##Xft.antialias: true
-!Xft.rgba: rgb
-!Xft.hinting: true
-!Xft.lcdfilter: lcddefault
-
-! #Xft.hinting: true
-! ##Xft.autohint: true
-! #Xft.autohint: false
-! ##Xft.hintstyle: hintmedium
-! ##Xft.hintstyle: hintslight
-! #Xft.hintstyle: hintfull
-! #Xft.antialias: true
-! #Xft.hintstyle: hintmedium
-
-! Xft.autohint: true
-
-! Xcursor.theme:~/.cursors/FlatbedCursors.Blue.Regular
-! Xcursor.size: 64
-! Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
-! Xcursor.theme: Bluecurve
-

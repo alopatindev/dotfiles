@@ -1,0 +1,13 @@
+#include ".Xdefaults.global"
+
+urxvt*geometry: 84x25+0+0
+urxvt*font: -*-terminus-medium-r-normal-*-*-320-*-*-*-*-iso10646-*
+xterm*geometry: 84x25+0+0
+xterm*faceSize: 20
+
+XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*
+
+Emacs.font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
+
+Xft.dpi: 160
