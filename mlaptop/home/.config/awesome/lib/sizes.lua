@@ -1,0 +1,3 @@
+safeCoords = {x = 2560, y = 1600}
+top_box_height = "38"
+bottom_box_height = "38"

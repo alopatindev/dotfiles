@@ -7,14 +7,10 @@ require("beautiful")
 -- Notification library
 require("naughty")
 -- require("lib/second_panel")
-
--- io.stderr:write(package.path)
+require("lib/sizes")
 
 beautiful.init("/home/sbar/.config/awesome/theme.lua")
 
--- safeCoords = {x = 1024, y = 598}
--- safeCoords = {x = 1366, y = 768}
-safeCoords = {x = 2560, y = 1600}
 mouse.coords(safeCoords)
 
 terminal = "xterm"
@@ -119,10 +115,8 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", height = "25", screen = s })
-    --mywibox[s] = awful.wibox({ position = "top", height = "38", screen = s })
-    box2[s] = awful.wibox({ position = "bottom", height = "22", screen = s })
-    --box2[s] = awful.wibox({ position = "bottom", height = "38", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = top_box_height, screen = s })
+    box2[s] = awful.wibox({ position = "bottom", height = bottom_box_height, screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
