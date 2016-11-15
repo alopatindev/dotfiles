@@ -1,0 +1,46 @@
+# vim: textwidth=0
+alignment top_left
+gap_x 4
+gap_y 8
+#maximum_width 690
+#maximum_width 1366
+maximum_width 2560
+#font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+
+use_xft yes
+#xftfont DejaVu Sans Mono:size=10
+#xftfont DejaVu Sans Mono:size=14
+#xftfont Droid Sans Mono:size=23
+xftfont Droid Sans Mono:size=18
+#xftfont Terminus:size=10
+override_utf8_locale yes
+default_color CCCCCC
+out_to_console no
+update_interval 2.5
+draw_shades no
+double_buffer yes
+text_buffer_size 8096
+# ${execi 600 /home/sbar/scripts/deadline.py}
+#${tail /home/sbar/txt/todo.txt 20}
+#${if_mpd_playing}${endif}
+#$mpd_name ($mpd_bitrate kbit/s) ($mpd_file)
+#[$mpd_status] $mpd_artist - $mpd_title ($mpd_album)
+#m/b: $acpitemp°C
+#Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
+#Погода  ${execi 600 /home/sbar/scripts/st-petersburg-temperature.py}
+#${color #ffffff}${execi 5 ~/scripts/spanel/nonoften.lua}${exec ~/scripts/spanel/second_panel.lua}
+#${hddtemp}°C
+#${execi 60 ~/scripts/my_btc.py 1CMjkPor1K9VuwrY5R8gus3McGtSSa7N8N}
+
+TEXT
+
+${color #FFFFFF}wlp3s0 down: ${color #CCCCCC}${downspeedf wlp3s0}KiB/s${offset 30}${color #FFFFFF}wlp3s0 up: ${color #CCCCCC}${upspeedf wlp3s0}KiB/s
+${downspeedgraph wlp3s0 100,400 CCCCCC FFFFFF} ${upspeedgraph wlp3s0 100,400 CCCCCC FFFFFF}
+${color #FFFFFF}disk I/O
+${diskiograph 100,400 CCCCCC FFFFFF}${color #CCCCCC}
+${color #CCCCCC}${cpu cpu0}%${offset 100} ${color #CCCCCC}${cpu cpu1}%${offset 100} ${color #CCCCCC}${cpu cpu2}%${offset 100} ${color #CCCCCC}${cpu cpu3}%
+${cpugraph cpu0 100,200 CCCCCC FFFFFF} ${cpugraph cpu1 100,200 CCCCCC FFFFFF} ${cpugraph cpu2 100,200 CCCCCC FFFFFF} ${cpugraph cpu3 100,200 CCCCCC FFFFFF}
+
+memory: $mem ${membar 20,300}      swap: $swap ${swapbar 20,300}
+
+${exec ~/scripts/temp.sh}

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/.bin/$(echo -e 'standby\nreboot\nhalt\n' | ~/.bin/dmenu -p 'quit??!!')
