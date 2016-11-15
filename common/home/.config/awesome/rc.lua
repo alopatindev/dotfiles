@@ -236,7 +236,18 @@ globalkeys = awful.util.table.join(
     -- awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
     awful.key({ modkey,           }, "Tab",
         function ()
-            awful.client.focus.history.previous()
+            --awful.client.focus.history.previous()
+            awful.client.focus.byidx(1)
+            if client.focus then
+                client.focus:raise()
+            end
+        end
+    ),
+
+    awful.key({ modkey, "Shift"   }, "Tab",
+        function ()
+            --awful.client.focus.history.previous()
+            awful.client.focus.byidx(-1)
             if client.focus then
                 client.focus:raise()
             end
@@ -388,6 +399,7 @@ awful.rules.rules = {
 
 
     { rule =  { class = "Qtcreator"} , properties = { tag = tags[1][4], floating = false }},
+    { rule =  { class = "jetbrains-idea-ce"} , properties = { tag = tags[1][4], floating = false }},
     { rule =  { class = "Gimp"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Openshot" }, properties = { tag = tags[1][6] }},
     { rule =  { class = "Gimp", name = "Open Image"}, properties = { floating = true }},
@@ -478,7 +490,7 @@ awful.rules.rules = {
     { rule =  { class = "config.hs", name = "config.hs:config.hs"}, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "[gG]ens", name = "gens"  }, properties = { tag = tags[1][7], floating = true }},
     { rule =  { class = "Wine", name = "Gens32 Surreal.exe" }, properties = { tag = tags[1][7], floating = true }},
-    { rule =  { class = "Gvim" }, properties = { tag = tags[1][3] }},
+    { rule =  { class = "Gvim" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Leafpad" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Audacity" }, properties = { tag = tags[1][5] }},
     { rule =  { class = "Qtractor" }, properties = { tag = tags[1][1] }},
@@ -546,6 +558,8 @@ awful.rules.rules = {
     { rule =  { class = "Gnome-system-monitor", name = "gnome-system-monitor" }, properties = { tag = tags[1][1] }},
     { rule =  { class = "Lazarus" }, properties = { tag = tags[1][1], floating = true }},
     { rule =  { class = "Easytag" }, properties = { tag = tags[1][1] }},
+    { rule =  { class = "Octave" }, properties = { tag = tags[1][4] }},
+    { rule =  { class = "Wxmaxima" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Gparted" }, properties = { tag = tags[1][7] }},
     { rule =  { class = "Tile Racer*"}, properties = { floating = true }},
     { rule =  { class = "Dia", name = "dia*" }, properties = { tag = tags[1][6], floating = false }},
