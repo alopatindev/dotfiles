@@ -1,0 +1,28 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+#set -e
+
+#umount /dev/mtdblock3
+#mount --bind / /overlay
+
+#mount -o noatime,nodiratime /dev/sda5 /var/log
+
+mount --bind /log /var/log
+
+/etc/init.d/syslog restart
+
+mount -o remount,noatime,nodiratime,discard /dev/sda2
+# mount -o noatime,nodiratime,ro /dev/sda6 /home
+mount -o ro,noatime,nodiratime,discard /dev/sdb6 /home_sdb
+
+#/etc/init.d/sshd restart
+#/etc/init.d/dropbear restart
+#/etc/init.d/sshd restart
+
+mkdir -p /var/db/sudo
+
+cp -av /home/sbar/.ssh /tmp/.sbar-ssh
+mount --bind /tmp/.sbar-ssh /home/sbar/.ssh
+
+exit 0

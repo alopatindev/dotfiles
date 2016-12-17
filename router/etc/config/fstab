@@ -1,0 +1,52 @@
+config global automount
+	option from_fstab 1
+	option anon_mount 0
+	#option auto_mount 1
+	option auto_mount 0
+	option delay_root 5
+
+config global autoswap
+	option from_fstab 1
+	option anon_swap 0
+
+#config mount
+#	option target	/mnt/sda99
+#	option device	/dev/sda99
+#	option fstype	ext2
+#	option options	rw,noatime
+#	option enabled	0
+#	option enabled_fsck	0
+#	option is_rootfs	0
+
+#config mount
+#	option target '/overlay/'
+#	option device /dev/sda2
+#	#option uuid '31060cfb-6f67-4c9f-8241-b17c9d1ff2b5'
+#	option fstype ext4
+#	option options rw,sync,noatime,nodiratime
+#	option enabled 1
+#	option enabled_fsck 0
+#	#option is_rootfs 1
+
+#config mount
+#	option target '//'
+#	option device /dev/sda2
+#	#option uuid '31060cfb-6f67-4c9f-8241-b17c9d1ff2b5'
+#	option fstype ext4
+#	option options rw,sync,noatime,nodiratime
+#	option enabled 1
+#	option enabled_fsck 0
+#	#option is_rootfs 1
+
+#config mount
+#	option target '/tmp/'
+#	option device /dev/sda5
+#	option fstype ext4
+#	option options rw,noatime,nodiratime
+#	option enabled 1
+#	option enabled_fsck 0
+
+config swap
+	option device	/dev/sda1
+	option enabled	1
+

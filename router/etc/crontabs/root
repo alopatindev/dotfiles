@@ -1,0 +1,20 @@
+# every two hours, namely at midnight, 2am, 4am, 6am, 8am, and so on
+#0 */2 * * * /root/updateddnsinfo.sh
+
+# every minute
+#* * * * * logger test
+
+# i wanna run it at 01:00
+#0 1 * * * /etc/init.d/rtorrentd start
+#0 4 * * * /etc/init.d/rtorrentd start
+#0 4 * * * /usr/local/bin/sync-openwrt-mirror.sh
+
+# an this one at 07:00
+#0 7 * * * /etc/init.d/rtorrentd stop
+#0 10 * * * /etc/init.d/rtorrentd stop
+
+
+
+## Minute   Hour   Day of Month       Month          Day of Week        Command
+## (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)
+#    0        2          12             *               0,6           /usr/bin/find

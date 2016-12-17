@@ -1,0 +1,19 @@
+#!/bin/bash /etc/rc.common
+
+U=sbar
+
+start () {
+    mount -o rw,remount /dev/sda6
+    #su - "${U}" -c '/usr/sbin/screen -D -m -S rtorrentd /usr/bin/rtorrent' &
+    #echo '/usr/sbin/screen -D -m -S rtorrentd /usr/bin/rtorrent' > /tmp/rtorrent.sh
+    #sudo -u "${U}" -- /tmp/rtorrent.sh &
+    sudo -u "${U}" -- /usr/sbin/screen -D -m -S rtorrentd /usr/bin/rtorrent &
+    logger 'rtorrentd started'
+}
+
+stop () {
+    killall rtorrent
+    #killall -9 rtorrent
+    mount -o ro,remount /dev/sda6
+    logger 'rtorrentd stopped'
+}
