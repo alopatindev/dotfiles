@@ -1,0 +1,463 @@
+desktop
+    description: Desktop Computer
+    product: All Series (All)
+    vendor: ASUS
+    version: System Version
+    serial: System Serial Number
+    width: 64 bits
+    capabilities: smbios-2.8 dmi-2.7 vsyscall32
+    configuration: administrator_password=enabled boot=normal chassis=desktop family=ASUS MB frontpanel_password=disabled keyboard_password=disabled power-on_password=disabled sku=All uuid=[censored]
+  *-core
+       description: Motherboard
+       product: SABERTOOTH Z97 MARK 2
+       vendor: ASUSTeK COMPUTER INC.
+       physical id: 0
+       version: Rev 1.xx
+       serial: [censored]
+       slot: To be filled by O.E.M.
+     *-firmware
+          description: BIOS
+          vendor: American Megatrends Inc.
+          physical id: 0
+          version: 2702
+          date: 10/27/2015
+          size: 64KiB
+          capacity: 8128KiB
+          capabilities: pci apm upgrade shadowing cdboot bootselect socketedrom edd int13floppy1200 int13floppy720 int13floppy2880 int5printscreen int9keyboard int14serial int17printer acpi usb biosbootspecification uefi
+     *-memory
+          description: System Memory
+          physical id: 41
+          slot: System board or motherboard
+          size: 16GiB
+        *-bank:0
+             description: DIMM [empty]
+             product: [Empty]
+             vendor: [Empty]
+             physical id: 0
+             serial: [Empty]
+             slot: DIMM_A1
+        *-bank:1
+             description: DIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: CMY16GX3M2A2400C11
+             vendor: AMI
+             physical id: 1
+             serial: 00000000
+             slot: DIMM_A2
+             size: 8GiB
+             width: 64 bits
+             clock: 1600MHz (0.6ns)
+        *-bank:2
+             description: DIMM [empty]
+             product: [Empty]
+             vendor: [Empty]
+             physical id: 2
+             serial: [Empty]
+             slot: DIMM_B1
+        *-bank:3
+             description: DIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: CMY16GX3M2A2400C11
+             vendor: AMI
+             physical id: 3
+             serial: 00000000
+             slot: DIMM_B2
+             size: 8GiB
+             width: 64 bits
+             clock: 1600MHz (0.6ns)
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz
+          vendor: Intel Corp.
+          physical id: 4e
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz
+          slot: SOCKET 1150
+          size: 4104MHz
+          capacity: 4104MHz
+          width: 64 bits
+          clock: 100MHz
+          capabilities: x86-64 fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c lahf_lm abm epb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm xsaveopt dtherm ida arat pln pts cpufreq
+          configuration: cores=4 enabledcores=4 threads=8
+        *-cache:0
+             description: L1 cache
+             physical id: 4f
+             slot: CPU Internal L1
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: synchronous internal write-back
+        *-cache:1
+             description: L2 cache
+             physical id: 50
+             slot: CPU Internal L2
+             size: 1MiB
+             capacity: 1MiB
+             capabilities: synchronous internal write-back unified
+        *-cache:2
+             description: L3 cache
+             physical id: 51
+             slot: CPU Internal L3
+             size: 8MiB
+             capacity: 8MiB
+             capabilities: synchronous internal write-back unified
+     *-pci
+          description: Host bridge
+          product: 4th Gen Core Processor DRAM Controller
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 06
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=hsw_uncore
+          resources: irq:0
+        *-pci:0
+             description: PCI bridge
+             product: Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller
+             vendor: Intel Corporation
+             physical id: 1
+             bus info: pci@0000:00:01.0
+             version: 06
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:24
+        *-display
+             description: VGA compatible controller
+             product: Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller
+             vendor: Intel Corporation
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 06
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msi pm vga_controller bus_master cap_list rom
+             configuration: driver=i915 latency=0
+             resources: irq:30 memory:df800000-dfbfffff memory:c0000000-cfffffff ioport:f000(size=64) memory:c0000-dffff
+        *-multimedia:0 UNCLAIMED
+             description: Audio device
+             product: Xeon E3-1200 v3/4th Gen Core Processor HD Audio Controller
+             vendor: Intel Corporation
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             version: 06
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: latency=0
+             resources: memory:dfe34000-dfe37fff
+        *-usb:0
+             description: USB controller
+             product: 9 Series Chipset Family USB xHCI Controller
+             vendor: Intel Corporation
+             physical id: 14
+             bus info: pci@0000:00:14.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: irq:32 memory:dfe20000-dfe2ffff
+        *-communication
+             description: Communication controller
+             product: 9 Series Chipset Family ME Interface #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: driver=mei_me latency=0
+             resources: irq:41 memory:dfe3e000-dfe3e00f
+        *-network DISABLED
+             description: Ethernet interface
+             product: Ethernet Connection (2) I218-V
+             vendor: Intel Corporation
+             physical id: 19
+             bus info: pci@0000:00:19.0
+             logical name: eno1
+             version: 00
+             serial: [censored]
+             capacity: 1Gbit/s
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+             configuration: autonegotiation=on broadcast=yes driver=e1000e driverversion=3.2.6-k firmware=0.1-4 latency=0 link=no multicast=yes port=twisted pair
+             resources: irq:42 memory:dfe00000-dfe1ffff memory:dfe3c000-dfe3cfff ioport:f080(size=32)
+        *-usb:1
+             description: USB controller
+             product: 9 Series Chipset Family USB EHCI Controller #2
+             vendor: Intel Corporation
+             physical id: 1a
+             bus info: pci@0000:00:1a.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:16 memory:dfe3b000-dfe3b3ff
+        *-multimedia:1 UNCLAIMED
+             description: Audio device
+             product: 9 Series Chipset Family HD Audio Controller
+             vendor: Intel Corporation
+             physical id: 1b
+             bus info: pci@0000:00:1b.0
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: latency=0
+             resources: memory:dfe30000-dfe33fff
+        *-pci:1
+             description: PCI bridge
+             product: 9 Series Chipset Family PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: d0
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16
+        *-pci:2
+             description: PCI bridge
+             product: 9 Series Chipset Family PCI Express Root Port 4
+             vendor: Intel Corporation
+             physical id: 1c.3
+             bus info: pci@0000:00:1c.3
+             version: d0
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:19 ioport:d000(size=8192) memory:dfd00000-dfdfffff
+           *-pci
+                description: PCI bridge
+                product: ASMedia Technology Inc.
+                vendor: ASMedia Technology Inc.
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                configuration: driver=pcieport
+                resources: irq:25 ioport:d000(size=8192) memory:dfd00000-dfdfffff
+              *-pci:0
+                   description: PCI bridge
+                   product: ASMedia Technology Inc.
+                   vendor: ASMedia Technology Inc.
+                   physical id: 1
+                   bus info: pci@0000:04:01.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: iomemory:1f10-1f0f irq:26
+              *-pci:1
+                   description: PCI bridge
+                   product: ASMedia Technology Inc.
+                   vendor: ASMedia Technology Inc.
+                   physical id: 3
+                   bus info: pci@0000:04:03.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: iomemory:1f10-1f0f irq:27
+              *-pci:2
+                   description: PCI bridge
+                   product: ASMedia Technology Inc.
+                   vendor: ASMedia Technology Inc.
+                   physical id: 5
+                   bus info: pci@0000:04:05.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: iomemory:e1e10-e1e0f irq:28 ioport:e000(size=4096) memory:dfd00000-dfdfffff
+                 *-network
+                      description: Wireless interface
+                      product: RTL8188CE 802.11b/g/n WiFi Adapter
+                      vendor: Realtek Semiconductor Co., Ltd.
+                      physical id: 0
+                      bus info: pci@0000:07:00.0
+                      logical name: wlp7s0
+                      version: 01
+                      serial: [censored]
+                      width: 64 bits
+                      clock: 33MHz
+                      capabilities: pm msi pciexpress bus_master cap_list ethernet physical wireless
+                      configuration: broadcast=yes driver=rtl8192ce driverversion=4.8.11 firmware=N/A ip=[censored] latency=0 link=yes multicast=yes wireless=IEEE 802.11
+                      resources: irq:16 ioport:e000(size=256) memory:dfd00000-dfd03fff
+              *-pci:3
+                   description: PCI bridge
+                   product: ASMedia Technology Inc.
+                   vendor: ASMedia Technology Inc.
+                   physical id: 7
+                   bus info: pci@0000:04:07.0
+                   version: 00
+                   width: 64 bits
+                   clock: 33MHz
+                   capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: iomemory:d1d10-d1d0f irq:29 ioport:d000(size=4096)
+                 *-pci
+                      description: PCI bridge
+                      product: ASM1083/1085 PCIe to PCI Bridge
+                      vendor: ASMedia Technology Inc.
+                      physical id: 0
+                      bus info: pci@0000:08:00.0
+                      version: 04
+                      width: 32 bits
+                      clock: 33MHz
+                      capabilities: pci msi pm pciexpress normal_decode bus_master cap_list
+                      resources: ioport:d000(size=4096)
+                    *-multimedia
+                         description: Multimedia audio controller
+                         product: CMI8788 [Oxygen HD Audio]
+                         vendor: C-Media Electronics Inc
+                         physical id: 4
+                         bus info: pci@0000:09:04.0
+                         version: 00
+                         width: 32 bits
+                         clock: 33MHz
+                         capabilities: pm bus_master cap_list
+                         configuration: driver=snd_oxygen latency=32 maxlatency=24 mingnt=2
+                         resources: irq:18 ioport:d000(size=256)
+        *-pci:3
+             description: PCI bridge
+             product: 9 Series Chipset Family PCI Express Root Port 7
+             vendor: Intel Corporation
+             physical id: 1c.6
+             bus info: pci@0000:00:1c.6
+             version: d0
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:18 memory:dfc00000-dfcfffff
+           *-usb
+                description: USB controller
+                product: ASM1042A USB 3.0 Host Controller
+                vendor: ASMedia Technology Inc.
+                physical id: 0
+                bus info: pci@0000:0a:00.0
+                version: 00
+                width: 64 bits
+                clock: 33MHz
+                capabilities: msi msix pm pciexpress xhci bus_master cap_list
+                configuration: driver=xhci_hcd latency=0
+                resources: irq:18 memory:dfc00000-dfc07fff
+        *-usb:2
+             description: USB controller
+             product: 9 Series Chipset Family USB EHCI Controller #1
+             vendor: Intel Corporation
+             physical id: 1d
+             bus info: pci@0000:00:1d.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:23 memory:dfe3a000-dfe3a3ff
+        *-isa
+             description: ISA bridge
+             product: 9 Series Chipset Family Z97 LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 00
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: latency=0
+        *-storage
+             description: SATA controller
+             product: 9 Series Chipset Family SATA Controller [AHCI Mode]
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             version: 00
+             width: 32 bits
+             clock: 66MHz
+             capabilities: storage msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:31 ioport:f0d0(size=8) ioport:f0c0(size=4) ioport:f0b0(size=8) ioport:f0a0(size=4) ioport:f060(size=32) memory:dfe39000-dfe397ff
+        *-serial
+             description: SMBus
+             product: 9 Series Chipset Family SMBus Controller
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 00
+             width: 64 bits
+             clock: 33MHz
+             configuration: driver=i801_smbus latency=0
+             resources: irq:18 memory:dfe38000-dfe380ff ioport:f040(size=32)
+     *-scsi
+          physical id: 1
+          logical name: scsi0
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: OCZ-AGILITY3
+             physical id: 0.0.0
+             bus info: scsi@0:0.0.0
+             logical name: /dev/sda
+             version: 2.25
+             serial: [censored]
+             size: 238GiB (256GB)
+             capabilities: partitioned partitioned:dos
+             configuration: ansiversion=5 sectorsize=512 signature=0000686b
+           *-volume:0
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@0:0.0.0,1
+                logical name: /dev/sda1
+                logical name: /
+                version: 1.0
+                serial: 634487dd-4622-4db4-8be5-3a76c49b131d
+                size: 50GiB
+                capacity: 50GiB
+                capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2014-09-12 04:57:44 filesystem=ext4 label=dgentoo lastmountpoint=/ modified=2016-12-03 14:05:20 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2016-12-03 14:05:20 state=mounted
+           *-volume:1
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 2
+                bus info: scsi@0:0.0.0,2
+                logical name: /dev/sda2
+                logical name: /home
+                logical name: /opt
+                logical name: /var/tmp
+                version: 1.0
+                serial: 0c7f93ce-40f7-4821-8666-8246d3dec749
+                size: 172GiB
+                capacity: 172GiB
+                capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2014-09-12 04:57:57 filesystem=ext4 label=dhome lastmountpoint=/home modified=2016-12-03 14:05:20 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2016-12-03 14:05:20 state=mounted
+           *-volume:2
+                description: Linux swap volume
+                physical id: 3
+                bus info: scsi@0:0.0.0,3
+                logical name: /dev/sda3
+                version: 1
+                serial: c5849440-9502-4771-80b5-0f4720a02834
+                size: 16GiB
+                capacity: 16GiB
+                capabilities: primary nofs swap initialized
+                configuration: filesystem=swap label=dswap pagesize=4096
+  *-power UNCLAIMED
+       description: To Be Filled By O.E.M.
+       product: To Be Filled By O.E.M.
+       vendor: To Be Filled By O.E.M.
+       physical id: 1
+       version: To Be Filled By O.E.M.
+       serial: To Be Filled By O.E.M.
+       capacity: 32768mWh

@@ -1,0 +1,494 @@
+mlaptop
+    description: Notebook
+    product: MacBookPro11,1 (System SKU#)
+    vendor: Apple Inc.
+    version: 1.0
+    serial: [censored]
+    width: 64 bits
+    capabilities: smbios-2.4 dmi-2.4 vsyscall32
+    configuration: boot=normal chassis=notebook family=Mac sku=System SKU# uuid=[censored]
+  *-core
+       description: Motherboard
+       product: Mac-189A3D4F975D5FFC
+       vendor: Apple Inc.
+       physical id: 0
+       version: MacBookPro11,1
+       serial: [censored]
+       slot: Part Component
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+          vendor: Intel Corp.
+          physical id: 0
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i5-4258U CPU @ 2.40GHz
+          serial: To Be Filled By O.E.M.
+          slot: U3E1
+          size: 2453MHz
+          capacity: 2453MHz
+          width: 64 bits
+          clock: 25MHz
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c lahf_lm abm ida arat epb pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt cpufreq
+        *-cache:0
+             description: L1 cache
+             physical id: 2
+             size: 64KiB
+             capacity: 64KiB
+             capabilities: asynchronous internal write-back instruction
+        *-cache:1
+             description: L2 cache
+             physical id: 3
+             size: 512KiB
+             capacity: 512KiB
+             capabilities: asynchronous internal write-back unified
+        *-cache:2
+             description: L3 cache
+             physical id: 4
+             size: 3MiB
+             capacity: 3MiB
+             capabilities: asynchronous internal write-back unified
+     *-cache
+          description: L1 cache
+          physical id: 1
+          size: 64KiB
+          capacity: 64KiB
+          capabilities: asynchronous internal write-back data
+     *-memory
+          description: System Memory
+          physical id: 5
+          slot: System board or motherboard
+          size: 8GiB
+        *-bank:0
+             description: SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: 8KTF51264HZ-1G6E1
+             vendor: Micron Technology
+             physical id: 0
+             serial: 0x00000000
+             slot: DIMM0
+             size: 4GiB
+             clock: 1600MHz (0.6ns)
+        *-bank:1
+             description: SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+             product: 8KTF51264HZ-1G6E1
+             vendor: Micron Technology
+             physical id: 1
+             serial: 0x00000000
+             slot: DIMM0
+             size: 4GiB
+             clock: 1600MHz (0.6ns)
+     *-firmware:0
+          description: BIOS
+          vendor: Apple Inc.
+          physical id: b
+          version: MBP111.88Z.0138.B16.1509081438
+          date: 09/08/2015
+          size: 1MiB
+          capacity: 8128KiB
+          capabilities: pci upgrade shadowing cdboot bootselect acpi ieee1394boot smartbattery netboot
+     *-firmware:1
+          description: BIOS
+          vendor: �����Reference Code - SA - System Agent
+          physical id: 2fdd
+          size: 1019KiB
+          capabilities: pcmcia
+     *-firmware:2
+          description: BIOS
+          physical id: 36dd
+          size: 1019KiB
+          capabilities: pcmcia
+     *-firmware:3
+          description: BIOS
+          physical id: 47f
+          size: 1MiB
+     *-pci
+          description: Host bridge
+          product: Haswell-ULT DRAM Controller
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 09
+          width: 32 bits
+          clock: 33MHz
+        *-display
+             description: VGA compatible controller
+             product: Haswell-ULT Integrated Graphics Controller
+             vendor: Intel Corporation
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 09
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msi pm vga_controller bus_master cap_list rom
+             configuration: driver=i915 latency=0
+             resources: irq:46 memory:b0000000-b03fffff memory:a0000000-afffffff ioport:3000(size=64)
+        *-multimedia:0
+             description: Audio device
+             product: Haswell-ULT HD Audio Controller
+             vendor: Intel Corporation
+             physical id: 3
+             bus info: pci@0000:00:03.0
+             version: 09
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             resources: irq:48 memory:b0a10000-b0a13fff
+        *-usb
+             description: USB controller
+             product: 8 Series USB xHCI HC
+             vendor: Intel Corporation
+             physical id: 14
+             bus info: pci@0000:00:14.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: irq:49 memory:b0a00000-b0a0ffff
+        *-communication UNCLAIMED
+             description: Communication controller
+             product: 8 Series HECI #0
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: latency=0
+             resources: memory:b0a2a100-b0a2a11f
+        *-multimedia:1
+             description: Audio device
+             product: 8 Series HD Audio Controller
+             vendor: Intel Corporation
+             physical id: 1b
+             bus info: pci@0000:00:1b.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             resources: irq:50 memory:b0a14000-b0a17fff
+        *-pci:0
+             description: PCI bridge
+             product: 8 Series PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: e4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode cap_list
+             configuration: driver=pcieport
+             resources: irq:16
+        *-pci:1
+             description: PCI bridge
+             product: 8 Series PCI Express Root Port 2
+             vendor: Intel Corporation
+             physical id: 1c.1
+             bus info: pci@0000:00:1c.1
+             version: e4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:17 memory:b0800000-b09fffff ioport:90000000(size=268435456)
+           *-multimedia UNCLAIMED
+                description: Multimedia controller
+                product: 720p FaceTime HD Camera
+                vendor: Broadcom Corporation
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                version: 00
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list
+                configuration: latency=0
+                resources: memory:b0900000-b090ffff memory:90000000-9fffffff memory:b0800000-b08fffff
+        *-pci:2
+             description: PCI bridge
+             product: 8 Series PCI Express Root Port 3
+             vendor: Intel Corporation
+             physical id: 1c.2
+             bus info: pci@0000:00:1c.2
+             version: e4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:18 memory:b0400000-b06fffff
+           *-network
+                description: Wireless interface
+                product: BCM4360 802.11ac Wireless Network Adapter
+                vendor: Broadcom Corporation
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                logical name: wlp3s0
+                version: 03
+                serial: [censored]
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list ethernet physical wireless
+                configuration: broadcast=yes driver=wl0 driverversion=6.30.223.271 (r587334) ip=[censored] latency=0 multicast=yes wireless=IEEE 802.11abg
+                resources: irq:18 memory:b0600000-b0607fff memory:b0400000-b05fffff
+        *-pci:3
+             description: PCI bridge
+             product: 8 Series PCI Express Root Port 5
+             vendor: Intel Corporation
+             physical id: 1c.4
+             bus info: pci@0000:00:1c.4
+             version: e4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16 ioport:4000(size=12288) memory:b0b00000-bcbfffff ioport:bcc00000(size=201326592)
+           *-pci
+                description: PCI bridge
+                product: Intel Corporation
+                vendor: Intel Corporation
+                physical id: 0
+                bus info: pci@0000:05:00.0
+                version: 00
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                configuration: driver=pcieport
+                resources: irq:40 ioport:4000(size=8192) memory:b0b00000-b8bfffff ioport:bcc00000(size=134217728)
+              *-pci:0
+                   description: PCI bridge
+                   product: Intel Corporation
+                   vendor: Intel Corporation
+                   physical id: 0
+                   bus info: pci@0000:06:00.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:41 memory:b0b00000-b0bfffff
+                 *-generic
+                      description: System peripheral
+                      product: Intel Corporation
+                      vendor: Intel Corporation
+                      physical id: 0
+                      bus info: pci@0000:07:00.0
+                      version: 00
+                      width: 32 bits
+                      clock: 33MHz
+                      capabilities: pm msi pciexpress msix bus_master cap_list
+                      configuration: driver=thunderbolt latency=0
+                      resources: irq:51 memory:b0b00000-b0b3ffff memory:b0b40000-b0b40fff
+              *-pci:1
+                   description: PCI bridge
+                   product: Intel Corporation
+                   vendor: Intel Corporation
+                   physical id: 3
+                   bus info: pci@0000:06:03.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:42 ioport:4000(size=4096) memory:b0c00000-b4bfffff ioport:bcc00000(size=67108864)
+              *-pci:2
+                   description: PCI bridge
+                   product: Intel Corporation
+                   vendor: Intel Corporation
+                   physical id: 4
+                   bus info: pci@0000:06:04.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:43
+              *-pci:3
+                   description: PCI bridge
+                   product: Intel Corporation
+                   vendor: Intel Corporation
+                   physical id: 5
+                   bus info: pci@0000:06:05.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:44 ioport:5000(size=4096) memory:b4c00000-b8bfffff ioport:c0c00000(size=67108864)
+              *-pci:4
+                   description: PCI bridge
+                   product: Intel Corporation
+                   vendor: Intel Corporation
+                   physical id: 6
+                   bus info: pci@0000:06:06.0
+                   version: 00
+                   width: 32 bits
+                   clock: 33MHz
+                   capabilities: pci pm msi pciexpress normal_decode bus_master cap_list
+                   configuration: driver=pcieport
+                   resources: irq:45
+        *-pci:4
+             description: PCI bridge
+             product: 8 Series PCI Express Root Port 6
+             vendor: Intel Corporation
+             physical id: 1c.5
+             bus info: pci@0000:00:1c.5
+             version: e4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:17 ioport:2000(size=4096) memory:b0700000-b07fffff
+           *-storage
+                description: SATA controller
+                product: 88SS9183 PCIe SSD Controller
+                vendor: Marvell Technology Group Ltd.
+                physical id: 0
+                bus info: pci@0000:04:00.0
+                version: 14
+                width: 32 bits
+                clock: 33MHz
+                capabilities: storage pm msi pciexpress ahci_1.0 bus_master cap_list rom
+                configuration: driver=ahci latency=0
+                resources: irq:47 ioport:2028(size=8) ioport:2034(size=4) ioport:2020(size=8) ioport:2030(size=4) ioport:2000(size=32) memory:b0700000-b07001ff memory:b0720000-b073ffff
+        *-isa
+             description: ISA bridge
+             product: 8 Series LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 04
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: latency=0
+        *-serial UNCLAIMED
+             description: SMBus
+             product: 8 Series SMBus Controller
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             configuration: latency=0
+             resources: memory:b0a2a000-b0a2a0ff ioport:efa0(size=32)
+     *-scsi:0
+          physical id: 2
+          logical name: scsi0
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: APPLE SSD SD0256
+             physical id: 0.0.0
+             bus info: scsi@0:0.0.0
+             logical name: /dev/sda
+             version: 321
+             serial: [censored]
+             size: 233GiB (251GB)
+             capabilities: gpt-1.00 partitioned partitioned:gpt
+             configuration: ansiversion=5 guid=[censored] sectorsize=4096
+           *-volume:0
+                description: Windows FAT volume
+                vendor: BSD  4.4
+                physical id: 1
+                bus info: scsi@0:0.0.0,1
+                logical name: /dev/sda1
+                version: FAT32
+                serial: 67e3-17ed
+                size: 199MiB
+                capacity: 199MiB
+                capabilities: boot fat initialized
+                configuration: FATs=2 filesystem=fat label=EFI name=EFI System Partition
+           *-volume:1
+                description: Apple Core Storage (File Vault)
+                vendor: Mac OS X (journaled)
+                physical id: 2
+                bus info: scsi@0:0.0.0,2
+                logical name: /dev/sda2
+                version: 4
+                serial: 6350a335-25a3-7036-0000-000000800000
+                size: 62GiB
+                capacity: 63GiB
+                capabilities: encrypted journaled bootable osx hfsplus initialized
+                configuration: boot=osx checked=2013-10-31 10:40:03 created=2013-10-30 23:40:03 filesystem=hfsplus lastmountedby=HFSJ modified=2016-07-18 12:30:44 name=Macintosh HD state=clean
+           *-volume:2
+                description: boot partition
+                vendor: Mac OS X (journaled)
+                physical id: 3
+                bus info: scsi@0:0.0.0,3
+                logical name: /dev/sda3
+                version: 4
+                serial: 8fdccd85-4eab-ee41-0000-000000005000
+                size: 619MiB
+                capabilities: boot precious readonly hidden nomount journaled bootable macos osx hfsplus initialized
+                configuration: checked=2014-10-17 23:50:04 created=2014-10-17 12:50:04 filesystem=hfsplus lastmountedby=HFSJ modified=2016-07-18 12:24:15 name=Recovery HD state=clean
+           *-volume:3
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 4
+                bus info: scsi@0:0.0.0,4
+                logical name: /dev/sda4
+                logical name: /
+                version: 1.0
+                serial: 2f7956db-083d-42f9-85dc-76adda923a82
+                size: 39GiB
+                capabilities: journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2014-04-18 14:51:46 filesystem=ext4 label=mgentoo lastmountpoint=/ modified=2016-12-17 20:10:56 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2016-12-17 20:10:56 state=mounted
+           *-volume:4
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 5
+                bus info: scsi@0:0.0.0,5
+                logical name: /dev/sda5
+                logical name: /home
+                logical name: /var/tmp
+                version: 1.0
+                serial: 9f66ffa5-9e63-405c-a1df-4ab823ae7b07
+                size: 121GiB
+                capacity: 121GiB
+                capabilities: journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2014-04-18 14:51:48 filesystem=ext4 label=mhome lastmountpoint=/home modified=2016-12-17 20:10:56 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2016-12-17 20:10:56 state=mounted
+           *-volume:5
+                description: Linux swap volume
+                vendor: Linux
+                physical id: 6
+                bus info: scsi@0:0.0.0,6
+                logical name: /dev/sda6
+                version: 1
+                serial: d578ad11-810f-4429-bf83-1bc1ee7693ce
+                size: 8201MiB
+                capacity: 8203MiB
+                capabilities: nofs swap initialized
+                configuration: filesystem=swap label=mswap pagesize=4095
+           *-volume:6
+                description: Apple HFS+ partition
+                vendor: Mac OS X (journaled)
+                physical id: 7
+                bus info: scsi@0:0.0.0,7
+                logical name: /dev/sda7
+                version: 4
+                serial: 4aca69eb-1277-913c-0000-000000005000
+                size: 619MiB
+                capabilities: journaled bootable macos osx hfsplus initialized
+                configuration: boot=osx checked=2013-10-31 10:43:13 created=2013-10-30 23:43:13 filesystem=hfsplus lastmountedby=HFSJ modified=2016-07-18 12:30:41 name=Recovery HD state=clean
+     *-scsi:1
+          physical id: 3
+          bus info: usb@2:3
+          logical name: scsi1
+          capabilities: emulated scsi-host
+          configuration: driver=usb-storage
+        *-disk
+             description: SCSI Disk
+             product: SD Card Reader
+             vendor: APPLE
+             physical id: 0.0.0
+             bus info: scsi@1:0.0.0
+             logical name: /dev/sdb
+             version: 3.00
+             serial: 000000000820
+             capabilities: removable
+             configuration: ansiversion=6 sectorsize=512
+           *-medium
+                physical id: 0
+                logical name: /dev/sdb
