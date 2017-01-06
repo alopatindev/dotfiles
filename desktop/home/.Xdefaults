@@ -1,0 +1,42 @@
+#include ".Xdefaults.global"
+
+urxvt*geometry: 84x25+0+0
+urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
+xterm*faceSize: 18
+xterm*geometry: 84x25+0+0
+Emacs.font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
+Xvidcap*mouse_wanted:	2
+gnuplot*font: -*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*-
+XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646-*
+! #Xft.dpi:        120
+! Xft.rgba:       none
+
+! #Xft.hinting:    false
+! Xft.hintstyle:  hintslight
+! Xft.hintstyle:  hintmedium
+Xft.hintstyle:  hintfull
+! Xft.antialias:  true
+
+! Xft.dpi: 96
+Xft.dpi: 110
+! Xft.dpi: 160
+! ##Xft.antialias: true
+!Xft.rgba: rgb
+!Xft.hinting: true
+!Xft.lcdfilter: lcddefault
+
+! #Xft.hinting: true
+! ##Xft.autohint: true
+! #Xft.autohint: false
+! ##Xft.hintstyle: hintmedium
+! ##Xft.hintstyle: hintslight
+! #Xft.hintstyle: hintfull
+! #Xft.antialias: true
+! #Xft.hintstyle: hintmedium
+
+! Xft.autohint: true
+
+! Xcursor.theme:~/.cursors/FlatbedCursors.Blue.Regular
+! Xcursor.size: 64
+! Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
+! Xcursor.theme: Bluecurve
