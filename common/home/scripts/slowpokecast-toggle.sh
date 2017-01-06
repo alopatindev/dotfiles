@@ -5,7 +5,7 @@ P=$(ps aux | grep -v grep | grep $REC | grep '/bin/bash')
 
 msg() {
     echo "^fg(#ffffff)^bg(#5D9457)$1" | \
-        ~/.progs/dzen/dzen2-svn -fn "DejaVu Sans:size=70" -p 1 -ta l -y 20
+        dzen2 -fn "DejaVu Sans:size=70" -p 1 -ta l -y 20
 }
 
 if [[ $P != '' ]]; then
