@@ -9,13 +9,13 @@ require("naughty")
 -- require("lib/second_panel")
 require("lib/sizes")
 
-beautiful.init("/home/sbar/.config/awesome/theme.lua")
+beautiful.init(".config/awesome/theme.lua")
 
 mouse.coords(safeCoords)
 
 terminal = "xterm"
--- modkey = "Mod1"
-modkey = "Mod4"
+modkey = "Mod1"
+-- modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
