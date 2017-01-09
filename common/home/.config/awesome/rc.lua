@@ -73,6 +73,9 @@ mysystray = widget({ type = "systray" })
 myskb = widget({type = "textbox", name = "myskb"})
 myskb.text = ''
 
+exrate = widget({type = "textbox", name = "exrate"})
+exrate.text = ''
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 box2 = {}
@@ -136,6 +139,7 @@ for s = 1, screen.count() do
     box2[s].widgets = {
         layout = awful.widget.layout.horizontal.leftright,
         myskb,
+        exrate,
         spanelwi
     }
 end
