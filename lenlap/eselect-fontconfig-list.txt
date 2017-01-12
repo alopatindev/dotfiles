@@ -1,0 +1,52 @@
+Available fontconfig .conf files (* is enabled):
+  [1]   10-autohint.conf *
+  [2]   10-no-sub-pixel.conf
+  [3]   10-scale-bitmap-fonts.conf *
+  [4]   10-sub-pixel-bgr.conf
+  [5]   10-sub-pixel-rgb.conf
+  [6]   10-sub-pixel-vbgr.conf
+  [7]   10-sub-pixel-vrgb.conf
+  [8]   10-unhinted.conf
+  [9]   11-lcdfilter-default.conf *
+  [10]  11-lcdfilter-legacy.conf
+  [11]  11-lcdfilter-light.conf
+  [12]  20-unhint-small-dejavu-sans.conf
+  [13]  20-unhint-small-dejavu-sans-mono.conf
+  [14]  20-unhint-small-dejavu-serif.conf
+  [15]  20-unhint-small-vera.conf *
+  [16]  25-unhint-nonlatin.conf
+  [17]  30-metric-aliases.conf *
+  [18]  30-urw-aliases.conf *
+  [19]  40-nonlatin.conf *
+  [20]  42-luxi-mono.conf *
+  [21]  45-latin.conf *
+  [22]  49-sansserif.conf *
+  [23]  50-user.conf *
+  [24]  51-local.conf *
+  [25]  52-infinality.conf *
+  [26]  57-dejavu-sans.conf
+  [27]  57-dejavu-sans-mono.conf
+  [28]  57-dejavu-serif.conf
+  [29]  59-google-droid-sans.conf
+  [30]  59-google-droid-sans-mono.conf
+  [31]  59-google-droid-serif.conf
+  [32]  60-aquafont.conf
+  [33]  60-latin.conf *
+  [34]  60-liberation.conf
+  [35]  60-mikachan.conf
+  [36]  61-stix.conf
+  [37]  62-croscore-arimo.conf
+  [38]  62-croscore-cousine.conf
+  [39]  62-croscore-symbolneu.conf
+  [40]  62-croscore-tinos.conf
+  [41]  65-culmus.conf
+  [42]  65-fonts-persian.conf *
+  [43]  65-khmer.conf
+  [44]  65-nonlatin.conf *
+  [45]  69-unifont.conf *
+  [46]  70-no-bitmaps.conf
+  [47]  70-yes-bitmaps.conf
+  [48]  75-yes-terminus.conf
+  [49]  80-delicious.conf *
+  [50]  90-synthetic.conf *
+  [51]  99pdftoopvp.conf

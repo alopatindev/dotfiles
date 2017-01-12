@@ -2,34 +2,30 @@
 
 #"xterm -T 'terms' -e 'screen -DRm'"
 "xterm -T 'terms' -e 'tmux attach || tmux'"
-    m:0x9 + c:36
-    Shift+Alt + Return
+    m:0x41 + c:36
+    Shift+Mod4 + Return
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
 #"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
 "xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
-    m:0x4c + c:36
-    Control+Alt+Mod4 + Return
+    m:0xd + c:36
+    Control+Shift+Alt + Return
 
 "~/scripts/quit_script"
-    m:0x41 + c:24
-    Shift+Mod4 + q
-    #m:0x9 + c:24
-    #Shift+Alt + q
+    m:0x9 + c:24
+    Shift+Alt + q
 
 "~/.bin/drun"
-    m:0x41 + c:27
-    Shift+Mod4 + r
-    #m:0x9 + c:27
-    #Shift+Alt + r
+    m:0x9 + c:27
+    Shift+Alt + r
 
 #"$(~/.dwm/dmenu -p 'games'<~/.gamelist.ls)"
 #    m:0x40 + c:42
 #    Mod4 + g
 
 "xterm"
-    m:0x40 + c:36
-    Mod4 + Return
+    m:0x8 + c:36
+    Alt + Return
 
 "~/scripts/screenshot"
     m:0x10 + c:107
@@ -40,12 +36,12 @@
     Mod2+Mod4 + Print
 
 "~/scripts/screenshot"
-    m:0x40 + c:61
-    Mod4 + slash
-
-"~/scripts/screenshot_area"
     m:0x41 + c:61
     Shift+Mod4 + slash
+
+"~/scripts/screenshot_area"
+    m:0x9 + c:61
+    Shift+Alt + slash
 
 "xkill"
     m:0x40 + c:45
@@ -65,15 +61,8 @@
     Mod4 + f
 
 "~/.bin/alock"
-    m:0x41 + c:46
-    Shift+Mod4 + l
-    #m:0x41 + c:133
-    #Shift+Mod4 + Super_L
-    #m:0x40 + c:46
-    #Mod4 + l
-
-    #m:0x9 + c:46
-    #Shift+Alt + l
+    m:0x40 + c:46
+    Mod4 + l
 
 #"alock"
 #    m:0x1c + c:64
@@ -86,46 +75,6 @@
 #"echo '0 exec awesome' | awesome-client"
 #    m:0x1c + c:27
 #    Control+Alt+Mod2 + r
-
-"(killall xbindkeys && xbindkeys) || notify-send 'xbindkeys: error occurred'"
-    m:0x54 + c:27
-    Control+Mod2+Mod4 + r
-
-"xgamma -q -gamma 1.0"
-    m:0x0 + c:192
-    XF86Launch5
-
-"xgamma -q -gamma $(echo $(xgamma 2> /dev/stdout | cut -d' ' -f10) - 0.5 | bc)"
-    m:0x0 + c:235
-    XF86Display
-
-"xgamma -q -gamma $(echo $(xgamma 2> /dev/stdout | cut -d' ' -f10) + 0.5 | bc)"
-    m:0x0 + c:156
-    XF86Launch1
-
-#"xgamma -q -gamma 2.0"
-#    m:0x54 + c:37
-#    Control+Mod2+Mod4 + Control_L
-
-#"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
-#    m:0x80 + c:19
-#    Mod5 + 0
-
-#"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
-#    m:0x80 + c:18
-#    Mod5 + 9
-
-#"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
-#    m:0x8 + c:19
-#    Alt + 0
-#    #m:0x40 + c:19
-#    #Mod4 + 0
-
-#"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
-#    m:0x8 + c:18
-#    Alt + 9
-#    #m:0x40 + c:18
-#    #Mod4 + 9
 
 "mpc -q prev &> /dev/null"
     m:0x80 + c:59
@@ -163,74 +112,28 @@
     m:0x0 + c:191
     XF86Tools
 
-#"~/scripts/change_volume.sh +"
-"mpc -q volume +5 &> /dev/null ; rhythmbox-client --volume-up --no-start &> /dev/null"
-    m:0x44 + c:19
-    Control+Mod4 + 0
-    #m:0x0 + c:123
-    #XF86AudioRaiseVolume
-
-#"~/scripts/change_volume.sh -"
-"mpc -q volume -5 &> /dev/null ; rhythmbox-client --volume-down --no-start &> /dev/null"
-    m:0x44 + c:18
-    Control+Mod4 + 9
-    #m:0x0 + c:122
-    #XF86AudioLowerVolume
-
 "amixer -q sset Master toggle && ~/scripts/sound_status.sh"
     m:0x10 + c:121
     Mod2 + XF86AudioMute
 
-"galculator"
-    m:0x10 + c:148
-    Mod2 + XF86Calculator
-
-#"swarp 1024 598"
-#    m:0x4 + c:49
-#    Control + grave
-
 "echo 'awesome.restart()' | awesome-client"
-    m:0x44 + c:27
-    Control+Mod4 + r
-    #m:0xc + c:27
-    #Control+Alt + r
-
-#"service net.ppp0 restart"
-#"service net.wlan0 stop && service net.ppp0 restart"
-"sudo /etc/init.d/net.wlp7s0 restart"
-    m:0x9 + c:22
-    Shift+Alt + BackSpace
-
-"~/scripts/slowpokecast-toggle.sh"
-    m:0x48 + c:27
-    Alt+Mod4 + r
-
-# workaround for pasting from chromium to vim
-"xclip -o|xclip -i"
-    m:0x40 + c:29
-    Mod4 + y
-
-"/usr/local/sbin/bl-brightness.sh down"
-  m:0x0 + c:232
-
-"/usr/local/sbin/bl-brightness.sh up"
-  m:0x0 + c:233
-
-"/usr/local/sbin/kb-brightness.sh down"
-  m:0x0 + c:237
-
-"/usr/local/sbin/kb-brightness.sh up"
-  m:0x0 + c:238
+    m:0xc + c:27
+    Control+Alt + r
 
 #"amixer set Master playback 1+ unmute"
 "~/scripts/change_volume.sh +"
-   XF86AudioRaiseVolume
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
 
-# Decrease volume
 #"amixer set Master playback 1-"
 "~/scripts/change_volume.sh -"
-   XF86AudioLowerVolume
+    m:0x0 + c:122
+    XF86AudioLowerVolume
 
-#"amixer set Master toggle"
-#   XF86AudioMute
+"sudo /usr/local/sbin/bl-brightness.sh up"
+    m:0x0 + c:233
+    XF86MonBrightnessUp
 
+"sudo /usr/local/sbin/bl-brightness.sh down"
+    m:0x0 + c:232
+    XF86MonBrightnessDown

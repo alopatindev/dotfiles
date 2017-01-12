@@ -1,0 +1,352 @@
+lenlap
+    description: Notebook
+    product: 80Q0 (LENOVO_MT_80Q0_BU_idea_FM_Lenovo ideapad Y700-17ISK)
+    vendor: LENOVO
+    version: Lenovo ideapad Y700-17ISK
+    serial: [censored]
+    width: 64 bits
+    capabilities: smbios-2.8 dmi-2.8
+    configuration: administrator_password=enabled chassis=notebook family=IDEAPAD frontpanel_password=disabled keyboard_password=disabled power-on_password=disabled sku=LENOVO_MT_80Q0_BU_idea_FM_Lenovo ideapad Y700-17ISK uuid=[censored]
+  *-core
+       description: Motherboard
+       product: Allsparks 7A
+       vendor: LENOVO
+       physical id: 0
+       version: SDK0J40688 WIN
+       serial: [censored]
+       slot: Type2 - Board Chassis Location
+     *-firmware
+          description: BIOS
+          vendor: LENOVO
+          physical id: 0
+          version: CDCN53WW
+          date: 09/19/2016
+          size: 128KiB
+          capacity: 6080KiB
+          capabilities: pci upgrade shadowing cdboot bootselect edd int13floppynec int13floppytoshiba int13floppy360 int13floppy1200 int13floppy720 int13floppy2880 int9keyboard int10video acpi usb biosbootspecification uefi
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+          vendor: Intel Corp.
+          physical id: 4
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz
+          serial: To Be Filled By O.E.M.
+          slot: U3E1
+          size: 3269MHz
+          capacity: 3269MHz
+          width: 64 bits
+          clock: 100MHz
+          capabilities: x86-64 fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c lahf_lm abm 3dnowprefetch epb intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx adx smap clflushopt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp cpufreq
+          configuration: cores=4 enabledcores=4 threads=8
+        *-cache:0
+             description: L1 cache
+             physical id: 6
+             slot: L1 Cache
+             size: 128KiB
+             capacity: 128KiB
+             capabilities: synchronous internal write-back instruction
+        *-cache:1
+             description: L2 cache
+             physical id: 7
+             slot: L2 Cache
+             size: 1MiB
+             capacity: 1MiB
+             capabilities: synchronous internal write-back unified
+        *-cache:2
+             description: L3 cache
+             physical id: 8
+             slot: L3 Cache
+             size: 6MiB
+             capacity: 6MiB
+             capabilities: synchronous internal write-back unified
+     *-cache
+          description: L1 cache
+          physical id: 5
+          slot: L1 Cache
+          size: 128KiB
+          capacity: 128KiB
+          capabilities: synchronous internal write-back data
+     *-memory
+          description: System Memory
+          physical id: 1c
+          slot: System board or motherboard
+          size: 16GiB
+        *-bank:0
+             description: SODIMM Synchronous 2133 MHz (0.5 ns)
+             product: RMSA3260MB78HAF2400
+             vendor: Fujitsu
+             physical id: 0
+             serial: [censored]
+             slot: ChannelA-DIMM0
+             size: 8GiB
+             width: 64 bits
+             clock: 2133MHz (0.5ns)
+        *-bank:1
+             description: [empty]
+             physical id: 1
+             slot: ChannelA-DIMM1
+        *-bank:2
+             description: SODIMM Synchronous 2133 MHz (0.5 ns)
+             product: RMSA3260MB78HAF2400
+             vendor: Fujitsu
+             physical id: 2
+             serial: [censored]
+             slot: ChannelB-DIMM0
+             size: 8GiB
+             width: 64 bits
+             clock: 2133MHz (0.5ns)
+        *-bank:3
+             description: [empty]
+             physical id: 3
+             slot: ChannelB-DIMM1
+     *-pci
+          description: Host bridge
+          product: Sky Lake Host Bridge/DRAM Registers
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 07
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=skl_uncore
+          resources: irq:0
+        *-display
+             description: VGA compatible controller
+             product: Intel Corporation
+             vendor: Intel Corporation
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 06
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pciexpress msi pm vga_controller bus_master cap_list rom
+             configuration: driver=i915 latency=0
+             resources: irq:123 memory:a0000000-a0ffffff memory:90000000-9fffffff ioport:4000(size=64) memory:c0000-dffff
+        *-usb
+             description: USB controller
+             product: Sunrise Point-H USB 3.0 xHCI Controller
+             vendor: Intel Corporation
+             physical id: 14
+             bus info: pci@0000:00:14.0
+             version: 31
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: irq:125 memory:a1400000-a140ffff
+        *-communication UNCLAIMED
+             description: Communication controller
+             product: Sunrise Point-H CSME HECI #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 31
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi cap_list
+             configuration: latency=0
+             resources: memory:a142a000-a142afff
+        *-storage
+             description: SATA controller
+             product: Sunrise Point-H SATA Controller [AHCI mode]
+             vendor: Intel Corporation
+             physical id: 17
+             bus info: pci@0000:00:17.0
+             version: 31
+             width: 32 bits
+             clock: 66MHz
+             capabilities: storage msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:124 memory:a1428000-a1429fff memory:a142d000-a142d0ff ioport:4080(size=8) ioport:4088(size=4) ioport:4060(size=32) memory:a142b000-a142b7ff
+        *-pci:0
+             description: PCI bridge
+             product: Sunrise Point-H PCI Express Root Port #2
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: f1
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:120 memory:a1300000-a13fffff
+           *-generic
+                description: SD Host controller
+                product: SD/MMC Card Reader Controller
+                vendor: O2 Micro, Inc.
+                physical id: 0
+                bus info: pci@0000:01:00.0
+                version: 01
+                width: 32 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list
+                configuration: driver=sdhci-pci latency=0
+                resources: irq:17 memory:a1301000-a1301fff memory:a1300000-a13007ff
+        *-pci:1
+             description: PCI bridge
+             product: Sunrise Point-H PCI Express Root Port #3
+             vendor: Intel Corporation
+             physical id: 1c.2
+             bus info: pci@0000:00:1c.2
+             version: f1
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:121 memory:a1000000-a11fffff
+           *-network
+                description: Ethernet interface
+                product: Qualcomm Atheros
+                vendor: Qualcomm Atheros
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                logical name: wlp2s0
+                version: 30
+                serial: [censored]
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list ethernet physical
+                configuration: broadcast=yes driver=ath10k_pci driverversion=4.9.2 firmware=WLAN.TF.1.0-00267-1 ip=[censored] latency=0 link=yes multicast=yes
+                resources: irq:128 memory:a1000000-a11fffff
+        *-pci:2
+             description: PCI bridge
+             product: Sunrise Point-H PCI Express Root Port #4
+             vendor: Intel Corporation
+             physical id: 1c.3
+             bus info: pci@0000:00:1c.3
+             version: f1
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:122 ioport:3000(size=4096) memory:a1200000-a12fffff
+           *-network DISABLED
+                description: Ethernet interface
+                product: RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+                vendor: Realtek Semiconductor Co., Ltd.
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                logical name: enp3s0
+                version: 15
+                serial: [censored]
+                size: 10Mbit/s
+                capacity: 1Gbit/s
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress msix bus_master cap_list ethernet physical tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt 1000bt-fd autonegotiation
+                configuration: autonegotiation=on broadcast=yes driver=r8169 driverversion=2.3LK-NAPI duplex=half latency=0 link=no multicast=yes port=MII speed=10Mbit/s
+                resources: irq:127 ioport:3000(size=256) memory:a1204000-a1204fff memory:a1200000-a1203fff
+        *-isa
+             description: ISA bridge
+             product: Sunrise Point-H LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 31
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master
+             configuration: latency=0
+        *-memory UNCLAIMED
+             description: Memory controller
+             product: Sunrise Point-H PMC
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             version: 31
+             width: 32 bits
+             clock: 33MHz (30.3ns)
+             capabilities: bus_master
+             configuration: latency=0
+             resources: memory:a1424000-a1427fff
+        *-multimedia
+             description: Audio device
+             product: Sunrise Point-H HD Audio
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 31
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: driver=snd_hda_intel latency=32
+             resources: irq:126 memory:a1420000-a1423fff memory:a1410000-a141ffff
+        *-serial
+             description: SMBus
+             product: Sunrise Point-H SMBus
+             vendor: Intel Corporation
+             physical id: 1f.4
+             bus info: pci@0000:00:1f.4
+             version: 31
+             width: 64 bits
+             clock: 33MHz
+             configuration: driver=i801_smbus latency=0
+             resources: irq:16 memory:a142c000-a142c0ff ioport:4040(size=32)
+     *-scsi:0
+          physical id: 1
+          logical name: scsi0
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: LITEON CV1-8B256
+             physical id: 0.0.0
+             bus info: scsi@0:0.0.0
+             logical name: /dev/sda
+             version: 201
+             serial: [censored]
+             size: 238GiB (256GB)
+             capabilities: partitioned partitioned:dos
+             configuration: ansiversion=5 sectorsize=512 signature=73b0c00c
+           *-volume
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@0:0.0.0,1
+                logical name: /dev/sda1
+                logical name: /
+                version: 1.0
+                serial: [censored]
+                size: 238GiB
+                capacity: 238GiB
+                capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                configuration: created=2016-12-30 01:56:14 filesystem=ext4 label=os lastmountpoint=/ modified=2017-01-10 19:48:47 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2017-01-12 01:48:16 state=mounted
+     *-scsi:1
+          physical id: 2
+          logical name: scsi2
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: OCZ-AGILITY3
+             physical id: 0.0.0
+             bus info: scsi@2:0.0.0
+             logical name: /dev/sdb
+             version: 2.25
+             serial: [censored]
+             size: 238GiB (256GB)
+             capabilities: partitioned partitioned:dos
+             configuration: ansiversion=5 sectorsize=512 signature=0000686b
+           *-volume:0
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 1
+                bus info: scsi@2:0.0.0,1
+                logical name: /dev/sdb1
+                logical name: /home
+                version: 1.0
+                serial: [censored]
+                size: 222GiB
+                capacity: 222GiB
+                capabilities: primary journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2014-09-12 04:57:57 filesystem=ext4 label=lenhome lastmountpoint=/home modified=2017-01-12 01:48:16 mount.fstype=ext4 mount.options=rw,noatime,nodiratime,discard,errors=remount-ro,commit=60,data=ordered mounted=2017-01-12 01:48:16 state=mounted
+           *-volume:1
+                description: Linux swap volume
+                physical id: 2
+                bus info: scsi@2:0.0.0,2
+                logical name: /dev/sdb2
+                version: 1
+                serial: [censored]
+                size: 16GiB
+                capacity: 16GiB
+                capabilities: primary nofs swap initialized
+                configuration: filesystem=swap label=lenswap pagesize=4096

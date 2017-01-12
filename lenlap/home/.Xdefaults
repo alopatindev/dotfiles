@@ -2,7 +2,7 @@
 
 urxvt*geometry: 84x25+0+0
 urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
-xterm*faceSize: 18
+xterm*faceSize: 19
 xterm*geometry: 84x25+0+0
 Emacs.font: -*-terminus-medium-r-normal-*-14-*-*-*-*-*-iso10646-*
 Xvidcap*mouse_wanted:	2
@@ -14,7 +14,7 @@ XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646
 ! #Xft.hinting:    false
 ! Xft.hintstyle:  hintslight
 ! Xft.hintstyle:  hintmedium
-Xft.hintstyle:  hintfull
+! Xft.hintstyle:  hintfull
 ! Xft.antialias:  true
 
 ! Xft.dpi: 96
