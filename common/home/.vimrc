@@ -19,6 +19,7 @@ Plug 'git@github.com:editorconfig/editorconfig-vim'
 Plug 'git@github.com:cespare/vim-toml'
 Plug 'git@github.com:Chiel92/vim-autoformat'
 Plug 'git@github.com:kchmck/vim-coffee-script.git'
+Plug 'git@github.com:leafgarland/typescript-vim.git'
 "Plug 'git@github.com:kassio/neoterm'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
@@ -721,6 +722,8 @@ set tags=tags,.tags,rusty-tags.vi
 
 autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
 let g:rustfmt_autosave = 1
+
+au BufWrite *.ts :Autoformat
 
 autocmd BufEnter,FocusGained * checktime
 
