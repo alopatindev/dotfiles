@@ -121,12 +121,14 @@
     Control+Alt + r
 
 #"amixer set Master playback 1+ unmute"
-"~/scripts/change_volume.sh +"
+#"~/scripts/change_volume.sh +"
+"~/scripts/show_volume.sh"
     m:0x0 + c:123
     XF86AudioRaiseVolume
 
 #"amixer set Master playback 1-"
-"~/scripts/change_volume.sh -"
+#"~/scripts/change_volume.sh -"
+"~/scripts/show_volume.sh"
     m:0x0 + c:122
     XF86AudioLowerVolume
 

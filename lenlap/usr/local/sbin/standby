@@ -1,0 +1,50 @@
+#!/bin/bash
+
+LOCK=/var/run/poweroff.lock
+if [ ! -f $LOCK ]; then
+    touch $LOCK
+    logger 'gonna stand by'
+else
+    logger 'not gonna stand by'
+    exit 0
+fi
+
+su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/.bin/alock' &
+#su al -c 'echo disconnect >> /home/al/.mcabber/mcabber.fifo'
+#su al -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
+#su al -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline'
+mpc stop
+/etc/init.d/alsasound restore
+umount /nfs/router &
+chvt 5
+sync
+
+echo -n mem > /sys/power/state
+
+sync
+echo "keycode 14 = BackSpace" | loadkeys &
+/etc/local.d/99-non-blinking-block-cursor.start &
+#(sleep 3 && /etc/init.d/net.ppp0 restart && /etc/init.d/mpdscribble restart) &
+#(sleep 3 && /etc/init.d/mpdscribble restart) &
+#/etc/init.d/hddtemp restart &
+#/etc/init.d/consolefont restart
+#/etc/init.d/hwclock restart
+#(sleep 10 && /etc/cron.daily/ntpdate) &
+#amixer sset Master unmute &
+#v4l2ctrl -l /etc/v4l2ctrl/7fpsLight.vbi 2&>> /dev/null &
+#v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
+#su al -c 'DISPLAY=:0 synclient HorizTwoFingerScroll=1'
+#DT="$(date '+%s_%T_%F')"
+#FN="/home/al/camvideos/video_$DT"
+#VID="$FN.avi"
+#THUMB="$FN.png"
+#(mencoder -endpos 0:00:05 \
+#    -tv driver=v4l2:alsa:amode=1:adevice=hw.0,0:input=1 tv:// \
+#    -ovc lavc -oac pcm -msglevel all=-1 -o "$VID";
+#ffmpeg -i "$VID" -ss 00:00:00.500 -f image2 -vframes 1 "$THUMB";
+#chmod a+r "$FN"* ) &
+#/usr/local/sbin/camshot &
+#/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
+#(sleep 5s && su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/scripts/set_touchpad.sh') &
+
+(sleep 10s && rm -f $LOCK) &

@@ -1,0 +1,42 @@
+# vim: textwidth=0
+alignment top_left
+gap_x 4
+gap_y 8
+maximum_width 1920
+#font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
+
+use_xft yes
+xftfont DejaVu Sans Mono:size=17
+#xftfont Terminus:size=10
+override_utf8_locale yes
+default_color CCCCCC
+out_to_console no
+update_interval 2.5
+draw_shades no
+double_buffer yes
+text_buffer_size 8096
+# ${execi 600 /home/sbar/scripts/deadline.py}
+#${tail /home/sbar/txt/todo.txt 20}
+#${if_mpd_playing}${endif}
+#$mpd_name ($mpd_bitrate kbit/s) ($mpd_file)
+#[$mpd_status] $mpd_artist - $mpd_title ($mpd_album)
+#m/b: $acpitemp°C
+#Погода  ${execi 600 /home/sbar/scripts/novgorod-temperature.sh}
+#Погода  ${execi 600 /home/sbar/scripts/st-petersburg-temperature.py}
+#${color #ffffff}${execi 5 ~/scripts/spanel/nonoften.lua}${exec ~/scripts/spanel/second_panel.lua}
+#${hddtemp}°C
+#${execi 60 ~/scripts/my_btc.py 1CMjkPor1K9VuwrY5R8gus3McGtSSa7N8N}
+
+TEXT
+
+${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp2s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp2s0}KiB/s
+${downspeedgraph wlp2s0 100,200 CCCCCC FFFFFF} ${upspeedgraph wlp2s0 100,200 CCCCCC FFFFFF}
+${color #FFFFFF}disk I/O
+${diskiograph 100,415 CCCCCC FFFFFF}${color #CCCCCC}
+${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20} ${color #CCCCCC}${cpu cpu2}%${offset 20} ${color #CCCCCC}${cpu cpu3}%${offset 20}${cpu cpu4}%${offset 20} ${color #CCCCCC}${cpu cpu5}%${offset 20} ${color #CCCCCC}${cpu cpu6}%${offset 20} ${color #CCCCCC}${cpu cpu7}%
+${cpugraph cpu0 100,50 CCCCCC FFFFFF} ${cpugraph cpu1 100,50 CCCCCC FFFFFF} ${cpugraph cpu2 100,50 CCCCCC FFFFFF} ${cpugraph cpu3 100,50 CCCCCC FFFFFF} ${cpugraph cpu4 100,50 CCCCCC FFFFFF} ${cpugraph cpu5 100,50 CCCCCC FFFFFF} ${cpugraph cpu6 100,50 CCCCCC FFFFFF} ${cpugraph cpu7 100,50 CCCCCC FFFFFF}
+
+${membar 20,300} memory: $mem
+${swapbar 20,300} swap: $swap
+
+${exec ~/scripts/temp.sh}

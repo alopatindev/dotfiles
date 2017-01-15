@@ -1,0 +1,44 @@
+#!/bin/bash
+
+LOCK=/var/run/poweroff.lock
+if [ ! -f $LOCK ]; then
+    touch $LOCK
+    logger 'gonna hibernate'
+else
+    logger 'not gonna hibernate'
+    exit 0
+fi
+
+su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/.bin/alock' &
+#su al -c 'echo disconnect >> /home/al/.mcabber/mcabber.fifo'
+#su al -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
+#su al -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline'
+#service acpid stop
+mpc stop
+umount /nfs/router &
+/etc/init.d/alsasound restore
+chvt 5
+
+sync
+swapon /dev/disk/by-label/lenswap
+echo -n disk > /sys/power/state
+swapoff -a
+sync
+
+echo "keycode 14 = BackSpace" | loadkeys &
+/etc/local.d/99-non-blinking-block-cursor.start &
+#service mpdscribble restart
+#(sleep 3 && service net.ppp0 restart) &
+#service hddtemp restart &
+#/etc/init.d/consolefont restart
+#/etc/init.d/hwclock restart
+#(sleep 10 && /etc/cron.daily/ntpdate) &
+#amixer sset Master unmute &
+#v4l2ctrl -l /etc/v4l2ctrl/7fpsLight.vbi 2&>> /dev/null &
+#v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
+#(sleep 10 && /etc/init.d/mpdscribble restart) &
+#/usr/local/sbin/camshot &
+#/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
+#(sleep 5s && su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/scripts/set_touchpad.sh') &
+
+(sleep 10s && rm -f $LOCK) &
