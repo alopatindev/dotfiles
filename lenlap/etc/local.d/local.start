@@ -30,3 +30,5 @@ echo "keycode 14 = BackSpace" | loadkeys &
 #echo 2097152 > /proc/sys/vm/dirty_background_bytes
 
 echo -n 0 > /proc/sys/net/netfilter/nf_conntrack_helper
+
+/usr/local/sbin/discharge_watcher.py &
