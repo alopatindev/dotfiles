@@ -1,0 +1,32 @@
+#!/bin/bash
+
+hdparm -B 254 /dev/sda
+hdparm -B 254 /dev/sdb
+
+echo -n 400 > /sys/class/backlight/intel_backlight/brightness
+
+#/usr/bin/synclient TouchpadOff=0
+
+# handling interruptions with only one core
+#echo 1 > /proc/irq/16/smp_affinity
+##echo 1 > /proc/irq/18/smp_affinity
+##echo 1 > /proc/irq/19/smp_affinity
+#echo 1 > /proc/irq/23/smp_affinity
+
+(sleep 10 && /etc/cron.daily/ntpdate) &>> /dev/null &
+mkdir -p /var/run/screen
+chmod 777 /var/run/screen
+chmod a+r /var/log/messages
+
+mkdir -p /var/tmp/portage/.distcc
+chmod 777 /var/tmp/portage/.distcc
+chmod +t /var/tmp/portage/.distcc
+
+mkdir -p /var/run/dhcp
+
+echo "keycode 14 = BackSpace" | loadkeys &
+
+#echo 2097152 > /proc/sys/vm/dirty_bytes
+#echo 2097152 > /proc/sys/vm/dirty_background_bytes
+
+echo -n 0 > /proc/sys/net/netfilter/nf_conntrack_helper
