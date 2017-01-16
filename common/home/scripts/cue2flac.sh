@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 MUSICDIR="/nfs/router/music"
 
@@ -8,10 +8,7 @@ else
     MASK="${1}"
 fi
 
-for i in *.flac.cue */*.flac.cue
+for i in **/*.cue
 do
-    cue2tracks -R -c flac -o "${MUSICDIR}/%P/%D - %A/%N - %t" "$i"
+    cue2tracks -e -C -R -c flac -o "${MUSICDIR}/%P/%D - %A/%N - %t" "$i"
 done
-
-#find -iname "*${MASK}" -type f -print0 \
-#    | xargs -0 cue2tracks -c flac -o "${MUSICDIR}/%P/%D - %A/%N - %t" "${i}"

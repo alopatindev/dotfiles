@@ -63,4 +63,4 @@ source ~/.bash_completes
 source ~/.bash_alias
 
 # added by travis gem
-[ -f /home/sbar/.travis/travis.sh ] && source /home/sbar/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

@@ -60,7 +60,7 @@ bindkey \^U backward-kill-line
 
 mkdir -p /tmp/.vimswaps/
 
-~/.private/sync_vimwiki.sh
+#~/.private/sync_vimwiki.sh
 
 # added by travis gem
-[ -f /home/sbar/.travis/travis.sh ] && source /home/sbar/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh

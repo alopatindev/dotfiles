@@ -68,23 +68,23 @@ function batclosure (adapter)
         if dir == -1 then
             dirsign = "↓"
             prefix = "Bat:"
-            if battery <= 3 then
-                os.execute("hibernate")
-            end
-            if battery <= nextlim and notified == 0 then
-                naughty.notify({title = "⚡ Beware! ⚡",
-                            text = "Battery charge is low ( ⚡ "..battery.."%)!",
-                            timeout = 7,
-                            position = "bottom_right",
-                            fg = beautiful.fg_focus,
-                            --bg = beautiful.bg_focus
-                            bg = "#ff0000"
-                            })
-                nextlim = getnextlim(battery)
-                notified = 1
-            elseif battery > nextlim then
-                notified = 0
-            end
+--            if battery <= 3 then
+--                os.execute("hibernate")
+--            end
+--            if battery <= nextlim and notified == 0 then
+--                naughty.notify({title = "⚡ Beware! ⚡",
+--                            text = "Battery charge is low ( ⚡ "..battery.."%)!",
+--                            timeout = 7,
+--                            position = "bottom_right",
+--                            fg = beautiful.fg_focus,
+--                            --bg = beautiful.bg_focus
+--                            bg = "#ff0000"
+--                            })
+--                nextlim = getnextlim(battery)
+--                notified = 1
+--            elseif battery > nextlim then
+--                notified = 0
+--            end
         elseif dir == 1 then
             dirsign = "↑"
             nextlim = limits[1][1]
