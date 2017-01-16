@@ -116,7 +116,8 @@ class "GtkWidget" style "default-style"
 
 
 style "user-font" {
-	font_name = "DejaVu Sans 14"
+	#font_name = "DejaVu Sans 14"
+	font_name = "Ubuntu 16"
 }
 
 widget_class "*" style "user-font"
