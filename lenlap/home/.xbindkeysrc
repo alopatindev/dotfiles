@@ -7,7 +7,7 @@
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
 #"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
-"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
+"xterm -T 'terms' -fs 28 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
     m:0xd + c:36
     Control+Shift+Alt + Return
 
