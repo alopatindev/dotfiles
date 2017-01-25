@@ -43,8 +43,11 @@ for s = 1, screen.count() do
     tags[s] = awful.tag({ "1 im", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, layouts[2])
 
 --    -- FIXME: ugly hack, just to set the 3rd tag's layout to max
---    awful.tag.viewonly(tags[s][3])
---    awful.layout.inc(layouts, -3)
+    awful.tag.viewonly(tags[s][3])
+    awful.layout.inc(layouts, -3)
+
+    awful.tag.viewonly(tags[s][1])
+    awful.tag.incmwfact(0.20)
 
 --    tag({name = "im"}).screen = s
 --    tag({name = "term", layout = "max"}).screen = s
@@ -59,9 +62,10 @@ for s = 1, screen.count() do
 end
 
 --awful.tag.setproperty(tags[s][1], "mwfact", 0.13)
--- awful.tag.incmwfact(0.15)
-awful.tag.incmwfact(0.20)
-tags[1][3].layout = layouts[5]
+--awful.tag.incmwfact(0.15)
+--awful.tag.incmwfact(0.20)
+
+--tags[1][3].layout = layouts[5]
 
 mymainmenu = awful.menu({ items = {} })
 
@@ -414,6 +418,7 @@ awful.rules.rules = {
     { rule =  { class = "Arora" }, properties = { tag = tags[1][3] }},
     --{ rule =  { class = "Firefox", name = "Dialog" }, properties = { tag = tags[1][3], floating = true }},
     { rule =  { class = "Firefox" }, properties = { tag = tags[1][3], floating = false }},
+    { rule =  { class = "Torbrowser" }, properties = { tag = tags[1][3], floating = false }},
     { rule =  { class = "Npviewer.bin" }, properties = { floating = true }},
     { rule =  { class = "Exe" }, properties = { floating = true }},
     { rule =  { class = "Opera" }, properties = { tag = tags[1][3], floating = false }},
@@ -488,6 +493,7 @@ awful.rules.rules = {
     { rule =  { class = "Tkabber", name = "tkabber"  }, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "config.hs", name = "config.hs:config.hs"}, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "[gG]ens", name = "gens"  }, properties = { tag = tags[1][7], floating = true }},
+    { rule =  { class = "Hiro" }, properties = { tag = tags[1][7], floating = true }},
     { rule =  { class = "Wine", name = "Gens32 Surreal.exe" }, properties = { tag = tags[1][7], floating = true }},
     { rule =  { class = "Gvim" }, properties = { tag = tags[1][4] }},
     { rule =  { class = "Leafpad" }, properties = { tag = tags[1][4] }},
@@ -524,6 +530,7 @@ awful.rules.rules = {
     { rule =  { class = "Gnomebaker" }, properties = { tag = tags[1][7], floating = false }},
     { rule =  { class = "Graveman" }, properties = { tag = tags[1][7], floating = false }},
     { rule =  { class = "psi*" }, properties = { tag = tags[1][1], floating = false }},
+    { rule =  { class = "Cutegram" }, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "Psi*" }, properties = { tag = tags[1][1], floating = false }},
     { rule =  { class = "Xchm", name = "xchm" }, properties = { tag = tags[1][9] }},
     { rule =  { class = "Avidemux2_gtk"  }, properties = { tag = tags[1][6], floating = false }},

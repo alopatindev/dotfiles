@@ -10,6 +10,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp
 ~/scripts/set_touchpad.sh &
 
 chromium &
+pidgin &
 xterm -T 'terms' -e 'tmux attach || tmux' &
 stardict &
 qdevicemonitor &
