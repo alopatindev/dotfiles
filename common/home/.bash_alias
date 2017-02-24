@@ -68,6 +68,7 @@ alias logcat='adb logcat'
 alias passgen='apg -a 1 -m 93'
 alias gdb='gdb -q'
 alias rust-gdb='rust-gdb -q'
+alias ip='ip -c'
 
 for i in w ps ping traceroute ifconfig whereis lsmod ap vmstat top df route ldd nm strace id nmap netstat
 do

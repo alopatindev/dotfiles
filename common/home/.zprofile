@@ -1,4 +1,8 @@
+# core dumps size
 ulimit -c unlimited
+
+# open file descriptors
+ulimit -n 4096
 
 mount | egrep '^encfs on.*\.private type fuse.encfs' >> /dev/null
 # mounting encrypted fs

@@ -20,6 +20,9 @@ Plug 'git@github.com:cespare/vim-toml'
 Plug 'git@github.com:Chiel92/vim-autoformat'
 Plug 'git@github.com:kchmck/vim-coffee-script.git'
 Plug 'git@github.com:leafgarland/typescript-vim.git'
+Plug 'git@github.com:ekalinin/Dockerfile.vim.git'
+Plug 'git@github.com:Shougo/deoplete.nvim'
+Plug 'git@github.com:carlitux/deoplete-ternjs'
 "Plug 'git@github.com:kassio/neoterm'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
@@ -470,6 +473,12 @@ hi PreProc cterm=bold ctermfg=4
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
 
+" FIXME
+"hi Pmenu ctermfg=black ctermbg=green cterm=none guibg=brown gui=bold
+"hi PmenuSel ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+"hi PmenuSbar ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+"hi PmenuThumb ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+
 " кодировки
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 
@@ -723,7 +732,10 @@ set tags=tags,.tags,rusty-tags.vi
 autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
 let g:rustfmt_autosave = 1
 
+let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"' " FIXME
 au BufWrite *.ts :Autoformat
+au BufWrite *.js :Autoformat
+au BufWrite *.json :Autoformat
 
 autocmd BufEnter,FocusGained * checktime
 
@@ -731,3 +743,16 @@ se number
 " se relativenumber
 
 set shortmess=aoOtIT
+
+" Use deoplete
+let g:deoplete#enable_at_startup = 1
+let g:tern_request_timeout = 1
+"let g:tern_show_signature_in_pum = '0'
+"let g:deoplete#auto_complete_delay = 2000
+let g:deoplete#disable_auto_complete = 1
+
+" Let <C-/> also do completion
+inoremap <silent><expr> <C-_>
+\ pumvisible() ? "\<C-n>" :
+\ deoplete#mappings#manual_complete()
+
