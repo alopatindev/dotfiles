@@ -404,6 +404,7 @@ awful.rules.rules = {
     { rule =  { class = "Qtcreator"} , properties = { tag = tags[1][4], floating = false }},
     { rule =  { class = "jetbrains-idea-ce"} , properties = { tag = tags[1][4], floating = false }},
     { rule =  { class = "Gimp"} , properties = { tag = tags[1][6], floating = false }},
+    { rule =  { class = "Synfigstudio"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Openshot" }, properties = { tag = tags[1][6] }},
     { rule =  { class = "Gimp", name = "Open Image"}, properties = { floating = true }},
     { rule =  { class = "fontforge" }, properties = { tag = tags[1][6], floating = true }},

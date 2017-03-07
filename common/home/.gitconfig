@@ -22,6 +22,11 @@
     g = grep --extended-regexp --break --heading --line-number
     search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
 
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
+
 [color "diff"]
     meta = yellow bold
     frag = cyan

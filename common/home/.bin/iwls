@@ -1,10 +1,15 @@
 #!/bin/bash
 
-IFACE=wlp7s0
+IFACE=wlp2s0
 
-(sudo /bin/ifconfig ${IFACE} | grep UP >> /dev/null) || \
+(sudo ifconfig ${IFACE} | grep UP >> /dev/null) || \
     sudo ifconfig ${IFACE} up || exit 1
 
-sudo /sbin/iwlist ${IFACE} scan \
-    | egrep -i '(encr|essid|quali|freq)' \
-    | sed 's!^ *!!g;s!^Freq!\nFreq!g'
+sudo iw dev ${IFACE} scan \
+    | egrep '(SSID|signal|freq):' \
+    | sed 's!^\t*!!g;s!^\(SSID:.*\)$!\1\n!g'
+    #| sed 's!^\t*!!g;s!^SSID: \(.*\)$!SSID: \1\n!g'
+
+#sudo iwlist ${IFACE} scan \
+#    | egrep -i '(encr|essid|quali|freq)' \
+#    | sed 's!^ *!!g;s!^Freq!\nFreq!g'
