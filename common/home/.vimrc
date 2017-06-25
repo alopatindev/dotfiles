@@ -151,6 +151,8 @@ map к r
 
 map П G
 
+map в d
+
 " Пробел в нормальном режиме перелистывает страницы
 " nmap <Space> <PageDown>
 
@@ -733,9 +735,18 @@ autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
 let g:rustfmt_autosave = 1
 
 let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"' " FIXME
+"let g:formatdef_jsbeautify_javascript = '"js-beautify --indent-size 2"' " FIXME
 au BufWrite *.ts :Autoformat
 au BufWrite *.js :Autoformat
 au BufWrite *.json :Autoformat
+
+
+"let g:formatdef_scalafmt = "'ng scalafmt --stdin'"
+let g:formatdef_scalafmt = "'scalafmt-client.sh 8899'"
+let g:formatters_scala = ['scalafmt']
+au BufWrite *.scala :Autoformat
+"noremap <F5> :Autoformat<CR>
+
 
 autocmd BufEnter,FocusGained * checktime
 
@@ -744,15 +755,15 @@ se number
 
 set shortmess=aoOtIT
 
-" Use deoplete
-let g:deoplete#enable_at_startup = 1
-let g:tern_request_timeout = 1
-"let g:tern_show_signature_in_pum = '0'
-"let g:deoplete#auto_complete_delay = 2000
-let g:deoplete#disable_auto_complete = 1
-
-" Let <C-/> also do completion
-inoremap <silent><expr> <C-_>
-\ pumvisible() ? "\<C-n>" :
-\ deoplete#mappings#manual_complete()
+"" Use deoplete
+"let g:deoplete#enable_at_startup = 1
+"let g:tern_request_timeout = 1
+""let g:tern_show_signature_in_pum = '0'
+""let g:deoplete#auto_complete_delay = 2000
+"let g:deoplete#disable_auto_complete = 1
+"
+"" Let <C-/> also do completion
+"inoremap <silent><expr> <C-_>
+"\ pumvisible() ? "\<C-n>" :
+"\ deoplete#mappings#manual_complete()
 

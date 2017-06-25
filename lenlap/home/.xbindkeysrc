@@ -24,8 +24,8 @@
 #    Mod4 + g
 
 "xterm"
-    m:0x8 + c:36
-    Alt + Return
+    m:0x40 + c:36
+    Mod4 + Return
 
 "~/scripts/screenshot"
     m:0x10 + c:107

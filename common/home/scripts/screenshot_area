@@ -3,6 +3,6 @@
 DIR=$HOME'/screens'
 #FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
 NUM=$(($(cat "$DIR/.counter") + 1)) && echo $NUM > "$DIR/.counter"
-FILENAME="$DIR/screenshot_$NUM.png"
+FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
 (import $FILENAME && feh $FILENAME) || xmessage 'import failed'
 #(scrot -s $FILENAME && feh $FILENAME) || xmessage 'import failed'

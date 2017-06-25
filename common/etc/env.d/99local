@@ -1,0 +1,17 @@
+CFLAGS="-march=broadwell -mmmx -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -maes -mpclmul -mpopcnt -mabm -mfma -mbmi -mbmi2 -mavx -mavx2 -msse4.2 -msse4.1 -mlzcnt -mrtm -mhle -mrdrnd -mf16c -mfsgsbase -mrdseed -mprfchw -madx -mfxsr -mxsave -mxsaveopt --param=l1-cache-size=32 --param=l1-cache-line-size=64 --param=l2-cache-size=6144 -mtune=generic -fstack-protector-strong -g -O2 -pipe -mno-rdrnd -fdiagnostics-color=always"
+
+CXXFLAGS="-march=broadwell -mmmx -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -maes -mpclmul -mpopcnt -mabm -mfma -mbmi -mbmi2 -mavx -mavx2 -msse4.2 -msse4.1 -mlzcnt -mrtm -mhle -mrdrnd -mf16c -mfsgsbase -mrdseed -mprfchw -madx -mfxsr -mxsave -mxsaveopt --param=l1-cache-size=32 --param=l1-cache-line-size=64 --param=l2-cache-size=6144 -mtune=generic -fstack-protector-strong -g -O2 -pipe -mno-rdrnd -fdiagnostics-color=always"
+
+CHOST="x86_64-pc-linux-gnu"
+
+MAKEOPTS="-j17 -l8"
+
+DNSNAME="localdomain"
+
+BROWSER="chromium"
+
+# MPD_HOST="/var/lib/mpd/socket"
+
+_JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
+
+_JAVA_AWT_WM_NONREPARENTING=1

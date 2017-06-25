@@ -19,7 +19,7 @@ storage_widget () {
 }
 
 sound_widget () {
-    amixer sget Headphone | grep off >> /dev/null && echo '<b>[ NO sound ]</b>' || echo ''
+    amixer sget Master | grep off >> /dev/null && echo '<b>[ NO sound ]</b>' || echo ''
 }
 
 network_widget () {

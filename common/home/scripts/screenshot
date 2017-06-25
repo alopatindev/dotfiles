@@ -4,5 +4,5 @@ DIR=$HOME'/screens'
 COUNTER=.counter
 #FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
 NUM=$(($(cat "$DIR/$COUNTER") + 1)) && echo $NUM > "$DIR/$COUNTER"
-FILENAME="$DIR/screenshot_$NUM.png"
+FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
 scrot ${FILENAME} && feh ${FILENAME}
