@@ -11,6 +11,6 @@ gtk-font-name="Ubuntu 16"
 
 gtk-theme-name  = "sbar"
 
-include "/home/sbar/.gtkrc.mine"
+include "/home/al/.gtkrc.mine"
 
 # -- THEME AUTO-WRITTEN DO NOT EDIT

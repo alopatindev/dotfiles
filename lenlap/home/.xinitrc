@@ -9,7 +9,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp
 
 ~/scripts/set_touchpad.sh &
 
-~/progs/scalafmt-server-*/bin/scalafmt-server -J-Xms512m -J-Xmn512m -Dhttp.address=localhost -Dhttp.port=8899 &
+~/progs/scalafmt-server-*/scalafmt-server.sh 8899 &
 
 chromium &
 #pidgin &
