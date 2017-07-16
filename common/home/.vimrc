@@ -23,6 +23,7 @@ Plug 'git@github.com:leafgarland/typescript-vim.git'
 Plug 'git@github.com:ekalinin/Dockerfile.vim.git'
 Plug 'git@github.com:Shougo/deoplete.nvim'
 Plug 'git@github.com:carlitux/deoplete-ternjs'
+Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:kassio/neoterm'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
@@ -767,3 +768,6 @@ set shortmess=aoOtIT
 "\ pumvisible() ? "\<C-n>" :
 "\ deoplete#mappings#manual_complete()
 
+let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current'
+
+nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
