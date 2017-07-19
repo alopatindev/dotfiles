@@ -6,8 +6,9 @@ theme = {}
 
 --theme.font          = "snap 11"
 --theme.font          = "Terminus 11"
-theme.font          = "Ubuntu 16"
+-- theme.font          = "Ubuntu 16"
 -- theme.font          = "Ubuntu 25"
+theme.font             = "Droid Sans 16"
 
 theme.bg_normal     = "#555555"
 theme.bg_focus      = "#5d9457"

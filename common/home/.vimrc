@@ -771,3 +771,4 @@ set shortmess=aoOtIT
 let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current'
 
 nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
+imap <F1> <esc><F1>
