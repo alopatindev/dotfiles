@@ -9,6 +9,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp
 
 ~/scripts/set_touchpad.sh &
 
+rm -f ~/progs/scalafmt-server-*/RUNNING_PID
 ~/progs/scalafmt-server-*/scalafmt-server.sh 8899 &
 
 chromium &

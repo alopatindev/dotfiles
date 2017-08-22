@@ -27,6 +27,7 @@ Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:kassio/neoterm'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
+Plug 'git@github.com:jparise/vim-graphql'
 " :PlugInstall
 
 call plug#end()
