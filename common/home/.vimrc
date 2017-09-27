@@ -28,6 +28,7 @@ Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
+Plug 'git@github.com:elubow/cql-vim'
 " :PlugInstall
 
 call plug#end()
@@ -769,7 +770,7 @@ set shortmess=aoOtIT
 "\ pumvisible() ? "\<C-n>" :
 "\ deoplete#mappings#manual_complete()
 
-let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current'
+let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current,https://scalaj.github.io/scalaj-http/2.0.0,http://doc.scalatest.org/3.0.0'
 
 nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
 imap <F1> <esc><F1>
