@@ -8,4 +8,5 @@ mkdir -p ${CDIR}
 
 chromium --incognito --proxy-server=socks5://127.0.0.1:9050 \
          --disk-cache-dir=${CDIR} \
+         --enable-native-gpu-memory-buffers \
          --user-data-dir=/home/al/.private/chromium-anon-proxy $@

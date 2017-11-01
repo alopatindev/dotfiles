@@ -21,6 +21,7 @@
     please = push --force-with-lease
     g = grep --extended-regexp --break --heading --line-number
     search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
+    diffuse = difftool --tool diffuse
 
 [pager]
     log = diff-highlight | less

@@ -200,19 +200,29 @@ map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
 "imap <S-Left> <esc>:tabp<cr>
 "vmap <S-Right> <esc>:tabn<cr>
 "vmap <S-Left> <esc>:tabp<cr>
-map <S-l> :tabn<cr>
-map <S-h> :tabp<cr>
-map Д :tabn<cr>
-map Р :tabp<cr>
+
+"map <S-l> :tabn<cr>
+"map <S-h> :tabp<cr>
+"map Д :tabn<cr>
+"map Р :tabp<cr>
+
+map <C-l> :tabn<cr>
+map <C-h> :tabp<cr>
+map <bs> :tabp<cr>
+
 "map <S-j> :tabnew<cr>
 "imap <S-l> <esc>:tabn<cr>
 "imap <S-h> <esc>:tabp<cr>
 "imap <S-j> :tabnew<cr>
-vmap <S-l> <esc>:tabn<cr>
-vmap <S-h> <esc>:tabp<cr>
-vmap Д <esc>:tabn<cr>
-vmap Р <esc>:tabp<cr>
-"vmap <S-j> :tabnew<cr>
+
+"vmap <S-l> <esc>:tabn<cr>
+"vmap <S-h> <esc>:tabp<cr>
+"vmap Д <esc>:tabn<cr>
+"vmap Р <esc>:tabp<cr>
+
+vmap <C-l> <esc>:tabn<cr>
+vmap <C-h> <esc>:tabp<cr>
+vmap <bs> <esc>:tabp<cr>
 
 " C-n - новый split
 ""map <C-A-N> <C-W>n
@@ -770,7 +780,7 @@ set shortmess=aoOtIT
 "\ pumvisible() ? "\<C-n>" :
 "\ deoplete#mappings#manual_complete()
 
-let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current,https://scalaj.github.io/scalaj-http/2.0.0,http://doc.scalatest.org/3.0.0'
+let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current,https://scalaj.github.io/scalaj-http/2.0.0,http://doc.scalatest.org/3.0.0,http://slick.lightbend.com/doc/3.2.0/api'
 
 nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
 imap <F1> <esc><F1>
