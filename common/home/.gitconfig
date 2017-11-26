@@ -43,3 +43,6 @@
     break = true
     heading = true
     lineNumber = true
+
+[rebase]
+    autoStash = true
