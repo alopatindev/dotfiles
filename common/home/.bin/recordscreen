@@ -1,0 +1,17 @@
+#!/bin/sh
+
+ffmpeg \
+  -thread_queue_size 512 \
+  -video_size 1920x1080 \
+  -framerate 15 \
+  -f x11grab \
+  -i :0.0+0,0 \
+  -thread_queue_size 512 \
+  -f alsa \
+  -ac 1 \
+  -i input_LOOPBACK_and_usb_card \
+  -ar 22050 \
+  ~/video/screen/"$(date --rfc-3339=seconds).mkv"
+
+# -ac 2
+# -ar 48000
