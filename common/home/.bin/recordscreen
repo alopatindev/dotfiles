@@ -1,5 +1,11 @@
 #!/bin/sh
 
+CHANNELS=2
+RATE=48000
+
+#CHANNELS=1
+#RATE=22050
+
 ffmpeg \
   -thread_queue_size 512 \
   -video_size 1920x1080 \
@@ -8,10 +14,7 @@ ffmpeg \
   -i :0.0+0,0 \
   -thread_queue_size 512 \
   -f alsa \
-  -ac 1 \
+  -ac "${CHANNELS}" \
   -i input_LOOPBACK_and_usb_card \
-  -ar 22050 \
+  -ar "${RATE}" \
   ~/video/screen/"$(date --rfc-3339=seconds).mkv"
-
-# -ac 2
-# -ar 48000
