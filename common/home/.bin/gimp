@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/usr/bin/gimp -s $@
+/usr/bin/gimp -s "$@"

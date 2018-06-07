@@ -151,6 +151,13 @@ map р h
 
 map ш i
 map к r
+map м v
+map М V
+
+map О J
+map г u
+map Ж :
+map ц w
 
 map П G
 
@@ -760,6 +767,7 @@ let g:formatters_scala = ['scalafmt']
 au BufWrite *.scala :Autoformat
 "noremap <F5> :Autoformat<CR>
 
+au BufWrite *.rb :Autoformat
 
 autocmd BufEnter,FocusGained * checktime
 
@@ -782,5 +790,7 @@ set shortmess=aoOtIT
 
 let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current,https://scalaj.github.io/scalaj-http/2.0.0,http://doc.scalatest.org/3.0.0,http://slick.lightbend.com/doc/3.2.0/api'
 
-nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
-imap <F1> <esc><F1>
+"nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
+"imap <F1> <esc><F1>
+
+autocmd BufNewFile,BufRead *.ny set syntax=lisp
