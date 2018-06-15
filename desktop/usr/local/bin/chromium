@@ -5,7 +5,7 @@
 CDIR="/tmp/chromium-cache-${USER}"
 RUNNING=0
 
-if [[ ! $(ps uax | grep chromium | grep chromium-cache-al | grep -v grep) ]] ; then
+if [[ ! $(pgrep -a chrome | grep "${CDIR}") ]] ; then
     echo 'first time running'
     mkdir -p "${CDIR}/Local Storage"
     chmod 700 "${CDIR}"
@@ -18,7 +18,8 @@ fi
 
 #/usr/bin/chromium --disk-cache-dir=${CDIR} --extra-plugin-dir=/usr/lib64/nsbrowser/plugins --ppapi-flash-path=/usr/lib64/nsbrowser/plugins/PepperFlash/libpepflashplayer.so --ppapi-flash-version=15.0.0.152 --disable-sync-preferences $@
 
-/usr/bin/chromium --disk-cache-dir=${CDIR} --disable-sync-preferences $@
+#/usr/bin/chromium --disk-cache-dir=${CDIR} --disable-sync-preferences --disable-gpu-driver-bug-workarounds --enable-native-gpu-memory-buffers $@
+/usr/bin/chromium --disk-cache-dir=${CDIR} --disable-sync-preferences --enable-native-gpu-memory-buffers $@
 
 if [[ $RUNNING -eq 0 ]]; then
     echo 'copying data back'
