@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+require 'set'
+
+PHONE_DIR = '/mnt/sdcard/DCIM'.freeze
+LOCAL_DIR = "#{Dir.home}/video/phone".freeze
+DIRS = %w[Video OpenCamera].freeze
+
+def list_files(phone_dir, local_dir, dir)
+  phone_files = `adb shell ls #{phone_dir}`
+                .split("\n")
+                .map(&:strip)
+                .reject { |i| i =~ /^\.{1,2}$/ }
+                .to_set
+
+  local_files = Dir.entries(local_dir)
+                   .reject { |i| i =~ /^\.{1,2}$/ }
+                   .to_set
+
+  [phone_files, local_files]
+end
+
+def move!(phone_file, local_file)
+  puts "Downloading to #{local_file}"
+  system "adb pull -p -a '#{phone_file}' '#{local_file}' && adb shell rm '#{phone_file}'"
+  puts
+end
+
+def move_new_files!(phone_dir, local_dir, dir)
+  phone_files, local_files = list_files(phone_dir, local_dir, dir)
+  phone_files.subtract(local_files)
+             .each do |file|
+    phone_file = File.join(phone_dir, file)
+    local_file = File.join(local_dir, file)
+    move!(phone_file, local_file)
+  end
+end
+
+def move_incomplete_files!(phone_dir, local_dir, dir)
+  phone_files, local_files = list_files(phone_dir, local_dir, dir)
+  incomplete_files = phone_files.intersection(local_files)
+  if incomplete_files.any? then
+    puts "There are #{incomplete_files.length} incomplete files in #{dir}, restarting the transferring for them..."
+    incomplete_files.each do |file|
+      phone_file = File.join(phone_dir, file)
+      local_file = File.join(local_dir, file)
+      move!(phone_file, local_file)
+    end
+  end
+end
+
+DIRS.each do |dir|
+  phone_dir = File.join(PHONE_DIR, dir)
+  local_dir = File.join(LOCAL_DIR, dir)
+
+  move_new_files!(phone_dir, local_dir, dir)
+  move_incomplete_files!(phone_dir, local_dir, dir)
+end

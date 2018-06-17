@@ -1,0 +1,19 @@
+#!/bin/sh
+
+TMP_PREFIX="/tmp/phone-screencast"
+TMP_FILE="${TMP_PREFIX}.tmp"
+TMP_OUT="${TMP_PREFIX}.png"
+
+cleanup ()
+{
+    exit 0
+}
+
+trap cleanup SIGINT SIGTERM
+
+touch "${TMP_OUT}"
+geeqie "${TMP_OUT}" &
+
+while [ 1 ] ; do
+    adb exec-out screencap -p | convert -rotate '-90' - "${TMP_FILE}" && mv "${TMP_FILE}" "${TMP_OUT}"
+done
