@@ -1,8 +1,12 @@
 #!/bin/sh
 
+# https://stackoverflow.com/questions/13984017/how-to-capture-the-screen-as-fast-as-possible-through-adb/27098784#27098784
+
 TMP_PREFIX="/tmp/phone-screencast"
-TMP_FILE="${TMP_PREFIX}.tmp"
-TMP_OUT="${TMP_PREFIX}.png"
+TMP_FILE="${TMP_PREFIX}.tmp.jpg"
+TMP_RAW="${TMP_PREFIX}.raw"
+TMP_RGBA="${TMP_PREFIX}.rgba"
+TMP_OUT="${TMP_PREFIX}.jpg"
 
 cleanup ()
 {
@@ -11,9 +15,16 @@ cleanup ()
 
 trap cleanup SIGINT SIGTERM
 
-touch "${TMP_OUT}"
-geeqie "${TMP_OUT}" &
+cp --force /usr/share/icons/hicolor/48x48/apps/feh.png "${TMP_OUT}"
+feh --scale-down --reload 1 "${TMP_OUT}" &
 
 while [ 1 ] ; do
-    adb exec-out screencap -p | convert -rotate '-90' - "${TMP_FILE}" && mv "${TMP_FILE}" "${TMP_OUT}"
+    adb exec-out screencap > "${TMP_RAW}"
+    WIDTH=$(hexdump -e '/4 "%d"' -s 0 -n 4 "${TMP_RAW}")
+    HEIGHT=$(hexdump -e '/4 "%d"' -s 4 -n 4 "${TMP_RAW}")
+    #PIXEL_FORMAT=$(hexdump -e '/4 "%d"' -s 8 -n 4 "${TMP_RAW}")
+    tail -c +13 "${TMP_RAW}" > "${TMP_RGBA}"
+    convert -size "${WIDTH}x${HEIGHT}" -depth 8 -rotate '-90' "${TMP_RGBA}" "${TMP_FILE}"
+    mv "${TMP_FILE}" "${TMP_OUT}"
+    echo ok
 done
