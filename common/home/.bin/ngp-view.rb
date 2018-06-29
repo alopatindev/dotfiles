@@ -4,7 +4,7 @@ line = ARGV[0].to_i
 filename = ARGV[1].gsub(/^\.\//, '')
 pattern = ARGV[2]
 
-ANCHOR_REGEX = /\s*#\s(.*)\\n",$/
+ANCHOR_REGEX = /\s*#\s(.*?)\\n",$/
 JUPYTER_URL = 'http://localhost:8888/notebooks'.freeze
 JUPYTER_PATH = "#{Dir.home}/git/workbooks-alopatindev".freeze
 

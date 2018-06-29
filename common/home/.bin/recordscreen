@@ -1,8 +1,19 @@
 #!/bin/sh
 
+DEVICE="$1"
 HIGH_QUALITY=1
-SOUND_INPUT=input_LOOPBACK_and_usb_card
-#SOUND_INPUT=shared_input_loopback
+
+case "${DEVICE}" in
+    mic-only)
+        SOUND_INPUT=shared_input_usb_card_redirect_left_channel_to_right
+        ;;
+    system-only)
+        SOUND_INPUT=shared_input_loopback
+        ;;
+    *)
+        SOUND_INPUT=input_LOOPBACK_and_usb_card
+        ;;
+esac
 
 if [ ${HIGH_QUALITY} = 1 ]; then
     CHANNELS=2
