@@ -21,3 +21,5 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 #export ANDROID_TOOLCHAIN="${HOME}/android-ndk-toolchain/"
 #export PATH="$PATH:$ANDROID_TOOLCHAIN/bin"
+
+export XENVIRONMENT="${HOME}/.Xdefaults"

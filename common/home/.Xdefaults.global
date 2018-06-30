@@ -153,7 +153,9 @@ XCalc*ti.button40.background:           #555555
 *message.scrollVertical:	Never
 *message.scrollHorizontal:	Never
 
-*Text.?.cursorColor:		rgb:5/5/5
+! FIXME: this line crashes awesome
+!*Text.?.cursorColor:		rgb:5/5/5
+
 *Text.borderColor:		#555555
 *Text*background:		#555555
 
