@@ -47,6 +47,8 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_xdg_config_home() .. "awesome/theme.lua")
 
+local screen = awful.screen.focused()
+local safeCoords = {x = screen.geometry.width, y = screen.geometry.height}
 mouse.coords(safeCoords)
 
 function save_mouse_position()
@@ -298,6 +300,11 @@ for i = 0, 9 do
     )
 end
 
+clientbuttons = gears.table.join(
+    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+    awful.button({ modkey }, 1, awful.mouse.client.move),
+    awful.button({ modkey }, 3, awful.mouse.client.resize))
+
 -- Set keys
 root.keys(globalkeys)
 -- }}}
@@ -312,6 +319,7 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      raise = true,
                      keys = clientkeys,
+                     buttons = clientbuttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
@@ -348,7 +356,11 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = true }
     },
 
-    { rule = { class = "Audacity" }, properties = { tag = "5 media" } },
+    -- "Hide" all splash screens
+    { rule_any = {type = { "splash" }
+      }, properties = { tag = "7 misc" }
+    },
+
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }}
@@ -392,17 +404,24 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
-client.connect_signal("request::activate", function(c, context)
-    if c.pid ~= nil and context == "rules" then
+client.connect_signal("property::instance", function(c)
+    if c.pid ~= nil then
         local app_path = posix.readlink("/proc/" .. c.pid .. "/exe")
         if app_path ~= nil then
             local app = string.match(app_path, ".*/(.*)")
+
             local tag_index = apps_to_tags[app]
+            if tag_index == nil then
+                tag_index = apps_to_tags[c.class]
+            end
+            if tag_index == nil then
+                tag_index = apps_to_tags[c.instance]
+            end
 
             if tag_index ~= nil then
                 local screen = awful.screen.focused()
                 local tag = screen.tags[tag_index]
-                c:move_to_tag(tag) -- FIXME: move window instantly, before showing
+                c:move_to_tag(tag)
             end
         end
     end

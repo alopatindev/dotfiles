@@ -11,12 +11,12 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Droid Sans 16"
+theme.font          = "Droid Sans 14"
 
-theme.bg_normal     = "#555555"
-theme.bg_focus      = "#5d9457"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#424242"
+theme.bg_focus      = "#388e3c"
+theme.bg_urgent     = "#689f38"
+theme.bg_minimize   = "#4f5b62"
 
 theme.fg_normal     = "#ffffff"
 theme.fg_focus      = "#ffffff"
@@ -28,8 +28,8 @@ theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(3)
 
 theme.border_normal = "#000000"
-theme.border_focus  = "#ebca40"
-theme.border_marked = "#91231c"
+theme.border_focus  = "#ffc947"
+theme.border_marked = "#870000"
 theme.bg_systray    = theme.bg_normal
 
 -- There are other variable sets

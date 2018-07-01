@@ -2,7 +2,7 @@
 
 require 'inifile'
 
-APP_FIELDS = %w[Exec TryExec].freeze
+APP_FIELDS = %w[Exec TryExec StartupWMClass].freeze
 BAD_ARGS = ['env'].freeze
 
 CATEGORY_TO_TAG = {
@@ -55,8 +55,13 @@ apps = Dir.glob('/usr/share/applications/*.desktop').map do |f|
   categories = (entry['Categories'] || '').split(';')
   [app_names, categories]
 end
-          .map { |app_names, categories| [app_names.first, categories.map { |c| CATEGORY_TO_TAG[c] }.reject(&:nil?).first] }
+          .flat_map do |app_names, categories|
+            category = categories.map { |c| CATEGORY_TO_TAG[c] }.reject(&:nil?).first
+            app_names.map { |name| [name, category] }
+          end
           .select { |app_name, tag| !app_name.nil? && !app_name.empty? && !tag.nil? }
+          .to_h
+          .to_a
           .map { |app_name, tag| "#{app_name}\t#{tag}" }
           .join("\n")
 
