@@ -3,10 +3,10 @@
 line = ARGV[0].to_i
 filename = ARGV[1].gsub(/^\.\//, '')
 pattern = ARGV[2]
+jupyter_url = ARGV[3]
+jupyter_path = ARGV[4]
 
 ANCHOR_REGEX = /\s*#\s(.*?)\\n",$/
-JUPYTER_URL = 'http://localhost:8888/notebooks'.freeze
-JUPYTER_PATH = "#{Dir.home}/git/workbooks-alopatindev".freeze
 
 def parse_anchor(filename, line)
   File.foreach(filename)
@@ -18,11 +18,11 @@ def parse_anchor(filename, line)
 end
 
 file_extension = File.extname(filename)
-is_jupyter = file_extension == '.ipynb' && (Dir.pwd.start_with? JUPYTER_PATH)
+is_jupyter = file_extension == '.ipynb' && (Dir.pwd.start_with? jupyter_path)
 if is_jupyter
   anchor = parse_anchor(filename, line)
-  jupyter_path = File.join(Dir.pwd, filename).gsub(/^#{JUPYTER_PATH}/, '')
-  system("chromium '#{JUPYTER_URL}#{jupyter_path}#{anchor}'")
+  jupyter_path = File.join(Dir.pwd, filename).gsub(/^#{jupyter_path}/, '')
+  system("chromium '#{jupyter_url}#{jupyter_path}#{anchor}'")
 else
   system("nvim -c '/#{pattern}' -c '#{line}' '#{filename}'")
 end

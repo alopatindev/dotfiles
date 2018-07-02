@@ -1,5 +1,5 @@
 // extensions your want to look into
-extensions = ".c .h .cpp .hpp .py .S .pl .qml .pro .pri .rb .java .scala .html .ipynb .sh .js .txt"
+extensions = ".c .h .cpp .hpp .cxx .hxx .py .S .pl .qml .pro .pri .rb .java .lua .scala .html .ipynb .sh .js .txt"
 
 // files you want to look into besides the ones matching the extensions
 files = "Makefile rules control"
@@ -13,8 +13,7 @@ arg #2 = line number
 arg #3 = file path */
 
 //editor = "vim -c 'set hls' -c 'silent /%1$s' -c %2$d %3$s"
-//editor = "ngp-view.rb '%1$s' '%2$d' '%3$s'"
-editor = "ngp-view.rb '%2$d' '%3$s' '%1$s'"
+editor = "ngp-view.rb '%2$d' '%3$s' '%1$s' 'http://localhost:8888/notebooks' '/home/al/git/workbooks-alopatindev'"
 //editor = "emacs +%2$d %3$s &"
 //editor = "subl %3$s:%2$d 1>/dev/null 2>&1"
 
