@@ -1,5 +1,5 @@
 // extensions your want to look into
-extensions = ".c .h .cpp .hpp .cxx .hxx .py .S .pl .qml .pro .pri .rb .java .lua .scala .html .ipynb .sh .js .txt"
+extensions = ".c .h .cpp .hpp .cxx .hxx .py .S .pl .qml .pro .pri .rb .java .lua .scala .html .ipynb .sh .js .jsx .txt"
 
 // files you want to look into besides the ones matching the extensions
 files = "Makefile rules control"

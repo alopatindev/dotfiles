@@ -1,6 +1,7 @@
 [user]
     name = Alexander Lopatin
     email = alopatindev@gmail.com
+    signingkey = 44FB438EDA183EF0
 
 [core]
     excludesfile = ~/.gitignore.global
@@ -46,3 +47,9 @@
 
 [rebase]
     autoStash = true
+
+[commit]
+    gpgsign = true
+
+[gpg]
+    program = gpg
