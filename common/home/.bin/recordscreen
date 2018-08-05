@@ -1,7 +1,15 @@
 #!/bin/sh
 
+if [ "$1" = '-h' ]; then
+    echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high]"
+    echo "defaults are: $0 all-sound high"
+    exit 1
+fi
+
 DEVICE="$1"
-HIGH_QUALITY=1
+QUALITY="$2"
+VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
+OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mkv"
 
 case "${DEVICE}" in
     mic-only)
@@ -10,30 +18,43 @@ case "${DEVICE}" in
     system-only)
         SOUND_INPUT=shared_input_loopback
         ;;
+    no-sound)
+        SOUND_INPUT=
+        ;;
     *)
         SOUND_INPUT=input_LOOPBACK_and_usb_card
         ;;
 esac
 
-if [ ${HIGH_QUALITY} = 1 ]; then
-    CHANNELS=2
-    SOUND_RATE=48000
-    FRAMERATE=30
-else
+if [ "${QUALITY}" = 'low' ]; then
     CHANNELS=1
     SOUND_RATE=22050
     FRAMERATE=15
+else
+    CHANNELS=2
+    SOUND_RATE=48000
+    FRAMERATE=30
 fi
 
-ffmpeg \
-  -thread_queue_size 512 \
-  -video_size $(xdpyinfo | awk '/dimensions:/ { print $2; exit }') \
-  -framerate "${FRAMERATE}" \
-  -f x11grab \
-  -i :0.0+0,0 \
-  -thread_queue_size 512 \
-  -f alsa \
-  -ac "${CHANNELS}" \
-  -i "${SOUND_INPUT}"  \
-  -ar "${SOUND_RATE}" \
-  ~/video/screen/"$(date --rfc-3339=seconds).mkv"
+if [ ! "${SOUND_INPUT}" ]; then
+    ffmpeg \
+        -thread_queue_size 512 \
+        -video_size "${VIDEO_SIZE}" \
+        -framerate "${FRAMERATE}" \
+        -f x11grab \
+        -i :0.0+0,0 \
+        "${OUTPUT}"
+else
+    ffmpeg \
+        -thread_queue_size 512 \
+        -video_size "${VIDEO_SIZE}" \
+        -framerate "${FRAMERATE}" \
+        -f x11grab \
+        -i :0.0+0,0 \
+        -thread_queue_size 512 \
+        -f alsa \
+        -ac "${CHANNELS}" \
+        -i "${SOUND_INPUT}"  \
+        -ar "${SOUND_RATE}" \
+        "${OUTPUT}"
+fi
