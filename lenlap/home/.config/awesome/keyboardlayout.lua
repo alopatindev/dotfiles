@@ -7,7 +7,7 @@
 local capi = {awesome = awesome}
 local setmetatable = setmetatable
 local textbox = require("wibox.widget.textbox")
-local button = require("awful.button")
+-- local button = require("awful.button")
 local gtable = require("gears.table")
 local widget_base = require("wibox.widget.base")
 local gdebug = require("gears.debug")
@@ -121,6 +121,9 @@ local function update_status (self)
         -- Please note that the group number reported by xkb_get_layout_group
         -- is lower by one than the group numbers reported by xkb_get_group_names.
         local output = string.upper(self._layout[self._current+1])
+        if output == "US" then
+            output = "EN"
+        end
         text = ("[ " .. output .. " ]")
     end
     self.widget:set_text(text)
@@ -287,9 +290,9 @@ function keyboardlayout.new()
                                 function () update_status(self) end);
 
     -- Mouse bindings
-    self:buttons(
-        gtable.join(button({ }, 1, self.next_layout))
-    )
+--    self:buttons(
+--        gtable.join(button({ }, 1, self.next_layout))
+--    )
 
     return self
 end

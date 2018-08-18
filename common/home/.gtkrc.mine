@@ -7,22 +7,22 @@ style "default"
     fg[SELECTED]            = "#000000"
 
     bg[ACTIVE]              = "#444444"
-    bg[NORMAL]              = "#5B5B5B"
+    bg[NORMAL]              = "#424242"
     bg[INSENSITIVE]         = "#474747"
-    bg[PRELIGHT]            = "#5D9457"
-    bg[SELECTED]            = "#5D9457"
+    bg[PRELIGHT]            = "#388e3c"
+    bg[SELECTED]            = "#388e3c"
 
     base[NORMAL]            = "#555555"
     base[ACTIVE]            = "#5D9457"
     base[INSENSITIVE]       = "#555555"
-    base[PRELIGHT]          = "#5D9457"
-    base[SELECTED]          = "#5D9457"
+    base[PRELIGHT]          = "#388e3c"
+    base[SELECTED]          = "#388e3c"
 
     text[NORMAL]            = "#FFFFFF"
     text[ACTIVE]            = "#000000"
     text[PRELIGHT]          = "#000000"
     text[SELECTED]          = "#FFFFFF"
-    text[INSENSITIVE]       = "#555555"
+    text[INSENSITIVE]       = "#424242"
 }
 
 #gtk-icon-theme-name="Tango"

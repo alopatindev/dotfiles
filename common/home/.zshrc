@@ -41,9 +41,12 @@ ZSH_THEME="gentoo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting)
+plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
+ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 # don't kill background processes when exiting zsh
 setopt NO_HUP
@@ -57,6 +60,8 @@ source ~/.bash_alias
 bindkey \^U backward-kill-line
 #bindkey '<ctrl-v><ctrl+left-arrow>' backward-word
 #bindkey '<ctrl-v><ctrl+right-arrow>' forward-word
+
+unsetopt share_history
 
 mkdir -p /tmp/.vimswaps/
 

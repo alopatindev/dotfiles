@@ -72,7 +72,8 @@ mymainmenu = awful.menu({ items = {} })
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
-mytextclock = awful.widget.textclock({ align = "right" }, "[ %a %d %b, %I:%M %p ] ", 2)
+--mytextclock = awful.widget.textclock({ align = "right" }, "[ %a %d %b, %I:%M %p ] ", 2)
+mytextclock = awful.widget.textclock({ align = "right" }, "[ %I:%M %p ] ", 2)
 mysystray = widget({ type = "systray" })
 myskb = widget({type = "textbox", name = "myskb"})
 myskb.text = ''
@@ -407,6 +408,7 @@ awful.rules.rules = {
     { rule =  { class = "VisualVM*"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Synfigstudio"} , properties = { tag = tags[1][6], floating = false }},
     { rule =  { class = "Openshot" }, properties = { tag = tags[1][6] }},
+    { rule =  { class = "kdenlive" }, properties = { tag = tags[1][6] }},
     { rule =  { class = "Gimp", name = "Open Image"}, properties = { floating = true }},
     { rule =  { class = "fontforge" }, properties = { tag = tags[1][6], floating = true }},
     { rule =  { class = "CinePaint" }, properties = { tag = tags[1][6], floating = true }},
