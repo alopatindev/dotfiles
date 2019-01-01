@@ -1,0 +1,3 @@
+#!/bin/sh
+
+flatpak run --device=alsa --file-forwarding org.pitivi.Pitivi//master $@

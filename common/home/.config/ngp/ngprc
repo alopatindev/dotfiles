@@ -5,7 +5,7 @@ extensions = ".c .h .cpp .hpp .cxx .hxx .py .S .pl .qml .pro .pri .rb .java .lua
 files = "Makefile rules control"
 
 // files or directories you want to ignore
-ignore = ""
+ignore = ".ipynb_checkpoints"
 
 /* editor command :
 arg #1 = pattern to search

@@ -6,6 +6,7 @@
 [core]
     excludesfile = ~/.gitignore.global
     ignorecase = false
+    quotePath = false
 
 [color]
     ui = true

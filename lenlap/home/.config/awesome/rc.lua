@@ -363,7 +363,8 @@ awful.rules.rules = {
 
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
-    { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }}
+    { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
+    { rule = { class = "Zathura" }, properties = { tag = "9 doc" }}
 }
 
 apps_to_tags = {}

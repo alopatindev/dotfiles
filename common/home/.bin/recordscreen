@@ -1,15 +1,19 @@
 #!/bin/sh
 
+# TODO: -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 -y out.mkv
+
 if [ "$1" = '-h' ]; then
-    echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high]"
+    echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high] [mouse|no-mouse]"
     echo "defaults are: $0 all-sound high"
     exit 1
 fi
 
 DEVICE="$1"
 QUALITY="$2"
+MOUSE="$3"
 VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
-OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mkv"
+#VIDEO_SIZE="1696x73"
+OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mp4"
 
 case "${DEVICE}" in
     mic-only)
@@ -33,16 +37,25 @@ if [ "${QUALITY}" = 'low' ]; then
 else
     CHANNELS=2
     SOUND_RATE=48000
-    FRAMERATE=30
+    FRAMERATE=60
 fi
 
+if [ "${MOUSE}" = 'no-mouse' ]; then
+    DRAW_MOUSE=0
+else
+    DRAW_MOUSE=1
+fi
+
+# -i :0.0+54,6
 if [ ! "${SOUND_INPUT}" ]; then
     ffmpeg \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
         -f x11grab \
+        -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
+        -vcodec libx264 -preset ultrafast -crf 18 \
         "${OUTPUT}"
 else
     ffmpeg \
@@ -50,11 +63,15 @@ else
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
         -f x11grab \
+        -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
         -thread_queue_size 512 \
         -f alsa \
         -ac "${CHANNELS}" \
         -i "${SOUND_INPUT}"  \
         -ar "${SOUND_RATE}" \
+        -vcodec libx264 -preset ultrafast -crf 18 \
+        -acodec alac \
+        -f ipod \
         "${OUTPUT}"
 fi

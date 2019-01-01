@@ -1,0 +1,3 @@
+#!/bin/sh
+
+flatpak run --device=alsa --branch=stable --arch=x86_64 --command=pitivi --file-forwarding org.pitivi.Pitivi $@
