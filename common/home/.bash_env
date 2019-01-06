@@ -24,4 +24,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export XENVIRONMENT="${HOME}/.Xdefaults"
 
+export ANDROID_HOME="${HOME}/Android/sdk"
+
 export GPG_TTY=$(tty)

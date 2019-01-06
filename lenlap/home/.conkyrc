@@ -2,7 +2,7 @@ conky.config = {
 -- vim: textwidth=0
 	alignment = 'top_left',
 	gap_x = 6,
-	gap_y = 8,
+	gap_y = 4,
 	maximum_width = 1920,
 --font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 
@@ -20,15 +20,17 @@ conky.config = {
 
 conky.text = [[
 
-${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp2s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp2s0}KiB/s
-${downspeedgraph wlp2s0 100,200 CCCCCC FFFFFF} ${upspeedgraph wlp2s0 100,200 CCCCCC FFFFFF}
-${color #FFFFFF}disk I/O
-${diskiograph 100,415 CCCCCC FFFFFF}${color #CCCCCC}
-${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20} ${color #CCCCCC}${cpu cpu2}%${offset 20} ${color #CCCCCC}${cpu cpu3}%${offset 20}${cpu cpu4}%${offset 20} ${color #CCCCCC}${cpu cpu5}%${offset 20} ${color #CCCCCC}${cpu cpu6}%${offset 20} ${color #CCCCCC}${cpu cpu7}%
-${cpugraph cpu0 100,50 CCCCCC FFFFFF} ${cpugraph cpu1 100,50 CCCCCC FFFFFF} ${cpugraph cpu2 100,50 CCCCCC FFFFFF} ${cpugraph cpu3 100,50 CCCCCC FFFFFF} ${cpugraph cpu4 100,50 CCCCCC FFFFFF} ${cpugraph cpu5 100,50 CCCCCC FFFFFF} ${cpugraph cpu6 100,50 CCCCCC FFFFFF} ${cpugraph cpu7 100,50 CCCCCC FFFFFF}
+${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp8s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp8s0}KiB/s
+${downspeedgraph wlp8s0 78,200 CCCCCC FFFFFF} ${upspeedgraph wlp8s0 78,200 CCCCCC FFFFFF}
+${color #FFFFFF}disk I/O       memory: $mem
+${diskiograph 78,200 CCCCCC FFFFFF} ${memgraph 78,200 CCCCCC FFFFFF}
+${color #CCCCCC}${swapbar 20,300} swap: $swap
 
-${membar 20,300} memory: $mem
-${swapbar 20,300} swap: $swap
+${fs_bar 20,150 /} /      ${fs_used /} of ${fs_size /}
+${fs_bar 20,150 /home} /home  ${fs_used /home} of ${fs_size /home}
+
+${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20} ${color #CCCCCC}${cpu cpu2}%${offset 20} ${color #CCCCCC}${cpu cpu3}%${offset 20}${cpu cpu4}%${offset 20} ${color #CCCCCC}${cpu cpu5}%${offset 20} ${color #CCCCCC}${cpu cpu6}%${offset 20} ${color #CCCCCC}${cpu cpu7}%
+${cpugraph cpu0 78,50 CCCCCC FFFFFF} ${cpugraph cpu1 78,50 CCCCCC FFFFFF} ${cpugraph cpu2 78,50 CCCCCC FFFFFF} ${cpugraph cpu3 78,50 CCCCCC FFFFFF} ${cpugraph cpu4 78,50 CCCCCC FFFFFF} ${cpugraph cpu5 78,50 CCCCCC FFFFFF} ${cpugraph cpu6 78,50 CCCCCC FFFFFF} ${cpugraph cpu7 78,50 CCCCCC FFFFFF}
 
 ${exec ~/scripts/temp.sh}
 ]];
