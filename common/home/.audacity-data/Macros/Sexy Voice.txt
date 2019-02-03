@@ -1,0 +1,2 @@
+Equalization:CurveName="Bass Boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
+Equalization:CurveName="custom-treble-boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
