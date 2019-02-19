@@ -1,0 +1,2 @@
+De-clicker:control-action-choice="Apply changes" control-crackle-threshold="-45" control-crossfade-interval="5" control-frequency-bound1="150" control-frequency-bound2="12500" control-max-steps="2" control-n-bands="12" control-passes="4" control-relative-threshold="6" control-separation="3" control-step-dur-ms="5"
+De-esser:control-absolute-threshold="-12" control-action-choice="Apply changes" control-crossfade-interval="5" control-frequency-bound1="2500" control-frequency-bound2="8000" control-n-bands="10" control-step-dur-ms="10"

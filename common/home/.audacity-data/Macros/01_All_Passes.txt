@@ -1,0 +1,30 @@
+SelTrackStartToEnd:
+Copy:
+NewMonoTrack:
+Paste:
+SetTrack:Display="Spectrogram" Height="280" Name="Uncut"
+NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
+NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
+Equalization:CurveName="Bass Boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
+Equalization:CurveName="custom-treble-boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
+NewMonoTrack:
+Paste:
+SetTrack:Name="Noise Gate"
+NoiseGate:attack="250" freq="0" funct="Gate" hpf="No" level-red="-12" stlink="Link Stereo Tracks" thresh="-17.2"
+SoundFinder:finallabel="1" labelafterdur="0.1775" labelbeforedur="0.008" sil-dur="0.5" sil-lev="26"
+RemoveTracks:
+NewMonoTrack:
+Paste:
+SetTrack:Display="Spectrogram" Height="280" Name="Output-In-Progress"
+SelectTracks:Mode="Set" ReversedOrder="1" Track="0" TrackCount="2"
+AutopunchPaste:Use_Preset="<Factory Defaults>"
+MuteAllTracks:
+SelectTracks:Mode="Set" ReversedOrder="1" Track="0" TrackCount="1"
+SetTrack:Focused="1" Mute="0" Selected="1"
+NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
+NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
+Equalization:CurveName="Bass Boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
+Equalization:CurveName="custom-treble-boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
+De-clicker:control-action-choice="Apply changes" control-crackle-threshold="-45" control-crossfade-interval="5" control-frequency-bound1="150" control-frequency-bound2="12500" control-max-steps="2" control-n-bands="12" control-passes="4" control-relative-threshold="6" control-separation="3" control-step-dur-ms="5"
+De-esser:control-absolute-threshold="-12" control-action-choice="Apply changes" control-crossfade-interval="5" control-frequency-bound1="2500" control-frequency-bound2="8000" control-n-bands="10" control-step-dur-ms="10"
+SetTrack:Name="Output-Done"

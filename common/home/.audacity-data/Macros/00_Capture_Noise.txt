@@ -1,0 +1,3 @@
+NoiseReduction:CaptureNoise:Use_Preset="<Factory Defaults>"
+AutopunchCopy:Use_Preset="<Factory Defaults>"
+PunchCopy/paste:curve="Linear" fade-seconds="0" loop="Enable looping" mix="100" mode="Copy (replace)"
