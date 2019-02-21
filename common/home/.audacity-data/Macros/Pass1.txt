@@ -16,11 +16,11 @@ RemoveTracks:
 NewMonoTrack:
 Paste:
 SelectTracks:Mode="Set" ReversedOrder="1" Track="0" TrackCount="2"
-AutopunchPaste:Use_Preset="<Factory Defaults>"
+AutopunchApply:Use_Preset="<Factory Defaults>"
 MuteAllTracks:
 SelectTracks:Mode="Set" ReversedOrder="1" Track="0" TrackCount="1"
 NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
 NoiseReduction:Apply:Use_Preset="<Factory Defaults>"
 Equalization:CurveName="Bass Boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
 Equalization:CurveName="custom-treble-boost" FilterLength="4001" InterpolateLin="0" InterpolationMethod="B-spline"
-SetTrack:Display="Spectrogram" Height="280" Name="Output-Pass-1" Focused="1" Mute="0" Selected="1"
+SetTrack:Display="Spectrogram" Height="280" Name="Output-Pass-1" Focused="1" Mute="0" Selected="1" Solo="1"
