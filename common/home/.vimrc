@@ -14,7 +14,6 @@ Plug 'git@github.com:airblade/vim-gitgutter'
 Plug 'git@github.com:gentoo/gentoo-syntax'
 Plug 'git@github.com:derekwyatt/vim-scala'
 Plug 'git@github.com:zaiste/tmux.vim'
-Plug 'git@github.com:rust-lang/rust.vim'
 Plug 'git@github.com:editorconfig/editorconfig-vim'
 Plug 'git@github.com:cespare/vim-toml'
 Plug 'git@github.com:Chiel92/vim-autoformat'
@@ -29,6 +28,24 @@ Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
 Plug 'git@github.com:elubow/cql-vim'
+
+" rust
+Plug 'git@github.com:rust-lang/rust.vim'
+Plug 'w0rp/ale' " autocompletion? proselint
+Plug 'airblade/vim-rooter'
+
+" for go to definition (+autocompletion?)
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
 " :PlugInstall
 
 call plug#end()
@@ -280,7 +297,7 @@ imap <F9> <esc>:make<cr><cr><cr>
 vmap < <gv
 vmap > >gv
 
-map r :set wrap!<cr>
+"map r :set wrap!<cr>
 
 " Выключаем ненавистный режим замены
 " imap >Ins> <Esc>i
@@ -495,11 +512,12 @@ hi PreProc cterm=bold ctermfg=4
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
 
-" FIXME
+" FIXME: autocomplete
 "hi Pmenu ctermfg=black ctermbg=green cterm=none guibg=brown gui=bold
 "hi PmenuSel ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuSbar ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuThumb ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+highlight Pmenu ctermbg=blue guibg=blue
 
 " кодировки
 set fileencodings=utf-8,cp1251,koi8-r,cp866
@@ -725,7 +743,7 @@ let g:indent_guides_guide_size=1
 command! E Explore
 se nohlsearch
 filetype plugin indent on
-set completeopt=longest,menuone
+"set completeopt=longest,menuone
 
 
 " open omni completion menu closing previous if open and opening new menu without changing the text
@@ -761,11 +779,11 @@ au BufWrite *.js :Autoformat
 au BufWrite *.json :Autoformat
 
 
-"let g:formatdef_scalafmt = "'ng scalafmt --stdin'"
-let g:formatdef_scalafmt = "'scalafmt-client.sh 8899'"
-let g:formatters_scala = ['scalafmt']
-au BufWrite *.scala :Autoformat
-"noremap <F5> :Autoformat<CR>
+""let g:formatdef_scalafmt = "'ng scalafmt --stdin'"
+"let g:formatdef_scalafmt = "'scalafmt-client.sh 8899'"
+"let g:formatters_scala = ['scalafmt']
+"au BufWrite *.scala :Autoformat
+""noremap <F5> :Autoformat<CR>
 
 au BufWrite *.rb :Autoformat
 
@@ -794,3 +812,45 @@ let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apac
 "imap <F1> <esc><F1>
 
 autocmd BufNewFile,BufRead *.ny set syntax=lisp
+autocmd BufNewFile,BufRead *.xges set syntax=xml
+
+" rust
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ }
+"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"" Or map each action separately
+autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tabedit'})<CR>
+nnoremap r :call LanguageClient#textDocument_rename()<CR>
+"map <C-_> :call LanguageClient#textDocument_documentSymbol()<CR> " which is actually C-/
+map f :call LanguageClient_textDocument_codeAction()<CR>
+
+" enable autocomplete for Rust
+autocmd BufEnter *.rs call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
+
+if executable('rg')
+    set grepprg=rg\ --no-heading\ --vimgrep
+    set grepformat=%f:%l:%c:%m
+endif
+
+"nnoremap <C-g> :Rg<Cr>
+nnoremap <C-f> :FZF<Cr>
+
+"let g:ale_linters = {'rust': ['rls']}
+let g:ale_linters = {
+    \ 'markdown': ['proselint'],
+    \ 'text': ['proselint'],
+    \ }
+"let g:ale_completion_enabled = 1
+"let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_useFloatingHover = 0
+let g:LanguageClient_useVirtualText = 0
+
+
+
+
+set undodir=~/.vimundo
+set undofile
+

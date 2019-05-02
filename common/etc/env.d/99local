@@ -10,7 +10,14 @@ BROWSER="chromium"
 
 GDK_DPI_SCALE="1.3"
 
+# MPD_HOST="/var/lib/mpd/socket"
+
 _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 _JAVA_AWT_WM_NONREPARENTING=1
 
 SBT_OPTS="-server -Xms512M -Xmx3000M -Xss1M -XX:+UseConcMarkSweepGC -XX:NewRatio=8"
+
+LIBASOUND_THREAD_SAFE=0
+
+XDG_RUNTIME_DIR="/var/tmp/weston"
+GTK_THEME="Adwaita-dark"

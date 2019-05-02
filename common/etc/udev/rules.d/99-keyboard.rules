@@ -1,0 +1,1 @@
+SUBSYSTEM=="input", ACTION=="add", RUN+="/usr/local/sbin/set-keyboard-layout.sh"

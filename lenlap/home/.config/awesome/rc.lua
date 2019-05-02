@@ -107,7 +107,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1 im", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[2])
+    awful.tag({ "1 tasks", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[2])
 
     -- FIXME: ugly hack, just to set the 3rd tag's layout to max
     awful.tag.viewonly(s.tags[3])
@@ -248,12 +248,12 @@ globalkeys = gears.table.join(
 )
 
 clientkeys = gears.table.join(
-    awful.key({ modkey,           }, "f",
-        function (c)
-            c.fullscreen = not c.fullscreen
-            c:raise()
-        end,
-        {description = "toggle fullscreen", group = "client"}),
+--    awful.key({ modkey,           }, "f",
+--        function (c)
+--            c.fullscreen = not c.fullscreen
+--            c:raise()
+--        end,
+--        {description = "toggle fullscreen", group = "client"}),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"})
     --awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,

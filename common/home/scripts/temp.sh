@@ -5,9 +5,9 @@ SENSORS_OUT=$(sensors)
 for i in $(echo "${SENSORS_OUT}" | grep -v ^T | grep : | egrep -o '(.*?): *(\+[0-9.-]*)°C '); do
     echo -n "$i "
 done | sed 's/°C / °C\n/g'
+nvidia-smi --format=csv,noheader --query-gpu=temperature.gpu | grep -v NVIDIA
 
 echo
 echo "${SENSORS_OUT}" | grep RPM
 
-echo
 (cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor ; grep MHz /proc/cpuinfo | cut -d':' -f2) | column -c 40

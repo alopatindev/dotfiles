@@ -17,6 +17,9 @@
 [merge]
     conflictstyle = diff3
 
+[difftool]
+    prompt = false
+
 [alias]
     s = status -s
     l = log --oneline --decorate --all --graph

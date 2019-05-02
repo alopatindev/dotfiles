@@ -6,14 +6,15 @@ directory = /home/al/downloads
 session = /home/al/.sessions
 
 # check out new *.torrent files once per 5 seconds
-schedule = watch_directory,5,5,load_start=/home/al/Downloads/*.torrent
+schedule = watch_directory,5,5,load.start=/home/al/Downloads/*.torrent
 
 port_range = 6881-6889
 port_random = no
 
-use_udp_trackers = yes
+trackers.use_udp.set = yes
 
-session_save = yes
+#session_save = yes
+session.save = yes
 
 #scgi_port = localhost:5000
 

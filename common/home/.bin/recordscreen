@@ -17,7 +17,8 @@ OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mp4"
 
 case "${DEVICE}" in
     mic-only)
-        SOUND_INPUT=shared_input_usb_card_redirect_left_channel_to_right
+        #SOUND_INPUT=shared_input_zoom_recorder_redirect_left_channel_to_right
+        SOUND_INPUT=zoom_recorder
         ;;
     system-only)
         SOUND_INPUT=shared_input_loopback
@@ -26,7 +27,7 @@ case "${DEVICE}" in
         SOUND_INPUT=
         ;;
     *)
-        SOUND_INPUT=input_LOOPBACK_and_usb_card
+        SOUND_INPUT=input_LOOPBACK_and_zoom_recorder
         ;;
 esac
 

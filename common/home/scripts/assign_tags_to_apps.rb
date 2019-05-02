@@ -6,12 +6,12 @@ APP_FIELDS = %w[Exec TryExec StartupWMClass].freeze
 BAD_ARGS = ['env'].freeze
 
 CATEGORY_TO_TAG = {
-  'Chat' => 1,
-  'InstantMessaging' => 1,
-  'Telephony' => 1,
-  'VideoConference' => 1,
-
   'TerminalEmulator' => 2,
+
+  'Chat' => 3,
+  'InstantMessaging' => 3,
+  'Telephony' => 3,
+  'VideoConference' => 3,
 
   'WebBrowser' => 3,
 
@@ -41,7 +41,7 @@ CATEGORY_TO_TAG = {
   'Spreadsheet' => 9
 }.freeze
 
-apps = Dir.glob('/usr/share/applications/*.desktop').map do |f|
+apps = Dir.glob('{/usr,/var/lib/flatpak/exports}/share/applications/*.desktop').map do |f|
   conf = IniFile.load(f, comment: '#')
   entry = conf['Desktop Entry']
   app_names = entry

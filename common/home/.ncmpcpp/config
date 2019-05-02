@@ -171,7 +171,7 @@ main_window_color = "white"
 #color2 = "green"
 #
 #main_window_highlight_color = "yellow"
-main_window_highlight_color = "white"
+#main_window_highlight_color = "white"
 #
 #progressbar_color = "default"
 #
@@ -193,3 +193,6 @@ visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
 #ask_before_clearing_main_playlist = "yes"
 
 display_bitrate = "yes"
+
+current_item_prefix = "$(white)$r"
+current_item_suffix = "$/r$(end)"
