@@ -72,15 +72,15 @@ modkey = "Mod1"
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.tile.top,
 --    awful.layout.suit.fair,
 --    awful.layout.suit.fair.horizontal,
 --    awful.layout.suit.spiral,
 --    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.max.fullscreen,
 --    awful.layout.suit.magnifier,
 --    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
@@ -107,11 +107,13 @@ awful.screen.connect_for_each_screen(function(s)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1 tasks", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[2])
+    awful.tag({ "1 tasks", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[3])
 
     -- FIXME: ugly hack, just to set the 3rd tag's layout to max
-    awful.tag.viewonly(s.tags[3])
-    awful.layout.inc(-3)
+    --awful.tag.viewonly(s.tags[3])
+    --awful.layout.inc(-3)
+
+    --FIXME
     awful.tag.viewonly(s.tags[1])
     awful.tag.incmwfact(0.20)
 
@@ -364,7 +366,8 @@ awful.rules.rules = {
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
-    { rule = { class = "Zathura" }, properties = { tag = "9 doc" }}
+    { rule = { class = "Zathura" }, properties = { tag = "9 doc" }},
+    { rule = { class = "Code" }, properties = { tag = "2 term" } },
 }
 
 apps_to_tags = {}

@@ -9,13 +9,16 @@ else
     exit 0
 fi
 
-su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/.bin/alock' &
+/usr/local/sbin/lock_screen.sh
+
+killall gpg-agent
+
 #su al -c 'echo disconnect >> /home/al/.mcabber/mcabber.fifo'
 #su al -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
 #su al -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline'
 #service acpid stop
 mpc stop
-umount /nfs/router &
+mount | grep '/nfs/router' >> /dev/null && umount /nfs/router &
 /etc/init.d/alsasound restore
 chvt 5
 
@@ -40,5 +43,6 @@ echo "keycode 14 = BackSpace" | loadkeys &
 #/usr/local/sbin/camshot &
 #/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
 #(sleep 5s && su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/scripts/set_touchpad.sh') &
+echo "mytextclock._private.textclock_update_cb()" | su al -c awesome-client &
 
 (sleep 10s && rm -f $LOCK) &

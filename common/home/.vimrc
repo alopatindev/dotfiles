@@ -31,10 +31,10 @@ Plug 'git@github.com:elubow/cql-vim'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
-Plug 'w0rp/ale' " autocompletion? proselint
+Plug 'w0rp/ale' " autocompletion unused, used proselint
 Plug 'airblade/vim-rooter'
 
-" for go to definition (+autocompletion?)
+" for go to definition (autocompletion unused)
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -42,7 +42,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
-Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2' " autocompletion for rust
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
@@ -275,9 +275,9 @@ imap <F2> <esc>:wa<cr>i
 "imap <F8> <esc>:MarksBrowser<cr>
 
 " F9 - "make" команда
-map <F9> :make<cr><cr><cr>
-vmap <F9> <esc>:make<cr><cr><cr>
-imap <F9> <esc>:make<cr><cr><cr>
+"map <F9> :make<cr><cr><cr>
+"vmap <F9> <esc>:make<cr><cr><cr>
+"imap <F9> <esc>:make<cr><cr><cr>
 
 " F10 -закрыть текущий фрейм/tab
 "map <F10> <C-W>c
@@ -571,11 +571,12 @@ map \w :call Browser ()<cr><cr>
 "
 "map <F11> :call CompileAndRun()<CR>
 "
-map <C-o> :!<cr>
-imap <C-o> <esc>:!<cr>
-vmap <C-o> <esc>:!<cr>
+"map <C-o> :!<cr>
+"imap <C-o> <esc>:!<cr>
+"vmap <C-o> <esc>:!<cr>
 
-
+" go back (after go to definition, etc.)
+map z <C-o>
 
 "let g:manpageview_winopen="only"
 "
@@ -666,9 +667,9 @@ endif
 
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
 
-map <F12> :TagbarOpenAutoClose<cr>
-imap <F12> <esc>:TagbarOpenAutoClose<cr>
-vmap <F12> <esc>:TagbarOpenAutoClose<cr>
+map <F12> :TagbarToggle<cr>
+imap <F12> <esc>:TagbarToggle<cr>
+vmap <F12> <esc>:TagbarToggle<cr>
 
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
@@ -769,7 +770,7 @@ let g:formatters_rust = ['rustfmt']
 
 set tags=tags,.tags,rusty-tags.vi
 
-autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
+"autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
 let g:rustfmt_autosave = 1
 
 let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"' " FIXME
@@ -828,6 +829,11 @@ map f :call LanguageClient_textDocument_codeAction()<CR>
 " enable autocomplete for Rust
 autocmd BufEnter *.rs call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+let g:ncm2#auto_popup=0
+"g:ncm2#complete_length
+"g:ncm2#manual_complete_length
+"inoremap <your-key> <c-r>=ncm2#manual_trigger(...)<cr>
+autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
 
 if executable('rg')
@@ -843,12 +849,24 @@ let g:ale_linters = {
     \ 'markdown': ['proselint'],
     \ 'text': ['proselint'],
     \ }
-"let g:ale_completion_enabled = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_enabled = 0
 "let g:LanguageClient_diagnosticsEnable = 0
+
 let g:LanguageClient_useFloatingHover = 0
 let g:LanguageClient_useVirtualText = 0
 
 
+
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"call deoplete#custom#option('omni_patterns', {
+"\ 'rust': '[^. *\t]\.\w*',
+"\})
+"call deoplete#custom#option({
+"\ 'on_text_changed_i': v:false,
+"\ })
 
 
 set undodir=~/.vimundo

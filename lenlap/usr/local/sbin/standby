@@ -9,27 +9,38 @@ else
     exit 0
 fi
 
-su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/.bin/alock' &
+/usr/local/sbin/lock_screen.sh
+
+killall gpg-agent
+
 #su al -c 'echo disconnect >> /home/al/.mcabber/mcabber.fifo'
 #su al -c 'DISPLAY=:0 /usr/bin/gajim-remote change_status offline'
 #su al -c 'DISPLAY=:0 /usr/bin/psi-plus --remote --status=offline'
 mpc stop
 /etc/init.d/alsasound restore
-umount /nfs/router &
+mount | grep '/nfs/router' >> /dev/null && umount /nfs/router &
 chvt 5
 sync
 
+t1=$(date +%s)
+date1=$(date)
+
 echo -n mem > /sys/power/state
+
+t2=$(date +%s)
+date2=$(date)
+dt=$(echo "(${t2} - ${t1}) / 60 / 60" | bc -l)
+logger "woke up after $(printf '%2.2f\n' ${dt}) hours (${date1} => ${date2})"
 
 sync
 echo "keycode 14 = BackSpace" | loadkeys &
 /etc/local.d/99-non-blinking-block-cursor.start &
 #(sleep 3 && /etc/init.d/net.ppp0 restart && /etc/init.d/mpdscribble restart) &
-#(sleep 3 && /etc/init.d/mpdscribble restart) &
+(sleep 3 && /etc/init.d/mpdscribble restart) &
 #/etc/init.d/hddtemp restart &
 #/etc/init.d/consolefont restart
 #/etc/init.d/hwclock restart
-#(sleep 10 && /etc/cron.daily/ntpdate) &
+(sleep 20 && /etc/cron.daily/ntpdate) &
 #amixer sset Master unmute &
 #v4l2ctrl -l /etc/v4l2ctrl/7fpsLight.vbi 2&>> /dev/null &
 #v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
@@ -46,5 +57,6 @@ echo "keycode 14 = BackSpace" | loadkeys &
 #/usr/local/sbin/camshot &
 #/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
 #(sleep 5s && su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/scripts/set_touchpad.sh') &
+echo "mytextclock._private.textclock_update_cb()" | su al -c awesome-client &
 
-(sleep 10s && rm -f $LOCK) &
+(sleep 5s && rm -f $LOCK) &
