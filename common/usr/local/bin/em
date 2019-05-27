@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+package_groups = %w[btcsuite changed-deps downgrade installed live-rebuild module-rebuild preserved-rebuild profile rebuilt-binaries security selected selected-packages selected-sets system ucimf unavailable unavailable-binaries world x11-module-rebuild]
+package_groups += package_groups.map { |i| '@' + i }
+
+args = ARGV.map { |i| (i.start_with? '-') || (package_groups.any? i) || (i.include? '::') ? i : i + '::gentoo' }
+           .join(' ')
+
+p args
+system("sudo emerge #{args} ; aplay -q /usr/local/share/gajim/data/sounds/sent.wav")

@@ -28,6 +28,7 @@ Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
 Plug 'git@github.com:elubow/cql-vim'
+Plug 'git@github.com:suan/vim-instant-markdown'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
