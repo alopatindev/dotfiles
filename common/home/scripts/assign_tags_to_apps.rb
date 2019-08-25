@@ -42,17 +42,22 @@ CATEGORY_TO_TAG = {
 }.freeze
 
 apps = Dir.glob('{/usr,/var/lib/flatpak/exports}/share/applications/*.desktop').map do |f|
-  conf = IniFile.load(f, comment: '#')
-  entry = conf['Desktop Entry']
-  app_names = entry
-              .select { |k| APP_FIELDS.any? k }
-              .flat_map do |_, v|
-    v.split(' ')
-     .select do |arg|
-      (BAD_ARGS.none? arg) && !(arg =~ /^[a-z\/].*/).nil?
-    end.flat_map { |v| v.split('/').last }
+  begin
+    conf = IniFile.load(f, comment: '#')
+    entry = conf['Desktop Entry']
+    app_names = entry
+                .select { |k| APP_FIELDS.any? k }
+                .flat_map do |_, v|
+      v.split(' ')
+       .select do |arg|
+        (BAD_ARGS.none? arg) && !(arg =~ /^[a-z\/].*/).nil?
+      end.flat_map { |v| v.split('/').last }
+    end
+    categories = (entry['Categories'] || '').split(';')
+  rescue StandardError
+    app_names = []
+    categories = []
   end
-  categories = (entry['Categories'] || '').split(';')
   [app_names, categories]
 end
           .flat_map do |app_names, categories|
