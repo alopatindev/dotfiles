@@ -32,7 +32,7 @@ Plug 'git@github.com:suan/vim-instant-markdown'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
-Plug 'w0rp/ale' " autocompletion unused, used proselint
+"Plug 'w0rp/ale' " autocompletion unused, used proselint
 Plug 'airblade/vim-rooter'
 
 " for go to definition (autocompletion unused)
@@ -817,12 +817,14 @@ autocmd BufNewFile,BufRead *.ny set syntax=lisp
 autocmd BufNewFile,BufRead *.xges set syntax=xml
 
 " rust
+" 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'ra_lsp_server'],
     \ }
 "nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 "" Or map each action separately
-autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tabedit'})<CR>
+"autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tabedit'})<CR>
+autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tab drop'})<CR>
 nnoremap r :call LanguageClient#textDocument_rename()<CR>
 "map <C-_> :call LanguageClient#textDocument_documentSymbol()<CR> " which is actually C-/
 map f :call LanguageClient_textDocument_codeAction()<CR>
@@ -845,16 +847,16 @@ endif
 "nnoremap <C-g> :Rg<Cr>
 nnoremap <C-f> :FZF<Cr>
 
-"let g:ale_linters = {'rust': ['rls']}
-let g:ale_linters = {
-    \ 'markdown': ['proselint'],
-    \ 'text': ['proselint'],
-    \ }
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_completion_enabled = 0
-"let g:LanguageClient_diagnosticsEnable = 0
+""let g:ale_linters = {'rust': ['rls']}
+"let g:ale_linters = {
+"    \ 'markdown': ['proselint'],
+"    \ 'text': ['proselint'],
+"    \ }
+"let g:ale_lint_on_save = 1
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_completion_enabled = 0
+""let g:LanguageClient_diagnosticsEnable = 0
 
 let g:LanguageClient_useFloatingHover = 0
 let g:LanguageClient_useVirtualText = 0
@@ -872,4 +874,3 @@ let g:LanguageClient_useVirtualText = 0
 
 set undodir=~/.vimundo
 set undofile
-

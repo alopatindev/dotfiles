@@ -44,5 +44,6 @@ echo "keycode 14 = BackSpace" | loadkeys &
 #/etc/init.d/net.wlp7s0 restart ; /etc/init.d/sshd restart
 #(sleep 5s && su al -c 'DISPLAY=:0 XAUTHORITY=~al/.Xauthority /home/al/scripts/set_touchpad.sh') &
 echo "mytextclock._private.textclock_update_cb()" | su al -c awesome-client &
+echo -n 0 > /sys/class/rtc/rtc0/wakealarm &
 
 (sleep 10s && rm -f $LOCK) &

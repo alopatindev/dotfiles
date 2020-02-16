@@ -20,8 +20,8 @@ conky.config = {
 
 conky.text = [[
 
-${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp8s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp8s0}KiB/s
-${downspeedgraph wlp8s0 78,200 CCCCCC FFFFFF} ${upspeedgraph wlp8s0 78,200 CCCCCC FFFFFF}
+${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp2s0}KiB/s${offset 30}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp2s0}KiB/s
+${downspeedgraph wlp2s0 78,200 CCCCCC FFFFFF} ${upspeedgraph wlp2s0 78,200 CCCCCC FFFFFF}
 ${color #FFFFFF}disk I/O       memory: $mem
 ${diskiograph 78,200 CCCCCC FFFFFF} ${memgraph 78,200 CCCCCC FFFFFF}
 ${color #CCCCCC}${swapbar 20,300} swap: $swap
@@ -33,4 +33,6 @@ ${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20
 ${cpugraph cpu0 78,50 CCCCCC FFFFFF} ${cpugraph cpu1 78,50 CCCCCC FFFFFF} ${cpugraph cpu2 78,50 CCCCCC FFFFFF} ${cpugraph cpu3 78,50 CCCCCC FFFFFF} ${cpugraph cpu4 78,50 CCCCCC FFFFFF} ${cpugraph cpu5 78,50 CCCCCC FFFFFF} ${cpugraph cpu6 78,50 CCCCCC FFFFFF} ${cpugraph cpu7 78,50 CCCCCC FFFFFF}
 
 ${exec ~/scripts/temp.sh}
+
+sda ${hddtemp /dev/sda}°C  sdb ${hddtemp /dev/sdb}°C
 ]];
