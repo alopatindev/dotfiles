@@ -40,7 +40,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 
 
 Plug 'ncm2/ncm2' " autocompletion for rust
@@ -818,9 +819,13 @@ autocmd BufNewFile,BufRead *.xges set syntax=xml
 
 " rust
 " 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+"let g:LanguageClient_serverCommands = {
+"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'ra_lsp_server'],
+"    \ }
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'ra_lsp_server'],
-    \ }
+\ 'rust': ['rust-analyzer'],
+\ }
 "nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 "" Or map each action separately
 "autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tabedit'})<CR>
@@ -845,7 +850,7 @@ if executable('rg')
 endif
 
 "nnoremap <C-g> :Rg<Cr>
-nnoremap <C-f> :FZF<Cr>
+"nnoremap <C-f> :FZF<Cr>
 
 ""let g:ale_linters = {'rust': ['rls']}
 "let g:ale_linters = {
@@ -859,7 +864,8 @@ nnoremap <C-f> :FZF<Cr>
 ""let g:LanguageClient_diagnosticsEnable = 0
 
 let g:LanguageClient_useFloatingHover = 0
-let g:LanguageClient_useVirtualText = 0
+"let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_useVirtualText = "No"
 
 
 
