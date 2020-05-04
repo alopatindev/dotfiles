@@ -29,6 +29,8 @@ Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 Plug 'git@github.com:jparise/vim-graphql'
 Plug 'git@github.com:elubow/cql-vim'
 Plug 'git@github.com:suan/vim-instant-markdown'
+Plug 'git@github.com:tpope/vim-fugitive' "for git diff
+Plug 'git@github.com:jremmen/vim-ripgrep'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -41,6 +43,7 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf'
 
 
@@ -210,9 +213,9 @@ imap <C-t> <esc>:tabnew<cr>
 vmap <C-t> <esc>:tabnew<cr>
 
 " F3 - открыть файл в табе
-map <F3> :tabnew<cr>:Ex<cr>
-imap <F3> <esc>:tabnew<cr>:Ex<cr>
-vmap <F3> <esc>:tabnew<cr>:Ex<cr>
+map <C-F3> :tabnew<cr>:Ex<cr>
+imap <C-F3> <esc>:tabnew<cr>:Ex<cr>
+vmap <C-F3> <esc>:tabnew<cr>:Ex<cr>
 
 " хэлп
 map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
@@ -845,12 +848,29 @@ autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
 
 if executable('rg')
-    set grepprg=rg\ --no-heading\ --vimgrep
-    set grepformat=%f:%l:%c:%m
+    "set grepprg=rg\ --no-heading\ --vimgrep\ --color=never\ --glob\ "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}"
+    "set grepformat=%f:%l:%c:%m
+    set grepformat=%f:%m
+    "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    "let g:ctrlp_use_caching = 0
 endif
 
-"nnoremap <C-g> :Rg<Cr>
-"nnoremap <C-f> :FZF<Cr>
+let g:rg_command = 'rg --vimgrep --color=never -S --glob "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}" --no-messages'
+let g:rg_highlight = 'true'
+nnoremap <C-f> :tabnew<cr>:Rg 
+nnoremap <F4> :tabnew<cr>:Rg 
+
+nnoremap <F3> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+imap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+vmap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+
+nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+
+nnoremap <C-d> :Git diff %<cr>
+imap <C-d> <esc>:Git diff %<cr>
+vmap <C-d> <esc>:Git diff %<cr>
 
 ""let g:ale_linters = {'rust': ['rls']}
 "let g:ale_linters = {
