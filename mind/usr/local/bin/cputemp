@@ -1,0 +1,5 @@
+#!/bin/sh
+
+TEMP=$(</sys/class/thermal/thermal_zone0/temp)
+TEMP="$((TEMP/1000))"
+echo "${TEMP}"
