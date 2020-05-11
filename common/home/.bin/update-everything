@@ -1,19 +1,45 @@
 #!/bin/sh
 
+set -e
+
+RUST_NIGHTLY_VERSION="nightly-2020-04-23"
+RUST_STABLE_VERSION="1.43.0-x86_64-unknown-linux-gnu"
+RUST_ANALYZER_VERSION="2020-04-27"
+export RUSTFLAGS="-C target-cpu=native"
+
+rustup install "${RUST_NIGHTLY_VERSION}"
+rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
+
+rustup install "${RUST_STABLE_VERSION}"
+rustup default "${RUST_STABLE_VERSION}"
+rustup component add clippy
+rustup component add rust-src
+
+RUSTFLAGS="-C target-cpu=native" cargo +nightly install  --features simd-accel ripgrep
+
+cd git-extra/rust-analyzer
+git checkout master
+git clean -f -x -d .
+git pull -v
+git checkout "${RUST_ANALYZER_VERSION}"
+RUSTFLAGS="-C target-cpu=native" cargo xtask install
+cd
+
 rustup self update
 rustup update
+rustup default stable
 
 npm update
 
 go get -u -v all
 
-#pip3 list --outdated --format=freeze | grep -v '^\-e' | grep -v '^pip$' | cut -d = -f 1 | xargs -n1 pip3 install --upgrade --user
-#pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -n1 pip2 install --upgrade --user
+pip3 list --outdated --format=freeze | grep -v '^\-e' | grep -v '^pip$' | cut -d = -f 1 | xargs -n1 pip3 install --upgrade --user
+pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -n1 pip2 install --upgrade --user
 
 nvim +PlugInstall +UpdateRemotePlugins +qa
 
-#sudo layman -S
-#sudo emerge --sync
-#eix-update
-#emerge -pve @system
-#emerge -pvuDN @world
+sudo layman -S
+sudo emerge --sync
+eix-update
+emerge -pve @system
+emerge -pvuDN @world

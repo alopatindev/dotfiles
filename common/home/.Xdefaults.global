@@ -55,7 +55,7 @@ xterm*color15: #ffffff
 
 xterm*secondaryScroll: true
 ! xterm*faceName: PragmataPro
-xterm*faceName: Iosevka Term
+xterm*faceName: Iosevka Term SS08
 xterm*scrollBar: false
 xterm*cursorColor: #EEE
 

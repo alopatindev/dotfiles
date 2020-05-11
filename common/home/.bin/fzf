@@ -1,0 +1,3 @@
+#!/bin/sh
+
+~/.fzf/bin/fzf --color=dark,spinner:233 "$@"
