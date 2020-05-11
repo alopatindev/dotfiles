@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill $(ps uax | grep 00-ntp-client.start | grep -v grep | awk '{print $2}')

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+(while [ 1 ] ; do
+    /etc/init.d/ntp-client restart
+    sleep 1m
+done) &

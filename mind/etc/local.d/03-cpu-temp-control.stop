@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill $(ps uax | grep 03-cpu-temp-control.start | grep -v grep | awk '{print $2}')

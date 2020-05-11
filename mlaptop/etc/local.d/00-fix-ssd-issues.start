@@ -1,0 +1,10 @@
+#!/bin/bash
+
+logger "running $0"
+
+(while [ 1 ] ; do
+    #hdparm -B 254 /dev/sda 2&>> /dev/null
+    echo -n 1 > /sys/block/sda/device/queue_depth
+    echo -n min_power > /sys/class/scsi_host/host0/link_power_management_policy
+    sleep 3s
+done) &

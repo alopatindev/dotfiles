@@ -1,0 +1,57 @@
+#!/bin/bash
+
+echo -n 2 > /sys/module/hid_apple/parameters/fnmode
+
+#/usr/bin/synclient TouchpadOff=0
+
+# handling interruptions with only one core
+#echo 1 > /proc/irq/16/smp_affinity
+##echo 1 > /proc/irq/18/smp_affinity
+##echo 1 > /proc/irq/19/smp_affinity
+#echo 1 > /proc/irq/23/smp_affinity
+
+#(sleep 10 && /etc/cron.daily/ntpdate) &>> /dev/null &
+
+mkdir -p /var/run/screen
+chmod 777 /var/run/screen
+chmod a+r /var/log/messages
+
+mkdir -p /var/tmp/portage/.distcc
+chmod 777 /var/tmp/portage/.distcc
+chmod +t /var/tmp/portage/.distcc
+
+mkdir -p /var/run/laptop-mode-tools /var/run/dhcp
+
+# non-blinking block cursor
+for i in {1..12}
+do
+    echo -ne '\033[?17;0;121c' > "/dev/tty${i}"
+done
+
+
+echo "keycode 14 = BackSpace" | loadkeys &
+
+#mount -o ro,remount,bind /home/.chroot/usr/share/fonts
+
+#v4l2ctrl -l /etc/v4l2ucp/30fps.vbi 2>> /dev/null
+#v4l2ctrl -l /etc/v4l2ucp/bright.vbi 2&>> /dev/null &
+
+echo 2097152 > /proc/sys/vm/dirty_bytes
+echo 2097152 > /proc/sys/vm/dirty_background_bytes
+
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1403653
+echo disable > /sys/firmware/acpi/interrupts/gpe66
+
+# try on router
+#vm.dirty_ratio = 10
+#vm.dirty_background_ratio = 8
+
+# don't use youtube caching servers
+#iptables -I INPUT -s 206.111.0.0/16 -j DROP 
+#iptables -I INPUT -s 173.194.55.0/24 -j DROP
+
+/usr/local/sbin/discharge_watcher.py &
+
+echo -n 0 > /proc/sys/net/netfilter/nf_conntrack_helper
+
+/usr/local/sbin/disable_lid_wakeup

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+VERBOSE=1
+
+logger "running $0"
+
+(
+    update_blocks() {
+        rfkill block bluetooth
+        rfkill unblock 0
+        rfkill unblock 1
+    }
+
+    test_network() {
+        default_route=$(ip route | egrep 'default via ' | cut -d' ' -f3)
+        ping -c1 $default_route
+        ret=$?
+
+        if [[ $VERBOSE == 1 ]]; then
+            if [[ $ret != 0 ]]; then
+                logger "$0: test_network fail"
+            else
+                logger "$0: test_network ok"
+            fi
+        fi
+
+        exit $ret
+    }
+
+    while [ 1 ] ; do
+        update_blocks
+        sleep 3s
+        test_network
+        if [[ $? != 0 ]] ; then
+            logger "$0: connection lost; restarting wifi"
+            /etc/init.d/net.wlp3s0 restart
+            update_blocks
+            sleep 15s
+        fi
+    done
+) &

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+touch /fastboot
+setterm -blank 0 -powersave off
+#(sleep 30 && /etc/init.d/ntp-client restart) &

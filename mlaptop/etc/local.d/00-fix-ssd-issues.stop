@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill $(ps uax | grep 00-fix-ssd-issues.start | grep -v grep | awk '{print $2}')

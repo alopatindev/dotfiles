@@ -1,0 +1,21 @@
+#!/bin/bash
+
+logger "running $0"
+
+MAX_ALLOWED_TEMP=80
+#MAX_ALLOWED_TEMP=58
+
+(while [ 1 ] ; do
+    MAX_CPU_TEMP=$(</sys/class/thermal/thermal_zone0/temp)
+    MAX_CPU_TEMP="$((MAX_CPU_TEMP/1000))"
+    echo $MAX_CPU_TEMP
+    if [ "${MAX_CPU_TEMP}" -ge "${MAX_ALLOWED_TEMP}" ]; then
+        logger "cpu temp was ${MAX_CPU_TEMP}"
+        switch-governor.sh powersave
+        sleep 1m
+    else
+        #switch-governor.sh performance
+        switch-governor.sh ondemand
+    fi
+    sleep 3s
+done) &
