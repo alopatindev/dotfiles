@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    DIR="${PWD}"
+else
+    DIR="$1"
+fi
+
+tmux rename-window $(basename "${DIR}")
+tmux send-keys "cd ${DIR} && source ./env.sh ; clear && nvim -c ':E'" ENTER
+tmux split-window -v -p 30
+tmux send-keys "cd ${DIR} && source ./env.sh ; clear" ENTER
+
+#tmux split-window -s
+#tmux send-keys "cd ${DIR} && source ./env.sh" ENTER
+tmux select-pane -U

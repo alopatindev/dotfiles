@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "usage $0 path/to/file"
+    exit 1
+fi
+
+FILENAME=$(basename "$1")
+tmux new-window -n "${FILENAME}"
+tmux send-keys "nvim $(echo $1 | sed "s!'!\\\'!g;s! !\\\ !g") ; exit" ENTER
