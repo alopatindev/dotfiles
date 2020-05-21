@@ -32,7 +32,7 @@ ${fs_bar 20,150 /home} /home  ${fs_used /home} of ${fs_size /home}
 ${color #CCCCCC}${cpu cpu0}%${offset 20} ${color #CCCCCC}${cpu cpu1}%${offset 20} ${color #CCCCCC}${cpu cpu2}%${offset 20} ${color #CCCCCC}${cpu cpu3}%${offset 20}${cpu cpu4}%${offset 20} ${color #CCCCCC}${cpu cpu5}%${offset 20} ${color #CCCCCC}${cpu cpu6}%${offset 20} ${color #CCCCCC}${cpu cpu7}%
 ${cpugraph cpu0 78,50 CCCCCC FFFFFF} ${cpugraph cpu1 78,50 CCCCCC FFFFFF} ${cpugraph cpu2 78,50 CCCCCC FFFFFF} ${cpugraph cpu3 78,50 CCCCCC FFFFFF} ${cpugraph cpu4 78,50 CCCCCC FFFFFF} ${cpugraph cpu5 78,50 CCCCCC FFFFFF} ${cpugraph cpu6 78,50 CCCCCC FFFFFF} ${cpugraph cpu7 78,50 CCCCCC FFFFFF}
 
-${exec ~/scripts/temp.sh}
+nvme0n1 ${exec cat /tmp/nvme-temp}°C  sda ${hddtemp /dev/sda}°C
 
-sda ${hddtemp /dev/sda}°C  sdb ${hddtemp /dev/sdb}°C
+${exec ~/scripts/temp.sh}
 ]];

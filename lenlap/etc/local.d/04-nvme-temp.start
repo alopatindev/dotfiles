@@ -1,0 +1,10 @@
+#!/bin/bash
+
+logger "running $0"
+
+DEV=/dev/nvme0n1
+
+(while [ 1 ] ; do
+    smartctl -a "${DEV}" | grep Temperature | head -n1 | awk '{print $2}' > /tmp/nvme-temp
+    sleep 60s
+done) &

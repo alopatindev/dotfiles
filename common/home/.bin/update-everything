@@ -3,7 +3,7 @@
 set -e
 
 RUST_NIGHTLY_VERSION="nightly-2020-04-23"
-RUST_STABLE_VERSION="1.43.0-x86_64-unknown-linux-gnu"
+RUST_STABLE_VERSION="1.43.1-x86_64-unknown-linux-gnu"
 RUST_ANALYZER_VERSION="2020-04-27"
 export RUSTFLAGS="-C target-cpu=native"
 
