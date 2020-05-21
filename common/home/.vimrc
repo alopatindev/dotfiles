@@ -31,6 +31,7 @@ Plug 'git@github.com:elubow/cql-vim'
 Plug 'git@github.com:suan/vim-instant-markdown'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
+"Plug 'pandysong/ghost-text.vim'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -238,6 +239,9 @@ map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
 map <C-l> :tabn<cr>
 map <C-h> :tabp<cr>
 map <bs> :tabp<cr>
+
+noremap <S-H> :-tabmove<cr>
+noremap <S-L> :+tabmove<cr>
 
 "map <S-j> :tabnew<cr>
 "imap <S-l> <esc>:tabn<cr>
