@@ -625,8 +625,8 @@ map <F8> :emenu Encoding.<TAB>
 
 
 
-map <F10> :set paste!<cr>
-map <C-r> :set paste!<cr>
+map <F10> :GitGutterToggle<cr>:set paste!<cr>
+"map <C-r> :GitGutterToggle<cr>:set paste!<cr>
 
 " set term=xterm
 
