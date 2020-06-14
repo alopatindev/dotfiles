@@ -2,8 +2,8 @@
 
 set -e
 
-RUST_NIGHTLY_VERSION="nightly-2020-04-23"
-RUST_STABLE_VERSION="1.43.1-x86_64-unknown-linux-gnu"
+RUST_NIGHTLY_VERSION="nightly-2020-06-08"
+RUST_STABLE_VERSION="1.44.0-x86_64-unknown-linux-gnu"
 RUST_ANALYZER_VERSION="2020-04-27"
 export RUSTFLAGS="-C target-cpu=native"
 
@@ -15,7 +15,7 @@ rustup default "${RUST_STABLE_VERSION}"
 rustup component add clippy
 rustup component add rust-src
 
-RUSTFLAGS="-C target-cpu=native" cargo +nightly install  --features simd-accel ripgrep
+RUSTFLAGS="-C target-cpu=native" cargo +nightly install --features simd-accel ripgrep
 
 cd git-extra/rust-analyzer
 git checkout master

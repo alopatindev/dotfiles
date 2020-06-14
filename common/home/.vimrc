@@ -22,7 +22,7 @@ Plug 'git@github.com:leafgarland/typescript-vim.git'
 Plug 'git@github.com:ekalinin/Dockerfile.vim.git'
 Plug 'git@github.com:Shougo/deoplete.nvim'
 Plug 'git@github.com:carlitux/deoplete-ternjs'
-Plug 'git@github.com:alopatindev/vim-scaladoc.git'
+"Plug 'git@github.com:alopatindev/vim-scaladoc.git'
 "Plug 'git@github.com:kassio/neoterm'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
@@ -625,7 +625,7 @@ map <F8> :emenu Encoding.<TAB>
 
 
 
-map <F10> :GitGutterToggle<cr>:set paste!<cr>
+map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
 "map <C-r> :GitGutterToggle<cr>:set paste!<cr>
 
 " set term=xterm
@@ -904,3 +904,18 @@ let g:LanguageClient_useVirtualText = "No"
 
 set undodir=~/.vimundo
 set undofile
+
+
+
+" Git Gutter"
+set updatetime=250
+let g:gitgutter_max_signs = 500
+" No mapping
+let g:gitgutter_map_keys = 0
+" Colors
+let g:gitgutter_override_sign_column_highlight = 0
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterChangeDelete ctermfg=4
