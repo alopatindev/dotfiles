@@ -13,7 +13,7 @@ if [ -f "${CO2_PATH}" ]; then
     CO2=$(cat "${CO2_PATH}")
     echo -n "CO2 ${CO2} PPM"
 
-    if [ ${CO2} -lt 700 ]; then
+    if [ ${CO2} -lt 800 ]; then
         echo ' (normal)'
     elif [ ${CO2} -lt 1200 ]; then
         echo ' o_o time to open the window!'
