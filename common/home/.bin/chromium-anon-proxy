@@ -6,7 +6,8 @@ mkdir -p ${CDIR}
 
 # --ppapi-flash-path=/usr/lib64/nsbrowser/plugins/PepperFlash/libpepflashplayer.so --ppapi-flash-version=15.0.0.152
 
+# --enable-native-gpu-memory-buffers
+#
 chromium --incognito --proxy-server=socks5://127.0.0.1:9050 \
          --disk-cache-dir=${CDIR} \
-         --enable-native-gpu-memory-buffers \
          --user-data-dir=/home/al/.private/chromium-anon-proxy $@
