@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo /usr/sbin/gparted $@
+sudo /usr/bin/gparted $@
