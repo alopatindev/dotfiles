@@ -2,6 +2,9 @@
 
 set -e
 
+#RUST_NIGHTLY_VERSION="nightly-2020-07-18"
+#rustup +${RUST_NIGHTLY_VERSION} component add miri
+
 RUST_NIGHTLY_VERSION="nightly-2020-06-08"
 RUST_STABLE_VERSION="1.44.0-x86_64-unknown-linux-gnu"
 RUST_ANALYZER_VERSION="2020-04-27"
@@ -9,13 +12,14 @@ export RUSTFLAGS="-C target-cpu=native"
 
 rustup install "${RUST_NIGHTLY_VERSION}"
 rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
+ln -sf ~/.rustup/toolchains/${RUST_NIGHTLY_VERSION}-x86_64-unknown-linux-gnu/bin/rustfmt ~/.bin/rustfmt
 
 rustup install "${RUST_STABLE_VERSION}"
 rustup default "${RUST_STABLE_VERSION}"
 rustup component add clippy
 rustup component add rust-src
 
-RUSTFLAGS="-C target-cpu=native" cargo +nightly install --features simd-accel ripgrep
+RUSTFLAGS="-C target-cpu=native" cargo +${RUST_NIGHTLY_VERSION} install --features simd-accel ripgrep
 
 cd git-extra/rust-analyzer
 git checkout master
