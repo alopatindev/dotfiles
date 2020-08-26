@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'rubydns'
+
+# TODO: IPv6?
+
+LISTEN_INTERFACE = ['127.0.0.1', 53]
+DEFAULT_DNS = ['127.0.0.1', 5353]
+VPN_DNS = ['10.0.0.3', 53]
+VPN_HOSTS = %r{.*\.amazon}
+
+def udp_and_tcp(interfaces)
+  [[:udp] + interfaces, [:tcp] + interfaces]
+end
+
+def resolver(interfaces)
+  RubyDNS::Resolver.new(udp_and_tcp(interfaces))
+end
+
+def main
+  default_upstream = resolver(DEFAULT_DNS)
+  vpn_upstream = resolver(VPN_DNS)
+
+  RubyDNS::run_server(udp_and_tcp(LISTEN_INTERFACE)) do
+    match(VPN_HOSTS) do |transaction|
+      transaction.passthrough!(vpn_upstream)
+    end
+
+    otherwise do |transaction|
+      transaction.passthrough!(default_upstream)
+    end
+  end
+end
+
+main
