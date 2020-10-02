@@ -1,0 +1,1 @@
+KERNEL=="card0", SUBSYSTEM=="drm", ACTION=="change", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/al/.Xauthority", RUN+="/bin/bash /usr/local/sbin/hdmi_hotplug.sh"
