@@ -368,6 +368,7 @@ awful.rules.rules = {
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
     { rule = { class = "Zathura" }, properties = { tag = "9 doc" }},
     { rule = { class = "Code" }, properties = { tag = "2 term" } },
+    { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
 }
 
 apps_to_tags = {}
