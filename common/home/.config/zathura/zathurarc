@@ -1,6 +1,8 @@
 set recolor true
 set recolor-darkcolor "#dcdccc"
 set recolor-lightcolor "#1f1f1f"
+set statusbar-fg "#ffffff"
+set statusbar-bg "#000000"
 
 set font "Iosevka Term SS08 normal 12"
 
