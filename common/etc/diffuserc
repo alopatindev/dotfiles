@@ -1,0 +1,24 @@
+# /etc/diffuserc: System-wide initialisation file for Diffuse
+#
+# Copyright (C) 2006-2009 Derrick Moser <derrick_moser@yahoo.com>
+
+import ../usr/share/diffuse/syntax/*.syntax
+
+colour ini_value 1.0 1.0 1.0
+
+colour alignment 1.0 1.0 0.0
+colour character_selection 0.7 0.7 1.0
+colour cursor 1.0 1.0 1.0
+colour difference_1 1.0 0.625 0.625
+colour difference_2 0.85 0.625 0.775
+colour difference_3 0.85 0.775 0.625
+colour hatch 0.8 0.8 0.8
+colour line_number 1 0.792 0.156862
+colour line_number_background 0.15 0.15 0.15
+colour line_selection 0.7 0.7 1.0
+colour map_background 0.6 0.6 0.6
+colour margin 0.8 0.8 0.8
+colour preedit 1.0 1.0 1.0
+colour edited 0.5 1.0 0.5
+colour text 1.0 1.0 1.0
+colour text_background 0.0 0.0 0.0
