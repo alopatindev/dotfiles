@@ -7,6 +7,7 @@ MAX_ALLOWED_TEMP=95
 (while [ 1 ] ; do
     MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort | tail -n1)
     if [ "${MAX_CPU_TEMP}" -ge "${MAX_ALLOWED_TEMP}" ]; then
+        logger "cpu temp was ${MAX_CPU_TEMP}"
         /usr/local/sbin/switch-governor.sh powersave
         sleep 1m
     else

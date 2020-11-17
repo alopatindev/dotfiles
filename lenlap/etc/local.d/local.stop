@@ -1,3 +1,7 @@
 #!/bin/sh
 
 kill $(ps uax | grep discharge_watcher.py | grep -v grep | awk '{print $2}')
+
+kill $(ps uax | grep /dns-router | grep -v grep | awk '{print $2}')
+
+#ps uax | grep 'mpv --really-quiet --loop-file=inf /usr/share/sounds/silence.flac --audio-device=alsa/dmixer_loopback' | grep -v grep | awk '{print $2}' | xargs kill 2>> /dev/null
