@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MPD_LOG="/var/lib/mpd/log"
+
+logger "running $0"
+
+(
+    tail -n1 -F "${MPD_LOG}" | while read line ; do echo "${line}" | grep 'Broken pipe' >> /dev/null && sleep 1 && mpc play ; done
+) &

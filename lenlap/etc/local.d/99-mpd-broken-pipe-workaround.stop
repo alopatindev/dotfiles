@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill $(ps uax | grep 99-mpd-broken-pipe-workaround.start | grep -v grep | awk '{print $2}')
