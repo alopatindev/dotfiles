@@ -32,6 +32,8 @@ Plug 'git@github.com:suan/vim-instant-markdown'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'pandysong/ghost-text.vim'
+"Plug 'git@github.com:vigoux/LanguageTool.nvim'
+"Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -914,8 +916,27 @@ let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
 " Colors
 let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_sign_column_always = 1
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight GitGutterDelete ctermfg=1
 highlight GitGutterChangeDelete ctermfg=4
+
+
+"let g:languagetool_jar='/usr/share/languagetool/lib/languagetool-commandline.jar'
+"let g:languagetool_server_jar='/usr/share/languagetool/lib/languagetool-server.jar'
+
+
+" Disable annoying auto line break
+fu! DisableBr()
+    set wrap
+    set linebreak
+    set nolist  " list disables linebreak
+    set textwidth=0
+    set wrapmargin=0
+    set fo-=t
+endfu
+
+" Disable line breaks for all file types
+:au BufNewFile,BufRead *.txt call DisableBr()

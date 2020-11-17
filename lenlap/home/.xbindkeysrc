@@ -112,25 +112,25 @@
     m:0x0 + c:191
     XF86Tools
 
-"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
-    m:0x10 + c:121
-    Mod2 + XF86AudioMute
+#"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+#    m:0x10 + c:121
+#    Mod2 + XF86AudioMute
 
 "echo 'awesome.restart()' | awesome-client"
     m:0xc + c:27
     Control+Alt + r
 
-#"amixer set Master playback 1+ unmute"
-#"~/scripts/change_volume.sh +"
-"~/scripts/show_volume.sh"
-    m:0x0 + c:123
-    XF86AudioRaiseVolume
-
-#"amixer set Master playback 1-"
-#"~/scripts/change_volume.sh -"
-"~/scripts/show_volume.sh"
-    m:0x0 + c:122
-    XF86AudioLowerVolume
+##"amixer set Master playback 1+ unmute"
+##"~/scripts/change_volume.sh +"
+#"~/scripts/show_volume.sh"
+#    m:0x0 + c:123
+#    XF86AudioRaiseVolume
+#
+##"amixer set Master playback 1-"
+##"~/scripts/change_volume.sh -"
+#"~/scripts/show_volume.sh"
+#    m:0x0 + c:122
+#    XF86AudioLowerVolume
 
 "sudo /usr/local/sbin/bl-brightness.sh up"
     m:0x0 + c:233
@@ -139,3 +139,7 @@
 "sudo /usr/local/sbin/bl-brightness.sh down"
     m:0x0 + c:232
     XF86MonBrightnessDown
+
+"sudo /usr/local/sbin/hdmi_hotplug.sh 0"
+    m:0x40 + c:43
+    Mod4 + h

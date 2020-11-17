@@ -8,8 +8,8 @@ xgamma -gamma 0.9
 
 #xrandr --dpi 160
 
-~/scripts/set_touchpad.sh &
-~/scripts/restart-co2mond.sh
+#set_touchpad.sh &
+#~/scripts/restart-co2mond.sh
 
 #rm -f ~/progs/scalafmt-server-*/RUNNING_PID ; ~/progs/scalafmt-server-1.0-SNAPSHOT/scalafmt-server.sh 8899 &
 
@@ -31,7 +31,9 @@ eval $(luarocks path --bin)
 #~/.config/awesome/lib/second_panel.sh &
 
 #night-mode.sh
-feh -q --bg-scale ~/pictures/wallpapers/wallhaven-551538.png &
+feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/pine_trees_forest-wallpaper-2560x1440_1.png &
+#feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/wallhaven-551538.png &
+#feh -q --no-fehbg --bg-center ~/pictures/wallpapers/nature/leaves.jpg &
 
 ~/scripts/assign_tags_to_apps.rb > /tmp/.apps_to_tags
 exec awesome
