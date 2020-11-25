@@ -45,9 +45,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 
 Plug 'ncm2/ncm2' " autocompletion for rust
@@ -861,14 +861,24 @@ if executable('rg')
     "let g:ctrlp_use_caching = 0
 endif
 
-let g:rg_command = 'rg --vimgrep --color=never -S --glob "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}" --no-messages'
+let g:rg_command = '
+  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl}"
+  \ -g "!{.git,node_modules,vendor,target}/*" '
+
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+
+"let g:rg_command = 'rg --vimgrep --color=never -S --glob "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}" --no-messages'
 let g:rg_highlight = 'true'
-nnoremap <C-f> :tabnew<cr>:Rg 
-nnoremap <F4> :tabnew<cr>:Rg 
 
 nnoremap <F3> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
 imap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
 vmap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+
+nnoremap <F4> :tabnew<cr>:F<Cr>
+nnoremap <C-f> :tabnew<cr>:F<Cr>
+imap <F4> <esc>:tabnew<cr>:F<Cr>
+vmap <F4> <esc>:tabnew<cr>:F<Cr>
 
 nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
