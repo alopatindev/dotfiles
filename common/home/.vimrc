@@ -828,7 +828,8 @@ autocmd BufNewFile,BufRead *.xges set syntax=xml
 
 " rust
 " 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+let g:LanguageClient_loggingFile = expand('~/.local/share/nvim/LanguageClient.log')
+"let g:LanguageClient_loggingLevel='DEBUG'
 "let g:LanguageClient_serverCommands = {
 "    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'ra_lsp_server'],
 "    \ }
@@ -863,12 +864,11 @@ endif
 
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{js,json,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl}"
+  \ -g "*.{js,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl}"
   \ -g "!{.git,node_modules,vendor,target}/*" '
 
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
 
-"let g:rg_command = 'rg --vimgrep --color=never -S --glob "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}" --no-messages'
 let g:rg_highlight = 'true'
 
 nnoremap <F3> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>

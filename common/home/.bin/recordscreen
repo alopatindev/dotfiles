@@ -50,6 +50,7 @@ fi
 # -i :0.0+54,6
 if [ ! "${SOUND_INPUT}" ]; then
     ffmpeg \
+        -loglevel quiet \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
@@ -60,6 +61,7 @@ if [ ! "${SOUND_INPUT}" ]; then
         "${OUTPUT}"
 else
     ffmpeg \
+        -loglevel quiet \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
