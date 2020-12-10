@@ -1,20 +1,20 @@
-#!/bin/env python2
+#!/bin/env python3
 
 import os
 import time
 
-MIN_PERCENT = 21
+MIN_PERCENT = 15
 
 while True:
     time.sleep(60 * 3)
     try:
-        statf = file("/sys/class/power_supply/BAT0/status")
+        statf = open("/sys/class/power_supply/BAT0/status")
         t = statf.read()
         statf.close()
         if (t != "Discharging\n"):
             continue
-        nowf = file("/sys/class/power_supply/BAT0/energy_now")
-        fullf = file("/sys/class/power_supply/BAT0/energy_full")
+        nowf = open("/sys/class/power_supply/BAT0/energy_now")
+        fullf = open("/sys/class/power_supply/BAT0/energy_full")
         now = nowf.read()
         full = fullf.read()
         nowf.close()
