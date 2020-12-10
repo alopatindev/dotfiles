@@ -7,7 +7,8 @@ require 'rubydns'
 LISTEN_INTERFACE = ['127.0.0.1', 53]
 DEFAULT_DNS = ['127.0.0.1', 5353]
 VPN_DNS = ['10.0.0.3', 53]
-VPN_HOSTS = %r{.*\.amazon}
+#VPN_DNS = ['10.0.13.6', 53]
+VPN_HOSTS = %r{.*\.amazon$}
 
 def udp_and_tcp(interfaces)
   [[:udp] + interfaces, [:tcp] + interfaces]
@@ -23,10 +24,12 @@ def main
 
   RubyDNS::run_server(udp_and_tcp(LISTEN_INTERFACE)) do
     match(VPN_HOSTS) do |transaction|
+      #puts "vpn #{transaction}\n"
       transaction.passthrough!(vpn_upstream)
     end
 
     otherwise do |transaction|
+      #puts "default #{transaction}\n"
       transaction.passthrough!(default_upstream)
     end
   end
