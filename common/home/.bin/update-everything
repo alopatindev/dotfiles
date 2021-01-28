@@ -5,9 +5,9 @@ set -e
 #RUST_NIGHTLY_VERSION="nightly-2020-07-18"
 #rustup +${RUST_NIGHTLY_VERSION} component add miri
 
-RUST_NIGHTLY_VERSION="nightly-2020-11-20"
-RUST_STABLE_VERSION="1.48.0-x86_64-unknown-linux-gnu"
-RUST_ANALYZER_VERSION="2020-11-30"
+RUST_NIGHTLY_VERSION="nightly-2021-01-11"
+RUST_STABLE_VERSION="1.49.0-x86_64-unknown-linux-gnu"
+RUST_ANALYZER_VERSION="2021-01-11"
 
 export RUSTFLAGS="-C target-cpu=native"
 

@@ -370,6 +370,7 @@ awful.rules.rules = {
     { rule = { class = "Code" }, properties = { tag = "2 term" } },
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
+    { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
 }
 
 apps_to_tags = {}

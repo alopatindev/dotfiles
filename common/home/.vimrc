@@ -238,9 +238,9 @@ map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
 "map Д :tabn<cr>
 "map Р :tabp<cr>
 
-map <C-l> :tabn<cr>
-map <C-h> :tabp<cr>
-map <bs> :tabp<cr>
+noremap <C-l> :tabn<cr>
+noremap <C-h> :tabp<cr>
+noremap <bs> :tabp<cr>
 
 noremap <S-H> :-tabmove<cr>
 noremap <S-L> :+tabmove<cr>
@@ -518,6 +518,7 @@ hi PreProc cterm=bold ctermfg=4
 "" hi StatusLine ctermfg=white ctermbg=darkgrey cterm=none
 ""hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 "hi Folded ctermfg=white ctermbg=black
+hi Folded ctermfg=darkgreen ctermbg=black
 "hi Visual ctermbg=darkcyan
 "hi StatusLine ctermfg=white ctermbg=darkcyan cterm=none
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
@@ -855,7 +856,7 @@ autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
 
 if executable('rg')
-    "set grepprg=rg\ --no-heading\ --vimgrep\ --color=never\ --glob\ "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl}"
+    "set grepprg=rg\ --no-heading\ --vimgrep\ --color=never\ --glob\ "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl,java}"
     "set grepformat=%f:%l:%c:%m
     set grepformat=%f:%m
     "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
@@ -864,7 +865,7 @@ endif
 
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{js,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl}"
+  \ -g "*.{js,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl,java}"
   \ -g "!{.git,node_modules,vendor,target}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
@@ -950,3 +951,8 @@ endfu
 
 " Disable line breaks for all file types
 :au BufNewFile,BufRead *.txt call DisableBr()
+
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
