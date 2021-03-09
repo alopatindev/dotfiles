@@ -35,10 +35,14 @@ if [ "${QUALITY}" = 'low' ]; then
     CHANNELS=1
     SOUND_RATE=22050
     FRAMERATE=15
+    #CRF=23
+    #CRF=18
+    CRF=37
 else
     CHANNELS=2
     SOUND_RATE=48000
     FRAMERATE=60
+    CRF=18
 fi
 
 if [ "${MOUSE}" = 'no-mouse' ]; then
@@ -50,18 +54,16 @@ fi
 # -i :0.0+54,6
 if [ ! "${SOUND_INPUT}" ]; then
     ffmpeg \
-        -loglevel quiet \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
         -f x11grab \
         -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
-        -vcodec libx264 -preset ultrafast -crf 18 \
+        -vcodec libx264 -preset ultrafast -crf "${CRF}" \
         "${OUTPUT}"
 else
     ffmpeg \
-        -loglevel quiet \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
@@ -73,7 +75,7 @@ else
         -ac "${CHANNELS}" \
         -i "${SOUND_INPUT}"  \
         -ar "${SOUND_RATE}" \
-        -vcodec libx264 -preset ultrafast -crf 18 \
+        -vcodec libx264 -preset ultrafast -crf "${CRF}" \
         -acodec alac \
         -f ipod \
         "${OUTPUT}"
