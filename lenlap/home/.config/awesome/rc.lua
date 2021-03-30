@@ -52,12 +52,12 @@ local safeCoords = {x = screen.geometry.width, y = screen.geometry.height}
 mouse.coords(safeCoords)
 
 function save_mouse_position()
-    local tag = awful.tag.selected()
+    local tag = screen.selected_tag
     awful.tag.setproperty(tag, "mouse", mouse.coords())
 end
 
 function load_mouse_position()
-    local tag = awful.tag.selected()
+    local tag = screen.selected_tag
     local coords = awful.tag.getproperty(tag, "mouse") or safeCoords
     mouse.coords(coords)
 end
@@ -114,7 +114,8 @@ awful.screen.connect_for_each_screen(function(s)
     --awful.layout.inc(-3)
 
     --FIXME
-    awful.tag.viewonly(s.tags[1])
+    --awful.tag.viewonly(s.tags[1])
+    s.tags[1]:view_only()
     awful.tag.incmwfact(0.20)
 
     -- Create a promptbox for each screen
