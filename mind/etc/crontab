@@ -1,0 +1,26 @@
+# Global variables
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# For details see man 5 crontab
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+#40 07 * * * al PYTHONPATH=/home/al/.local/lib64/python3.6/site-packages /etc/cron-scripts/control-bulbs.py sunrise-if-off 30.0 3.0 &> /var/log/cron-bulbs.log
+
+# at 09:40 AM
+40 09 * * * al PYTHONPATH=/home/al/.local/lib64/python3.6/site-packages /etc/cron-scripts/control-bulbs.py sunrise-if-off 120.0 3.0 &> /var/log/cron-bulbs.log
+
+
+#40 08 * * * al PYTHONPATH=/home/al/.local/lib64/python3.6/site-packages /etc/cron-scripts/control-bulbs.py sunrise-if-off 120.0 3.0 &> /var/log/cron-bulbs.log
+
+# at 19:00 PM
+00 19 * * * al PYTHONPATH=/home/al/.local/lib64/python3.6/site-packages /etc/cron-scripts/control-bulbs.py sunset 120.0 0.01 &> /var/log/cron-bulbs.log
