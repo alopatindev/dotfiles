@@ -34,6 +34,7 @@ Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'pandysong/ghost-text.vim'
 "Plug 'git@github.com:vigoux/LanguageTool.nvim'
 "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+Plug 'git@github.com:chiedojohn/vim-case-convert'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -956,3 +957,4 @@ augroup XML
     autocmd!
     autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 augroup END
+"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
