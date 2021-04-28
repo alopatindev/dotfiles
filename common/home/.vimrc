@@ -294,6 +294,7 @@ imap <F2> <esc>:wa<cr>i
 " F10 -закрыть текущий фрейм/tab
 "map <F10> <C-W>c
 "map <F10> <esc>:q<cr>
+map cc <esc>:q<cr>
 
 " F11 - Vimcommander
 " noremap <silent> <F11> :cal VimCommanderTogglu()<CR>
@@ -873,9 +874,9 @@ command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>),
 
 let g:rg_highlight = 'true'
 
-nnoremap <F3> :call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
-imap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
-vmap <F3> <esc>:call fzf#run({'sink': 'tabedit', 'options': '--multi'})<Cr>
+nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
 
 nnoremap <F4> :tabnew<cr>:F<Cr>
 nnoremap <C-f> :tabnew<cr>:F<Cr>
