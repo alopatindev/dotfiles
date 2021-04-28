@@ -35,4 +35,4 @@ export GPG_TTY=$(tty)
 
 #export RUSTFLAGS='-C link-args=-lzstd'
 
-export CARGO_OPEN=open-in-nvim-all
+export CARGO_OPEN=open-in-nvim
