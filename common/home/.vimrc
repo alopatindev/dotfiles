@@ -906,7 +906,36 @@ let g:LanguageClient_useFloatingHover = 0
 "let g:LanguageClient_useVirtualText = 0
 let g:LanguageClient_useVirtualText = "No"
 
-
+let g:LanguageClient_diagnosticsDisplay={
+  \     '1': {
+  \         "name": "Error",
+  \         "texthl": "LanguageClientError",
+  \         "signText": "✖",
+  \         "signTexthl": "LanguageClientWarningSign",
+  \         "virtualTexthl": "Error",
+  \     },
+  \     '2': {
+  \         "name": "Warning",
+  \         "texthl": "LanguageClientWarning",
+  \         "signText": "⚠",
+  \         "signTexthl": "LanguageClientWarningSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \     '3': {
+  \         "name": "Information",
+  \         "texthl": "LanguageClientInfo",
+  \         "signText": "ℹ",
+  \         "signTexthl": "LanguageClientInfoSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \     '4': {
+  \         "name": "Hint",
+  \         "texthl": "LanguageClientInfo",
+  \         "signText": "➤",
+  \         "signTexthl": "LanguageClientInfoSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \ }
 
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "call deoplete#custom#option('omni_patterns', {
