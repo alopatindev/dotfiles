@@ -4,7 +4,7 @@ set directory=/tmp/.vimswaps//
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'git@github.com:vimwiki/vimwiki.git'
+"Plug 'git@github.com:vimwiki/vimwiki.git'
 Plug 'git@github.com:vim-scripts/rainbow_parentheses.vim'
 Plug 'git@github.com:vim-scripts/taglist.vim'
 Plug 'git@github.com:vim-scripts/Indent-Guides.git'
@@ -506,6 +506,10 @@ hi Title ctermfg=LightBlue ctermbg=Magenta
 "hi TabLine cterm=bold ctermfg=2
 "hi TabLineSel cterm=bold ctermbg=4
 hi PreProc cterm=bold ctermfg=4
+
+"hi CursorLine ctermbg=LightBlue term=none cterm=none
+hi CursorLineNr ctermfg=Yellow
+set cursorline
 
 " colors
 " colorscheme slate
