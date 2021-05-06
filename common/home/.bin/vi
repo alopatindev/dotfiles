@@ -1,20 +1,10 @@
-#!/usr/bin/env ruby
+#!/bin/sh
 
-args = ARGV.map do |i|
-  case i
-  when /(^[^-].*?):([0-9]*?):([0-9]*?):*$/
-    filename = Regexp.last_match(1)
-    line = Regexp.last_match(2)
-    column = Regexp.last_match(3)
-    column = (column.empty?) ? "1" : column
-    File.exist?(filename) ? "#{filename} '+call cursor(#{line}, #{column})'" : i
-  when /(^[^-].*?):([0-9]*$)/
-    filename = Regexp.last_match(1)
-    line = Regexp.last_match(2)
-    File.exist?(filename) ? "#{filename} +#{line}" : i
-  else
-    i
-  end
-end.join(' ')
+pwd_escaped=$(pwd | sed 's!/!%!g')
+export CARGO_TARGET_DIR="${HOME}/tmp/${pwd_escaped}/target.rust-analyzer"
+export NVIM_LISTEN_ADDRESS="/tmp/nvim-${pwd_escaped}"
 
-system("/usr/bin/nvim -p #{args}")
+# check if we can connect, otherwise remove the socket
+nvr -s --nostart || rm -f "${NVIM_LISTEN_ADDRESS}"
+
+/usr/bin/nvim -p "$@"

@@ -1,10 +1,11 @@
 #!/bin/sh
 
+REMOTE_HOST="mind"
 DATA_DIR="/tmp/co2mond"
 CO2_PATH="${DATA_DIR}/CntR"
 TEMP_PATH="${DATA_DIR}/Tamb"
 LAST_NOTIFICATION_TIME_PATH="${DATA_DIR}/notification_time"
-PAUSE_BETWEEN_NOTIFICATIONS_IN_MINS=10
+PAUSE_BETWEEN_NOTIFICATIONS_IN_MINS=15
 
 YELLOW_ZONE=800
 RED_ZONE=1200
@@ -19,6 +20,8 @@ maybe_notify () {
         echo "${current_timestamp}" > "${LAST_NOTIFICATION_TIME_PATH}"
     fi
 }
+
+DISPLAY= rsync -r "${REMOTE_HOST}:${DATA_DIR}" /tmp
 
 if [ ! -f "${LAST_NOTIFICATION_TIME_PATH}" ]; then
     echo 0 > "${LAST_NOTIFICATION_TIME_PATH}"

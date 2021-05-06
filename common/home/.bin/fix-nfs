@@ -2,5 +2,5 @@
 
 sudo /etc/init.d/autofs restart
 sudo umount -fl /nfs/mind
-ssh mind 'sudo /etc/init.d/nfs restart ; sudo /etc/init.d/autofs restart ; sudo umount -fl /media/rhome ; ls /media/rhome'
+ssh mind 'sudo /etc/init.d/nfs restart ; sudo umount -fl /media/rhome ; sudo /etc/init.d/autofs restart ; ls /media/rhome'
 ls /nfs/mind

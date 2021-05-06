@@ -31,7 +31,8 @@ eval $(luarocks path --bin)
 #~/.config/awesome/lib/second_panel.sh &
 
 #night-mode.sh
-feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/pine_trees_forest-wallpaper-2560x1440_1.png &
+#feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/pine_trees_forest-wallpaper-2560x1440_1.png &
+feh -q --no-fehbg --bg-fill ~/pictures/wallpapers/space/cosmos-1853491.jpg &
 #feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/wallhaven-551538.png &
 #feh -q --no-fehbg --bg-center ~/pictures/wallpapers/nature/leaves.jpg &
 
