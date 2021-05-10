@@ -916,7 +916,7 @@ let g:LanguageClient_diagnosticsDisplay={
   \         "texthl": "LanguageClientError",
   \         "signText": "✖",
   \         "signTexthl": "LanguageClientWarningSign",
-  \         "virtualTexthl": "Error",
+  \         "virtualTexthl": "Todo",
   \     },
   \     '2': {
   \         "name": "Warning",
@@ -940,6 +940,16 @@ let g:LanguageClient_diagnosticsDisplay={
   \         "virtualTexthl": "Todo",
   \     },
   \ }
+
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+
+highlight SpellBad cterm=underline
+highlight SpellCap cterm=underline
+highlight SpellLocal cterm=underline
+highlight SpellRare cterm=underline
 
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "call deoplete#custom#option('omni_patterns', {
