@@ -201,6 +201,8 @@ vmap <C-C> "+yi
 
 imap <C-S-v> <esc>"*pi
 
+set clipboard=unnamedplus
+
 " в начало файла
 "map <C-PageUp> 1<S-G>
 "imap <C-PageUp> <esc>1<S-g>
