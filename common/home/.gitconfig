@@ -15,6 +15,9 @@
 [push]
     default = matching
 
+[pull]
+    rebase = false
+
 [merge]
     conflictstyle = diff3
 
@@ -55,6 +58,7 @@
 
 [commit]
     gpgsign = true
+    #gpgsign = false
 
 [gpg]
     program = gpg

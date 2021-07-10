@@ -1004,3 +1004,6 @@ augroup XML
     autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 augroup END
 "au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+
+
+set nowritebackup
