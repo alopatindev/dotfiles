@@ -49,6 +49,8 @@ pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -
 
 nvim +PlugInstall +UpdateRemotePlugins +qa
 
+gem install rubocop nokogiri acoc jekyll bundler open3 rubydns
+
 sudo layman -S
 sudo emerge --sync
 eix-update
