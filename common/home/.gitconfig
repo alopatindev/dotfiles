@@ -27,6 +27,8 @@
 [alias]
     s = status -s
     l = log --oneline --decorate --all --graph
+    ll = log --show-signature
+    lll = log --show-signature -p
     please = push --force-with-lease
     g = grep --extended-regexp --break --heading --line-number
     search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
@@ -58,7 +60,12 @@
 
 [commit]
     gpgsign = true
-    #gpgsign = false
 
 [gpg]
     program = gpg
+
+[init]
+    defaultBranch = master
+
+[includeIf "gitdir:~/work/**/.git"]
+    path = ~/.config/git/kupibilet.ini
