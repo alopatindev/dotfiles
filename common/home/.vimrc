@@ -1,7 +1,3 @@
-"set viminfo='100,n~/.config/nvim/nviminfo'
-
-set directory=/tmp/.vimswaps//
-
 call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'git@github.com:vimwiki/vimwiki.git'
@@ -43,9 +39,9 @@ Plug 'airblade/vim-rooter'
 
 " for go to definition (autocompletion unused)
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+  \ 'branch': 'next',
+  \ 'do': 'bash install.sh',
+  \ }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -61,6 +57,7 @@ call plug#end()
 
 syntax on
 
+set directory=/tmp/.vimswaps//
 "set foldmethod=indent
 set foldmethod=manual
 "set textwidth=80
@@ -128,7 +125,6 @@ set smartindent  " indent after {, etc.
 set autoindent
 vmap < <gv
 vmap > >gv
-se ts=4 sw=4 et
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
@@ -156,6 +152,7 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
 set viminfo='30,\"500,:30,%,n~/.viminfo
+"set viminfo='100,n~/.config/nvim/nviminfo'
 
 
 " Terminal hacks
@@ -351,18 +348,18 @@ imap <F7> <esc>:set spell!<cr>
 map <A-n> :set nu!<cr>
 
 function! Browser ()
-    let line0 = getline (".")
-    let line = matchstr (line0, "http[^ ]*")
-    :if line==""
-      let line = matchstr (line0, "ftp[^ ]*")
-    :endif
-    :if line==""
-      let line = matchstr (line0, "file[^ ]*")
-    :endif
-    let line = escape (line, "#?&;|%")
+  let line0 = getline (".")
+  let line = matchstr (line0, "http[^ ]*")
+  :if line==""
+    let line = matchstr (line0, "ftp[^ ]*")
+  :endif
+  :if line==""
+    let line = matchstr (line0, "file[^ ]*")
+  :endif
+  let line = escape (line, "#?&;|%")
 "   echo line
 "    exec ":silent !lynx ".line
-    exec ":!elinks-remote ".line
+  exec ":!elinks-remote ".line
 endfunction
 
 map \w :call Browser ()<cr><cr>
@@ -406,44 +403,44 @@ augroup END
 
 
 " Rainbow Parentheses options {
-    function! Config_Rainbow()
-        call rainbow_parentheses#load(0) " Load Round brackets
-        call rainbow_parentheses#load(1) " Load Square brackets
-        call rainbow_parentheses#load(2) " Load Braces
-        autocmd! TastetheRainbow VimEnter * call Load_Rainbow() " 64bit Hack - Set VimEnter after syntax load
-    endfunction
+  function! Config_Rainbow()
+    call rainbow_parentheses#load(0) " Load Round brackets
+    call rainbow_parentheses#load(1) " Load Square brackets
+    call rainbow_parentheses#load(2) " Load Braces
+    autocmd! TastetheRainbow VimEnter * call Load_Rainbow() " 64bit Hack - Set VimEnter after syntax load
+  endfunction
 
-    function! Load_Rainbow()
-        call rainbow_parentheses#activate()
-    endfunction
+  function! Load_Rainbow()
+    call rainbow_parentheses#activate()
+  endfunction
 
-    augroup TastetheRainbow
-        autocmd!
-        autocmd Syntax * call Config_Rainbow() " Load rainbow_parentheses on syntax load
-        autocmd VimEnter * call Load_Rainbow()
-    augroup END
+  augroup TastetheRainbow
+    autocmd!
+    autocmd Syntax * call Config_Rainbow() " Load rainbow_parentheses on syntax load
+    autocmd VimEnter * call Load_Rainbow()
+  augroup END
 
-    " rainbow_parentheses toggle
-    nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<CR>
+  " rainbow_parentheses toggle
+  nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<CR>
 
-    let g:rbpt_colorpairs = [
-        \ ['blue',       'RoyalBlue3'],
-        \ ['white',    'SeaGreen3'],
-        \ ['darkyellow',       'DarkOrchid3'],
-        \ ['darkgreen',   'firebrick3'],
-        \ ['blue',    'RoyalBlue3'],
-        \ ['white',     'SeaGreen3'],
-        \ ['darkyellow', 'DarkOrchid3'],
-        \ ['darkgreen',       'firebrick3'],
-        \ ['blue',    'RoyalBlue3'],
-        \ ['white',  'SeaGreen3'],
-        \ ['darkyellow', 'DarkOrchid3'],
-        \ ['darkgreen',    'firebrick3'],
-        \ ['blue',   'RoyalBlue3'],
-        \ ['white',    'SeaGreen3'],
-        \ ['darkyellow',     'DarkOrchid3'],
-        \ ['darkgreen',         'firebrick3'],
-        \ ]
+  let g:rbpt_colorpairs = [
+    \ ['blue',     'RoyalBlue3'],
+    \ ['white',  'SeaGreen3'],
+    \ ['darkyellow',     'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['blue',  'RoyalBlue3'],
+    \ ['white',   'SeaGreen3'],
+    \ ['darkyellow', 'DarkOrchid3'],
+    \ ['darkgreen',     'firebrick3'],
+    \ ['blue',  'RoyalBlue3'],
+    \ ['white',  'SeaGreen3'],
+    \ ['darkyellow', 'DarkOrchid3'],
+    \ ['darkgreen',  'firebrick3'],
+    \ ['blue',   'RoyalBlue3'],
+    \ ['white',  'SeaGreen3'],
+    \ ['darkyellow',   'DarkOrchid3'],
+    \ ['darkgreen',     'firebrick3'],
+    \ ]
 " }
 
 
@@ -463,19 +460,19 @@ autocmd BufNewFile,BufRead *.xges set syntax=xml
 " txt
 " Disable annoying auto line break
 fu! DisableBr()
-    set wrap
-    set linebreak
-    set nolist  " list disables linebreak
-    set textwidth=0
-    set wrapmargin=0
-    set fo-=t
+  set wrap
+  set linebreak
+  set nolist  " list disables linebreak
+  set textwidth=0
+  set wrapmargin=0
+  set fo-=t
 endfu
 au BufNewFile,BufRead *.txt call DisableBr()
 
 " XML
 augroup XML
-    autocmd!
-    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+  autocmd!
+  autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 augroup END
 "au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 
@@ -553,28 +550,30 @@ autocmd BufEnter,FocusGained * checktime
 " Search in filenames and file bodies
 
 if executable('rg')
-    set grepformat=%f:%m
+  set grepformat=%f:%m
 
-    let g:rg_command = '
-      \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-      \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
-      \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
-      \ --glob "!{.git,build,node_modules,vendor,target}/*" '
+  let g:rg_command = '
+    \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
+    \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
+    \ --glob "!{.git,build,node_modules,vendor,target}/*" '
 
-    command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
+  command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
 
-    let g:rg_highlight = 'true'
+  let g:rg_highlight = 'true'
 
-    nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-    imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-    vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+  nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+  imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+  vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
 
-    nnoremap <F4> :tabnew<cr>:F<Cr>
-    nnoremap <C-f> :tabnew<cr>:F<Cr>
-    imap <F4> <esc>:tabnew<cr>:F<Cr>
-    vmap <F4> <esc>:tabnew<cr>:F<Cr>
+  nnoremap <F4> :tabnew<cr>:F<Cr>
+  nnoremap <C-f> :tabnew<cr>:F<Cr>
+  imap <F4> <esc>:tabnew<cr>:F<Cr>
+  vmap <F4> <esc>:tabnew<cr>:F<Cr>
 
-    nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-    imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-    vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+  nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+  imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+  vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 endif
+
+" vim:shiftwidth=2 softtabstop=2 tabstop=2
