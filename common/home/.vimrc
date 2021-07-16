@@ -128,10 +128,24 @@ set smartindent  " indent after {, etc.
 set autoindent
 vmap < <gv
 vmap > >gv
+se ts=4 sw=4 et
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+"let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
+hi IndentGuidesEven guibg=green ctermbg=Darkblue
 
 " auto closing character
 " imap [ []<LEFT>
 imap {<CR> {<CR>}<Esc>O
+
+
+" ctags: go to definition in C and some other languages
+" requires running "ctags -R ." in the same dir first
+" TODO: tab drop
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 
 
@@ -435,18 +449,8 @@ augroup END
 
 
 
-" Indent guides
-se ts=4 sw=4 et
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
-"let g:indent_guides_enable_on_vim_startup = 1
-hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
-hi IndentGuidesEven guibg=green ctermbg=Darkblue
+" File types / Languages
 
-
-
-" TODO: file types here!
 filetype on
 filetype plugin indent on
 
@@ -476,9 +480,7 @@ augroup END
 "au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 
 
-
 " Rust
-" TODO: rust
 let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 let g:rustfmt_autosave = 1
@@ -544,12 +546,6 @@ au BufWrite *.json :Autoformat
 au BufWrite *.rb :Autoformat
 
 
-" ctags
-" TODO: tab drop
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-
 autocmd BufEnter,FocusGained * checktime
 
 
@@ -558,28 +554,27 @@ autocmd BufEnter,FocusGained * checktime
 
 if executable('rg')
     set grepformat=%f:%m
+
+    let g:rg_command = '
+      \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
+      \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
+      \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
+      \ --glob "!{.git,build,node_modules,vendor,target}/*" '
+
+    command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
+
+    let g:rg_highlight = 'true'
+
+    nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+    imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+    vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+
+    nnoremap <F4> :tabnew<cr>:F<Cr>
+    nnoremap <C-f> :tabnew<cr>:F<Cr>
+    imap <F4> <esc>:tabnew<cr>:F<Cr>
+    vmap <F4> <esc>:tabnew<cr>:F<Cr>
+
+    nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+    imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+    vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 endif
-
-" TODO: move into if?
-let g:rg_command = '
-  \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
-  \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
-  \ --glob "!{.git,build,node_modules,vendor,target}/*" '
-
-command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
-
-let g:rg_highlight = 'true'
-
-nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-
-nnoremap <F4> :tabnew<cr>:F<Cr>
-nnoremap <C-f> :tabnew<cr>:F<Cr>
-imap <F4> <esc>:tabnew<cr>:F<Cr>
-vmap <F4> <esc>:tabnew<cr>:F<Cr>
-
-nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
