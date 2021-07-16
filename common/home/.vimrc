@@ -59,107 +59,71 @@ Plug 'ncm2/ncm2-path'
 
 call plug#end()
 
-"set textwidth=80
+syntax on
 
-" цвет статусбара
-" highlight StatusLine ctermfg=15 ctermbg=8 gui=none
-
-" увеличиваем статус бар
-"resize -1
-"source /usr/share/vim/vimfiles/ftplugin/python/python_fn.vim
-" игнорировать регистр букв при поиске
-set ignorecase
-
-" Включаем несовместимость настроек с Vi (ибо Vi нам и не понадобится).
-set nocompatible
-
-" Показывать положение курсора всё время.
-set ruler  
-
-" Показывать незавершённые команды в статусбаре
-set showcmd  
-
-" Включаем нумерацию строк
-set nu
-
-" Фолдинг по отсупам
 "set foldmethod=indent
 set foldmethod=manual
-
-" Поиск по набору текста (очень полезная функция)
+"set textwidth=80
+set ignorecase
+set nocompatible
+set ruler  
+set showcmd  
+set nu
 set incsearch
-
-" Отключаем подстветку найденных вариантов, и так всё видно.
 set nohlsearch
-
-" Теперь нет необходимости передвигать курсор к краю экрана, чтобы подняться в режиме редактирования
-"set scrolljump=7
 set scrolljump=4
-
-" Теперь нет необходимости передвигать курсор к краю экрана, чтобы опуститься в режиме редактирования
-"set scrolloff=7
 set scrolloff=4
-
-" Выключаем надоедливый звонок
 set novisualbell
 set t_vb=   
-
-" Поддержка мыши
 "set mouse=a
 set mouse=n
 set mousemodel=popup
-
-" Кодировка текста по умолчанию
-set termencoding=utf-8
-
-" Не выгружать буфер, когда переключаемся на другой
-" Это позволяет редактировать несколько файлов в один и тот же момент без необходимости сохранения каждый раз
-" когда переключаешься между ними
-"set hidden
-
-" Скрыть панель в gui версии ибо она не нужна
-set guioptions-=T
-
-" Сделать строку команд высотой в одну строку
-set ch=1
-
-" Скрывать указатель мыши, когда печатаем
 set mousehide
-
-" Включить автоотступы
+set termencoding=utf-8
+set guioptions-=T
+set ch=1
 set autoindent
+set sessionoptions=curdir,buffers,tabpages
 
-" Влючить подстветку синтаксиса
-syntax on
+set fileencodings=utf-8,cp1251,koi8-r,cp866
+set wildmenu
+set wcm=<Tab>
+menu Encoding.koi8-r :e ++enc=koi8-r<CR>
+menu Encoding.windows-1251 :e ++enc=cp1251<CR>
+menu Encoding.cp866 :e ++enc=cp866<CR>
+menu Encoding.utf-8 :e ++enc=utf8 <CR>
+menu Encoding.utf-16 :e ++enc=utf16 <CR>
+map <F8> :emenu Encoding.<TAB>
 
 " allow to use backspace instead of "x"
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 
-" Преобразование Таба в пробелы
+" tab to spaces
 set expandtab
 
-" Размер табулации по умолчанию
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-" Формат строки состояния
 " set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
 set laststatus=2
 
-" Включаем "умные" отспупы ( например, автоотступ после {)
+" indent after {, etc.
 set smartindent
 
 " Fix <Enter> for comment
 set fo+=cr
 
-" Опции сесссий
-set sessionoptions=curdir,buffers,tabpages
+"set term=xterm
+if v:version >= 700
+  set numberwidth=3
+endif
 
-"-------------------------
-" Горячие клавиши
-"-------------------------
-
+if &term ==? "xterm"
+  set t_Sb=^[4%dm
+  set t_Sf=^[3%dm
+  set ttymouse=xterm2
+endif
 
 map . /
 
@@ -189,57 +153,20 @@ map П G
 
 map в d
 
-" Пробел в нормальном режиме перелистывает страницы
-" nmap <Space> <PageDown>
-
-" CTRL-F для omni completion
-" imap <C-F> <C-X><C-O>
-
-" C-c and C-v - Copy/Paste в 'глобальный клипборд'
+" global clipboard
 vmap <C-C> "+yi
 "imap <C-V> <esc>"+gPi
-
 imap <C-S-v> <esc>"*pi
 
 set clipboard=unnamedplus
 
-" в начало файла
-"map <C-PageUp> 1<S-G>
-"imap <C-PageUp> <esc>1<S-g>
-"vmap <C-PageUp> <esc>1<S-g>
-
-" в конец файла
-"map <C-PageDown> <S-g>
-"imap <C-PageDown> <esc><S-g>
-"vmap <C-PageDown> <esc><S-g>
-
-" C-t - новый таб
 map <C-t> :tabnew<cr>
 imap <C-t> <esc>:tabnew<cr>
 vmap <C-t> <esc>:tabnew<cr>
 
-" F3 - открыть файл в табе
 map <C-F3> :tabnew<cr>:Ex<cr>
 imap <C-F3> <esc>:tabnew<cr>:Ex<cr>
 vmap <C-F3> <esc>:tabnew<cr>:Ex<cr>
-
-" хэлп
-map <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
-"imap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
-"vmap <F1> :tabnew<cr>:help<cr><C-W>j<C-W>c
-
-" следущий, предыдущий таб
-"map <S-Right> :tabn<cr>
-"map <S-Left> :tabp<cr>
-"imap <S-Right> <esc>:tabn<cr>
-"imap <S-Left> <esc>:tabp<cr>
-"vmap <S-Right> <esc>:tabn<cr>
-"vmap <S-Left> <esc>:tabp<cr>
-
-"map <S-l> :tabn<cr>
-"map <S-h> :tabp<cr>
-"map Д :tabn<cr>
-"map Р :tabp<cr>
 
 noremap <C-l> :tabn<cr>
 noremap <C-h> :tabp<cr>
@@ -248,239 +175,45 @@ noremap <bs> :tabp<cr>
 noremap <S-H> :-tabmove<cr>
 noremap <S-L> :+tabmove<cr>
 
-"map <S-j> :tabnew<cr>
-"imap <S-l> <esc>:tabn<cr>
-"imap <S-h> <esc>:tabp<cr>
-"imap <S-j> :tabnew<cr>
-
-"vmap <S-l> <esc>:tabn<cr>
-"vmap <S-h> <esc>:tabp<cr>
-"vmap Д <esc>:tabn<cr>
-"vmap Р <esc>:tabp<cr>
-
 vmap <C-l> <esc>:tabn<cr>
 vmap <C-h> <esc>:tabp<cr>
 vmap <bs> <esc>:tabp<cr>
 
-" C-n - новый split
-""map <C-A-N> <C-W>n
-
-" Заставляем shift-insert работать как в Xterm
+" shift-insert behavior is similar to xterm
 map <S-Insert> <MiddleMouse>
 
-" C-y - удаление текущей строки
-" nmap <C-y> dd
-" imap <C-y> <esc>ddi
-
-" C-d - дублирование текущей строки
-imap <C-d> <esc>yypi
-
-" Поиск и замена слова под курсором
+" search and replace current word
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
-" F2 - быстрое сохранение
 nmap <F2> :wa<cr>
 vmap <F2> <esc>:wa<cr>v
 imap <F2> <esc>:wa<cr>i
 
-" F8 - список закладок
-"map <F8> :MarksBrowser<cr>
-"vmap <F8> <esc>:MarksBrowser<cr>
-"imap <F8> <esc>:MarksBrowser<cr>
-
-" F9 - "make" команда
-"map <F9> :make<cr><cr><cr>
-"vmap <F9> <esc>:make<cr><cr><cr>
-"imap <F9> <esc>:make<cr><cr><cr>
-
-" F10 -закрыть текущий фрейм/tab
-"map <F10> <C-W>c
-"map <F10> <esc>:q<cr>
 map cc <esc>:q<cr>
 
-" F11 - Vimcommander
-" noremap <silent> <F11> :cal VimCommanderTogglu()<CR>
-"map <C-l> :set nonu<cr>:<bs>
-"map <S-l> :set nu<cr>:<bs>
- 
-" F12 - показать окно Taglist
-"map <F12> :TlistToggle<cr>
-"vmap <F12> <esc>:TlistToggle<cr>
-"imap <F12> <esc>:TlistToggle<cr>
-
-" < & > - делаем отступы для блоков
+" indents
 vmap < <gv
 vmap > >gv
 
-"map r :set wrap!<cr>
-
-" Выключаем ненавистный режим замены
-" imap >Ins> <Esc>i
-
-" Редко когда надо [ без пары =)
+" auto closing character
 " imap [ []<LEFT>
-" Аналогично и для {
 imap {<CR> {<CR>}<Esc>O
 
-" С-q - выход из Vim 
-" map <C-Q> <Esc>:qa<cr>
-
-
-"" Автозавершение слов по tab =)
-"function InsertTabWrapper()
-"	let col = col('.') - 1
-"	if !col || getline('.')[col - 2] !~ '\k'
-"		return "\<tab>"
-"	else
-"		return "\<c-p>"
-"	endif
-"endfunction
-""imap <S-tab> <c-r>=InsertTabWrapper()<cr>
-"
-""" Слова откуда будем завершать
-"set complete=""
-""" Из текущего буфера
-"set complete+=.
-""" Из словаря
-"set complete+=k
-""" Из других открытых буферов
-"set complete+=b
-""" из тегов
-"set complete+=t
-"
-" Включаем filetype плугин. Настройки, специфичные для определынных файлов мы разнесём по разным местам
 filetype on
 filetype plugin on
-"au BufRead,BufNewFile *.phps    set filetype=php
-"au BufRead,BufNewFile *.thtml    set filetype=php
 
 au BufNewFile,BufRead *.toml set filetype=toml
+
 " Rust uses Cargo.toml and Cargo.lock (both are toml files).
 au BufNewFile,BufRead Cargo.lock set filetype=toml
 
-"
-"" Настройки для SessionMgr
-"let g:SessionMgr_AutoManage = 0
-"let g:SessionMgr_DefaultName = "mysession"
-"
-"" Настройки для Tlist (показвать только текущий файл в окне навигации по коду)
-"let g:Tlist_Show_One_File = 1
-"
-"set completeopt-=preview
-"set completeopt+=longest
-"set mps-=[:]
-"
-""-------------------------
-"" PHP настройки
-""-------------------------
-"
-"" Используем словарь PHP для автодополнения,
-"" который можно скачать отсюда http://lerdorf.com/funclist.txt
-""set dictionary=~/.vim/dic/php
-"
-"" Сделаем удобную навигацию по мануалу PHP
-""set keywordprg=~/.vim/bin/php_doc 
-"set keywordprg=~/.vim/bin/cpp_doc
-""set keywordprg=/usr/bin/man
-"
-"" Проверка синтаксиса PHP
-""set makeprg=php\ -l\ %
-"
-"" Формат вывода ошибок PHP
-""set errorformat=%m\ in\ %f\ on\ line\ %l
-"
-"" Полезные "быстрые шаблоны"
-"" Вывод отладочной информации
-"iabbrev dbg echo '<pre>';var_dump( );echo '</pre>';
-"iabbrev tm echo 'Test message in file: '.__FILE__.', on line: '.__LINE__;
-"
-"let g:pdv_cfg_Uses = 1
-"
-"" Vim постовляется с достаточно мощным плугином подстветки синтаксиса PHP.
-"" Помимо прочего он умеет:
-"
-"" Включаем фолдинг для блоков классов/функций
-"" let php_folding = 1
-"
-"" Не использовать короткие теги PHP для поиска PHP блоков
-"let php_noShortTags = 1
-"
-"" Подстветка SQL внутри PHP строк
-"let php_sql_query=1
-"
-"" Подстветка HTML внутри PHP строк
-"let php_htmlInStrings=1 
-"
-"" Подстветка базовых функций PHP
-"let php_baselib = 1
-"
-"
-"
-"" Python!
-"
-"function! PythonCommentSelection()  range
-"  let commentString = "#"
-"  let cl = a:firstline
-"  let ind = 1000    " I hope nobody use so long lines! :)
-"
-"  " Look for smallest indent
-"  while (cl <= a:lastline)
-"    if strlen(getline(cl))
-"      let cind = indent(cl)
-"      let ind = ((ind < cind) ? ind : cind)
-"    endif
-"    let cl = cl + 1
-"  endwhile
-"  if (ind == 1000)
-"    let ind = 1
-"  else
-"    let ind = ind + 1
-"  endif
-"
-"  let cl = a:firstline
-"  execute ":".cl
-"  " Insert commentString in each non-empty line, in column ind
-"  while (cl <= a:lastline)
-"    if strlen(getline(cl))
-"      execute "normal ".ind."|i".commentString
-"    endif
-"    execute "normal \<Down>"
-"    let cl = cl + 1
-"  endwhile
-"endfunction
-"
-"
-"
-"
-"vmap H :call PythonCommentSelection()<CR>
-"
-""let python_highlight_space_errors = 1
-"
-"
-""set cursorline
-"
-"
-"
-"" Tab autocompletion
-""function InsertTabWrapper()
-""let col = col('.') - 1
-""if !col || getline('.')[col - 1] !~ '\k'
-""return "\<tab>"
-""else
-""return "\<c-p>"
-""endif
-""endfunction
-"
-""imap <S-tab> <C-r>=InsertTabWrapper()<cr>
 
+" colors
 
 "colorscheme evening
 colorscheme peachpuff
 "hi clear
 hi SpellBad cterm=underline
-
-
-
 hi ModeMsg term=bold cterm=bold gui=bold
 "hi StatusLine term=reverse,bold cterm=reverse,bold gui=reverse,bold
 hi DiffText term=reverse cterm=bold gui=bold guibg=Red
@@ -508,56 +241,28 @@ hi Title ctermfg=LightBlue ctermbg=Magenta
 "hi TabLine cterm=bold ctermfg=2
 "hi TabLineSel cterm=bold ctermbg=4
 hi PreProc cterm=bold ctermfg=4
-
 "hi CursorLine ctermbg=LightBlue term=none cterm=none
 hi CursorLineNr ctermfg=Yellow
 set cursorline
 
-" colors
+
 " colorscheme slate
 "colorscheme evening
-
 "hi Normal ctermfg=lightgrey
 "hi Normal ctermbg=black
-
 "hi Type ctermfg=blue
 "hi Special term=bold cterm=bold
-
-"" hi StatusLine ctermfg=white ctermbg=darkgrey cterm=none
-""hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 "hi Folded ctermfg=white ctermbg=black
 hi Folded ctermfg=darkgreen ctermbg=black
 "hi Visual ctermbg=darkcyan
 "hi StatusLine ctermfg=white ctermbg=darkcyan cterm=none
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
-
-" FIXME: autocomplete
 "hi Pmenu ctermfg=black ctermbg=green cterm=none guibg=brown gui=bold
 "hi PmenuSel ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuSbar ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuThumb ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 highlight Pmenu ctermbg=blue guibg=blue
-
-" кодировки
-set fileencodings=utf-8,cp1251,koi8-r,cp866
-
-"let xterm16_colormap = 'allblue'
-"colo xterm16
-
-
-set spelllang=en,ru
-"map <S-s> :set spell!<cr>
-map <F7> :set spell!<cr>
-imap <F7> <esc>:set spell!<cr>
-
-map <A-n> :set nu!<cr>
-
-"if $DISPLAY != ''
-"	colorscheme default
-"else
-"	colorscheme evening
-"endif
 
 ""hi TabLineSel term=bold  ctermfg=white ctermbg=darkgreen
 hi TabLineSel term=bold  ctermfg=black ctermbg=green
@@ -566,6 +271,22 @@ hi TabLine ctermfg=white ctermbg=black
 hi TabLineFill term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=black
 "hi Comment cterm=bold
 "hi Directory ctermfg=3 cterm=none
+
+
+"let xterm16_colormap = 'allblue'
+"colo xterm16
+
+"if $DISPLAY != ''
+"	colorscheme default
+"else
+"	colorscheme evening
+"endif
+
+set spelllang=en,ru
+"map <S-s> :set spell!<cr>
+map <F7> :set spell!<cr>
+imap <F7> <esc>:set spell!<cr>
+map <A-n> :set nu!<cr>
 
 function! Browser ()
     let line0 = getline (".")
@@ -584,68 +305,20 @@ endfunction
 
 map \w :call Browser ()<cr><cr>
 
-"function! CompileAndRun ()
-"   exec "!OUT=$(echo -n % | sed 's/\.c[cpp]$//') && g++ -ggdb % -o $OUT && gdb --eval-command=r --eval-command=q ./$OUT"
-""   exec "!fpc % && ./$(echo % | sed 's/\.pas$//')"
-"endfunction
-"
-"map <F11> :call CompileAndRun()<CR>
-"
-"map <C-o> :!<cr>
-"imap <C-o> <esc>:!<cr>
-"vmap <C-o> <esc>:!<cr>
-
-" go back (after go to definition, etc.)
 map z <C-o>
 
-"let g:manpageview_winopen="only"
-"
-"let &errorformat="%f:%l:%c: %t%*[^:]:%m,%f:%l: %t%*[^:]:%m," . &errorformat
-""set nocompatible
-
-
 hi Todo ctermfg=gray ctermbg=darkblue
-
 
 "urxvt and others terminals hack
 map <End> $
 
 
-
-
-"" C++
-"set tags=~/.vim/stdtags,tags,.tags,../tags
-""set tags=~/.vim/stdtags,qt4tags
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-""map <C-u> !ctags -f ~/.vim/stdtags -R --c++-kinds=+p --fields=+iaS --extra=+q .
-
-
-
-
-set wildmenu
-set wcm=<Tab>
-menu Encoding.koi8-r :e ++enc=koi8-r<CR>
-menu Encoding.windows-1251 :e ++enc=cp1251<CR>
-menu Encoding.cp866 :e ++enc=cp866<CR>
-menu Encoding.utf-8 :e ++enc=utf8 <CR>
-menu Encoding.utf-16 :e ++enc=utf16 <CR>
-map <F8> :emenu Encoding.<TAB>
-
-
-
-
-
+" TODO: git
 map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
 "map <C-r> :GitGutterToggle<cr>:set paste!<cr>
 
-" set term=xterm
 
-
-" LaTeX
-"set grepprg=grep\ -nH\ $*
-
-
+" TODO
 set nocompatible        " Use Vim defaults (much better!)
 set bs=2                " Allow backspacing over everything in insert mode
 set ai                  " Always set auto-indenting on
@@ -674,41 +347,19 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-if v:version >= 700
-  set numberwidth=3
-endif
-
-if &term ==? "xterm"
-  set t_Sb=^[4%dm
-  set t_Sf=^[3%dm
-  set ttymouse=xterm2
-endif
-
-
+" TODO: filetypes
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
 
 map <F12> :TagbarToggle<cr>
 imap <F12> <esc>:TagbarToggle<cr>
 vmap <F12> <esc>:TagbarToggle<cr>
 
+" TODO: tagbar
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-"" C++ completion {
-""let g:clang_user_options='|| exit 0'
-""let g:clang_user_options='-I/usr/include/ClanLib-2.3/ClanLib/Display/2D/ 2>> /dev/null || exit 0'
-""let g:clang_complete_auto = 0
-"
-"let g:clang_use_library = 1
-"let g:clang_periodic_quickfix = 0
-"let g:clang_close_preview = 1
-""let g:clang_snippets_engine = 'ultisnips'
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_extra_conf_globlist = ['~/git/*']
-"" }
 
 " Rainbow Parentheses options {
     function! Config_Rainbow()
@@ -766,45 +417,20 @@ se nohlsearch
 filetype plugin indent on
 "set completeopt=longest,menuone
 
-
-" open omni completion menu closing previous if open and opening new menu without changing the text
-"inoremap <expr> <C-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-"            \ '<C-x><C-o><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-" open user completion menu closing previous if open and opening new menu without changing the text
-"inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Esc>i') : '') .
-"            \ '<C-x><C-u><C-r>=pumvisible() ? "\<lt>C-n>\<lt>C-p>\<lt>Down>" : ""<CR>'
-
-
-" Shift tab is autocompletion
-"inoremap <S-Tab> <C-x><C-u>
-
-
-"let g:EclimShowCurrentError = 0
-"let g:EclimSignLevel = 'off'
-"let g:EclimLogLevel = 'off'
-"let g:EclimScalaValidate = 0
-
+" TODO: rust
 let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
 "au BufWrite *.rs :Autoformat
 
 set tags=tags,.tags,rusty-tags.vi
 
-"autocmd BufWrite *.rs :silent exec "!rusty-tags vi -q"
 let g:rustfmt_autosave = 1
 
-let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"' " FIXME
-"let g:formatdef_jsbeautify_javascript = '"js-beautify --indent-size 2"' " FIXME
+" JavaScript/ECMAScript
+let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
 au BufWrite *.ts :Autoformat
 au BufWrite *.js :Autoformat
 au BufWrite *.json :Autoformat
-
-
-""let g:formatdef_scalafmt = "'ng scalafmt --stdin'"
-"let g:formatdef_scalafmt = "'scalafmt-client.sh 8899'"
-"let g:formatters_scala = ['scalafmt']
-"au BufWrite *.scala :Autoformat
-""noremap <F5> :Autoformat<CR>
 
 au BufWrite *.rb :Autoformat
 
@@ -815,45 +441,19 @@ se number
 
 set shortmess=aoOtIT
 
-"" Use deoplete
-"let g:deoplete#enable_at_startup = 1
-"let g:tern_request_timeout = 1
-""let g:tern_show_signature_in_pum = '0'
-""let g:deoplete#auto_complete_delay = 2000
-"let g:deoplete#disable_auto_complete = 1
-"
-"" Let <C-/> also do completion
-"inoremap <silent><expr> <C-_>
-"\ pumvisible() ? "\<C-n>" :
-"\ deoplete#mappings#manual_complete()
-
-let g:scaladoc_urls = 'https://www.scala-lang.org/api/current,https://spark.apache.org/docs/latest/api/scala,https://datastax.github.io/spark-cassandra-connector/ApiDocs/2.0.3/spark-cassandra-connector,https://www.playframework.com/documentation/latest/api/scala,http://doc.akka.io/api/akka/current,https://scalaj.github.io/scalaj-http/2.0.0,http://doc.scalatest.org/3.0.0,http://slick.lightbend.com/doc/3.2.0/api'
-
-"nnoremap <F1> :call scaladoc#Search(expand("<cword>"))<CR>
-"imap <F1> <esc><F1>
-
 autocmd BufNewFile,BufRead *.ny set syntax=lisp
 autocmd BufNewFile,BufRead *.xges set syntax=xml
 
-" rust
-" 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+" TODO: rust
 let g:LanguageClient_loggingFile = expand('~/.local/share/nvim/LanguageClient.log')
-"let g:LanguageClient_loggingLevel='DEBUG'
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'ra_lsp_server'],
-"    \ }
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
 \ }
-"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"" Or map each action separately
-"autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tabedit'})<CR>
 autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tab drop'})<CR>
 nnoremap r :call LanguageClient#textDocument_rename()<CR>
-"map <C-_> :call LanguageClient#textDocument_documentSymbol()<CR> " which is actually C-/
 map f :call LanguageClient_textDocument_codeAction()<CR>
 
-" enable autocomplete for Rust
+" TODO: enable autocomplete for Rust
 autocmd BufEnter *.rs call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 let g:ncm2#auto_popup=0
@@ -862,11 +462,11 @@ let g:ncm2#auto_popup=0
 "inoremap <your-key> <c-r>=ncm2#manual_trigger(...)<cr>
 autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
-
 if executable('rg')
     set grepformat=%f:%m
 endif
 
+" TODO: move into if?
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
   \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
@@ -890,20 +490,10 @@ nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 
+" TODO: git
 nnoremap <C-d> :Git diff %<cr>
 imap <C-d> <esc>:Git diff %<cr>
 vmap <C-d> <esc>:Git diff %<cr>
-
-""let g:ale_linters = {'rust': ['rls']}
-"let g:ale_linters = {
-"    \ 'markdown': ['proselint'],
-"    \ 'text': ['proselint'],
-"    \ }
-"let g:ale_lint_on_save = 1
-"let g:ale_lint_on_enter = 0
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_completion_enabled = 0
-""let g:LanguageClient_diagnosticsEnable = 0
 
 let g:LanguageClient_useFloatingHover = 0
 "let g:LanguageClient_useVirtualText = 0
@@ -940,6 +530,7 @@ let g:LanguageClient_diagnosticsDisplay={
   \     },
   \ }
 
+" TODO: colors
 highlight clear SpellBad
 highlight clear SpellCap
 highlight clear SpellLocal
@@ -950,20 +541,14 @@ highlight SpellCap cterm=underline
 highlight SpellLocal cterm=underline
 highlight SpellRare cterm=underline
 
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"call deoplete#custom#option('omni_patterns', {
-"\ 'rust': '[^. *\t]\.\w*',
-"\})
-"call deoplete#custom#option({
-"\ 'on_text_changed_i': v:false,
-"\ })
 
-
+" TODO: undo files
 set undodir=~/.vimundo
 set undofile
 
 
 
+" TODO: git
 " Git Gutter"
 set updatetime=250
 let g:gitgutter_max_signs = 500
@@ -979,10 +564,6 @@ highlight GitGutterDelete ctermfg=1
 highlight GitGutterChangeDelete ctermfg=4
 
 
-"let g:languagetool_jar='/usr/share/languagetool/lib/languagetool-commandline.jar'
-"let g:languagetool_server_jar='/usr/share/languagetool/lib/languagetool-server.jar'
-
-
 " Disable annoying auto line break
 fu! DisableBr()
     set wrap
@@ -996,6 +577,7 @@ endfu
 " Disable line breaks for all file types
 :au BufNewFile,BufRead *.txt call DisableBr()
 
+" XML
 augroup XML
     autocmd!
     autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
