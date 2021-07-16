@@ -869,8 +869,9 @@ endif
 
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{c,C,cfg,conf,config,cpp,css,cxx,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
-  \ -g "!{.git,node_modules,vendor,target}/*" '
+  \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,xml,yaml,yml}"
+  \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
+  \ --glob "!{.git,build,node_modules,vendor,target}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
 
