@@ -84,6 +84,10 @@ set guioptions-=T
 set ch=1
 set autoindent
 set sessionoptions=curdir,buffers,tabpages
+set bs=2                " Allow backspacing over everything in insert mode
+set ai                  " Always set auto-indenting on
+set history=50          " keep 50 lines of command history
+set ruler               " Show the cursor position all the time
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 set wildmenu
@@ -110,6 +114,15 @@ set laststatus=2
 
 " indent after {, etc.
 set smartindent
+
+"set viminfo='20,\"500   " Keep a .viminfo file.
+" Tell vim to remember certain things when we exit
+"  '30  :  marks will be remembered for up to 10 previously edited files
+"  "500 :  will save up to 100 lines for each register
+"  :30  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='30,\"500,:30,%,n~/.viminfo
 
 " Fix <Enter> for comment
 set fo+=cr
@@ -199,17 +212,8 @@ vmap > >gv
 " imap [ []<LEFT>
 imap {<CR> {<CR>}<Esc>O
 
-filetype on
-filetype plugin on
 
-au BufNewFile,BufRead *.toml set filetype=toml
-
-" Rust uses Cargo.toml and Cargo.lock (both are toml files).
-au BufNewFile,BufRead Cargo.lock set filetype=toml
-
-
-" colors
-
+" main colors
 "colorscheme evening
 colorscheme peachpuff
 "hi clear
@@ -313,27 +317,24 @@ hi Todo ctermfg=gray ctermbg=darkblue
 map <End> $
 
 
-" TODO: git
+" git
 map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
-"map <C-r> :GitGutterToggle<cr>:set paste!<cr>
+nnoremap <C-d> :Git diff %<cr>
+imap <C-d> <esc>:Git diff %<cr>
+vmap <C-d> <esc>:Git diff %<cr>
+set updatetime=250
+let g:gitgutter_max_signs = 500
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_sign_column_always = 1
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterChangeDelete ctermfg=4
 
 
-" TODO
-set nocompatible        " Use Vim defaults (much better!)
-set bs=2                " Allow backspacing over everything in insert mode
-set ai                  " Always set auto-indenting on
-set history=50          " keep 50 lines of command history
-set ruler               " Show the cursor position all the time
 
-"set viminfo='20,\"500   " Keep a .viminfo file.
-
-" Tell vim to remember certain things when we exit
-"  '30  :  marks will be remembered for up to 10 previously edited files
-"  "500 :  will save up to 100 lines for each register
-"  :30  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='30,\"500,:30,%,n~/.viminfo
 
 function! ResCur()
   if line("'\"") <= line("$")
@@ -346,9 +347,6 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
-" TODO: filetypes
-au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
 
 map <F12> :TagbarToggle<cr>
 imap <F12> <esc>:TagbarToggle<cr>
@@ -412,10 +410,38 @@ let g:indent_guides_guide_size=1
 "let g:indent_guides_enable_on_vim_startup = 1
 
 
-command! E Explore
-se nohlsearch
+
+" TODO: file types here!
+filetype on
 filetype plugin indent on
-"set completeopt=longest,menuone
+
+au BufNewFile,BufRead *.toml set filetype=toml
+au BufNewFile,BufRead Cargo.lock set filetype=toml
+au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
+autocmd BufNewFile,BufRead *.ny set syntax=lisp
+autocmd BufNewFile,BufRead *.xges set syntax=xml
+
+" txt
+" Disable annoying auto line break
+fu! DisableBr()
+    set wrap
+    set linebreak
+    set nolist  " list disables linebreak
+    set textwidth=0
+    set wrapmargin=0
+    set fo-=t
+endfu
+au BufNewFile,BufRead *.txt call DisableBr()
+
+" XML
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+augroup END
+"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
+
+
+command! E Explore
 
 " TODO: rust
 let g:formatdef_rustfmt = '"rustfmt"'
@@ -441,8 +467,6 @@ se number
 
 set shortmess=aoOtIT
 
-autocmd BufNewFile,BufRead *.ny set syntax=lisp
-autocmd BufNewFile,BufRead *.xges set syntax=xml
 
 " TODO: rust
 let g:LanguageClient_loggingFile = expand('~/.local/share/nvim/LanguageClient.log')
@@ -461,6 +485,9 @@ let g:ncm2#auto_popup=0
 "g:ncm2#manual_complete_length
 "inoremap <your-key> <c-r>=ncm2#manual_trigger(...)<cr>
 autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
+
+
+" Search in filenames and file bodies
 
 if executable('rg')
     set grepformat=%f:%m
@@ -489,11 +516,6 @@ vmap <F4> <esc>:tabnew<cr>:F<Cr>
 nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-
-" TODO: git
-nnoremap <C-d> :Git diff %<cr>
-imap <C-d> <esc>:Git diff %<cr>
-vmap <C-d> <esc>:Git diff %<cr>
 
 let g:LanguageClient_useFloatingHover = 0
 "let g:LanguageClient_useVirtualText = 0
@@ -545,44 +567,5 @@ highlight SpellRare cterm=underline
 " TODO: undo files
 set undodir=~/.vimundo
 set undofile
-
-
-
-" TODO: git
-" Git Gutter"
-set updatetime=250
-let g:gitgutter_max_signs = 500
-" No mapping
-let g:gitgutter_map_keys = 0
-" Colors
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_column_always = 1
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=2
-highlight GitGutterChange ctermfg=3
-highlight GitGutterDelete ctermfg=1
-highlight GitGutterChangeDelete ctermfg=4
-
-
-" Disable annoying auto line break
-fu! DisableBr()
-    set wrap
-    set linebreak
-    set nolist  " list disables linebreak
-    set textwidth=0
-    set wrapmargin=0
-    set fo-=t
-endfu
-
-" Disable line breaks for all file types
-:au BufNewFile,BufRead *.txt call DisableBr()
-
-" XML
-augroup XML
-    autocmd!
-    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
-augroup END
-"au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
-
 
 set nowritebackup
