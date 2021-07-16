@@ -69,3 +69,6 @@
 
 [includeIf "gitdir:~/work/**/.git"]
     path = ~/.config/git/kupibilet.ini
+
+[includeIf "gitdir:~/.private/work/**/.git"]
+    path = ~/.config/git/kupibilet.ini

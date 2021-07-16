@@ -23,6 +23,8 @@ rustup default "${RUST_STABLE_VERSION}"
 rustup component add clippy
 rustup component add rust-src
 
+ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
+
 RUSTFLAGS="-C target-cpu=native" cargo +${RUST_NIGHTLY_VERSION} install --features simd-accel ripgrep
 
 cd git-extra/rust-analyzer

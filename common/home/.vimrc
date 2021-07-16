@@ -864,7 +864,7 @@ autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
 
 if executable('rg')
-    "set grepprg=rg\ --no-heading\ --vimgrep\ --color=never\ --glob\ "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl,java}"
+    "set grepprg=rg\ --no-heading\ --vimgrep\ --color=never\ --glob\ "*.{rs,py,sh,yml,yaml,json,c,cpp,C,cxx,hpp,h,rb,pl,java,xml}"
     "set grepformat=%f:%l:%c:%m
     set grepformat=%f:%m
     "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
@@ -873,7 +873,7 @@ endif
 
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-  \ -g "*.{js,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl,java}"
+  \ -g "*.{js,php,md,styl,jade,html,config,py,cpp,c,go,hs,rb,conf,rs,pl,java,xml}"
   \ -g "!{.git,node_modules,vendor,target}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)

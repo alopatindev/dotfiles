@@ -46,7 +46,11 @@ ZSH_THEME="gentoo"
 #plugins=(git autojump command-not-found zsh-syntax-highlighting)
 plugins=(git command-not-found zsh-syntax-highlighting)
 
+fpath+=~/.zsh/completions
+
 source $ZSH/oh-my-zsh.sh
+
+autoload -U compinit && compinit
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
@@ -106,10 +110,26 @@ bindkey "^I" restricted-expand-or-complete
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PATH="/home/al/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/al/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/al/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/al/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/al/perl5"; export PERL_MM_OPT;
+
+precmd() {
+    pwd | grep "${HOME}/work/" >> /dev/null && {
+        export RUSTFLAGS='-C link-args=-lzstd -C force-frame-pointers=y'
+        export CFLAGS=
+        export CXXFLAGS=
+        for i in target; do
+            export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
+            mkdir -p "${CARGO_TARGET_DIR}"
+            ln -s "${CARGO_TARGET_DIR}" 2>> /dev/null
+            unset CARGO_TARGET_DIR
+        done
+        export RUST_BACKTRACE=full
+        unset -f precmd
+    }
+}
