@@ -82,12 +82,19 @@ set mousehide
 set termencoding=utf-8
 set guioptions-=T
 set ch=1
-set autoindent
 set sessionoptions=curdir,buffers,tabpages
 set bs=2                " Allow backspacing over everything in insert mode
 set ai                  " Always set auto-indenting on
 set history=50          " keep 50 lines of command history
 set ruler               " Show the cursor position all the time
+set tags=tags,.tags,rusty-tags.vi
+set tags+=tags;/
+se number
+" se relativenumber
+set shortmess=aoOtIT
+set nowritebackup
+set undodir=~/.vimundo
+set undofile
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 set wildmenu
@@ -112,11 +119,23 @@ set tabstop=4
 " set statusline=%<%f%h%m%r\ %b\ %{&encoding}\ 0x\ \ %l,%c%V\ %P 
 set laststatus=2
 
-" indent after {, etc.
-set smartindent
+" Fix <Enter> for comment
+set fo+=cr
 
-"set viminfo='20,\"500   " Keep a .viminfo file.
-" Tell vim to remember certain things when we exit
+
+" Indents
+set smartindent  " indent after {, etc.
+set autoindent
+vmap < <gv
+vmap > >gv
+
+" auto closing character
+" imap [ []<LEFT>
+imap {<CR> {<CR>}<Esc>O
+
+
+
+" .viminfo settings: remember certain things when we exit
 "  '30  :  marks will be remembered for up to 10 previously edited files
 "  "500 :  will save up to 100 lines for each register
 "  :30  :  up to 20 lines of command-line history will be remembered
@@ -124,8 +143,13 @@ set smartindent
 "  n... :  where to save the viminfo files
 set viminfo='30,\"500,:30,%,n~/.viminfo
 
-" Fix <Enter> for comment
-set fo+=cr
+
+" Terminal hacks
+
+" C-h for xterm + tmux + nvim
+"if &term == "screen"
+noremap <bs> :tabp<cr>
+"endif
 
 "set term=xterm
 if v:version >= 700
@@ -137,6 +161,15 @@ if &term ==? "xterm"
   set t_Sf=^[3%dm
   set ttymouse=xterm2
 endif
+
+"" C-h for xterm => tmux => nvim
+"if &term ==? "screen"
+"  noremap <bs> :tabp<cr>
+"endif
+
+
+
+" Keyboard shortcuts
 
 map . /
 
@@ -166,24 +199,24 @@ map П G
 
 map в d
 
-" global clipboard
+" Clipboard
 vmap <C-C> "+yi
 "imap <C-V> <esc>"+gPi
 imap <C-S-v> <esc>"*pi
-
 set clipboard=unnamedplus
 
 map <C-t> :tabnew<cr>
 imap <C-t> <esc>:tabnew<cr>
 vmap <C-t> <esc>:tabnew<cr>
 
+" file browser
 map <C-F3> :tabnew<cr>:Ex<cr>
 imap <C-F3> <esc>:tabnew<cr>:Ex<cr>
 vmap <C-F3> <esc>:tabnew<cr>:Ex<cr>
+command! E Explore
 
 noremap <C-l> :tabn<cr>
 noremap <C-h> :tabp<cr>
-noremap <bs> :tabp<cr>
 
 noremap <S-H> :-tabmove<cr>
 noremap <S-L> :+tabmove<cr>
@@ -204,16 +237,16 @@ imap <F2> <esc>:wa<cr>i
 
 map cc <esc>:q<cr>
 
-" indents
-vmap < <gv
-vmap > >gv
 
-" auto closing character
-" imap [ []<LEFT>
-imap {<CR> {<CR>}<Esc>O
+" Tagbar
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+map <F12> :TagbarToggle<cr>
+imap <F12> <esc>:TagbarToggle<cr>
+vmap <F12> <esc>:TagbarToggle<cr>
 
 
-" main colors
+" Colors
 "colorscheme evening
 colorscheme peachpuff
 "hi clear
@@ -276,6 +309,17 @@ hi TabLineFill term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=black
 "hi Comment cterm=bold
 "hi Directory ctermfg=3 cterm=none
 
+hi Todo ctermfg=gray ctermbg=darkblue
+
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+
+highlight SpellBad cterm=underline
+highlight SpellCap cterm=underline
+highlight SpellLocal cterm=underline
+highlight SpellRare cterm=underline
 
 "let xterm16_colormap = 'allblue'
 "colo xterm16
@@ -311,13 +355,11 @@ map \w :call Browser ()<cr><cr>
 
 map z <C-o>
 
-hi Todo ctermfg=gray ctermbg=darkblue
-
 "urxvt and others terminals hack
 map <End> $
 
 
-" git
+" GIT
 map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
 nnoremap <C-d> :Git diff %<cr>
 imap <C-d> <esc>:Git diff %<cr>
@@ -348,16 +390,6 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-map <F12> :TagbarToggle<cr>
-imap <F12> <esc>:TagbarToggle<cr>
-vmap <F12> <esc>:TagbarToggle<cr>
-
-" TODO: tagbar
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Rainbow Parentheses options {
     function! Config_Rainbow()
@@ -400,14 +432,17 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
         \ ]
 " }
 
-" indent guides
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
-hi IndentGuidesEven guibg=green ctermbg=Darkblue
+
+
+
+" Indent guides
 se ts=4 sw=4 et
+let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=1
 "let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
+hi IndentGuidesEven guibg=green ctermbg=Darkblue
 
 
 
@@ -441,43 +476,54 @@ augroup END
 "au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
 
 
-command! E Explore
 
+" Rust
 " TODO: rust
 let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
-"au BufWrite *.rs :Autoformat
-
-set tags=tags,.tags,rusty-tags.vi
-
 let g:rustfmt_autosave = 1
-
-" JavaScript/ECMAScript
-let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
-au BufWrite *.ts :Autoformat
-au BufWrite *.js :Autoformat
-au BufWrite *.json :Autoformat
-
-au BufWrite *.rb :Autoformat
-
-autocmd BufEnter,FocusGained * checktime
-
-se number
-" se relativenumber
-
-set shortmess=aoOtIT
-
-
-" TODO: rust
 let g:LanguageClient_loggingFile = expand('~/.local/share/nvim/LanguageClient.log')
 let g:LanguageClient_serverCommands = {
 \ 'rust': ['rust-analyzer'],
 \ }
+let g:LanguageClient_useFloatingHover = 0
+"let g:LanguageClient_useVirtualText = 0
+let g:LanguageClient_useVirtualText = "No"
+let g:LanguageClient_diagnosticsDisplay={
+  \     '1': {
+  \         "name": "Error",
+  \         "texthl": "LanguageClientError",
+  \         "signText": "✖",
+  \         "signTexthl": "LanguageClientWarningSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \     '2': {
+  \         "name": "Warning",
+  \         "texthl": "LanguageClientWarning",
+  \         "signText": "⚠",
+  \         "signTexthl": "LanguageClientWarningSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \     '3': {
+  \         "name": "Information",
+  \         "texthl": "LanguageClientInfo",
+  \         "signText": "ℹ",
+  \         "signTexthl": "LanguageClientInfoSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \     '4': {
+  \         "name": "Hint",
+  \         "texthl": "LanguageClientInfo",
+  \         "signText": "➤",
+  \         "signTexthl": "LanguageClientInfoSign",
+  \         "virtualTexthl": "Todo",
+  \     },
+  \ }
 autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tab drop'})<CR>
 nnoremap r :call LanguageClient#textDocument_rename()<CR>
 map f :call LanguageClient_textDocument_codeAction()<CR>
 
-" TODO: enable autocomplete for Rust
+" enable autocomplete for Rust
 autocmd BufEnter *.rs call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 let g:ncm2#auto_popup=0
@@ -485,6 +531,27 @@ let g:ncm2#auto_popup=0
 "g:ncm2#manual_complete_length
 "inoremap <your-key> <c-r>=ncm2#manual_trigger(...)<cr>
 autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
+
+
+
+" JavaScript/ECMAScript
+let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
+au BufWrite *.ts :Autoformat
+au BufWrite *.js :Autoformat
+au BufWrite *.json :Autoformat
+
+" Ruby
+au BufWrite *.rb :Autoformat
+
+
+" ctags
+" TODO: tab drop
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+
+autocmd BufEnter,FocusGained * checktime
+
 
 
 " Search in filenames and file bodies
@@ -516,56 +583,3 @@ vmap <F4> <esc>:tabnew<cr>:F<Cr>
 nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
 vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-
-let g:LanguageClient_useFloatingHover = 0
-"let g:LanguageClient_useVirtualText = 0
-let g:LanguageClient_useVirtualText = "No"
-
-let g:LanguageClient_diagnosticsDisplay={
-  \     '1': {
-  \         "name": "Error",
-  \         "texthl": "LanguageClientError",
-  \         "signText": "✖",
-  \         "signTexthl": "LanguageClientWarningSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '2': {
-  \         "name": "Warning",
-  \         "texthl": "LanguageClientWarning",
-  \         "signText": "⚠",
-  \         "signTexthl": "LanguageClientWarningSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '3': {
-  \         "name": "Information",
-  \         "texthl": "LanguageClientInfo",
-  \         "signText": "ℹ",
-  \         "signTexthl": "LanguageClientInfoSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '4': {
-  \         "name": "Hint",
-  \         "texthl": "LanguageClientInfo",
-  \         "signText": "➤",
-  \         "signTexthl": "LanguageClientInfoSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \ }
-
-" TODO: colors
-highlight clear SpellBad
-highlight clear SpellCap
-highlight clear SpellLocal
-highlight clear SpellRare
-
-highlight SpellBad cterm=underline
-highlight SpellCap cterm=underline
-highlight SpellLocal cterm=underline
-highlight SpellRare cterm=underline
-
-
-" TODO: undo files
-set undodir=~/.vimundo
-set undofile
-
-set nowritebackup
