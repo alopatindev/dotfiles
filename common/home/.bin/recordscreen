@@ -80,3 +80,5 @@ else
         -f ipod \
         "${OUTPUT}"
 fi
+
+echo "${OUTPUT}"

@@ -2,8 +2,10 @@
 
 require 'open3'
 
+# clipboards = %w[clipboard primary secondary]
+clipboards = %w[clipboard]
 buffer = ''
-%w[clipboard primary secondary].each do |i|
+clipboards.each do |i|
   buffer = `xsel -o --#{i} 2>>/dev/null`
   # puts buffer unless buffer.empty?
   break unless buffer.empty?

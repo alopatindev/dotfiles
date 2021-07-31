@@ -13,6 +13,8 @@ xgamma -gamma 0.9
 
 #rm -f ~/progs/scalafmt-server-*/RUNNING_PID ; ~/progs/scalafmt-server-1.0-SNAPSHOT/scalafmt-server.sh 8899 &
 
+#parcellite -n 2>>/dev/null &
+
 chromium &
 #pidgin &
 #qtox &
@@ -21,6 +23,13 @@ stardict &
 #qdevicemonitor &
 xbindkeys
 conky -d
+
+# keep clipboard in sync with primary buffer
+autocutsel -selection CLIPBOARD -fork
+# keep primary buffer in sync with clipboard
+#autocutsel -selection PRIMARY -fork
+
+#autocutsel -selection SECONDARY -fork
 
 eval $(luarocks path --bin)
 
