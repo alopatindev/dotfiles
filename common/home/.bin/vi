@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
-pwd_escaped=$(pwd | sed 's!/!%!g')
-export CARGO_TARGET_DIR="${HOME}/tmp/${pwd_escaped}/target.rust-analyzer"
-export NVIM_LISTEN_ADDRESS="/tmp/nvim-${pwd_escaped}"
+project_dir=$(cargo metadata --quiet --format-version=1 2>>/dev/null | jq --raw-output '.workspace_root')
+project_dir_escaped=$(echo "${project_dir}" | sed 's!/!%!g')
+export CARGO_TARGET_DIR="${HOME}/tmp/${project_dir_escaped}/target.rust-analyzer"
 
-# check if we can connect, otherwise remove the socket
-nvr -s --nostart || rm -f "${NVIM_LISTEN_ADDRESS}"
+nvim_listen_address="/tmp/nvim-${USER}-${project_dir_escaped}"
 
-/usr/bin/nvim -p "$@"
+/usr/bin/nvim --listen "${nvim_listen_address}" -p "$@"
