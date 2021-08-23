@@ -16,13 +16,17 @@ uptodate() {
 
 if ! uptodate
 then
-	for dir in $PATH
-	do
-		for file in "$dir"/*
-		do
-			test -x "$file" && echo "${file##*/}"
-		done
-	done | sort | uniq > $CACHE.$$
+    (
+        ~/scripts/assign_tags_to_apps.rb | awk '{print $1}'
+        for dir in $PATH
+        do
+            for file in "$dir"/*
+            do
+                test -x "$file" && echo "${file##*/}"
+                #test -x "$file" && (ldd "$file" | grep libX11) > /dev/null 2>&1 && echo "${file##*/}"
+            done
+        done
+    ) | sort | uniq > $CACHE.$$
 	mv $CACHE.$$ $CACHE
 fi
 
