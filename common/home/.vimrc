@@ -52,6 +52,8 @@ Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 
+Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
+
 Plug 'alopatindev/cargo-limit'
 
 " :PlugInstall
@@ -69,7 +71,7 @@ set nocompatible
 set ruler  
 set showcmd  
 set nu
-set noincsearch " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
+set incsearch
 set nohlsearch
 set scrolljump=4
 set scrolloff=4
