@@ -1,0 +1,1 @@
+ACTION=="add", ATTRS{idVendor}=="1532", RUN+="/usr/local/sbin/load-webcam-settings.sh"

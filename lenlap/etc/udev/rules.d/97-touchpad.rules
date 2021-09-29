@@ -1,2 +1,2 @@
-KERNEL=="event[0-9]*", ACTION=="add", ENV{XAUTHORITY}="/home/al/.Xauthority", RUN+="/usr/local/sbin/set_touchpad.sh"
-KERNEL=="event[0-9]*", ACTION=="remove", ENV{XAUTHORITY}="/home/al/.Xauthority", RUN+="/usr/local/sbin/set_touchpad.sh"
+#KERNEL=="event[0-9]*", ACTION=="add", ENV{XAUTHORITY}="/home/al/.Xauthority", RUN+="/usr/local/sbin/set_touchpad.sh"
+#KERNEL=="event[0-9]*", ACTION=="remove", ENV{XAUTHORITY}="/home/al/.Xauthority", RUN+="/usr/local/sbin/set_touchpad.sh"
