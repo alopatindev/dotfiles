@@ -35,7 +35,7 @@ Plug 'git@github.com:chiedojohn/vim-case-convert'
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
 "Plug 'w0rp/ale' " autocompletion unused, used proselint
-Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
 
 " for go to definition (autocompletion unused)
 Plug 'autozimu/LanguageClient-neovim', {
@@ -54,7 +54,7 @@ Plug 'ncm2/ncm2-path'
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
 
-Plug 'alopatindev/cargo-limit'
+Plug 'alopatindev/cargo-limit', { 'do': 'cargo install nvim-send' }
 
 " :PlugInstall
 
@@ -62,11 +62,13 @@ call plug#end()
 
 syntax on
 
+set ignorecase
+set smartcase
+
 set directory=/tmp/.vimswaps//
 "set foldmethod=indent
 set foldmethod=manual
 "set textwidth=80
-set ignorecase
 set nocompatible
 set ruler  
 set showcmd  
@@ -497,28 +499,28 @@ let g:LanguageClient_diagnosticsDisplay={
   \     '1': {
   \         "name": "Error",
   \         "texthl": "LanguageClientError",
-  \         "signText": "✖",
+  \         "signText": "x",
   \         "signTexthl": "LanguageClientWarningSign",
   \         "virtualTexthl": "Todo",
   \     },
   \     '2': {
   \         "name": "Warning",
   \         "texthl": "LanguageClientWarning",
-  \         "signText": "⚠",
+  \         "signText": "!",
   \         "signTexthl": "LanguageClientWarningSign",
   \         "virtualTexthl": "Todo",
   \     },
   \     '3': {
   \         "name": "Information",
   \         "texthl": "LanguageClientInfo",
-  \         "signText": "ℹ",
+  \         "signText": "i",
   \         "signTexthl": "LanguageClientInfoSign",
   \         "virtualTexthl": "Todo",
   \     },
   \     '4': {
   \         "name": "Hint",
   \         "texthl": "LanguageClientInfo",
-  \         "signText": "➤",
+  \         "signText": ">",
   \         "signTexthl": "LanguageClientInfoSign",
   \         "virtualTexthl": "Todo",
   \     },
@@ -559,7 +561,7 @@ if executable('rg')
 
   let g:rg_command = '
     \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl,yaml,yml}"
+    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
 
