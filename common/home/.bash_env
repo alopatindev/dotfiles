@@ -16,7 +16,7 @@ SAL_USE_VCLPLUGIN=gtk
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sbar/necessitas/QtCreator/Qt/lib/"
 #export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/android-sdk-update-manager/tools/lib/"
 
-export EDITOR=nvim
+export EDITOR=vi
 export TERMINAL=xterm
 
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -34,5 +34,3 @@ export GPG_TTY=$(tty)
 ##export DEP_OPENSSL_VERSION=102
 
 #export RUSTFLAGS='-C link-args=-lzstd'
-
-export CARGO_OPEN=open-in-nvim
