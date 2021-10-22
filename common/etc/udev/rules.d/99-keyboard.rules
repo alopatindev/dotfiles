@@ -1,1 +1,0 @@
-KERNEL=="event[0-9]*", ACTION=="add", RUN+="/usr/local/sbin/set-keyboard-layout.sh"

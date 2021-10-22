@@ -1,0 +1,3 @@
+#KERNEL=="event[0-9]*", ACTION=="add", RUN+="su al -c /usr/local/sbin/set-keyboard-layout.sh"
+ACTION=="unbind", ENV{HID_NAME}=="Keychron Keychron K1", RUN+="/usr/local/sbin/bluetooth-on.sh"
+ACTION=="bind", ENV{HID_NAME}=="Keychron Keychron K1", RUN+="/usr/local/sbin/bluetooth-off.sh"
