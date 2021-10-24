@@ -3,8 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 "Plug 'git@github.com:vimwiki/vimwiki.git'
 Plug 'git@github.com:vim-scripts/rainbow_parentheses.vim'
 Plug 'git@github.com:vim-scripts/taglist.vim'
-Plug 'git@github.com:vim-scripts/Indent-Guides.git'
-Plug 'git@github.com:vim-scripts/Tagbar.git'
+"Plug 'git@github.com:vim-scripts/Indent-Guides.git'
+"Plug 'git@github.com:vim-scripts/Tagbar.git'
 "Plug 'git@github.com:vim-scripts/vim-gitgutter'
 Plug 'git@github.com:airblade/vim-gitgutter'
 Plug 'git@github.com:gentoo/gentoo-syntax'
@@ -13,7 +13,7 @@ Plug 'git@github.com:zaiste/tmux.vim'
 Plug 'git@github.com:editorconfig/editorconfig-vim'
 Plug 'git@github.com:cespare/vim-toml'
 Plug 'git@github.com:Chiel92/vim-autoformat'
-Plug 'git@github.com:kchmck/vim-coffee-script.git'
+"Plug 'git@github.com:kchmck/vim-coffee-script.git'
 Plug 'git@github.com:leafgarland/typescript-vim.git'
 Plug 'git@github.com:ekalinin/Dockerfile.vim.git'
 Plug 'git@github.com:Shougo/deoplete.nvim'
@@ -23,7 +23,7 @@ Plug 'git@github.com:carlitux/deoplete-ternjs'
 "Plug 'git@github.com:fidian/hexmode.git'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
-Plug 'git@github.com:elubow/cql-vim'
+"Plug 'git@github.com:elubow/cql-vim'
 Plug 'git@github.com:suan/vim-instant-markdown'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
@@ -65,7 +65,8 @@ syntax on
 set ignorecase
 set smartcase
 
-set directory=/tmp/.vimswaps//
+"set directory=/tmp/.vimswaps//
+set directory=~/.private/.vimswaps//
 "set foldmethod=indent
 set foldmethod=manual
 "set textwidth=80
@@ -132,12 +133,12 @@ set smartindent  " indent after {, etc.
 set autoindent
 vmap < <gv
 vmap > >gv
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
-"let g:indent_guides_enable_on_vim_startup = 1
-hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
-hi IndentGuidesEven guibg=green ctermbg=Darkblue
+"let g:indent_guides_auto_colors = 0
+"let g:indent_guides_start_level=2
+"let g:indent_guides_guide_size=1
+""let g:indent_guides_enable_on_vim_startup = 1
+"hi IndentGuidesOdd  guibg=red   ctermbg=darkcyan
+"hi IndentGuidesEven guibg=green ctermbg=Darkblue
 
 " auto closing character
 " imap [ []<LEFT>
