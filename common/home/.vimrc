@@ -700,8 +700,8 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
   return buffers, header_line
 end
 
-local format_item = function(bufnr, flags, bufname, line, column, text)
-  local prefix = ("%d)"):format(bufnr)
+local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
+  local prefix = ("%d)%s"):format(bufnr, is_tab and string.format('b%d', bufnr) or '')
 
   -- TODO: if flags contains t
   local bufname = utils.ansi_codes.magenta(#bufname>0 and bufname or "[No Name]")
@@ -760,7 +760,7 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   local flags = 't' .. flags
 
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
-  local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text)
+  local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text, true)
   table.insert(items, item_str)
   bufnames_with_lines[bufname .. buf.info.lnum] = true
   return items, bufnames_with_lines
@@ -889,7 +889,7 @@ local buffer_lines = function(items, bufnames_with_lines, opts)
     for line, text in ipairs(data) do
       if bufnames_with_lines[bufname .. line] == nil then
         local flags = '#'
-        table.insert(items, format_item(bufnr, flags, bufname, line, 0, text))
+        table.insert(items, format_item(bufnr, flags, bufname, line, 0, text, false))
         bufnames_with_lines[bufname .. line] = true
       end
     end
