@@ -706,6 +706,7 @@ local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
   -- TODO: if flags contains t
   local bufname = utils.ansi_codes.magenta(#bufname>0 and bufname or "[No Name]")
 
+  -- TODO: make : green?
   local flags = ''
   return string.format("%s%s%s:%s%s%s",
     prefix,
@@ -887,7 +888,7 @@ local buffer_lines = function(items, bufnames_with_lines, opts)
     end
 
     for line, text in ipairs(data) do
-      if bufnames_with_lines[bufname .. line] == nil then
+      if #text > 0 and bufnames_with_lines[bufname .. line] == nil then
         local flags = '#'
         table.insert(items, format_item(bufnr, flags, bufname, line, 0, text, false))
         bufnames_with_lines[bufname .. line] = true
@@ -914,6 +915,7 @@ universal_search = function(opts)
     opts.fzf_opts["--preview-window"] = 'hidden:right:0'
     opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[\\)]')
     opts.fzf_opts["--with-nth"] = '2'
+    opts.fzf_opts["--tiebreak"] = 'index'
 
     if opts.search and #opts.search>0 then
       dbg('query!')
