@@ -42,9 +42,15 @@ Plug 'autozimu/LanguageClient-neovim', {
   \ 'branch': 'next',
   \ 'do': 'bash install.sh',
   \ }
+
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+Plug 'ibhagwan/fzf-lua'
+Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim' }
+"Plug 'kyazdani42/nvim-web-devicons'
 
 
 Plug 'ncm2/ncm2' " autocompletion for rust
@@ -65,11 +71,12 @@ syntax on
 set ignorecase
 set smartcase
 
-"set directory=/tmp/.vimswaps//
-set directory=~/.private/.vimswaps//
+set directory=/tmp/.vimswaps//
+"set directory=~/.private/.vimswaps//
 "set foldmethod=indent
 set foldmethod=manual
 "set textwidth=80
+set textwidth=0
 set nocompatible
 set ruler  
 set showcmd  
@@ -256,6 +263,7 @@ imap <F2> <esc>:wa<cr>i
 
 map cc <esc>:q<cr>
 
+vmap s :sort<cr>
 
 " Tagbar
 let g:tagbar_autoclose = 1
@@ -383,6 +391,7 @@ map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
 nnoremap <C-d> :Git diff %<cr>
 imap <C-d> <esc>:Git diff %<cr>
 vmap <C-d> <esc>:Git diff %<cr>
+map <C-b> <esc>:Git blame<cr>
 set updatetime=250
 let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
@@ -553,35 +562,379 @@ au BufWrite *.rb :Autoformat
 
 autocmd BufEnter,FocusGained * checktime
 
-
+function! s:close_tab_if_empty()
+  "if empty(expand('%:p'))
+  "if mode() == 't'
+  "  q
+  "end
+  function! s:wat()
+    if mode() == 't'
+      q
+    end
+  endfunction
+  call jobstart(['sleep', '1'], {'on_exit': function('s:wat')})
+endfunction
 
 " Search in filenames and file bodies
 
 if executable('rg')
   set grepformat=%f:%m
 
-  let g:rg_command = '
-    \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "always"
-    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,json,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
+  let g:rg_opts = '
+    \ --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color "always"
+    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
+  let g:rg_command = 'rg' . g:rg_opts
 
   command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
+  "command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, fzf#vim#with_preview({'sink': 'tab drop'}), <bang>1) " TODO: broken
 
   let g:rg_highlight = 'true'
 
-  nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-  imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
-  vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<Cr>
+  nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
+  imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
+  vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
 
-  nnoremap <F4> :tabnew<cr>:F<Cr>
-  nnoremap <C-f> :tabnew<cr>:F<Cr>
-  imap <F4> <esc>:tabnew<cr>:F<Cr>
-  vmap <F4> <esc>:tabnew<cr>:F<Cr>
+  " TODO: tabnew? if tab is empty - close it. handle exiting from terminal?
+  "nnoremap <F4> :tabnew<cr>:F<cr>:call s:close_tab_if_empty()<cr>
+  "nnoremap <F4> :tabnew<cr>:call s:close_tab_if_empty()<cr>:F<cr>
 
-  nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-  imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
-  vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<Cr>
+  " TODO: current solution
+"  nnoremap <F4> :tabnew<cr>:F<cr>
+"  nnoremap <C-f> :tabnew<cr>:F<cr>
+"  imap <F4> <esc>:tabnew<cr>:F<cr>
+"  vmap <F4> <esc>:tabnew<cr>:F<cr>
+
+"  nnoremap <F4> :F<cr>
+"  nnoremap <C-f> :F<cr>
+"  imap <F4> <esc>:F<cr>
+"  vmap <F4> <esc>:F<cr>
+
+"  nnoremap <F4> :lua require'fzf-lua'.live_grep()<cr>
+"  nnoremap <C-f> :lua require'fzf-lua'.live_grep()<cr>
+"  imap <F4> <esc>:lua require'fzf-lua'.live_grep()<cr>
+"  vmap <F4> <esc>:lua require'fzf-lua'.live_grep()<cr>
+
+" TODO
+  nnoremap <F4> :lua universal_search()<cr>
+"  nnoremap <C-f> :lua require'fzf-lua'.universal_search()<cr>
+"  imap <F4> <esc>:lua require'fzf-lua'.universal_search()<cr>
+"  vmap <F4> <esc>:lua require'fzf-lua'.universal_search()<cr>
+
+  nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
+  imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
+  vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
 endif
+
+lua << EOF
+local core = require "fzf-lua.core"
+local path = require "fzf-lua.path"
+local utils = require "fzf-lua.utils"
+local config = require "fzf-lua.config"
+local actions = require "fzf-lua.actions"
+--actions = require "fzf-lua.actions"
+
+require('fzf-lua').setup{
+  --fzf_bin = 'sk',
+  winopts = {
+    border = 'none',
+    fullscreen = true,
+    preview = {
+      border = 'noborder',
+      wrap = 'wrap',
+      scrollbar = false,
+      layout = 'vertical',
+      title = false,
+      --vertical = 'up:60%'
+      vertical = 'up:20%'
+    }
+  },
+  fzf_opts = {
+    ['--layout'] = 'default',
+  },
+  grep = {
+    rg_opts = vim.g.rg_opts
+  },
+  tabs = {
+    prompt = '> ',
+  }
+}
+
+function dbg(data)
+  f = io.open("/tmp/wat.txt", "a+")
+  f:write(vim.inspect(data) .. "\n")
+  f:close()
+end
+
+local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
+  local header_line = false
+  local buffers = {}
+  curbuf = curbuf or vim.fn.bufnr('')
+  for _, bufnr in ipairs(bufnrs) do
+    local flag = bufnr == curbuf and '%' or (bufnr == vim.fn.bufnr('#') and '#' or ' ')
+
+    local element = {
+      bufnr = bufnr,
+      flag = flag,
+      info = vim.fn.getbufinfo(bufnr)[1],
+    }
+
+    -- get the correct lnum for tabbed buffers
+    if tabnr then
+      local winid = utils.winid_from_tab_buf(tabnr, bufnr)
+      if winid then
+        element.info.lnum = vim.api.nvim_win_get_cursor(winid)[1]
+        element.info.cnum = vim.api.nvim_win_get_cursor(winid)[2]
+      end
+    end
+
+    if opts.sort_lastused and (flag == "#" or flag == "%") then
+      if flag == "%" then header_line = true end
+      local idx = ((buffers[1] ~= nil and buffers[1].flag == "%") and 2 or 1)
+      table.insert(buffers, idx, element)
+    else
+      table.insert(buffers, element)
+    end
+  end
+  return buffers, header_line
+end
+
+local format_item = function(bufnr, flags, buficon, bufname, line, column, text)
+  local prefix = ("%d)"):format(bufnr)
+
+  -- TODO: if flags contains t
+  local bufname = utils.ansi_codes.magenta(#bufname>0 and bufname or "[No Name]")
+
+  local flags = ''
+  return string.format("%s%s%s:%s%s%s",
+    prefix,
+    utils.nbsp,
+    bufname,
+    line,
+    column>0 and string.format(':%d', column) or '',
+    string.format(': %s', text))
+end
+
+local function add_buffer_entry(opts, buf, items, bufnames, header_line)
+  -- local hidden = buf.info.hidden == 1 and 'h' or 'a'
+  local hidden = ''
+  local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
+  local changed = buf.info.changed == 1 and '+' or ' '
+  local flags = hidden .. readonly .. changed
+  local leftbr = utils.ansi_codes.clear('[')
+  local rightbr = utils.ansi_codes.clear(']')
+--  local bufname = string.format("%s:%s",
+--    utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]"),
+--    utils._if(buf.info.lnum>0, buf.info.lnum, ""))
+  local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
+  if buf.flag == '%' then
+    flags = utils.ansi_codes.red(buf.flag) .. flags
+    if not header_line then
+      leftbr = utils.ansi_codes.green('[')
+      rightbr = utils.ansi_codes.green(']')
+      bufname = utils.ansi_codes.green(bufname)
+    end
+  elseif buf.flag == '#' then
+    flags = utils.ansi_codes.cyan(buf.flag) .. flags
+  else
+    flags = utils.nbsp .. flags
+  end
+  local bufnrstr = string.format("%s%s%s", leftbr,
+    utils.ansi_codes.yellow(string.format(buf.bufnr)), rightbr)
+  local buficon = ''
+  local hl = ''
+  if opts.file_icons then
+    if utils.is_term_bufname(buf.info.name) then
+      -- get shell-like icon for terminal buffers
+      buficon, hl = core.get_devicon(buf.info.name, "sh")
+    else
+      local filename = path.tail(buf.info.name)
+      local extension = path.extension(filename)
+      buficon, hl = core.get_devicon(filename, extension)
+    end
+    if opts.color_icons then
+      buficon = utils.ansi_codes[hl](buficon)
+    end
+  end
+  local flags = 't' .. flags
+
+  local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
+  local item_str = format_item(buf.bufnr, flags, buficon, bufname, buf.info.lnum, buf.info.cnum, text)
+  table.insert(items, item_str)
+  table.insert(bufnames, bufname)
+  return items, bufnames
+end
+
+local filter_buffers = function(opts, unfiltered)
+  local curtab_bufnrs = {}
+  if opts.current_tab_only then
+    local curtab = vim.api.nvim_win_get_tabpage(0)
+    for _, w in ipairs(vim.api.nvim_tabpage_list_wins(curtab)) do
+      local b = vim.api.nvim_win_get_buf(w)
+      curtab_bufnrs[b] = true
+    end
+  end
+
+  local excluded = {}
+  local bufnrs = vim.tbl_filter(function(b)
+    if 1 ~= vim.fn.buflisted(b) then
+      excluded[b] = true
+    end
+    -- only hide unloaded buffers if opts.show_all_buffers is false, keep them listed if true or nil
+    if opts.show_all_buffers == false and not vim.api.nvim_buf_is_loaded(b) then
+      excluded[b] = true
+    end
+    if opts.ignore_current_buffer and b == vim.api.nvim_get_current_buf() then
+      excluded[b] = true
+    end
+    if opts.current_tab_only and not curtab_bufnrs[b] then
+      excluded[b] = true
+    end
+    if opts.no_term_buffers and utils.is_term_buffer(b) then
+      excluded[b] = true
+    end
+    if opts.cwd_only and not path.is_relative(vim.api.nvim_buf_get_name(b), vim.loop.cwd()) then
+      excluded[b] = true
+    end
+    if #vim.api.nvim_buf_get_name(b) == 0 then
+      -- TODO: it's boring to support new unsaved tabs
+      excluded[b] = true
+    end
+    return not excluded[b]
+  end, unfiltered)
+
+  return bufnrs, excluded
+end
+
+
+local search_in_tabs = function(items, bufnames, opts)
+  local curtab = vim.api.nvim_win_get_tabpage(0)
+
+  opts._tab_to_buf = {}
+  opts._list_bufs = function()
+    local res = {}
+    for _, t in ipairs(vim.api.nvim_list_tabpages()) do
+      for _, w in ipairs(vim.api.nvim_tabpage_list_wins(t)) do
+        local b = vim.api.nvim_win_get_buf(w)
+        opts._tab_to_buf[t] = opts._tab_to_buf[t] or {}
+        opts._tab_to_buf[t][b] = true
+        table.insert(res, b)
+      end
+    end
+    return res
+  end
+
+
+  local filtered, excluded = filter_buffers(opts, opts._list_bufs())
+  if not next(filtered) then return end
+
+  -- remove the filtered-out buffers
+  for b, _ in pairs(excluded) do
+    for _, bufnrs in pairs(opts._tab_to_buf) do
+      bufnrs[b] = nil
+    end
+  end
+
+
+  for t, bufnrs in pairs(opts._tab_to_buf) do
+--    table.insert(items, ("%d)%s%s\t%s"):format(t, utils.nbsp,
+--      utils.ansi_codes.blue("%s%s#%d"):format(opts.tab_title, utils.nbsp, t),
+--        (t==curtab) and utils.ansi_codes.blue(utils.ansi_codes.bold(opts.tab_marker)) or ''))
+
+    local bufnrs_flat = {}
+    for b, _ in pairs(bufnrs) do
+      table.insert(bufnrs_flat, b)
+    end
+
+    opts.sort_lastused = false
+    opts._prefix = ("%d)%s%s%s"):format(t, utils.nbsp, utils.nbsp, utils.nbsp)
+    local buffers = make_buffer_entries(opts, bufnrs_flat, t)
+    for _, buf in pairs(buffers) do
+      items, bufnames = add_buffer_entry(opts, buf, items, bufnames, true)
+    end
+  end
+
+  return items, bufnames
+end
+
+
+local buffer_lines = function(items, bufnames, opts)
+  opts.no_term_buffers = true
+  local buffers = filter_buffers(opts,
+    opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
+    vim.api.nvim_list_bufs())
+
+  for _, bufnr in ipairs(buffers) do
+    local prefix = ("%d)%s%s%s"):format(bufnr, utils.nbsp, utils.nbsp, utils.nbsp)
+
+    local data = {}
+    local filepath = vim.api.nvim_buf_get_name(bufnr)
+    if vim.api.nvim_buf_is_loaded(bufnr) then -- TODO: extract
+      data = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    elseif vim.fn.filereadable(filepath) ~= 0 then
+      data = vim.fn.readfile(filepath, "")
+    end
+    local bufname = path.relative(filepath, vim.fn.getcwd())
+    local buficon, hl
+    if opts.file_icons then
+      local filename = path.tail(bufname)
+      local extension = path.extension(filename)
+      buficon, hl = core.get_devicon(filename, extension)
+      if opts.color_icons then
+        buficon = utils.ansi_codes[hl](buficon)
+      end
+    end
+
+    for line, text in ipairs(data) do
+      local flags = '#'
+      local buficon = ''
+      table.insert(items, format_item(bufnr, flags, buficon, bufname, line, 0, text))
+    end
+    table.insert(bufnames, bufname)
+  end
+
+  return items, bufnames
+end
+
+
+universal_search = function(opts)
+  opts = config.normalize_opts(opts, config.globals.tabs)
+  if not opts then return end
+
+  coroutine.wrap(function ()
+    local items = {}
+    local bufnames = {}
+
+    items, bufnames = search_in_tabs(items, bufnames, opts)
+    items, bufnames = buffer_lines(items, bufnames, opts)
+
+    opts.fzf_opts["--no-multi"] = ''
+    opts.fzf_opts["--preview-window"] = 'hidden:right:0'
+    opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[\\)]')
+    opts.fzf_opts["--with-nth"] = '2'
+
+    if opts.search and #opts.search>0 then
+      dbg('query!')
+      opts.fzf_opts['--query'] = vim.fn.shellescape(opts.search)
+    end
+
+    local selected = core.fzf(opts, items)
+
+    if not selected then return end
+    open(selected, opts)
+  end)()
+end
+
+open = function(selected, opts)
+  local fields = utils.strsplit(utils.strsplit(selected[2], utils.nbsp)[2], ':')
+  local bufname = fields[1]
+  local line = fields[2]
+  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+  local column = column == nil and 1 or column
+  vim.cmd("tab drop " .. bufname)
+  vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
+end
+EOF
 
 " vim:shiftwidth=2 softtabstop=2 tabstop=2
