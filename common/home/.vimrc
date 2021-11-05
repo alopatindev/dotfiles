@@ -716,7 +716,7 @@ local format_item = function(bufnr, flags, bufname, line, column, text)
     string.format(': %s', text))
 end
 
-local function add_buffer_entry(opts, buf, items, bufnames, header_line)
+local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
   -- local hidden = buf.info.hidden == 1 and 'h' or 'a'
   local hidden = ''
   local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
@@ -762,8 +762,8 @@ local function add_buffer_entry(opts, buf, items, bufnames, header_line)
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
   local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text)
   table.insert(items, item_str)
-  table.insert(bufnames, bufname)
-  return items, bufnames
+  bufnames_with_lines[bufname .. buf.info.lnum] = true
+  return items, bufnames_with_lines
 end
 
 local filter_buffers = function(opts, unfiltered)
@@ -808,7 +808,7 @@ local filter_buffers = function(opts, unfiltered)
 end
 
 
-local search_in_tabs = function(items, bufnames, opts)
+local search_in_tabs = function(items, bufnames_with_lines, opts)
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
   opts._tab_to_buf = {}
@@ -851,15 +851,15 @@ local search_in_tabs = function(items, bufnames, opts)
     opts._prefix = ("%d)%s%s%s"):format(t, utils.nbsp, utils.nbsp, utils.nbsp)
     local buffers = make_buffer_entries(opts, bufnrs_flat, t)
     for _, buf in pairs(buffers) do
-      items, bufnames = add_buffer_entry(opts, buf, items, bufnames, true)
+      items, bufnames_with_lines = add_buffer_entry(opts, buf, items, bufnames_with_lines, true)
     end
   end
 
-  return items, bufnames
+  return items, bufnames_with_lines
 end
 
 
-local buffer_lines = function(items, bufnames, opts)
+local buffer_lines = function(items, bufnames_with_lines, opts)
   opts.no_term_buffers = true
   local buffers = filter_buffers(opts,
     opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
@@ -887,13 +887,15 @@ local buffer_lines = function(items, bufnames, opts)
     end
 
     for line, text in ipairs(data) do
-      local flags = '#'
-      table.insert(items, format_item(bufnr, flags, bufname, line, 0, text))
+      if bufnames_with_lines[bufname .. line] == nil then
+        local flags = '#'
+        table.insert(items, format_item(bufnr, flags, bufname, line, 0, text))
+        bufnames_with_lines[bufname .. line] = true
+      end
     end
-    table.insert(bufnames, bufname)
   end
 
-  return items, bufnames
+  return items, bufnames_with_lines
 end
 
 
@@ -903,10 +905,10 @@ universal_search = function(opts)
 
   coroutine.wrap(function ()
     local items = {}
-    local bufnames = {}
+    local bufnames_with_lines = {}
 
-    items, bufnames = search_in_tabs(items, bufnames, opts)
-    items, bufnames = buffer_lines(items, bufnames, opts)
+    items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
+    items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
 
     opts.fzf_opts["--no-multi"] = ''
     opts.fzf_opts["--preview-window"] = 'hidden:right:0'
