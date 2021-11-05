@@ -924,18 +924,162 @@ universal_search = function(opts)
 
     local selected = core.fzf(opts, items)
     if not selected then return end
-    open(selected, opts)
+    open(selected)
   end)()
 end
 
-open = function(selected, opts)
+open = function(selected)
+  dbg(selected)
   local fields = utils.strsplit(utils.strsplit(selected[2], utils.nbsp)[2], ':')
+  dbg('fields')
+  dbg(fields)
   local bufname = vim.fn.fnameescape(fields[1])
   local line = fields[2]
   local column = tonumber(utils.strsplit(fields[3], ' ')[1])
   local column = column == nil and 1 or column
   vim.cmd("tab drop " .. bufname)
   vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
+end
+
+local get_grep_cmd = function(opts, search_query, no_esc)
+  if opts.cmd_fn and type(opts.cmd_fn) == 'function' then
+    return opts.cmd_fn(opts, search_query, no_esc)
+  end
+  if opts.raw_cmd and #opts.raw_cmd>0 then
+    return opts.raw_cmd
+  end
+  local command = nil
+  if opts.cmd and #opts.cmd > 0 then
+    command = opts.cmd
+  elseif vim.fn.executable("rg") == 1 then
+    command = string.format("rg %s", opts.rg_opts)
+  else
+    command = string.format("grep %s", opts.grep_opts)
+  end
+
+  -- filename takes precedence over directory
+  -- filespec takes precedence over all and doesn't shellescape
+  -- this is so user can send a file populating command instead
+  local search_path = ''
+  if opts.filespec and #opts.filespec>0 then
+    search_path = opts.filespec
+  elseif opts.filename and #opts.filename>0 then
+    search_path = vim.fn.shellescape(opts.filename)
+  end
+
+  search_query = search_query or ''
+  if not (no_esc or opts.no_esc) then
+    search_query = utils.rg_escape(search_query)
+  end
+
+  -- do not escape at all
+  if not (no_esc == 2 or opts.no_esc == 2) then
+    search_query = vim.fn.shellescape(search_query)
+  end
+
+  return string.format('%s %s %s', command, search_query, search_path)
+end
+
+
+local fzf_files = function(opts)
+
+  if not opts then return end
+
+  -- reset git tracking
+  opts.diff_files = nil
+  if opts.git_icons and not path.is_git_repo(opts.cwd, true) then opts.git_icons = false end
+
+  coroutine.wrap(function ()
+
+    if opts.cwd_only and not opts.cwd then
+      opts.cwd = vim.loop.cwd()
+    end
+
+--    if opts.git_icons then
+--      opts.diff_files = get_diff_files(opts)
+--    end
+
+    local has_prefix = opts.file_icons or opts.git_icons or opts.lsp_icons
+    if not opts.filespec then
+      opts.filespec = utils._if(has_prefix, "{2}", "{1}")
+    end
+
+
+    local selected = core.fzf(opts, opts.fzf_fn)
+
+    if opts.post_select_cb then
+      opts.post_select_cb()
+    end
+
+    if not selected then return end
+
+    if #selected > 1 then
+      for i = 2, #selected do
+        selected[i] = path.entry_to_file(selected[i], opts.cwd).stripped
+        if opts.cb_selected then
+          local cb_ret = opts.cb_selected(opts, selected[i])
+          if cb_ret then selected[i] = cb_ret end
+        end
+      end
+    end
+
+    --actions.act(opts.actions, selected, opts)
+    open(selected)
+
+  end)()
+
+end
+
+live_grep = function(opts)
+  opts = config.normalize_opts(opts, config.globals.grep)
+  if not opts then return end
+
+  local no_esc = false
+  if opts.continue_last_search or opts.repeat_last_search then
+    no_esc = last_search.no_esc
+    opts.search = last_search.query
+  end
+
+  opts.query = opts.search or ''
+  if opts.search and #opts.search>0 then
+    -- save the search query so the use can
+    -- call the same search again
+    last_search = {}
+    last_search.no_esc = true
+    last_search.query = opts.search
+    -- escape unless the user requested not to
+    if not (no_esc or opts.no_esc) then
+      opts.query = utils.rg_escape(opts.search)
+    end
+  end
+
+  -- search query in header line
+  --opts = set_search_header(opts, 2)
+
+  opts._reload_command = function(query)
+    if query and not opts.do_not_save_last_search then
+      last_search = {}
+      last_search.no_esc = true
+      last_search.query = query
+    end
+    -- can be nill when called as fzf initial command
+    query = query or ''
+    -- TODO: need to empty filespec
+    -- fix this collision, rename to _filespec
+    opts.no_esc = nil
+    opts.filespec = nil
+    return get_grep_cmd(opts, query, true)
+  end
+
+  if opts.experimental then
+    opts._fn_transform = function(x)
+      return core.make_entry_file(opts, x)
+    end
+  end
+
+  opts = core.set_fzf_line_args(opts)
+  opts = core.set_fzf_interactive_cmd(opts)
+  fzf_files(opts)
 end
 EOF
 
