@@ -700,7 +700,7 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
   return buffers, header_line
 end
 
-local format_item = function(bufnr, flags, buficon, bufname, line, column, text)
+local format_item = function(bufnr, flags, bufname, line, column, text)
   local prefix = ("%d)"):format(bufnr)
 
   -- TODO: if flags contains t
@@ -760,7 +760,7 @@ local function add_buffer_entry(opts, buf, items, bufnames, header_line)
   local flags = 't' .. flags
 
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
-  local item_str = format_item(buf.bufnr, flags, buficon, bufname, buf.info.lnum, buf.info.cnum, text)
+  local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text)
   table.insert(items, item_str)
   table.insert(bufnames, bufname)
   return items, bufnames
@@ -888,8 +888,7 @@ local buffer_lines = function(items, bufnames, opts)
 
     for line, text in ipairs(data) do
       local flags = '#'
-      local buficon = ''
-      table.insert(items, format_item(bufnr, flags, buficon, bufname, line, 0, text))
+      table.insert(items, format_item(bufnr, flags, bufname, line, 0, text))
     end
     table.insert(bufnames, bufname)
   end
@@ -920,7 +919,6 @@ universal_search = function(opts)
     end
 
     local selected = core.fzf(opts, items)
-
     if not selected then return end
     open(selected, opts)
   end)()
@@ -928,7 +926,7 @@ end
 
 open = function(selected, opts)
   local fields = utils.strsplit(utils.strsplit(selected[2], utils.nbsp)[2], ':')
-  local bufname = fields[1]
+  local bufname = vim.fn.fnameescape(fields[1])
   local line = fields[2]
   local column = tonumber(utils.strsplit(fields[3], ' ')[1])
   local column = column == nil and 1 or column
