@@ -999,7 +999,7 @@ local function get_lines_from_file(file)
   return t
 end
 
-function raw_fzf(contents, fzf_cli_args, opts)
+function raw_fzf(contents, items, fzf_cli_args, opts)
   dbg('raw_fzf 1')
   if not coroutine.running() then
     error("please run function in a coroutine")
@@ -1137,6 +1137,12 @@ function raw_fzf(contents, fzf_cli_args, opts)
   -- print(uv.pipe_getpeername(output_pipe))
   dbg('raw_fzf 10')
 
+  dbg('raw_fzf 10.1 !')
+  for _, item in ipairs(items) do
+    write_cb(item .. "\n", function() dbg('waaT') end)
+  end
+  dbg('raw_fzf 10.2 !')
+
   -- this part runs in the background, when the user has selected, it will
   -- error out, but that doesn't matter so we just break out of the loop.
   if contents then
@@ -1211,7 +1217,19 @@ local fzf = function(opts, contents)
   dbg('fzf 5.2.2')
   dbg(opts.fzf_bin)
   dbg('fzf 5.2.3')
-  local selected, exit_code = raw_fzf(contents, core.build_fzf_cli(opts),
+  local text = "hello world:1: asdf\n" -- TODO
+
+
+  local items = {}
+  local bufnames_with_lines = {}
+
+  -- TODO: bufnames_with_lines: add : ?
+  items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
+  items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
+
+
+
+  local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
   dbg('fzf 5.3')
   utils.process_kill(opts._pid)
@@ -1284,8 +1302,17 @@ universal_grep = function(opts)
   search = ''
   local command = get_grep_cmd(opts, search, no_esc)
 
-  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
+  opts.fzf_fn = function(usr_write_cb, fzf_cb, output_pipe)
+    dbg('fzf_fn !')
+    local xxx = libuv.spawn_nvim_fzf_cmd(
+      { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
+    dbg('fzf_fn ! 2')
+    local zzz = xxx(usr_write_cb, fzf_cb, output_pipe)
+    dbg('fzf_fn ! 3')
+    return zzz
+  end
+--  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
+--    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   opts = core.set_fzf_line_args(opts)
   fzf_files(opts)
