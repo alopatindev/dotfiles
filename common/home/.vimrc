@@ -704,11 +704,8 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
 end
 
 local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
-  --local prefix = ("%d)%s"):format(bufnr, is_tab and string.format('b%d', bufnr) or '')
-  --local prefix = is_tab and string.format('b%d', bufnr) or ''
-
-  -- TODO: if flags contains t
-  local bufname = utils.ansi_codes.magenta(#bufname>0 and bufname or "[No Name]")
+  local bufname = #bufname>0 and bufname or "[No Name]"
+  bufname = is_tab and utils.ansi_codes.cyan(bufname) or utils.ansi_codes.magenta(bufname)
 
   -- TODO: make : green?
   return string.format("%s:%s%s%s",
