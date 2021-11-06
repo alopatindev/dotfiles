@@ -652,20 +652,14 @@ local function add_bufname_with_line(bufnames_with_lines, bufname, line)
 end
 
 
-local function make_buffer_entries(opts, bufnrs, tabnr, curbuf)
-  local header_line = false
+local function make_buffer_entries(opts, bufnrs, tabnr)
   local buffers = {}
-  curbuf = curbuf or vim.fn.bufnr('')
   for _, bufnr in ipairs(bufnrs) do
-    local flag = bufnr == curbuf and '%' or (bufnr == vim.fn.bufnr('#') and '#' or ' ') -- TODO: remove?
-
     local element = {
       bufnr = bufnr,
-      flag = flag,
       info = vim.fn.getbufinfo(bufnr)[1],
     }
 
-    -- get the correct lnum for tabbed buffers
     if tabnr then
       local winid = utils.winid_from_tab_buf(tabnr, bufnr)
       if winid then
@@ -674,18 +668,12 @@ local function make_buffer_entries(opts, bufnrs, tabnr, curbuf)
       end
     end
 
-    if opts.sort_lastused and (flag == "#" or flag == "%") then -- TODO: remove?
-      if flag == "%" then header_line = true end
-      local idx = ((buffers[1] ~= nil and buffers[1].flag == "%") and 2 or 1)
-      table.insert(buffers, idx, element)
-    else
-      table.insert(buffers, element)
-    end
+    table.insert(buffers, element)
   end
-  return buffers, header_line
+  return buffers
 end
 
-local function format_item(bufnr, flags, bufname, line, column, text, is_tab)
+local function format_item(bufnr, bufname, line, column, text, is_tab)
   local colon = utils.ansi_codes.green(':')
   local bufname = #bufname>0 and bufname or "[No Name]"
   bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
@@ -697,47 +685,10 @@ local function format_item(bufnr, flags, bufname, line, column, text, is_tab)
     string.format('%s %s', colon, text))
 end
 
-local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
-  local hidden = ''
-  local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
-  local changed = buf.info.changed == 1 and '+' or ' '
-  local flags = hidden .. readonly .. changed
-  local leftbr = utils.ansi_codes.clear('[')
-  local rightbr = utils.ansi_codes.clear(']')
+local function add_buffer_entry(opts, buf, items, bufnames_with_lines)
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
-  if buf.flag == '%' then
-    flags = utils.ansi_codes.red(buf.flag) .. flags
-    if not header_line then -- TODO: remove
-      leftbr = utils.ansi_codes.green('[')
-      rightbr = utils.ansi_codes.green(']')
-      bufname = utils.ansi_codes.green(bufname)
-    end
-  elseif buf.flag == '#' then
-    flags = utils.ansi_codes.cyan(buf.flag) .. flags
-  else
-    flags = utils.nbsp .. flags
-  end
-  local bufnrstr = string.format("%s%s%s", leftbr,
-    utils.ansi_codes.yellow(string.format(buf.bufnr)), rightbr)
-  local buficon = '' -- TODO: remove?
-  local hl = ''
-  if opts.file_icons then
-    if utils.is_term_bufname(buf.info.name) then
-      -- get shell-like icon for terminal buffers
-      buficon, hl = core.get_devicon(buf.info.name, "sh")
-    else
-      local filename = path.tail(buf.info.name)
-      local extension = path.extension(filename)
-      buficon, hl = core.get_devicon(filename, extension)
-    end
-    if opts.color_icons then
-      buficon = utils.ansi_codes[hl](buficon)
-    end
-  end
-  local flags = 't' .. flags -- TODO
-
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
-  local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text, true)
+  local item_str = format_item(buf.bufnr, bufname, buf.info.lnum, buf.info.cnum, text, true)
   table.insert(items, item_str)
   bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, buf.info.lnum)
   return items, bufnames_with_lines
@@ -821,7 +772,6 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
     end
 
     opts.sort_lastused = false
-    opts._prefix = ("%d)%s%s%s"):format(t, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove?
     local buffers = make_buffer_entries(opts, bufnrs_flat, t)
     for _, buf in pairs(buffers) do
       items, bufnames_with_lines = add_buffer_entry(opts, buf, items, bufnames_with_lines, true)
@@ -839,8 +789,6 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     vim.api.nvim_list_bufs())
 
   for _, bufnr in ipairs(buffers) do
-    local prefix = ("%d)%s%s%s"):format(bufnr, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove
-
     local data = {}
     local filepath = vim.api.nvim_buf_get_name(bufnr)
     if vim.api.nvim_buf_is_loaded(bufnr) then -- TODO: extract
@@ -862,8 +810,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     for line, text in ipairs(data) do
       --if #text > 0 then
       if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
-        local flags = '#' -- TODO: remove
-        table.insert(items, format_item(bufnr, flags, bufname, line, 0, text, false))
+        table.insert(items, format_item(bufnr, bufname, line, 0, text, false))
         bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
       end
     end
