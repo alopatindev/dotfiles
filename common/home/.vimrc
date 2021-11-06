@@ -704,15 +704,15 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
 end
 
 local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
+  local colon = utils.ansi_codes.green(':')
   local bufname = #bufname>0 and bufname or "[No Name]"
   bufname = is_tab and utils.ansi_codes.cyan(bufname) or utils.ansi_codes.magenta(bufname)
-
-  -- TODO: make : green?
-  return string.format("%s:%s%s%s",
+  return string.format("%s%s%s%s%s",
     bufname,
+    colon,
     line,
-    column>0 and string.format(':%d', column) or '',
-    string.format(': %s', text))
+    column>0 and string.format('%s%d', colon, column) or '',
+    string.format('%s %s', colon, text))
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
