@@ -621,9 +621,9 @@ require('fzf-lua').setup{
       vertical = 'up:50%'
     }
   },
-  fzf_opts = {
-    ['--layout'] = 'default',
-  },
+  --fzf_opts = {
+  --  ['--layout'] = 'default',
+  --},
   grep = {
     rg_opts = vim.g.rg_opts,
     prompt = '> ',
@@ -1108,14 +1108,13 @@ function universal_grep(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
 
+  local search = ''
   local no_esc = false
-  search = ''
   local command = get_grep_cmd(opts, search, no_esc)
 
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-      { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
 
-  opts = core.set_fzf_line_args(opts)
   fzf_files(opts)
 end
 EOF
