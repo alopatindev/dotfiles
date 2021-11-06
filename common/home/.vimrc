@@ -617,10 +617,10 @@ if executable('rg')
 "  vmap <F4> <esc>:lua require'fzf-lua'.live_grep()<cr>
 
 " TODO
-  nnoremap <F4> :lua universal_search()<cr>
-"  nnoremap <C-f> :lua require'fzf-lua'.universal_search()<cr>
-"  imap <F4> <esc>:lua require'fzf-lua'.universal_search()<cr>
-"  vmap <F4> <esc>:lua require'fzf-lua'.universal_search()<cr>
+  nnoremap <F4> :lua universal_grep()<cr>
+  nnoremap <C-f> :lua universal_grep()<cr>
+  imap <F4> <esc>:lua universal_grep()<cr>
+  vmap <F4> <esc>:lua universal_grep()<cr>
 
   nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
   imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
@@ -633,7 +633,7 @@ local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local config = require "fzf-lua.config"
 local actions = require "fzf-lua.actions"
---actions = require "fzf-lua.actions"
+local libuv = require "fzf-lua.libuv"
 
 require('fzf-lua').setup{
   --fzf_bin = 'sk',
@@ -654,10 +654,11 @@ require('fzf-lua').setup{
     ['--layout'] = 'default',
   },
   grep = {
-    rg_opts = vim.g.rg_opts
+    rg_opts = vim.g.rg_opts,
+    prompt = '> ',
   },
   tabs = {
-    prompt = '> ',
+    prompt = '> ', -- TODO: remove?
   }
 }
 
@@ -1036,55 +1037,18 @@ local fzf_files = function(opts)
   end)()
 end
 
-live_grep = function(opts)
+universal_grep = function(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
 
   local no_esc = false
-  if opts.continue_last_search or opts.repeat_last_search then
-    no_esc = last_search.no_esc
-    opts.search = last_search.query
-  end
+  search = ''
+  local command = get_grep_cmd(opts, search, no_esc)
 
-  opts.query = opts.search or ''
-  if opts.search and #opts.search>0 then
-    -- save the search query so the use can
-    -- call the same search again
-    last_search = {}
-    last_search.no_esc = true
-    last_search.query = opts.search
-    -- escape unless the user requested not to
-    if not (no_esc or opts.no_esc) then
-      opts.query = utils.rg_escape(opts.search)
-    end
-  end
-
-  -- search query in header line
-  --opts = set_search_header(opts, 2)
-
-  opts._reload_command = function(query)
-    if query and not opts.do_not_save_last_search then
-      last_search = {}
-      last_search.no_esc = true
-      last_search.query = query
-    end
-    -- can be nill when called as fzf initial command
-    query = query or ''
-    -- TODO: need to empty filespec
-    -- fix this collision, rename to _filespec
-    opts.no_esc = nil
-    opts.filespec = nil
-    return get_grep_cmd(opts, query, true)
-  end
-
---  if opts.experimental then
---    opts._fn_transform = function(x)
---      return make_entry_file(opts, x)
---    end
---  end
+  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   opts = core.set_fzf_line_args(opts)
-  opts = core.set_fzf_interactive_cmd(opts)
   fzf_files(opts)
 end
 EOF
