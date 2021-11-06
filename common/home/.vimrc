@@ -586,45 +586,16 @@ if executable('rg')
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
   let g:rg_command = 'rg' . g:rg_opts
-
-  command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>1)
-  "command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, fzf#vim#with_preview({'sink': 'tab drop'}), <bang>1) " TODO: broken
-
   let g:rg_highlight = 'true'
 
   nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
   imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
   vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
 
-  " TODO: tabnew? if tab is empty - close it. handle exiting from terminal?
-  "nnoremap <F4> :tabnew<cr>:F<cr>:call s:close_tab_if_empty()<cr>
-  "nnoremap <F4> :tabnew<cr>:call s:close_tab_if_empty()<cr>:F<cr>
-
-  " TODO: current solution
-"  nnoremap <F4> :tabnew<cr>:F<cr>
-"  nnoremap <C-f> :tabnew<cr>:F<cr>
-"  imap <F4> <esc>:tabnew<cr>:F<cr>
-"  vmap <F4> <esc>:tabnew<cr>:F<cr>
-
-"  nnoremap <F4> :F<cr>
-"  nnoremap <C-f> :F<cr>
-"  imap <F4> <esc>:F<cr>
-"  vmap <F4> <esc>:F<cr>
-
-"  nnoremap <F4> :lua require'fzf-lua'.live_grep()<cr>
-"  nnoremap <C-f> :lua require'fzf-lua'.live_grep()<cr>
-"  imap <F4> <esc>:lua require'fzf-lua'.live_grep()<cr>
-"  vmap <F4> <esc>:lua require'fzf-lua'.live_grep()<cr>
-
-" TODO
   nnoremap <F4> :lua universal_grep()<cr>
   nnoremap <C-f> :lua universal_grep()<cr>
   imap <F4> <esc>:lua universal_grep()<cr>
   vmap <F4> <esc>:lua universal_grep()<cr>
-
-  nnoremap <S-F3> :call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
-  imap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
-  vmap <S-F3> <esc>:call fzf#run({'sink': 'split', 'options': '--multi'})<cr>
 endif
 
 lua << EOF
