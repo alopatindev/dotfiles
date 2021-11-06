@@ -660,7 +660,7 @@ require('fzf-lua').setup{
   },
 }
 
-function dbg(data)
+local function dbg(data)
   f = io.open("/tmp/wat.txt", "a+")
   f:write(vim.inspect(data) .. "\n")
   f:close()
@@ -886,25 +886,6 @@ local buffer_lines = function(items, bufnames_with_lines, opts)
 end
 
 
-open = function(selected)
-  dbg(selected)
-  local fields = utils.strsplit(selected[2], ':')
-  dbg('fields')
-  dbg(fields)
-  local bufname = vim.fn.fnameescape(fields[1])
-  local line = fields[2]
-  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
-  local column = column == nil and 1 or column
-  dbg('bufname')
-  dbg(bufname)
-  dbg('line')
-  dbg(line)
-  dbg('column')
-  dbg(column)
-  vim.cmd("tab drop " .. bufname)
-  vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
-end
-
 local get_grep_cmd = function(opts, search_query, no_esc)
   if opts.cmd_fn and type(opts.cmd_fn) == 'function' then
     return opts.cmd_fn(opts, search_query, no_esc)
@@ -952,7 +933,7 @@ local function get_lines_from_file(file)
   return t
 end
 
-function raw_fzf(contents, items, fzf_cli_args, opts)
+local function raw_fzf(contents, items, fzf_cli_args, opts)
   dbg('raw_fzf 1')
   if not coroutine.running() then
     error("please run function in a coroutine")
@@ -1196,6 +1177,25 @@ local fzf = function(opts, contents)
   dbg(selected)
   dbg('fzf 8')
   return selected
+end
+
+local open = function(selected)
+  dbg(selected)
+  local fields = utils.strsplit(selected[2], ':')
+  dbg('fields')
+  dbg(fields)
+  local bufname = vim.fn.fnameescape(fields[1])
+  local line = fields[2]
+  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+  local column = column == nil and 1 or column
+  dbg('bufname')
+  dbg(bufname)
+  dbg('line')
+  dbg(line)
+  dbg('column')
+  dbg(column)
+  vim.cmd("tab drop " .. bufname)
+  vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
 end
 
 
