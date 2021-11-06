@@ -634,6 +634,8 @@ local utils = require "fzf-lua.utils"
 local config = require "fzf-lua.config"
 local actions = require "fzf-lua.actions"
 local libuv = require "fzf-lua.libuv"
+local win = require "fzf-lua.win"
+local uv = vim.loop
 
 require('fzf-lua').setup{
   --fzf_bin = 'sk',
@@ -989,6 +991,242 @@ local get_grep_cmd = function(opts, search_query, no_esc)
   return string.format('%s %s %s', command, search_query, search_path)
 end
 
+local function get_lines_from_file(file)
+  local t = {}
+  for v in file:lines() do
+    table.insert(t, v)
+  end
+  return t
+end
+
+function raw_fzf(contents, fzf_cli_args, opts)
+  dbg('raw_fzf 1')
+  if not coroutine.running() then
+    error("please run function in a coroutine")
+  end
+  dbg('raw_fzf 2')
+
+  if not opts then opts = {} end
+  local cwd = opts.fzf_cwd or opts.cwd
+  local cmd = opts.fzf_binary or opts.fzf_bin or 'fzf'
+  local fifotmpname = vim.fn.tempname()
+  local outputtmpname = vim.fn.tempname()
+  dbg('raw_fzf 3')
+
+  if fzf_cli_args then cmd = cmd .. " " .. fzf_cli_args end
+  if opts.fzf_cli_args then cmd = cmd .. " " .. opts.fzf_cli_args end
+
+  if contents then
+    if type(contents) == "string" and #contents>0 then
+      cmd = ("%s | %s"):format(contents, cmd)
+    else
+      cmd = ("%s < %s"):format(cmd, vim.fn.shellescape(fifotmpname))
+    end
+  end
+  dbg('raw_fzf 4')
+
+  cmd = ("%s > %s"):format(cmd, vim.fn.shellescape(outputtmpname))
+
+  local fd, output_pipe = nil, nil
+  local finish_called = false
+  local write_cb_count = 0
+
+  -- Create the output pipe
+  vim.fn.system(("mkfifo %s"):format(vim.fn.shellescape(fifotmpname)))
+  dbg('raw_fzf 5')
+
+  local function finish(waat)
+    dbg('finish 1')
+    dbg(waat)
+    -- mark finish if once called
+    finish_called = true
+    -- close pipe if there are no outstanding writes
+    dbg('finish 2')
+    if output_pipe and write_cb_count == 0 then
+      dbg('finish 2.1')
+      output_pipe:close()
+      output_pipe = nil
+    end
+    dbg('finish 3')
+  end
+  dbg('raw_fzf 6')
+
+  local function write_cb(data, cb)
+    if not output_pipe then return end
+    write_cb_count = write_cb_count + 1
+    output_pipe:write(data, function(err)
+      -- decrement write call count
+      write_cb_count = write_cb_count - 1
+      -- this will call the user's cb
+      if cb then cb(err) end
+      if err then
+        -- can fail with premature process kill
+        finish(2)
+      elseif finish_called and write_cb_count == 0 then
+        -- 'termopen.on_exit' already called and did not close the
+        -- pipe due to write_cb_count>0, since this is the last call
+        -- we can close the fzf pipe
+        finish(3)
+      end
+    end)
+  end
+  dbg('raw_fzf 7')
+
+  -- nvim-fzf compatibility, builds the user callback functions
+  -- 1st argument: callback function that adds newline to each write
+  -- 2nd argument: callback function thhat writes the data as is
+  -- 3rd argument: direct access to the pipe object
+  local function usr_write_cb(nl)
+    local function end_of_data(usrdata, cb)
+      if usrdata == nil then
+        if cb then cb(nil) end
+        finish(5)
+        return true
+      end
+      return false
+    end
+    if nl then
+      return function(usrdata, cb)
+        if not end_of_data(usrdata, cb) then
+          write_cb(tostring(usrdata).."\n", cb)
+        end
+      end
+    else
+      return function(usrdata, cb)
+        if not end_of_data(usrdata, cb) then
+          write_cb(usrdata, cb)
+        end
+      end
+    end
+  end
+  dbg('raw_fzf 8')
+
+  local co = coroutine.running()
+  vim.fn.termopen(cmd, {
+    cwd = cwd,
+    on_exit = function(_, rc, _)
+      dbg('ON_exit 1')
+      local f = io.open(outputtmpname)
+      dbg('ON_exit 1.2')
+      local output = get_lines_from_file(f)
+      dbg('ON_exit 1.3')
+      f:close()
+      dbg('ON_exit 2')
+      finish(1)
+      vim.fn.delete(fifotmpname)
+      vim.fn.delete(outputtmpname)
+      dbg('ON_exit 3')
+      if #output == 0 then output = nil end
+      dbg('ON_exit 4')
+      coroutine.resume(co, output, rc)
+    end
+  })
+  vim.cmd[[set ft=fzf]]
+  vim.cmd[[startinsert]]
+  dbg('raw_fzf 9')
+
+  if not contents or type(contents) == "string" then
+    goto wait_for_fzf
+  end
+
+  -- have to open this after there is a reader (termopen)
+  -- otherwise this will block
+  fd = uv.fs_open(fifotmpname, "w", -1)
+  output_pipe = uv.new_pipe(false)
+  output_pipe:open(fd)
+  -- print(uv.pipe_getpeername(output_pipe))
+  dbg('raw_fzf 10')
+
+  -- this part runs in the background, when the user has selected, it will
+  -- error out, but that doesn't matter so we just break out of the loop.
+  if contents then
+    if type(contents) == "table" then
+      if not vim.tbl_isempty(contents) then
+        write_cb(vim.tbl_map(function(x) return x.."\n" end, contents))
+      end
+      finish(4)
+    else
+      contents(usr_write_cb(true), usr_write_cb(false), output_pipe)
+    end
+  end
+  dbg('raw_fzf 11')
+
+  ::wait_for_fzf::
+  dbg('raw_fzf 12')
+
+  local xx = coroutine.yield()
+  dbg('raw_fzf 13')
+  return xx
+end
+
+
+local fzf = function(opts, contents)
+  dbg('fzf 1')
+  -- normalize with globals if not already normalized
+  if not opts._normalized then
+    opts = config.normalize_opts(opts, {})
+  end
+  -- setup the fzf window and preview layout
+  local fzf_win = win(opts)
+  dbg('fzf 2')
+  if not fzf_win then return end
+  -- instantiate the previewer
+  local previewer, preview_opts = nil, nil
+  dbg('fzf 3')
+  if opts.previewer and type(opts.previewer) == 'string' then
+    preview_opts = config.globals.previewers[opts.previewer]
+    if not preview_opts then
+      utils.warn(("invalid previewer '%s'"):format(opts.previewer))
+    end
+  elseif opts.previewer and type(opts.previewer) == 'table' then
+    preview_opts = opts.previewer
+  end
+  if preview_opts and type(preview_opts._new) == 'function' then
+    previewer = preview_opts._new()(preview_opts, opts, fzf_win)
+  elseif preview_opts and type(preview_opts._ctor) == 'function' then
+    previewer = preview_opts._ctor()(preview_opts, opts, fzf_win)
+  end
+  dbg('fzf 4')
+  if previewer then
+    opts.fzf_opts['--preview'] = previewer:cmdline()
+    if type(previewer.preview_window) == 'function' then
+      -- do we need to override the preview_window args?
+      -- this can happen with the builtin previewer
+      -- (1) when using a split we use the previewer as placeholder
+      -- (2) we use 'nohidden:right:0' to trigger preview function
+      --     calls without displaying the native fzf previewer split
+      opts.fzf_opts['--preview-window'] = previewer:preview_window(opts.preview_window)
+    end
+  end
+  dbg('fzf 5')
+
+  fzf_win:attach_previewer(previewer)
+  dbg('fzf 5.1')
+  fzf_win:create()
+  dbg('fzf 5.2')
+  local xxx = core.build_fzf_cli(opts)
+  dbg(xxx)
+  dbg('fzf 5.2.1')
+  dbg(opts.cwd)
+  dbg('fzf 5.2.2')
+  dbg(opts.fzf_bin)
+  dbg('fzf 5.2.3')
+  local selected, exit_code = raw_fzf(contents, core.build_fzf_cli(opts),
+    { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
+  dbg('fzf 5.3')
+  utils.process_kill(opts._pid)
+  dbg('fzf 5.4')
+  fzf_win:check_exit_status(exit_code)
+  dbg('fzf 6')
+  if fzf_win:autoclose() == nil or fzf_win:autoclose() then
+    fzf_win:close()
+  end
+  dbg('fzf 7')
+  dbg(selected)
+  dbg('fzf 8')
+  return selected
+end
+
 
 local fzf_files = function(opts)
 
@@ -1014,7 +1252,8 @@ local fzf_files = function(opts)
     end
 
 
-    local selected = core.fzf(opts, opts.fzf_fn)
+    --local selected = core.fzf(opts, opts.fzf_fn) -- TODO: wat
+    local selected = fzf(opts, opts.fzf_fn) -- TODO: wat
 
     if opts.post_select_cb then
       opts.post_select_cb()
