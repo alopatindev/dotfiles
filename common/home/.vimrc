@@ -592,10 +592,10 @@ if executable('rg')
   imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
   vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
 
-  nnoremap <F4> :lua universal_grep()<cr>
-  nnoremap <C-f> :lua universal_grep()<cr>
-  imap <F4> <esc>:lua universal_grep()<cr>
-  vmap <F4> <esc>:lua universal_grep()<cr>
+  nnoremap <F4> :lua relevant_grep()<cr>
+  nnoremap <C-f> :lua relevant_grep()<cr>
+  imap <F4> <esc>:lua relevant_grep()<cr>
+  vmap <F4> <esc>:lua relevant_grep()<cr>
 endif
 
 lua << EOF
@@ -1025,18 +1025,17 @@ local function fzf(opts, contents)
       -- (2) we use 'nohidden:right:0' to trigger preview function
       --     calls without displaying the native fzf previewer split
       opts.fzf_opts['--preview-window'] = previewer:preview_window(opts.preview_window)
-      opts.fzf_opts["--no-multi"] = ''
-      opts.fzf_opts["--delimiter"] = vim.fn.shellescape(':')
-      opts.fzf_opts["--tiebreak"] = 'index'
     end
   end
+  opts.fzf_opts["--delimiter"] = vim.fn.shellescape(':')
+  opts.fzf_opts["--no-multi"] = ''
+  opts.fzf_opts["--tiebreak"] = 'index'
 
   fzf_win:attach_previewer(previewer)
   fzf_win:create()
 
   local items = {}
   local bufnames_with_lines = {}
-
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
   items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
 
@@ -1104,7 +1103,7 @@ local function fzf_files(opts)
   end)()
 end
 
-function universal_grep(opts)
+function relevant_grep(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
 
