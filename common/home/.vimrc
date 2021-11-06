@@ -586,7 +586,6 @@ if executable('rg')
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
   let g:rg_command = 'rg' . g:rg_opts
-  let g:rg_highlight = 'true'
 
   nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
   imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
@@ -596,32 +595,32 @@ if executable('rg')
   nnoremap <C-f> :lua relevant_grep()<cr>
   imap <F4> <esc>:lua relevant_grep()<cr>
   vmap <F4> <esc>:lua relevant_grep()<cr>
-endif
 
 lua << EOF
-require('fzf-lua-ext')
-require('fzf-lua').setup{
-  --fzf_bin = 'sk',
-  winopts = {
-    border = 'none',
-    fullscreen = true,
-    preview = {
-      border = 'noborder',
-      wrap = 'wrap',
-      scrollbar = false,
-      layout = 'vertical',
-      title = false,
-      vertical = 'up:50%'
-    }
-  },
-  --fzf_opts = {
-  --  ['--layout'] = 'default',
-  --},
-  grep = {
-    rg_opts = vim.g.rg_opts,
-    prompt = '> ',
-  },
-}
+  require('fzf-lua-ext')
+  require('fzf-lua').setup {
+    --fzf_bin = 'sk',
+    winopts = {
+      border = 'none',
+      fullscreen = true,
+      preview = {
+        border = 'noborder',
+        wrap = 'wrap',
+        scrollbar = false,
+        layout = 'vertical',
+        title = false,
+        vertical = 'up:50%'
+      }
+    },
+    --fzf_opts = {
+    --  ['--layout'] = 'default',
+    --},
+    grep = {
+      rg_opts = vim.g.rg_opts,
+      prompt = '> ',
+    },
+  }
 EOF
+endif
 
 " vim:shiftwidth=2 softtabstop=2 tabstop=2
