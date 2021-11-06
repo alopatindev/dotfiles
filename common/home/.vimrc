@@ -647,11 +647,8 @@ local function has_bufname_with_line(bufnames_with_lines, bufname, line)
 end
 
 local function add_bufname_with_line(bufnames_with_lines, bufname, line)
-  dbg('add_bufname_with_line 1')
   local key = bufname_with_line_key(bufname, line)
-  dbg('add_bufname_with_line 2')
   bufnames_with_lines[key] = true
-  dbg('add_bufname_with_line 3')
   return bufnames_with_lines
 end
 
@@ -702,7 +699,6 @@ local function format_item(bufnr, flags, bufname, line, column, text, is_tab)
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
-  dbg('add_buffer_entry 1')
   local hidden = ''
   local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
   local changed = buf.info.changed == 1 and '+' or ' '
@@ -710,7 +706,6 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   local leftbr = utils.ansi_codes.clear('[')
   local rightbr = utils.ansi_codes.clear(']')
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
-  dbg('add_buffer_entry 2')
   if buf.flag == '%' then
     flags = utils.ansi_codes.red(buf.flag) .. flags
     if not header_line then -- TODO: remove
@@ -723,12 +718,10 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   else
     flags = utils.nbsp .. flags
   end
-  dbg('add_buffer_entry 3')
   local bufnrstr = string.format("%s%s%s", leftbr,
     utils.ansi_codes.yellow(string.format(buf.bufnr)), rightbr)
   local buficon = '' -- TODO: remove?
   local hl = ''
-  dbg('add_buffer_entry 4')
   if opts.file_icons then
     if utils.is_term_bufname(buf.info.name) then
       -- get shell-like icon for terminal buffers
@@ -744,13 +737,10 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   end
   local flags = 't' .. flags -- TODO
 
-  dbg('add_buffer_entry 5')
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
   local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text, true)
   table.insert(items, item_str)
-  dbg('add_buffer_entry 6')
   bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, buf.info.lnum)
-  dbg('add_buffer_entry 7')
   return items, bufnames_with_lines
 end
 
@@ -797,7 +787,6 @@ end
 
 
 local function search_in_tabs(items, bufnames_with_lines, opts)
-  dbg('search_in_tabs')
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
   opts._tab_to_buf = {}
@@ -815,7 +804,6 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   end
 
 
-  dbg('search_in_tabs 2')
   local filtered, excluded = filter_buffers(opts, opts._list_bufs())
   if not next(filtered) then return end
 
@@ -827,41 +815,31 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   end
 
 
-  dbg('search_in_tabs 3')
   for t, bufnrs in pairs(opts._tab_to_buf) do
     local bufnrs_flat = {}
     for b, _ in pairs(bufnrs) do
       table.insert(bufnrs_flat, b)
     end
-    dbg('search_in_tabs 3.1')
 
     opts.sort_lastused = false
     opts._prefix = ("%d)%s%s%s"):format(t, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove?
-    dbg('search_in_tabs 3.2')
     local buffers = make_buffer_entries(opts, bufnrs_flat, t)
     for _, buf in pairs(buffers) do
-      dbg('search_in_tabs 3.3')
       items, bufnames_with_lines = add_buffer_entry(opts, buf, items, bufnames_with_lines, true)
-      dbg('search_in_tabs 3.4')
     end
-    dbg('search_in_tabs 3.5')
   end
 
-  dbg('search_in_tabs 4')
   return items, bufnames_with_lines
 end
 
 
 local function buffer_lines(items, bufnames_with_lines, opts)
-  dbg('buffer_lines 1')
   opts.no_term_buffers = true
   local buffers = filter_buffers(opts,
     opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
     vim.api.nvim_list_bufs())
 
-  dbg('buffer_lines 2')
   for _, bufnr in ipairs(buffers) do
-    dbg('buffer_lines 2.0')
     local prefix = ("%d)%s%s%s"):format(bufnr, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove
 
     local data = {}
@@ -873,7 +851,6 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     end
     local bufname = path.relative(filepath, vim.fn.getcwd())
     local buficon, hl
-    dbg('buffer_lines 2.1')
     if opts.file_icons then -- TODO: remove?
       local filename = path.tail(bufname)
       local extension = path.extension(filename)
@@ -883,20 +860,16 @@ local function buffer_lines(items, bufnames_with_lines, opts)
       end
     end
 
-    dbg('buffer_lines 2.2')
     for line, text in ipairs(data) do
       --if #text > 0 then
       if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
         local flags = '#' -- TODO: remove
         table.insert(items, format_item(bufnr, flags, bufname, line, 0, text, false))
-        dbg('buffer_lines 3')
         bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
-        dbg('buffer_lines 4')
       end
     end
   end
 
-  dbg('buffer_lines 5')
   return items, bufnames_with_lines
 end
 
@@ -948,18 +921,15 @@ local function get_lines_from_file(file)
 end
 
 local function raw_fzf(contents, items, fzf_cli_args, opts)
-  dbg('raw_fzf 1')
   if not coroutine.running() then
     error("please run function in a coroutine")
   end
-  dbg('raw_fzf 2')
 
   if not opts then opts = {} end
   local cwd = opts.fzf_cwd or opts.cwd
   local cmd = opts.fzf_binary or opts.fzf_bin or 'fzf'
   local fifotmpname = vim.fn.tempname()
   local outputtmpname = vim.fn.tempname()
-  dbg('raw_fzf 3')
 
   if fzf_cli_args then cmd = cmd .. " " .. fzf_cli_args end
   if opts.fzf_cli_args then cmd = cmd .. " " .. opts.fzf_cli_args end
@@ -971,7 +941,6 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
       cmd = ("%s < %s"):format(cmd, vim.fn.shellescape(fifotmpname))
     end
   end
-  dbg('raw_fzf 4')
 
   cmd = ("%s > %s"):format(cmd, vim.fn.shellescape(outputtmpname))
 
@@ -981,23 +950,16 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
 
   -- Create the output pipe
   vim.fn.system(("mkfifo %s"):format(vim.fn.shellescape(fifotmpname)))
-  dbg('raw_fzf 5')
 
-  local function finish(waat)
-    dbg('finish 1')
-    dbg(waat)
+  local function finish(_)
     -- mark finish if once called
     finish_called = true
     -- close pipe if there are no outstanding writes
-    dbg('finish 2')
     if output_pipe and write_cb_count == 0 then
-      dbg('finish 2.1')
       output_pipe:close()
       output_pipe = nil
     end
-    dbg('finish 3')
   end
-  dbg('raw_fzf 6')
 
   local function write_cb(data, cb)
     if not output_pipe then return end
@@ -1018,7 +980,6 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
       end
     end)
   end
-  dbg('raw_fzf 7')
 
   -- nvim-fzf compatibility, builds the user callback functions
   -- 1st argument: callback function that adds newline to each write
@@ -1047,31 +1008,23 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
       end
     end
   end
-  dbg('raw_fzf 8')
 
   local co = coroutine.running()
   vim.fn.termopen(cmd, {
     cwd = cwd,
     on_exit = function(_, rc, _)
-      dbg('ON_exit 1')
       local f = io.open(outputtmpname)
-      dbg('ON_exit 1.2')
       local output = get_lines_from_file(f)
-      dbg('ON_exit 1.3')
       f:close()
-      dbg('ON_exit 2')
       finish(1)
       vim.fn.delete(fifotmpname)
       vim.fn.delete(outputtmpname)
-      dbg('ON_exit 3')
       if #output == 0 then output = nil end
-      dbg('ON_exit 4')
       coroutine.resume(co, output, rc)
     end
   })
   vim.cmd[[set ft=fzf]]
   vim.cmd[[startinsert]]
-  dbg('raw_fzf 9')
 
   if not contents or type(contents) == "string" then
     goto wait_for_fzf
@@ -1082,14 +1035,10 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
   fd = uv.fs_open(fifotmpname, "w", -1)
   output_pipe = uv.new_pipe(false)
   output_pipe:open(fd)
-  -- print(uv.pipe_getpeername(output_pipe))
-  dbg('raw_fzf 10')
 
-  dbg('raw_fzf 10.1 !')
   for _, item in ipairs(items) do
-    write_cb(item .. "\n", function() dbg('waaT') end)
+    write_cb(item .. "\n", function() dbg('waaT') end) -- TODO
   end
-  dbg('raw_fzf 10.2 !')
 
   -- this part runs in the background, when the user has selected, it will
   -- error out, but that doesn't matter so we just break out of the loop.
@@ -1103,29 +1052,22 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
       contents(usr_write_cb(true), usr_write_cb(false), output_pipe)
     end
   end
-  dbg('raw_fzf 11')
 
   ::wait_for_fzf::
-  dbg('raw_fzf 12')
 
-  local xx = coroutine.yield()
-  dbg('raw_fzf 13')
-  return xx
+  return coroutine.yield()
 end
 
 local function fzf(opts, contents)
-  dbg('fzf 1')
   -- normalize with globals if not already normalized
   if not opts._normalized then
     opts = config.normalize_opts(opts, {})
   end
   -- setup the fzf window and preview layout
   local fzf_win = win(opts)
-  dbg('fzf 2')
   if not fzf_win then return end
   -- instantiate the previewer
   local previewer, preview_opts = nil, nil
-  dbg('fzf 3')
   if opts.previewer and type(opts.previewer) == 'string' then
     preview_opts = config.globals.previewers[opts.previewer]
     if not preview_opts then
@@ -1139,7 +1081,6 @@ local function fzf(opts, contents)
   elseif preview_opts and type(preview_opts._ctor) == 'function' then
     previewer = preview_opts._ctor()(preview_opts, opts, fzf_win)
   end
-  dbg('fzf 4')
   if previewer then
     opts.fzf_opts['--preview'] = previewer:cmdline()
     if type(previewer.preview_window) == 'function' then
@@ -1154,61 +1095,32 @@ local function fzf(opts, contents)
       opts.fzf_opts["--tiebreak"] = 'index'
     end
   end
-  dbg('fzf 5')
 
   fzf_win:attach_previewer(previewer)
-  dbg('fzf 5.1')
   fzf_win:create()
-  dbg('fzf 5.2')
-  local xxx = core.build_fzf_cli(opts)
-  dbg(xxx)
-  dbg('fzf 5.2.1')
-  dbg(opts.cwd)
-  dbg('fzf 5.2.2')
-  dbg(opts.fzf_bin)
-  dbg('fzf 5.2.3')
-
 
   local items = {}
   local bufnames_with_lines = {}
 
-  -- TODO: bufnames_with_lines: add : ?
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
-  dbg('fzf 5.2.3.1')
   items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
-  dbg('fzf 5.2.3.2')
 
   local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
-  dbg('fzf 5.3')
   utils.process_kill(opts._pid)
-  dbg('fzf 5.4')
   fzf_win:check_exit_status(exit_code)
-  dbg('fzf 6')
   if fzf_win:autoclose() == nil or fzf_win:autoclose() then
     fzf_win:close()
   end
-  dbg('fzf 7')
-  dbg(selected)
-  dbg('fzf 8')
   return selected
 end
 
 local function open(selected)
-  dbg(selected)
   local fields = utils.strsplit(selected[2], ':')
-  dbg('fields')
-  dbg(fields)
   local bufname = vim.fn.fnameescape(fields[1])
   local line = fields[2]
   local column = tonumber(utils.strsplit(fields[3], ' ')[1])
   local column = column == nil and 1 or column
-  dbg('bufname')
-  dbg(bufname)
-  dbg('line')
-  dbg(line)
-  dbg('column')
-  dbg(column)
   vim.cmd("tab drop " .. bufname)
   vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
 end
@@ -1265,15 +1177,8 @@ function universal_grep(opts)
   search = ''
   local command = get_grep_cmd(opts, search, no_esc)
 
-  opts.fzf_fn = function(usr_write_cb, fzf_cb, output_pipe)
-    dbg('fzf_fn !')
-    local xxx = libuv.spawn_nvim_fzf_cmd(
+  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
       { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
-    dbg('fzf_fn ! 2')
-    local zzz = xxx(usr_write_cb, fzf_cb, output_pipe)
-    dbg('fzf_fn ! 3')
-    return zzz
-  end
 
   opts = core.set_fzf_line_args(opts)
   fzf_files(opts)
