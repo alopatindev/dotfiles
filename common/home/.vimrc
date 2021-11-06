@@ -648,8 +648,7 @@ require('fzf-lua').setup{
       scrollbar = false,
       layout = 'vertical',
       title = false,
-      --vertical = 'up:60%'
-      vertical = 'up:20%'
+      vertical = 'up:50%'
     }
   },
   fzf_opts = {
@@ -659,9 +658,6 @@ require('fzf-lua').setup{
     rg_opts = vim.g.rg_opts,
     prompt = '> ',
   },
-  tabs = {
-    prompt = '> ', -- TODO: remove?
-  }
 }
 
 function dbg(data)
@@ -716,16 +712,12 @@ local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
-  -- local hidden = buf.info.hidden == 1 and 'h' or 'a'
   local hidden = ''
   local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
   local changed = buf.info.changed == 1 and '+' or ' '
   local flags = hidden .. readonly .. changed
   local leftbr = utils.ansi_codes.clear('[')
   local rightbr = utils.ansi_codes.clear(']')
---  local bufname = string.format("%s:%s",
---    utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]"),
---    utils._if(buf.info.lnum>0, buf.info.lnum, ""))
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
   if buf.flag == '%' then
     flags = utils.ansi_codes.red(buf.flag) .. flags
@@ -837,10 +829,6 @@ local search_in_tabs = function(items, bufnames_with_lines, opts)
 
 
   for t, bufnrs in pairs(opts._tab_to_buf) do
---    table.insert(items, ("%d)%s%s\t%s"):format(t, utils.nbsp,
---      utils.ansi_codes.blue("%s%s#%d"):format(opts.tab_title, utils.nbsp, t),
---        (t==curtab) and utils.ansi_codes.blue(utils.ansi_codes.bold(opts.tab_marker)) or ''))
-
     local bufnrs_flat = {}
     for b, _ in pairs(bufnrs) do
       table.insert(bufnrs_flat, b)
@@ -1193,23 +1181,15 @@ local fzf = function(opts, contents)
   if previewer then
     opts.fzf_opts['--preview'] = previewer:cmdline()
     if type(previewer.preview_window) == 'function' then
---      -- do we need to override the preview_window args?
---      -- this can happen with the builtin previewer
---      -- (1) when using a split we use the previewer as placeholder
---      -- (2) we use 'nohidden:right:0' to trigger preview function
---      --     calls without displaying the native fzf previewer split
+      -- do we need to override the preview_window args?
+      -- this can happen with the builtin previewer
+      -- (1) when using a split we use the previewer as placeholder
+      -- (2) we use 'nohidden:right:0' to trigger preview function
+      --     calls without displaying the native fzf previewer split
       opts.fzf_opts['--preview-window'] = previewer:preview_window(opts.preview_window)
-
-
       opts.fzf_opts["--no-multi"] = ''
-      --opts.fzf_opts["--preview-window"] = 'hidden:right:0'
-      --opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:\\t]')
-      opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:]')
-      --opts.fzf_opts["--with-nth"] = '2'
-      --opts.fzf_opts["--with-nth"] = '1'
+      opts.fzf_opts["--delimiter"] = vim.fn.shellescape(':')
       opts.fzf_opts["--tiebreak"] = 'index'
-
-
     end
   end
   dbg('fzf 5')
@@ -1233,8 +1213,6 @@ local fzf = function(opts, contents)
   -- TODO: bufnames_with_lines: add : ?
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
   items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
-
-
 
   local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
@@ -1262,14 +1240,13 @@ local fzf_files = function(opts)
   if opts.git_icons and not path.is_git_repo(opts.cwd, true) then opts.git_icons = false end
 
   coroutine.wrap(function ()
-
     if opts.cwd_only and not opts.cwd then
       opts.cwd = vim.loop.cwd()
     end
 
---    if opts.git_icons then
---      opts.diff_files = get_diff_files(opts)
---    end
+    -- if opts.git_icons then
+    --   opts.diff_files = get_diff_files(opts)
+    -- end
 
     local has_prefix = opts.file_icons or opts.git_icons or opts.lsp_icons
     if not opts.filespec then
@@ -1316,8 +1293,6 @@ universal_grep = function(opts)
     dbg('fzf_fn ! 3')
     return zzz
   end
---  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
---    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   opts = core.set_fzf_line_args(opts)
   fzf_files(opts)
