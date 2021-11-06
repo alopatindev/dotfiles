@@ -631,11 +631,11 @@ require('fzf-lua').setup{
   },
 }
 
-local function dbg(data)
-  f = io.open("/tmp/dbg.txt", "a+")
-  f:write(vim.inspect(data) .. "\n")
-  f:close()
-end
+--local function dbg(data)
+--  f = io.open("/tmp/dbg.txt", "a+")
+--  f:write(vim.inspect(data) .. "\n")
+--  f:close()
+--end
 
 local function bufname_with_line_key(bufname, line)
   return bufname .. ':' .. line
@@ -1037,7 +1037,7 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
   output_pipe:open(fd)
 
   for _, item in ipairs(items) do
-    write_cb(item .. "\n", function() dbg('waaT') end) -- TODO
+    write_cb(item .. "\n")
   end
 
   -- this part runs in the background, when the user has selected, it will
