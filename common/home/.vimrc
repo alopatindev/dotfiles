@@ -797,18 +797,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
       data = vim.fn.readfile(filepath, "")
     end
     local bufname = path.relative(filepath, vim.fn.getcwd())
-    local buficon, hl
-    if opts.file_icons then -- TODO: remove?
-      local filename = path.tail(bufname)
-      local extension = path.extension(filename)
-      buficon, hl = core.get_devicon(filename, extension)
-      if opts.color_icons then
-        buficon = utils.ansi_codes[hl](buficon)
-      end
-    end
-
     for line, text in ipairs(data) do
-      --if #text > 0 then
       if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
         table.insert(items, format_item(bufnr, bufname, line, 0, text, false))
         bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
