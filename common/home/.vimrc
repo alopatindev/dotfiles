@@ -666,7 +666,7 @@ local function dbg(data)
   f:close()
 end
 
-local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
+local function make_buffer_entries(opts, bufnrs, tabnr, curbuf)
   local header_line = false
   local buffers = {}
   curbuf = curbuf or vim.fn.bufnr('')
@@ -699,7 +699,7 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
   return buffers, header_line
 end
 
-local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
+local function format_item(bufnr, flags, bufname, line, column, text, is_tab)
   local colon = utils.ansi_codes.green(':')
   local bufname = #bufname>0 and bufname or "[No Name]"
   bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
@@ -757,7 +757,7 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   return items, bufnames_with_lines
 end
 
-local filter_buffers = function(opts, unfiltered)
+local function filter_buffers(opts, unfiltered)
   local curtab_bufnrs = {}
   if opts.current_tab_only then
     local curtab = vim.api.nvim_win_get_tabpage(0)
@@ -799,7 +799,7 @@ local filter_buffers = function(opts, unfiltered)
 end
 
 
-local search_in_tabs = function(items, bufnames_with_lines, opts)
+local function search_in_tabs(items, bufnames_with_lines, opts)
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
   opts._tab_to_buf = {}
@@ -846,7 +846,7 @@ local search_in_tabs = function(items, bufnames_with_lines, opts)
 end
 
 
-local buffer_lines = function(items, bufnames_with_lines, opts)
+local function buffer_lines(items, bufnames_with_lines, opts)
   opts.no_term_buffers = true
   local buffers = filter_buffers(opts,
     opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
@@ -886,7 +886,7 @@ local buffer_lines = function(items, bufnames_with_lines, opts)
 end
 
 
-local get_grep_cmd = function(opts, search_query, no_esc)
+local function get_grep_cmd(opts, search_query, no_esc)
   if opts.cmd_fn and type(opts.cmd_fn) == 'function' then
     return opts.cmd_fn(opts, search_query, no_esc)
   end
@@ -1099,8 +1099,7 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
   return xx
 end
 
-
-local fzf = function(opts, contents)
+local function fzf(opts, contents)
   dbg('fzf 1')
   -- normalize with globals if not already normalized
   if not opts._normalized then
@@ -1179,7 +1178,7 @@ local fzf = function(opts, contents)
   return selected
 end
 
-local open = function(selected)
+local function open(selected)
   dbg(selected)
   local fields = utils.strsplit(selected[2], ':')
   dbg('fields')
@@ -1199,7 +1198,7 @@ local open = function(selected)
 end
 
 
-local fzf_files = function(opts)
+local function fzf_files(opts)
   if not opts then return end
 
   -- reset git tracking
@@ -1242,7 +1241,7 @@ local fzf_files = function(opts)
   end)()
 end
 
-universal_grep = function(opts)
+function universal_grep(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
 
