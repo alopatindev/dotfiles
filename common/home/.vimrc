@@ -599,14 +599,13 @@ if executable('rg')
 endif
 
 lua << EOF
+local actions = require "fzf-lua.actions"
+local config = require "fzf-lua.config"
 local core = require "fzf-lua.core"
+local libuv = require "fzf-lua.libuv"
 local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
-local config = require "fzf-lua.config"
-local actions = require "fzf-lua.actions"
-local libuv = require "fzf-lua.libuv"
 local win = require "fzf-lua.win"
-local uv = vim.loop
 
 require('fzf-lua').setup{
   --fzf_bin = 'sk',
@@ -1032,8 +1031,8 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
 
   -- have to open this after there is a reader (termopen)
   -- otherwise this will block
-  fd = uv.fs_open(fifotmpname, "w", -1)
-  output_pipe = uv.new_pipe(false)
+  fd = vim.loop.fs_open(fifotmpname, "w", -1)
+  output_pipe = vim.loop.new_pipe(false)
   output_pipe:open(fd)
 
   for _, item in ipairs(items) do
