@@ -1196,12 +1196,23 @@ local fzf = function(opts, contents)
   if previewer then
     opts.fzf_opts['--preview'] = previewer:cmdline()
     if type(previewer.preview_window) == 'function' then
-      -- do we need to override the preview_window args?
-      -- this can happen with the builtin previewer
-      -- (1) when using a split we use the previewer as placeholder
-      -- (2) we use 'nohidden:right:0' to trigger preview function
-      --     calls without displaying the native fzf previewer split
+--      -- do we need to override the preview_window args?
+--      -- this can happen with the builtin previewer
+--      -- (1) when using a split we use the previewer as placeholder
+--      -- (2) we use 'nohidden:right:0' to trigger preview function
+--      --     calls without displaying the native fzf previewer split
       opts.fzf_opts['--preview-window'] = previewer:preview_window(opts.preview_window)
+
+
+      opts.fzf_opts["--no-multi"] = ''
+      --opts.fzf_opts["--preview-window"] = 'hidden:right:0'
+      --opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:\\t]')
+      opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:]')
+      --opts.fzf_opts["--with-nth"] = '2'
+      --opts.fzf_opts["--with-nth"] = '1'
+      opts.fzf_opts["--tiebreak"] = 'index'
+
+
     end
   end
   dbg('fzf 5')
