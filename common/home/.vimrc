@@ -49,7 +49,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'ibhagwan/fzf-lua'
-Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim' }
+Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 "Plug 'kyazdani42/nvim-web-devicons'
 
 
@@ -60,7 +60,7 @@ Plug 'ncm2/ncm2-path'
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
 
-Plug 'alopatindev/cargo-limit', { 'do': 'cargo install nvim-send' }
+Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit nvim-send' }
 
 " :PlugInstall
 
@@ -578,14 +578,11 @@ endfunction
 " Search in filenames and file bodies
 
 if executable('rg')
-  set grepformat=%f:%m
-
   let g:rg_opts = '
     \ --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color "always"
     \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
-  let g:rg_command = 'rg' . g:rg_opts
 
   nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
   imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
