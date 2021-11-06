@@ -706,7 +706,7 @@ end
 local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
   local colon = utils.ansi_codes.green(':')
   local bufname = #bufname>0 and bufname or "[No Name]"
-  bufname = is_tab and utils.ansi_codes.cyan(bufname) or utils.ansi_codes.magenta(bufname)
+  bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
   return string.format("%s%s%s%s%s",
     bufname,
     colon,
@@ -1225,7 +1225,6 @@ local fzf = function(opts, contents)
   dbg('fzf 5.2.2')
   dbg(opts.fzf_bin)
   dbg('fzf 5.2.3')
-  local text = "hello world:1: asdf\n" -- TODO
 
 
   local items = {}
@@ -1277,9 +1276,7 @@ local fzf_files = function(opts)
       opts.filespec = utils._if(has_prefix, "{2}", "{1}")
     end
 
-
-    --local selected = core.fzf(opts, opts.fzf_fn) -- TODO: wat
-    local selected = fzf(opts, opts.fzf_fn) -- TODO: wat
+    local selected = fzf(opts, opts.fzf_fn)
 
     if opts.post_select_cb then
       opts.post_select_cb()
