@@ -701,16 +701,14 @@ local make_buffer_entries = function(opts, bufnrs, tabnr, curbuf)
 end
 
 local format_item = function(bufnr, flags, bufname, line, column, text, is_tab)
-  local prefix = ("%d)%s"):format(bufnr, is_tab and string.format('b%d', bufnr) or '')
+  --local prefix = ("%d)%s"):format(bufnr, is_tab and string.format('b%d', bufnr) or '')
+  --local prefix = is_tab and string.format('b%d', bufnr) or ''
 
   -- TODO: if flags contains t
   local bufname = utils.ansi_codes.magenta(#bufname>0 and bufname or "[No Name]")
 
   -- TODO: make : green?
-  local flags = ''
-  return string.format("%s%s%s:%s%s%s",
-    prefix,
-    utils.nbsp,
+  return string.format("%s:%s%s%s",
     bufname,
     line,
     column>0 and string.format(':%d', column) or '',
@@ -913,8 +911,10 @@ universal_search = function(opts)
 
     opts.fzf_opts["--no-multi"] = ''
     opts.fzf_opts["--preview-window"] = 'hidden:right:0'
-    opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[\\)]')
-    opts.fzf_opts["--with-nth"] = '2'
+    --opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:\\t]')
+    opts.fzf_opts["--delimiter"] = vim.fn.shellescape('[:]')
+    --opts.fzf_opts["--with-nth"] = '2'
+    --opts.fzf_opts["--with-nth"] = '1'
     opts.fzf_opts["--tiebreak"] = 'index'
 
     if opts.search and #opts.search>0 then
@@ -930,13 +930,21 @@ end
 
 open = function(selected)
   dbg(selected)
-  local fields = utils.strsplit(utils.strsplit(selected[2], utils.nbsp)[2], ':')
+  --local fields = selected[2]
+  --local fields = utils.strsplit(utils.strsplit(selected[2], utils.nbsp)[2], ':')
+  local fields = utils.strsplit(selected[2], ':')
   dbg('fields')
   dbg(fields)
   local bufname = vim.fn.fnameescape(fields[1])
   local line = fields[2]
   local column = tonumber(utils.strsplit(fields[3], ' ')[1])
   local column = column == nil and 1 or column
+  dbg('bufname')
+  dbg(bufname)
+  dbg('line')
+  dbg(line)
+  dbg('column')
+  dbg(column)
   vim.cmd("tab drop " .. bufname)
   vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
 end
@@ -1025,9 +1033,7 @@ local fzf_files = function(opts)
 
     --actions.act(opts.actions, selected, opts)
     open(selected)
-
   end)()
-
 end
 
 live_grep = function(opts)
@@ -1071,11 +1077,11 @@ live_grep = function(opts)
     return get_grep_cmd(opts, query, true)
   end
 
-  if opts.experimental then
-    opts._fn_transform = function(x)
-      return core.make_entry_file(opts, x)
-    end
-  end
+--  if opts.experimental then
+--    opts._fn_transform = function(x)
+--      return make_entry_file(opts, x)
+--    end
+--  end
 
   opts = core.set_fzf_line_args(opts)
   opts = core.set_fzf_interactive_cmd(opts)
