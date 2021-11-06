@@ -27,7 +27,6 @@ local function add_bufname_with_line(bufnames_with_lines, bufname, line)
   return bufnames_with_lines
 end
 
-
 local function make_buffer_entries(opts, bufnrs, tabnr)
   local buffers = {}
   for _, bufnr in ipairs(bufnrs) do
@@ -111,7 +110,6 @@ local function filter_buffers(opts, unfiltered)
   return bufnrs, excluded
 end
 
-
 local function search_in_tabs(items, bufnames_with_lines, opts)
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
@@ -129,7 +127,6 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
     return res
   end
 
-
   local filtered, excluded = filter_buffers(opts, opts._list_bufs())
   if not next(filtered) then return end
 
@@ -139,7 +136,6 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
       bufnrs[b] = nil
     end
   end
-
 
   for t, bufnrs in pairs(opts._tab_to_buf) do
     local bufnrs_flat = {}
@@ -157,7 +153,6 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   return items, bufnames_with_lines
 end
 
-
 local function buffer_lines(items, bufnames_with_lines, opts)
   opts.no_term_buffers = true
   local buffers = filter_buffers(opts,
@@ -167,7 +162,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
   for _, bufnr in ipairs(buffers) do
     local data = {}
     local filepath = vim.api.nvim_buf_get_name(bufnr)
-    if vim.api.nvim_buf_is_loaded(bufnr) then -- TODO: extract
+    if vim.api.nvim_buf_is_loaded(bufnr) then
       data = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
     elseif vim.fn.filereadable(filepath) ~= 0 then
       data = vim.fn.readfile(filepath, "")
