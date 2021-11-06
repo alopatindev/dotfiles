@@ -632,10 +632,29 @@ require('fzf-lua').setup{
 }
 
 local function dbg(data)
-  f = io.open("/tmp/wat.txt", "a+")
+  f = io.open("/tmp/dbg.txt", "a+")
   f:write(vim.inspect(data) .. "\n")
   f:close()
 end
+
+local function bufname_with_line_key(bufname, line)
+  return bufname .. ':' .. line
+end
+
+local function has_bufname_with_line(bufnames_with_lines, bufname, line)
+  local key = bufname_with_line_key(bufname, line)
+  return bufnames_with_lines[key] == true
+end
+
+local function add_bufname_with_line(bufnames_with_lines, bufname, line)
+  dbg('add_bufname_with_line 1')
+  local key = bufname_with_line_key(bufname, line)
+  dbg('add_bufname_with_line 2')
+  bufnames_with_lines[key] = true
+  dbg('add_bufname_with_line 3')
+  return bufnames_with_lines
+end
+
 
 local function make_buffer_entries(opts, bufnrs, tabnr, curbuf)
   local header_line = false
@@ -683,6 +702,7 @@ local function format_item(bufnr, flags, bufname, line, column, text, is_tab)
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_line)
+  dbg('add_buffer_entry 1')
   local hidden = ''
   local readonly = vim.api.nvim_buf_get_option(buf.bufnr, 'readonly') and '=' or ' '
   local changed = buf.info.changed == 1 and '+' or ' '
@@ -690,6 +710,7 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   local leftbr = utils.ansi_codes.clear('[')
   local rightbr = utils.ansi_codes.clear(']')
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
+  dbg('add_buffer_entry 2')
   if buf.flag == '%' then
     flags = utils.ansi_codes.red(buf.flag) .. flags
     if not header_line then -- TODO: remove
@@ -702,10 +723,12 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   else
     flags = utils.nbsp .. flags
   end
+  dbg('add_buffer_entry 3')
   local bufnrstr = string.format("%s%s%s", leftbr,
     utils.ansi_codes.yellow(string.format(buf.bufnr)), rightbr)
   local buficon = '' -- TODO: remove?
   local hl = ''
+  dbg('add_buffer_entry 4')
   if opts.file_icons then
     if utils.is_term_bufname(buf.info.name) then
       -- get shell-like icon for terminal buffers
@@ -721,10 +744,13 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines, header_li
   end
   local flags = 't' .. flags -- TODO
 
+  dbg('add_buffer_entry 5')
   local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
   local item_str = format_item(buf.bufnr, flags, bufname, buf.info.lnum, buf.info.cnum, text, true)
   table.insert(items, item_str)
-  bufnames_with_lines[bufname .. buf.info.lnum] = true -- TODO
+  dbg('add_buffer_entry 6')
+  bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, buf.info.lnum)
+  dbg('add_buffer_entry 7')
   return items, bufnames_with_lines
 end
 
@@ -771,6 +797,7 @@ end
 
 
 local function search_in_tabs(items, bufnames_with_lines, opts)
+  dbg('search_in_tabs')
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
   opts._tab_to_buf = {}
@@ -788,6 +815,7 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   end
 
 
+  dbg('search_in_tabs 2')
   local filtered, excluded = filter_buffers(opts, opts._list_bufs())
   if not next(filtered) then return end
 
@@ -799,31 +827,41 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   end
 
 
+  dbg('search_in_tabs 3')
   for t, bufnrs in pairs(opts._tab_to_buf) do
     local bufnrs_flat = {}
     for b, _ in pairs(bufnrs) do
       table.insert(bufnrs_flat, b)
     end
+    dbg('search_in_tabs 3.1')
 
     opts.sort_lastused = false
     opts._prefix = ("%d)%s%s%s"):format(t, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove?
+    dbg('search_in_tabs 3.2')
     local buffers = make_buffer_entries(opts, bufnrs_flat, t)
     for _, buf in pairs(buffers) do
+      dbg('search_in_tabs 3.3')
       items, bufnames_with_lines = add_buffer_entry(opts, buf, items, bufnames_with_lines, true)
+      dbg('search_in_tabs 3.4')
     end
+    dbg('search_in_tabs 3.5')
   end
 
+  dbg('search_in_tabs 4')
   return items, bufnames_with_lines
 end
 
 
 local function buffer_lines(items, bufnames_with_lines, opts)
+  dbg('buffer_lines 1')
   opts.no_term_buffers = true
   local buffers = filter_buffers(opts,
     opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
     vim.api.nvim_list_bufs())
 
+  dbg('buffer_lines 2')
   for _, bufnr in ipairs(buffers) do
+    dbg('buffer_lines 2.0')
     local prefix = ("%d)%s%s%s"):format(bufnr, utils.nbsp, utils.nbsp, utils.nbsp) -- TODO: remove
 
     local data = {}
@@ -835,6 +873,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     end
     local bufname = path.relative(filepath, vim.fn.getcwd())
     local buficon, hl
+    dbg('buffer_lines 2.1')
     if opts.file_icons then -- TODO: remove?
       local filename = path.tail(bufname)
       local extension = path.extension(filename)
@@ -844,18 +883,22 @@ local function buffer_lines(items, bufnames_with_lines, opts)
       end
     end
 
+    dbg('buffer_lines 2.2')
     for line, text in ipairs(data) do
-      if #text > 0 and bufnames_with_lines[bufname .. line] == nil then
+      --if #text > 0 then
+      if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
         local flags = '#' -- TODO: remove
         table.insert(items, format_item(bufnr, flags, bufname, line, 0, text, false))
-        bufnames_with_lines[bufname .. line] = true -- TODO: extract?
+        dbg('buffer_lines 3')
+        bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
+        dbg('buffer_lines 4')
       end
     end
   end
 
+  dbg('buffer_lines 5')
   return items, bufnames_with_lines
 end
-
 
 local function get_grep_cmd(opts, search_query, no_esc)
   if opts.cmd_fn and type(opts.cmd_fn) == 'function' then
@@ -1131,7 +1174,9 @@ local function fzf(opts, contents)
 
   -- TODO: bufnames_with_lines: add : ?
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
+  dbg('fzf 5.2.3.1')
   items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
+  dbg('fzf 5.2.3.2')
 
   local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
