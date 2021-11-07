@@ -6,12 +6,6 @@ local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local win = require "fzf-lua.win"
 
---local function dbg(data)
---  f = io.open("/tmp/dbg.txt", "a+")
---  f:write(vim.inspect(data) .. "\n")
---  f:close()
---end
-
 local function bufname_with_line_key(bufname, line)
   return bufname .. (line and (':' .. line) or '')
 end
@@ -447,7 +441,6 @@ local function open(selected)
     vim.cmd(command)
   end
 end
-
 
 local function fzf_files(opts)
   if not opts then return end
