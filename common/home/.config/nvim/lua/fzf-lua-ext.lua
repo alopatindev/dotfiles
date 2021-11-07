@@ -6,11 +6,11 @@ local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local win = require "fzf-lua.win"
 
-local function dbg(data)
-  f = io.open("/tmp/dbg.txt", "a+")
-  f:write(vim.inspect(data) .. "\n")
-  f:close()
-end
+--local function dbg(data)
+--  f = io.open("/tmp/dbg.txt", "a+")
+--  f:write(vim.inspect(data) .. "\n")
+--  f:close()
+--end
 
 local function bufname_with_line_key(bufname, line)
   return bufname .. (line and (':' .. line) or '')
@@ -59,11 +59,9 @@ end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines)
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
-  local text, line, column = nil, nil
-  if opts._is_grep then
-    text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
-    line = buf.info.lnum
-  end
+  local text = opts._is_grep and vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1] or nil
+  local line = buf.info.lnum
+  local column = nil
   local item_str = format_item(bufname, line, column, text, utils.ansi_codes.yellow)
   table.insert(items, item_str)
   bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
@@ -514,8 +512,6 @@ function get_files_cmd(opts)
 end
 
 function add_space_before_text(item)
-  -- TODO: ignore duplicates? we can't return empty string
-  -- TODO: fn_filter, apply in process_lines
   return item:gsub(':([0-9]*):(.*)', ':%1: %2', 1)
 end
 
@@ -528,13 +524,7 @@ function relevant_grep(opts)
   local command = get_grep_cmd(opts, search, no_esc)
 
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }
---    function(item)
---        -- local bufname, line, column, text = parse_item(add_space_before_text(item))
---        -- return format_item(bufname, line, column, text, utils.ansi_codes.magenta)
---        return add_space_before_text(item)
---    end
-  )
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   fzf_files(opts)
 end
