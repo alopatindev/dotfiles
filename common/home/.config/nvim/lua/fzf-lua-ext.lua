@@ -48,12 +48,10 @@ local function make_buffer_entries(opts, bufnrs, tabnr)
   return buffers
 end
 
-local function format_item(bufnr, bufname, line, column, text, is_tab)
+local function format_item(bufnr, bufname, line, column, text, color_fn)
   local colon = utils.ansi_codes.green(':')
-  local bufname = #bufname>0 and bufname or "[No Name]"
-  bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
   return string.format("%s%s%s%s",
-    bufname,
+    color_fn(#bufname>0 and bufname or "[No Name]"),
     line == nil and '' or ('%s%d'):format(colon, line),
     column == nil and '' or ('%s%d'):format(colon, column),
     text == nil and '' or ('%s %s'):format(colon, text))
@@ -66,7 +64,7 @@ local function add_buffer_entry(opts, buf, items, bufnames_with_lines)
     text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
     line = buf.info.lnum
   end
-  local item_str = format_item(buf.bufnr, bufname, line, column, text, true)
+  local item_str = format_item(buf.bufnr, bufname, line, column, text, utils.ansi_codes.yellow)
   table.insert(items, item_str)
   bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
   return items, bufnames_with_lines
@@ -173,7 +171,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     local bufname = path.relative(filepath, vim.fn.getcwd())
     for line, text in ipairs(data) do
       if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
-        table.insert(items, format_item(bufnr, bufname, line, nil, text, false))
+        table.insert(items, format_item(bufnr, bufname, line, nil, text, utils.ansi_codes.cyan))
         bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
       end
     end
