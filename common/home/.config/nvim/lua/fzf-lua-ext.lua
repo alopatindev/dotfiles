@@ -436,8 +436,11 @@ local function open(selected)
   vim.cmd("tab drop " .. bufname)
   if line ~= nil then
     local column = tonumber(utils.strsplit(fields[3], ' ')[1])
-    local column = column == nil and 1 or column
-    vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
+    local command = 'norm! ' .. line .. 'G'
+    if column ~= nil then
+      command = command .. column .. '|'
+    end
+    vim.cmd(command)
   end
 end
 

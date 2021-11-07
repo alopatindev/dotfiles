@@ -579,7 +579,7 @@ endfunction
 
 if executable('rg')
   let g:rg_opts = '
-    \ --column --line-number --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color "always"
+    \ --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color never
     \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
