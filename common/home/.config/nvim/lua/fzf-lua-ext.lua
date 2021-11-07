@@ -435,11 +435,11 @@ local function open(selected)
 
   vim.cmd("tab drop " .. bufname)
   if line ~= nil then
-    local column = tonumber(utils.strsplit(fields[3], ' ')[1])
-    local command = 'norm! ' .. line .. 'G'
-    if column ~= nil then
-      command = command .. column .. '|'
-    end
+    local command = ('norm! %dG'):format(line)
+    -- local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+    -- if column ~= nil then
+    --   command = ('%s%d|', command, column)
+    -- end
     vim.cmd(command)
   end
 end
