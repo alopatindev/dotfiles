@@ -406,7 +406,6 @@ local function fzf(opts, contents)
 
   opts._is_grep = opts.rg_opts ~= nil
 
-  -- TODO: add is_grep flag? closure?
   local items = {}
   local bufnames_with_lines = {}
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
