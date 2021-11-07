@@ -121,7 +121,9 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   end
 
   local filtered, excluded = filter_buffers(opts, opts._list_bufs())
-  if not next(filtered) then return end
+  if not next(filtered) then
+    return items, bufnames_with_lines
+  end
 
   -- remove the filtered-out buffers
   for b, _ in pairs(excluded) do
@@ -422,8 +424,8 @@ end
 local function parse_item(item)
   local fields = utils.strsplit(item, ':')
   local bufname = fields[1]
-  local line = tonumber(fields[2])
-  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+  local line = #fields > 1 and tonumber(fields[2]) or nil
+  local column = #fields > 2 and tonumber(utils.strsplit(fields[3], ' ')[1]) or nil
   local text = nil
   --local text = item:sub(item:find(': ') + 2, -1) -- TODO: slow
   return bufname, line, column, text
