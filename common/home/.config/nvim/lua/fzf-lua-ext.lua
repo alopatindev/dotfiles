@@ -54,9 +54,9 @@ local function format_item(bufnr, bufname, line, column, text, is_tab)
   bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
   return string.format("%s%s%s%s",
     bufname,
-    line == nil and '' or string.format('%s%d', colon, line),
-    column == nil and '' or string.format('%s%d', colon, column),
-    text == nil and '' or string.format('%s %s', colon, text))
+    line == nil and '' or ('%s%d'):format(colon, line),
+    column == nil and '' or ('%s%d'):format(colon, column),
+    text == nil and '' or ('%s %s'):format(colon, text))
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines)
