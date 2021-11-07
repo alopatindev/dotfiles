@@ -48,10 +48,10 @@ local function make_buffer_entries(opts, bufnrs, tabnr)
   return buffers
 end
 
-local function format_item(bufname, line, column, text, color_fn)
+local function format_item(bufname, line, column, text, bufname_color_fn)
   local colon = utils.ansi_codes.green(':')
   return string.format("%s%s%s%s",
-    color_fn(#bufname>0 and bufname or "[No Name]"),
+    bufname_color_fn(#bufname>0 and bufname or "[No Name]"),
     line == nil and '' or ('%s%d'):format(colon, line),
     column == nil and '' or ('%s%d'):format(colon, column),
     text == nil and '' or ('%s %s'):format(colon, text))
@@ -430,14 +430,17 @@ end
 
 local function parse_item(item)
   local fields = utils.strsplit(item, ':')
-  local bufname = vim.fn.fnameescape(fields[1])
+  local bufname = fields[1]
   local line = tonumber(fields[2])
   local column = tonumber(utils.strsplit(fields[3], ' ')[1])
-  return bufname, line, column
+  local text = nil
+  --local text = item:sub(item:find(': ') + 2, -1) -- TODO: slow
+  return bufname, line, column, text
 end
 
 local function open(selected)
-  local bufname, line, column = parse_item(selected[2])
+  local bufname, line, column, text = parse_item(selected[2])
+  bufname = vim.fn.fnameescape(bufname)
   vim.cmd("tab drop " .. bufname)
   if line ~= nil then
     local command = ('norm! %dG'):format(line)
@@ -525,9 +528,13 @@ function relevant_grep(opts)
   local command = get_grep_cmd(opts, search, no_esc)
 
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, function(item)
-        return add_space_before_text(item)
-    end)
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }
+--    function(item)
+--        -- local bufname, line, column, text = parse_item(add_space_before_text(item))
+--        -- return format_item(bufname, line, column, text, utils.ansi_codes.magenta)
+--        return add_space_before_text(item)
+--    end
+  )
 
   fzf_files(opts)
 end
