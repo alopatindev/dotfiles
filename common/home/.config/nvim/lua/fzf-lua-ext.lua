@@ -438,7 +438,7 @@ local function open(selected)
     local command = ('norm! %dG'):format(line)
     -- local column = tonumber(utils.strsplit(fields[3], ' ')[1])
     -- if column ~= nil then
-    --   command = ('%s%d|', command, column)
+    --   command = ('%s%d|'):format(command, column)
     -- end
     vim.cmd(command)
   end
