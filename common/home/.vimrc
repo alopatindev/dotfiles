@@ -391,7 +391,23 @@ map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
 nnoremap <C-d> :Git diff %<cr>
 imap <C-d> <esc>:Git diff %<cr>
 vmap <C-d> <esc>:Git diff %<cr>
-map <C-b> <esc>:Git blame<cr>
+
+function! s:BlameToggle() abort
+  let found = 0
+  for winnr in range(1, winnr('$'))
+    if getbufvar(winbufnr(winnr), '&filetype') ==# 'fugitiveblame'
+      exe winnr . 'close'
+      let found = 1
+    endif
+  endfor
+  if !found
+    Git blame
+  endif
+endfunction
+nnoremap <C-b> :call <SID>BlameToggle()<cr>
+imap <C-b> <esc>:call <SID>BlameToggle()<cr>
+vmap <C-b> <esc>:call <SID>BlameToggle()<cr>
+
 set updatetime=250
 let g:gitgutter_max_signs = 500
 let g:gitgutter_map_keys = 0
@@ -580,7 +596,7 @@ endfunction
 if executable('rg')
   let g:rg_opts = '
     \ --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color always
-    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,php,pl,py,rb,rs,scala,sh,sql,styl}"
+    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,nvim,php,pl,py,rb,rs,scala,sh,sql,styl,vim}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
 
