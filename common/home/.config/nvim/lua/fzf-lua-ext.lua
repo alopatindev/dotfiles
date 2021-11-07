@@ -6,14 +6,14 @@ local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local win = require "fzf-lua.win"
 
---local function dbg(data)
---  f = io.open("/tmp/dbg.txt", "a+")
---  f:write(vim.inspect(data) .. "\n")
---  f:close()
---end
+local function dbg(data)
+  f = io.open("/tmp/dbg.txt", "a+")
+  f:write(vim.inspect(data) .. "\n")
+  f:close()
+end
 
 local function bufname_with_line_key(bufname, line)
-  return bufname .. ':' .. line
+  return bufname .. (line and (':' .. line) or '')
 end
 
 local function has_bufname_with_line(bufnames_with_lines, bufname, line)
@@ -52,20 +52,23 @@ local function format_item(bufnr, bufname, line, column, text, is_tab)
   local colon = utils.ansi_codes.green(':')
   local bufname = #bufname>0 and bufname or "[No Name]"
   bufname = is_tab and utils.ansi_codes.yellow(bufname) or utils.ansi_codes.cyan(bufname)
-  return string.format("%s%s%s%s%s",
+  return string.format("%s%s%s%s",
     bufname,
-    colon,
-    line,
-    column>0 and string.format('%s%d', colon, column) or '',
-    string.format('%s %s', colon, text))
+    line == nil and '' or string.format('%s%d', colon, line),
+    column == nil and '' or string.format('%s%d', colon, column),
+    text == nil and '' or string.format('%s %s', colon, text))
 end
 
 local function add_buffer_entry(opts, buf, items, bufnames_with_lines)
   local bufname = utils._if(#buf.info.name>0, path.relative(buf.info.name, vim.loop.cwd()), "[No Name]")
-  local text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
-  local item_str = format_item(buf.bufnr, bufname, buf.info.lnum, buf.info.cnum, text, true)
+  local text, line, column = nil, nil
+  if opts._is_grep then
+    text = vim.api.nvim_buf_get_lines(buf.bufnr, buf.info.lnum - 1, buf.info.lnum, false)[1]
+    line = buf.info.lnum
+  end
+  local item_str = format_item(buf.bufnr, bufname, line, column, text, true)
   table.insert(items, item_str)
-  bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, buf.info.lnum)
+  bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
   return items, bufnames_with_lines
 end
 
@@ -170,7 +173,7 @@ local function buffer_lines(items, bufnames_with_lines, opts)
     local bufname = path.relative(filepath, vim.fn.getcwd())
     for line, text in ipairs(data) do
       if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
-        table.insert(items, format_item(bufnr, bufname, line, 0, text, false))
+        table.insert(items, format_item(bufnr, bufname, line, nil, text, false))
         bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
       end
     end
@@ -405,10 +408,15 @@ local function fzf(opts, contents)
   fzf_win:attach_previewer(previewer)
   fzf_win:create()
 
+  opts._is_grep = opts.rg_opts ~= nil
+
+  -- TODO: add is_grep flag? closure?
   local items = {}
   local bufnames_with_lines = {}
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
-  items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
+  if opts._is_grep then
+    items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
+  end
 
   local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
@@ -424,10 +432,13 @@ local function open(selected)
   local fields = utils.strsplit(selected[2], ':')
   local bufname = vim.fn.fnameescape(fields[1])
   local line = fields[2]
-  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
-  local column = column == nil and 1 or column
+
   vim.cmd("tab drop " .. bufname)
-  vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
+  if line ~= nil then
+    local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+    local column = column == nil and 1 or column
+    vim.cmd('call cursor(' .. line .. ',' .. column .. ')')
+  end
 end
 
 
@@ -474,6 +485,23 @@ local function fzf_files(opts)
   end)()
 end
 
+function get_files_cmd(opts)
+  if opts.raw_cmd and #opts.raw_cmd>0 then
+    return opts.raw_cmd
+  end
+  if opts.cmd and #opts.cmd>0 then
+    return opts.cmd
+  end
+  local command = nil
+  if vim.fn.executable("fd") == 1 then
+    command = string.format('fd %s', opts.fd_opts)
+  else
+    POSIX_find_compat(opts.find_opts)
+    command = string.format('find -L . %s', opts.find_opts)
+  end
+  return command
+end
+
 function relevant_grep(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
@@ -486,4 +514,17 @@ function relevant_grep(opts)
     { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
 
   fzf_files(opts)
+end
+
+function relevant_files(opts)
+  opts = config.normalize_opts(opts, config.globals.files)
+  if not opts then return end
+
+  local command = get_files_cmd(opts)
+
+  opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
+
+  fzf_files(opts)
+  --return core.fzf_files(opts)
 end

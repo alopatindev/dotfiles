@@ -584,12 +584,11 @@ if executable('rg')
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
 
-  nnoremap <F3> :call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
-  imap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
-  vmap <F3> <esc>:call fzf#run({'sink': 'tab drop', 'options': '--multi'})<cr>
+  nnoremap <F3> :lua relevant_files()<cr>
+  imap <F3> <esc>:lua relevant_files()<cr>
+  vmap <F3> <esc>:lua relevant_files()<cr>
 
   nnoremap <F4> :lua relevant_grep()<cr>
-  nnoremap <C-f> :lua relevant_grep()<cr>
   imap <F4> <esc>:lua relevant_grep()<cr>
   vmap <F4> <esc>:lua relevant_grep()<cr>
 
