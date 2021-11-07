@@ -506,6 +506,10 @@ function get_files_cmd(opts)
   return git_ls_files .. ' && ' .. command
 end
 
+function add_space_before_text(item)
+  return item:gsub(':([0-9]*):(.*)', ':%1: %2', 1)
+end
+
 function relevant_grep(opts)
   opts = config.normalize_opts(opts, config.globals.grep)
   if not opts then return end
@@ -515,7 +519,7 @@ function relevant_grep(opts)
   local command = get_grep_cmd(opts, search, no_esc)
 
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, fn_transform)
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, add_space_before_text)
 
   fzf_files(opts)
 end

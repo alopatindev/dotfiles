@@ -605,7 +605,7 @@ lua << EOF
         scrollbar = false,
         layout = 'vertical',
         title = false,
-        vertical = 'up:50%'
+        vertical = 'up:50%',
       }
     },
     --fzf_opts = {
