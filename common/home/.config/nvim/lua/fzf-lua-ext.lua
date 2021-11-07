@@ -428,15 +428,19 @@ local function fzf(opts, contents)
   return selected
 end
 
-local function open(selected)
-  local fields = utils.strsplit(selected[2], ':')
+local function parse_item(item)
+  local fields = utils.strsplit(item, ':')
   local bufname = vim.fn.fnameescape(fields[1])
-  local line = fields[2]
+  local line = tonumber(fields[2])
+  local column = tonumber(utils.strsplit(fields[3], ' ')[1])
+  return bufname, line, column
+end
 
+local function open(selected)
+  local bufname, line, column = parse_item(selected[2])
   vim.cmd("tab drop " .. bufname)
   if line ~= nil then
     local command = ('norm! %dG'):format(line)
-    -- local column = tonumber(utils.strsplit(fields[3], ' ')[1])
     -- if column ~= nil then
     --   command = ('%s%d|'):format(command, column)
     -- end
@@ -507,6 +511,8 @@ function get_files_cmd(opts)
 end
 
 function add_space_before_text(item)
+  -- TODO: ignore duplicates? we can't return empty string
+  -- TODO: fn_filter, apply in process_lines
   return item:gsub(':([0-9]*):(.*)', ':%1: %2', 1)
 end
 
@@ -519,7 +525,9 @@ function relevant_grep(opts)
   local command = get_grep_cmd(opts, search, no_esc)
 
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
-    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, add_space_before_text)
+    { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb }, function(item)
+        return add_space_before_text(item)
+    end)
 
   fzf_files(opts)
 end
@@ -534,5 +542,4 @@ function relevant_files(opts)
     { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   fzf_files(opts)
-  --return core.fzf_files(opts)
 end
