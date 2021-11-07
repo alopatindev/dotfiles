@@ -425,6 +425,8 @@ local function fzf(opts, contents)
   if fzf_win:autoclose() == nil or fzf_win:autoclose() then
     fzf_win:close()
   end
+
+  opts._is_grep = false
   return selected
 end
 
@@ -499,7 +501,8 @@ function get_files_cmd(opts)
     POSIX_find_compat(opts.find_opts)
     command = string.format('find -L . %s', opts.find_opts)
   end
-  return command
+  git_ls_files = 'git ls-files --exclude-standard'
+  return git_ls_files .. ' && ' .. command
 end
 
 function relevant_grep(opts)
