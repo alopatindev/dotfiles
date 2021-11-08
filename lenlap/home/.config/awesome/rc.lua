@@ -372,6 +372,7 @@ awful.rules.rules = {
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
+    { rule = { class = "Camset" }, properties = { tag = "5 media" } },
 }
 
 apps_to_tags = {}

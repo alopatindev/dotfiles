@@ -110,7 +110,7 @@ bindkey "^I" restricted-expand-or-complete
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 PATH="/home/al/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/al/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
@@ -126,6 +126,12 @@ precmd() {
         for i in target; do
             export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
             mkdir -p "${CARGO_TARGET_DIR}"
+
+            for service in $(ls --color=never -1 services); do
+                mkdir -p "${CARGO_TARGET_DIR}/services/${service}"
+                touch "${CARGO_TARGET_DIR}/services/${service}/log.jsonl"
+            done
+
             ln -s "${CARGO_TARGET_DIR}" 2>> /dev/null
             unset CARGO_TARGET_DIR
         done
