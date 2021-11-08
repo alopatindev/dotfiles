@@ -145,26 +145,22 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
     end
   end
 
-  return items, bufnames_with_lines
-end
-
-local function buffer_lines(items, bufnames_with_lines, opts)
-  opts.no_term_buffers = true
-  local buffers, excluded = filter_buffers(opts, opts._list_bufs())
-
-  for _, bufnr in ipairs(buffers) do
-    local data = {}
-    local filepath = vim.api.nvim_buf_get_name(bufnr)
-    if vim.api.nvim_buf_is_loaded(bufnr) then
-      data = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-    elseif vim.fn.filereadable(filepath) ~= 0 then
-      data = vim.fn.readfile(filepath, "")
-    end
-    local bufname = path.relative(filepath, vim.fn.getcwd())
-    for line, text in ipairs(data) do
-      if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
-        table.insert(items, format_item(bufname, line, nil, text, utils.ansi_codes.cyan))
-        bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
+  if opts._is_grep then
+    opts.no_term_buffers = true
+    for _, bufnr in ipairs(filtered) do
+      local data = {}
+      local filepath = vim.api.nvim_buf_get_name(bufnr)
+      if vim.api.nvim_buf_is_loaded(bufnr) then
+        data = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+      elseif vim.fn.filereadable(filepath) ~= 0 then
+        data = vim.fn.readfile(filepath, "")
+      end
+      local bufname = path.relative(filepath, vim.fn.getcwd())
+      for line, text in ipairs(data) do
+        if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
+          table.insert(items, format_item(bufname, line, nil, text, utils.ansi_codes.cyan))
+          bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
+        end
       end
     end
   end
@@ -403,9 +399,6 @@ local function fzf(opts, contents)
   local items = {}
   local bufnames_with_lines = {}
   items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
-  if opts._is_grep then
-    items, bufnames_with_lines = buffer_lines(items, bufnames_with_lines, opts)
-  end
 
   local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
