@@ -599,6 +599,7 @@ if executable('rg')
     \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,nvim,php,pl,py,rb,rs,scala,sh,sql,styl,vim}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
+  let g:fd_opts = '--type f --follow --exclude .git --exclude build --exclude node_modules --exclude vendor --exclude target'
 
   nnoremap <F3> :lua relevant_files()<cr>
   imap <F3> <esc>:lua relevant_files()<cr>
@@ -630,6 +631,9 @@ lua << EOF
     grep = {
       rg_opts = vim.g.rg_opts,
       prompt = '> ',
+    },
+    files = {
+      fd_opts = vim.g.fd_opts,
     },
   }
 EOF

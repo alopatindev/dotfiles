@@ -150,9 +150,7 @@ end
 
 local function buffer_lines(items, bufnames_with_lines, opts)
   opts.no_term_buffers = true
-  local buffers = filter_buffers(opts,
-    opts.current_buffer_only and { vim.api.nvim_get_current_buf() } or
-    vim.api.nvim_list_bufs())
+  local buffers, excluded = filter_buffers(opts, opts._list_bufs())
 
   for _, bufnr in ipairs(buffers) do
     local data = {}
@@ -210,7 +208,7 @@ local function get_grep_cmd(opts, search_query, no_esc)
     search_query = vim.fn.shellescape(search_query)
   end
 
-  return string.format('%s %s %s', command, search_query, search_path)
+  return string.format('%s %s %s 2>>/dev/null', command, search_query, search_path)
 end
 
 local function get_lines_from_file(file)
@@ -501,8 +499,8 @@ function get_files_cmd(opts)
     POSIX_find_compat(opts.find_opts)
     command = string.format('find -L . %s', opts.find_opts)
   end
-  git_ls_files = 'git ls-files --exclude-standard'
-  return git_ls_files .. ' && ' .. command
+  git_ls_files = 'git ls-files --exclude-standard --deduplicate 2>>/dev/null'
+  return git_ls_files .. ' ; ' .. command
 end
 
 function add_space_before_text(item)
