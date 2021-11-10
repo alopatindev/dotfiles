@@ -1,1 +1,9 @@
 ACTION=="add", ATTRS{idVendor}=="1532", RUN+="/usr/local/sbin/load-webcam-settings.sh"
+
+# Chicony Electronics Co., Ltd Lenovo EasyCamera
+ACTION=="add", ATTRS{idVendor}=="04f2", ATTR{authorized}="0"
+
+# Razor Kiyo Pro sound card
+# udevadm info --attribute-walk --name=/dev/snd/pcmC3D0c
+# udevadm monitor --property
+ACTION=="add", ENV{DEVNAME}=="/dev/snd/pcmC3D0c", RUN+="/usr/local/sbin/block-usb.sh"
