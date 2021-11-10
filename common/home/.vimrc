@@ -596,7 +596,7 @@ endfunction
 if executable('rg') && executable('fd')
   let g:rg_opts = '
     \ --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color always
-    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,markdown,nvim,php,pl,py,rb,rs,scala,sh,sql,styl,vim}"
+    \ --glob "*.{c,C,cfg,conf,config,cpp,css,cxx,ebuild,go,h,hpp,hs,html,ini,j2,jade,java,js,lua,md,markdown,nvim,php,pl,py,rb,rs,scala,sh,sql,styl,toml,vim}"
     \ --glob "{Dockerfile,.gitignore,README,INSTALL,Makefile,Gemfile}"
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
   let g:fd_opts = '--type f --follow --exclude .git --exclude build --exclude node_modules --exclude vendor --exclude target'
@@ -623,6 +623,13 @@ lua << EOF
         layout = 'vertical',
         title = false,
         vertical = 'up:50%',
+        --hidden = 'hidden',
+        default = 'bat',
+      }
+    },
+    previewers = {
+      bat = {
+        theme = "zenburn"
       }
     },
     --fzf_opts = {
