@@ -127,7 +127,7 @@ precmd() {
             export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
             mkdir -p "${CARGO_TARGET_DIR}"
 
-            for service in $(ls --color=never -1 services); do
+            for service in $(ls --color=never -1 services 2>>/dev/null); do
                 mkdir -p "${CARGO_TARGET_DIR}/services/${service}"
                 touch "${CARGO_TARGET_DIR}/services/${service}/log.jsonl"
             done
@@ -137,5 +137,14 @@ precmd() {
         done
         export RUST_BACKTRACE=full
         unset -f precmd
+    }
+
+    [ -z "${TMUX}" ] || {
+        max_window_title_length=15
+        window_title=$(basename "${PWD}")
+        if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
+            window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
+        fi
+        tmux rename-window "${window_title}" 2&>>/dev/null
     }
 }
