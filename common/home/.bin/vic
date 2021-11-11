@@ -1,0 +1,15 @@
+#!/bin/sh
+
+current_dir="${PWD}"
+
+if [ $(tmux list-panes | wc -l) -gt 1 ]; then
+    tmux new-window "cd ${current_dir} ; ${SHELL}"
+fi
+
+tmux split-window -h "vi $@ ; ${SHELL}"
+tmux split-window -v
+tmux resize-pane -y 10
+tmux select-pane -L
+tmux resize-pane -x 90
+tmux select-pane -R
+tmux select-pane -U

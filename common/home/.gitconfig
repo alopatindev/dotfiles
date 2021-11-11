@@ -26,6 +26,7 @@
 
 [alias]
     s = status -s
+    ss = status -s --untracked-files=no
     l = log --oneline --decorate --all --graph
     ll = log --show-signature
     lll = log --show-signature -p
