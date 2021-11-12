@@ -1,8 +1,6 @@
 #!/bin/sh
 
 current_dir="${PWD}"
-basename=$(basename "${current_dir}")
-
 if [ $(tmux list-panes | wc -l) -gt 1 ]; then
     tmux new-window "cd ${current_dir} ; source ~/scripts/tmux-cd-to-current-dir.sh ; ${SHELL}"
 fi
@@ -10,4 +8,3 @@ fi
 tmux split-window -h -l 180 "source ~/scripts/tmux-cd-to-current-dir.sh ; vi $@ ; ${SHELL}"
 tmux split-window -v -l 12 "source ~/scripts/tmux-cd-to-current-dir.sh ; ${SHELL}"
 tmux select-pane -U
-tmux rename-window "${basename}"

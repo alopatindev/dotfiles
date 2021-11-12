@@ -25,8 +25,8 @@
     prompt = false
 
 [alias]
-    s = status -s
-    ss = status -s --untracked-files=no
+    s = status -s --untracked-files=no
+    ss = status -s
     l = log --oneline --decorate --all --graph
     ll = log --show-signature
     lll = log --show-signature -p

@@ -34,3 +34,5 @@ export GPG_TTY=$(tty)
 ##export DEP_OPENSSL_VERSION=102
 
 #export RUSTFLAGS='-C link-args=-lzstd'
+
+export FZF_DEFAULT_OPTS="--hscroll-off=1000"

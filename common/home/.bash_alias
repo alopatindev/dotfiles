@@ -48,7 +48,7 @@ alias gmplayer='gmplayer -really-quiet'
 #alias ifconfig='/sbin/ifconfig'
 alias iwconfig='/sbin/iwconfig'
 alias screen='screen -DRmA'
-alias tmux='tmux attach || tmux'
+#alias tmux='tmux attach || tmux'
 #alias transmission-remote='transmission-remote localhost:9966'
 alias bc='bc -ql'
 #alias alock='alock -bg image:center,file=/home/sbar/pix/locked.png -cursor theme:name=mini -auth passwd'
@@ -76,6 +76,7 @@ alias rust-gdb='rust-gdb -q'
 alias ip='ip -c'
 #alias eix='eix -v'
 alias time1='hyperfine'
+#alias hh="history | hstr-rs"
 
 for i in w ps ping traceroute ifconfig whereis lsmod ap vmstat top df route ldd nm strace id nmap netstat
 do
