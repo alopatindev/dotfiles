@@ -38,4 +38,6 @@ nvme0n1 ${exec cat /tmp/nvme-temp}°C  sda ${hddtemp /dev/sda}°C
 ${exec ~/scripts/temp.sh}
 
 ${exec ~/scripts/co2mond-status.sh}
+
+${texeci 3 ~/scripts/touchpad-status.sh}
 ]];
