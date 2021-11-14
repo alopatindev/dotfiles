@@ -629,7 +629,8 @@ lua << EOF
     },
     previewers = {
       bat = {
-        theme = "zenburn"
+        theme = "zenburn",
+        args = "--line-range :50 --style=plain --color=always",
       }
     },
     --fzf_opts = {

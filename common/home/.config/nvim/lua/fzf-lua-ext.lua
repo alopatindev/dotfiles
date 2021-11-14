@@ -6,6 +6,12 @@ local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local win = require "fzf-lua.win"
 
+--local function dbg(data)
+--  f = io.open("/tmp/dbg.txt", "a+")
+--  f:write(vim.inspect(data) .. "\n")
+--  f:close()
+--end
+
 local function bufname_with_line_key(bufname, line)
   return bufname .. (line and (':' .. line) or '')
 end
@@ -103,7 +109,7 @@ local function filter_buffers(opts, unfiltered)
   return bufnrs, excluded
 end
 
-local function search_in_tabs(items, bufnames_with_lines, opts)
+local function search_in_tabs(bufnames, items, bufnames_with_lines, opts)
   local curtab = vim.api.nvim_win_get_tabpage(0)
 
   opts._tab_to_buf = {}
@@ -122,7 +128,7 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
 
   local filtered, excluded = filter_buffers(opts, opts._list_bufs())
   if not next(filtered) then
-    return items, bufnames_with_lines
+    return bufnames, items, bufnames_with_lines
   end
 
   -- remove the filtered-out buffers
@@ -148,24 +154,13 @@ local function search_in_tabs(items, bufnames_with_lines, opts)
   if opts._is_grep then
     opts.no_term_buffers = true
     for _, bufnr in ipairs(filtered) do
-      local data = {}
       local filepath = vim.api.nvim_buf_get_name(bufnr)
-      if vim.api.nvim_buf_is_loaded(bufnr) then
-        data = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-      elseif vim.fn.filereadable(filepath) ~= 0 then
-        data = vim.fn.readfile(filepath, "")
-      end
       local bufname = path.relative(filepath, vim.fn.getcwd())
-      for line, text in ipairs(data) do
-        if #text > 0 and has_bufname_with_line(bufnames_with_lines, bufname, line) == false then
-          table.insert(items, format_item(bufname, line, nil, text, utils.ansi_codes.cyan))
-          bufnames_with_lines = add_bufname_with_line(bufnames_with_lines, bufname, line)
-        end
-      end
+      table.insert(bufnames, bufname)
     end
   end
 
-  return items, bufnames_with_lines
+  return bufnames, items, bufnames_with_lines
 end
 
 local function get_grep_cmd(opts, search_query, no_esc)
@@ -331,8 +326,10 @@ local function raw_fzf(contents, items, fzf_cli_args, opts)
   output_pipe = vim.loop.new_pipe(false)
   output_pipe:open(fd)
 
-  for _, item in ipairs(items) do
-    write_cb(item .. "\n")
+  if items ~= nil then
+      for _, item in ipairs(items) do
+        write_cb(item .. "\n")
+      end
   end
 
   -- this part runs in the background, when the user has selected, it will
@@ -394,13 +391,7 @@ local function fzf(opts, contents)
   fzf_win:attach_previewer(previewer)
   fzf_win:create()
 
-  opts._is_grep = opts.rg_opts ~= nil
-
-  local items = {}
-  local bufnames_with_lines = {}
-  items, bufnames_with_lines = search_in_tabs(items, bufnames_with_lines, opts)
-
-  local selected, exit_code = raw_fzf(contents, items, core.build_fzf_cli(opts),
+  local selected, exit_code = raw_fzf(contents, opts._items, core.build_fzf_cli(opts),
     { fzf_binary = opts.fzf_bin, fzf_cwd = opts.cwd })
   utils.process_kill(opts._pid)
   fzf_win:check_exit_status(exit_code)
@@ -408,7 +399,6 @@ local function fzf(opts, contents)
     fzf_win:close()
   end
 
-  opts._is_grep = false
   return selected
 end
 
@@ -508,10 +498,23 @@ function relevant_grep(opts)
   local no_esc = false
   local command = get_grep_cmd(opts, search, no_esc)
 
+  opts._is_grep = opts.rg_opts ~= nil
+  local bufnames = {}
+  local items = {}
+  local bufnames_with_lines = {}
+  bufnames, items, bufnames_with_lines = search_in_tabs(bufnames, items, bufnames_with_lines, opts)
+  opts._items = items
+
+  local tabs_command = "rg --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color always --glob \"{" .. table.concat(bufnames, ',') .. "}\" ''"
+  command = tabs_command .. ' ; ' .. command
+
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
     { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   fzf_files(opts)
+
+  opts._is_grep = false
+  opts._items = {}
 end
 
 function relevant_files(opts)
@@ -520,8 +523,16 @@ function relevant_files(opts)
 
   local command = get_files_cmd(opts)
 
+  local bufnames = {}
+  local items = {}
+  local bufnames_with_lines = {}
+  bufnames, items, bufnames_with_lines = search_in_tabs(bufnames, items, bufnames_with_lines, opts)
+  opts._items = items
+
   opts.fzf_fn = libuv.spawn_nvim_fzf_cmd(
     { cmd = command, cwd = opts.cwd, pid_cb = opts._pid_cb })
 
   fzf_files(opts)
+
+  opts._items = {}
 end
