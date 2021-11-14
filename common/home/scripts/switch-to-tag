@@ -1,0 +1,4 @@
+#!/bin/sh
+
+TAG="$1"
+echo 'local awful = require("awful") ; awful.tag.viewonly(awful.screen.focused().tags['${TAG}'])' | awesome-client
