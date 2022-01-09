@@ -45,4 +45,5 @@ if [ -f "${CO2_PATH}" ]; then
         echo ' (CRITICAL)'
         maybe_notify critical ' O_O TIME TO OPEN THE WINDOW!'
     fi
+    echo "Last update $(date +%H:%M)"
 fi

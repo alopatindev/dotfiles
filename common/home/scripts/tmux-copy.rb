@@ -2,6 +2,8 @@
 
 require 'open3'
 
+system('killall xclip')
+
 buffer = STDIN.read
 
 ## clipboards = %w[clipboard primary secondary]
