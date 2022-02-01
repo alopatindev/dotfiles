@@ -1,0 +1,45 @@
+#!/bin/bash
+
+OUTPUT_DIR="$1"
+MIC_DETECT_RETRIES=10000
+
+wait_while_mic_is_disconnected () {
+    connected=0
+    for (( i=1; i<=$MIC_DETECT_RETRIES; i++ )); do
+        echo "trying to detect mic, attempt ${i}/${MIC_DETECT_RETRIES}"
+        arecord -L | grep H1n >>/dev/null && {
+            echo "detected a mic"
+            connected=1
+            break
+        }
+        sleep 3s
+    done
+
+    if [[ "${connected}" = 0 ]]; then
+        echo 'failed to detect mic'
+        return 1
+    fi
+
+    return 0
+}
+
+if [[ "$OUTPUT_DIR" = '' ]]; then
+    echo "$(basename $0) path/to/videos/dir"
+    exit 1
+fi
+
+wait_while_mic_is_disconnected || exit $?
+
+# detect standby/hibernate or just random USB issues that cause mic to disconnect
+# and restart ffmpeg
+while true; do
+    OUTPUT=$(recordscreen all-sound low mouse)
+    EXIT_CODE="$?"
+    mv -v "${OUTPUT}" "${OUTPUT_DIR}/"
+
+    if [[ "${EXIT_CODE}" = 0 ]]; then
+        break
+    else
+        wait_while_mic_is_disconnected || exit $?
+    fi
+done

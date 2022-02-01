@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # TODO: -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 -y out.mkv
+# TODO: time limit
 
 if [ "$1" = '-h' ]; then
     echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high] [mouse|no-mouse]"
@@ -14,6 +15,17 @@ MOUSE="$3"
 VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
 #VIDEO_SIZE="1696x73"
 OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mp4"
+
+kill_ffmpeg_on_error () {
+    grep -m1 'ALSA read error: No such device' >>/dev/null && {
+        ffmpeg_pid=$(ps uax | grep -E 'ffmpeg.*x11grab' | grep -v grep | awk '{print $2}')
+        if [[ "${ffmpeg_pid}" != '' ]]; then
+            kill "${ffmpeg_pid}"
+            exit 1
+        fi
+    }
+    exit 0
+}
 
 case "${DEVICE}" in
     mic-only)
@@ -61,7 +73,7 @@ if [ ! "${SOUND_INPUT}" ]; then
         -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
         -vcodec libx264 -preset ultrafast -crf "${CRF}" \
-        "${OUTPUT}"
+        "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 else
     ffmpeg \
         -thread_queue_size 512 \
@@ -78,7 +90,9 @@ else
         -vcodec libx264 -preset ultrafast -crf "${CRF}" \
         -acodec alac \
         -f ipod \
-        "${OUTPUT}"
+        "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 fi
 
+EXIT_CODE="$?"
 echo "${OUTPUT}"
+exit "${EXIT_CODE}"
