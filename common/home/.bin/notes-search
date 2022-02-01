@@ -1,0 +1,25 @@
+#!/bin/bash
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+cd ~/git/workbooks-alopatindev
+
+# TODO: show ipynb, then show all other non-binary files
+
+fzf_output=$(rg --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color always \
+  --glob '*.ipynb' \
+  --glob '!{.ipynb_checkpoints,.git}/*' . | \
+  fzf --delimiter=':' --preview-window=nohidden:noborder:wrap:up:50% \
+  --ansi --no-multi --tiebreak=index --info=inline --layout=reverse --print-query ; echo $?)
+
+fzf_exit_code=$(echo "${fzf_output}" | tail -n1)
+
+if [[ "${fzf_exit_code}" = 0 ]]; then
+  pattern=$(echo "${fzf_output}" | head -n1)
+  search_result=$(echo "${fzf_output}" | head -n2 | tail -n1)
+  filename=$(echo "${search_result}" | cut -d':' -f1)
+  line=$(echo "${search_result}" | cut -d':' -f2)
+  jupyter_url="http://localhost:8888/notebooks"
+  jupyter_path="/home/al/git/workbooks-alopatindev"
+  ngp-view.rb "${line}" "${filename}" "${pattern}" "${jupyter_url}" "${jupyter_path}"
+fi
