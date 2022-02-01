@@ -6,13 +6,11 @@ cd ~/git/workbooks-alopatindev
 
 # TODO: show all ipynb without body, using fd
 # TODO: show ipynb, then show all other non-binary files
-# FIXME: ignore .ipynb_checkpoints with glob
 
-fzf_output=$(rg --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --hidden --follow --color always \
-  --glob '*.ipynb' \
-  --glob '!.git/*' . | grep -v .ipynb_checkpoints | \
+fzf_output=$(rg --line-number --no-column --no-heading --fixed-strings --smart-case --no-ignore --follow --color always \
+  --glob '*.ipynb' . | \
   fzf --delimiter=':' --preview-window=nohidden:noborder:wrap:up:50% \
-  --ansi --no-multi --tiebreak=index --info=inline --layout=reverse --print-query ; echo $?)
+    --ansi --no-multi --tiebreak=index --info=inline --layout=reverse --print-query ; echo $?)
 
 fzf_exit_code=$(echo "${fzf_output}" | tail -n1)
 
