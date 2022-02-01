@@ -2,9 +2,10 @@
 
 require 'open3'
 
-system('killall xclip')
-
 buffer = STDIN.read
+exit if buffer.strip.empty?
+
+system('killall xclip')
 
 ## clipboards = %w[clipboard primary secondary]
 # clipboards = %w[clipboard]

@@ -76,35 +76,35 @@ mkdir -p /tmp/.vimswaps/
 
 #~/.private/sync_vimwiki.sh
 
-# https://superuser.com/questions/585545/how-to-disable-zsh-tab-completion-for-nfs-dirs/586088#586088
-function restricted-expand-or-complete() {
-   # split into shell words also at "=", if IFS is unset use the default (blank, \t, \n, \0)
-   local IFS="${IFS:- \n\t\0}="
-
-   # this word is completed
-   local complt
-
-   # if the cursor is following a blank, you are completing in CWD
-   # the condition would be much nicer, if it's based on IFS
-   if [[ $LBUFFER[-1] = " " || $LBUFFER[-1] = "=" ]]; then
-       complt="$PWD"
-   else
-       # otherwise take the last word of LBUFFER
-       complt=${${=LBUFFER}[-1]}
-   fi
-
-   # determine the physical path, if $complt is not an option (i.e. beginning with "-")
-   [[ $complt[1] = "-" ]] || complt=${complt:A}/
-
-   # activate completion only if the file is on a local filesystem, otherwise produce a beep
-   if [[ ! $complt = /nfs/* && ! $complt = /media/* ]]; then
-       zle expand-or-complete
-   #else
-   #    echo -en "\007"
-   fi
-}
-zle -N restricted-expand-or-complete
-bindkey "^I" restricted-expand-or-complete
+## https://superuser.com/questions/585545/how-to-disable-zsh-tab-completion-for-nfs-dirs/586088#586088
+#function restricted-expand-or-complete() {
+#   # split into shell words also at "=", if IFS is unset use the default (blank, \t, \n, \0)
+#   local IFS="${IFS:- \n\t\0}="
+#
+#   # this word is completed
+#   local complt
+#
+#   # if the cursor is following a blank, you are completing in CWD
+#   # the condition would be much nicer, if it's based on IFS
+#   if [[ $LBUFFER[-1] = " " || $LBUFFER[-1] = "=" ]]; then
+#       complt="$PWD"
+#   else
+#       # otherwise take the last word of LBUFFER
+#       complt=${${=LBUFFER}[-1]}
+#   fi
+#
+#   # determine the physical path, if $complt is not an option (i.e. beginning with "-")
+#   [[ $complt[1] = "-" ]] || complt=${complt:A}/
+#
+#   # activate completion only if the file is on a local filesystem, otherwise produce a beep
+#   if [[ ! $complt = /nfs/* && ! $complt = /media/* ]]; then
+#       zle expand-or-complete
+#   #else
+#   #    echo -en "\007"
+#   fi
+#}
+#zle -N restricted-expand-or-complete
+#bindkey "^I" restricted-expand-or-complete
 
 
 # added by travis gem
