@@ -15,6 +15,8 @@ xgamma -gamma 0.9
 
 #parcellite -n 2>>/dev/null &
 
+#sudo /usr/local/sbin/hdmi_hotplug.sh 0 &
+
 chromium &
 #pidgin &
 #qtox &
@@ -33,7 +35,7 @@ autocutsel -selection CLIPBOARD -fork
 
 eval $(luarocks path --bin)
 
-#setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp_led:caps,compose:rwin
+#setxkbmap -layout us,ru -option grp:caps_toggle,lv3:rwin_switch,compose:ralt,grp_led:caps,compose:rwin,shift:breaks_caps
 #skb | while read x ; do echo "myskb.text = '<b>[ $x ]</b>'" | awesome-client ; done &
 #while true ; do echo "exrate.text = '<b>[ $(~/scripts/exchange-rates.sh) ]</b>'" | awesome-client ; sleep 1m ; done &
 

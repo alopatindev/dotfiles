@@ -199,7 +199,7 @@ local function get_grep_cmd(opts, search_query, no_esc)
     search_query = vim.fn.shellescape(search_query)
   end
 
-  return string.format('%s %s %s 2>>/dev/null', command, search_query, search_path)
+  return string.format('%s %s %s 2>>/dev/null | head -n10000000', command, search_query, search_path)
 end
 
 local function get_lines_from_file(file)
@@ -483,7 +483,8 @@ function get_files_cmd(opts)
     command = string.format('find -L . %s', opts.find_opts)
   end
   git_ls_files = 'git ls-files --exclude-standard --deduplicate 2>>/dev/null'
-  return git_ls_files .. ' ; ' .. command
+  --return git_ls_files .. ' ; ' .. command
+  return '{' .. git_ls_files .. ' ; ' .. command .. '} | head -n10000000'
 end
 
 function add_space_before_text(item)

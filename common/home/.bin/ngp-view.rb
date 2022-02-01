@@ -17,7 +17,7 @@ def parse_anchor(filename, line)
 end
 
 line = ARGV[0].to_i
-filename = ARGV[1].sub(/^\.\//, '')
+filename = ARGV[1].sub(%r{^\./}, '')
 pattern = ARGV[2]
 jupyter_url = ARGV[3]
 jupyter_path = ARGV[4]
@@ -29,6 +29,7 @@ command =
     anchor = parse_anchor(filename, line)
     jupyter_path = File.join(Dir.pwd, filename).sub(/^#{jupyter_path}/, '')
     url = "#{jupyter_url}#{jupyter_path}#{anchor}"
+    system '~/scripts/switch-to-tag 3 ; sleep 0.1'
     [BROWSER, url]
   else
     [EDITOR, '-c', "/#{pattern}", '-c', line, filename]
