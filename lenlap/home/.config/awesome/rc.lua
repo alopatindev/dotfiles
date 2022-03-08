@@ -98,7 +98,8 @@ mykeyboardlayout = keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock("[ %H:%M ]")
+-- mytextclock = wibox.widget.textclock("[ %d %b %a | %H:%M ]")
+mytextclock = wibox.widget.textclock("[ %Y-%m-%d %a | %H:%M ]")
 mybattery = battery_widget()
 
 -- Create a wibox for each screen and add it

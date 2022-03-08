@@ -39,5 +39,10 @@ ${exec ~/scripts/temp.sh}
 
 ${exec ~/scripts/co2mond-status.sh}
 
-${texeci 3 ~/scripts/touchpad-status.sh}
+${texeci 3 ~/scripts/ping-mind.sh}
+
+${texeci 60 ~/scripts/touchpad-status.sh}
+
+${texeci 600 ~/scripts/exchange-rates.sh}
+#${execpi 300 PYTHONIOENCODING=utf8 gcalcli --conky --nolineart calm --monday}
 ]];

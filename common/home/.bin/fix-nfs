@@ -2,5 +2,5 @@
 
 sudo /etc/init.d/autofs restart
 sudo umount -fl /nfs/mind
-ssh mind 'sudo /etc/init.d/nfs restart ; sudo umount -fl /media/rhome ; /home/al/git-extra/usbreset/usbreset $(lsusb -d 2109: | perl -nE "/\D+(\d+)\D+(\d+).+/; print qq(/dev/bus/usb/\$1/\$2)") ; sleep 5 ; sudo /etc/init.d/autofs restart ; ls /media/rhome'
+#ssh mind 'sudo /etc/init.d/nfs restart ; sudo umount -fl /media/rhome ; /home/al/git-extra/usbreset/usbreset $(lsusb -d 2109: | perl -nE "/\D+(\d+)\D+(\d+).+/; print qq(/dev/bus/usb/\$1/\$2)") ; sleep 5 ; sudo /etc/init.d/autofs restart ; ls /media/rhome'
 ls /nfs/mind

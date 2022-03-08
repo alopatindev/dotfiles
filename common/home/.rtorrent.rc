@@ -13,8 +13,9 @@ port_random = no
 
 trackers.use_udp.set = yes
 
-#session_save = yes
-session.save = yes
+#session_save = yes # causes crash
+
+network.http.proxy_address.set=127.0.0.1:8889
 
 #scgi_port = localhost:5000
 

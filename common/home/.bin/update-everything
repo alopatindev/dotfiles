@@ -6,11 +6,16 @@ set -e
 #rustup +${RUST_NIGHTLY_VERSION} component add miri
 
 #RUST_NIGHTLY_VERSION="nightly-2021-05-07"
-RUST_NIGHTLY_VERSION="nightly-2021-06-09"
-#RUST_STABLE_VERSION="1.53.0-x86_64-unknown-linux-gnu"
-RUST_STABLE_VERSION="1.54.0-x86_64-unknown-linux-gnu"
+#RUST_NIGHTLY_VERSION="nightly-2021-06-09"
+RUST_NIGHTLY_VERSION="nightly-2021-10-21"
+#RUST_STABLE_VERSION="1.54.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.56.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.57.0-x86_64-unknown-linux-gnu"
+RUST_STABLE_VERSION="1.58.1-x86_64-unknown-linux-gnu"
 #RUST_ANALYZER_VERSION="2021-05-10"
-RUST_ANALYZER_VERSION="2021-06-21"
+#RUST_ANALYZER_VERSION="2021-06-21"
+RUST_ANALYZER_VERSION="2021-10-18"
+#RUST_ANALYZER_VERSION="2022-01-31"
 
 export RUSTFLAGS="-C target-cpu=native"
 
@@ -49,7 +54,7 @@ go get github.com/google/fscrypt/cmd/fscrypt
 pip3 list --outdated --format=freeze | grep -v '^\-e' | grep -v '^pip$' | cut -d = -f 1 | xargs -n1 pip3 install --upgrade --user
 pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -n1 pip2 install --upgrade --user
 
-nvim +PlugInstall +UpdateRemotePlugins +qa
+/usr/bin/nvim +PlugInstall +UpdateRemotePlugins +qa
 
 gem install rubocop nokogiri acoc jekyll bundler open3 rubydns
 
