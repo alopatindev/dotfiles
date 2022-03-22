@@ -75,6 +75,7 @@ set directory=/tmp/.vimswaps//
 "set directory=~/.private/.vimswaps//
 "set foldmethod=indent
 set foldmethod=manual
+set foldlevel=4
 "set textwidth=80
 set textwidth=0
 set nocompatible

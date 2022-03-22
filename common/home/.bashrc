@@ -56,7 +56,7 @@ function setdsm() {
     echo "DJANGO_SETTINGS_MODULE set to $DJANGO_SETTINGS_MODULE"
 }
 
-mkdir -p /tmp/.vimswaps/
+mkdir -p /tmp/.vimswaps/ && chmod 700 /tmp/.vimswaps/
 
 source ~/.bash_env
 source ~/.bash_completes
@@ -64,3 +64,5 @@ source ~/.bash_alias
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash

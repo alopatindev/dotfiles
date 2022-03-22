@@ -7,7 +7,8 @@
     excludesfile = ~/.gitignore.global
     ignorecase = false
     quotePath = false
-    editor = "vi +0"
+    #editor = "vi +0"
+    editor = "nvim -u DEFAULT +0"
 
 [color]
     ui = true
@@ -34,6 +35,7 @@
     g = grep --extended-regexp --break --heading --line-number
     search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
     diffuse = difftool --tool diffuse
+    b = branch --sort=-committerdate
 
 [pager]
     log = diff-highlight | less
