@@ -148,3 +148,9 @@ precmd() {
         tmux rename-window "${window_title}" 2&>>/dev/null
     }
 }
+
+hostname_color='yellow'
+if [[ -z "${SSH_TTY}" ]]; then
+    hostname_color='green'
+fi
+export PS1='%(!.%B%F{red}.%B%F{green}%n)%F{'${hostname_color}'}@%m %F{blue}%(!.%1~.%~) ${vcs_info_msg_0_}%F{blue}%(!.#.$)%k%b%f '
