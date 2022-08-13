@@ -1,8 +1,14 @@
 #!/bin/sh
 
 DIR=$HOME'/screens'
-#FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
-NUM=$(($(cat "$DIR/.counter") + 1)) && echo $NUM > "$DIR/.counter"
-FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
+##FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
+#NUM=$(($(cat "$DIR/.counter") + 1)) && echo $NUM > "$DIR/.counter"
+#FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
+
+WINDOW_ID=$(xdotool getwindowfocus)
+PROCESS_NAME=$(cat /proc/$(xdotool getwindowpid "${WINDOW_ID}")/comm)
+#WINDOW_TITLE=$(xdotool getwindowname "${WINDOW_ID}")
+FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.png"
+
 (import $FILENAME && feh $FILENAME) || xmessage 'import failed'
 #(scrot -s $FILENAME && feh $FILENAME) || xmessage 'import failed'

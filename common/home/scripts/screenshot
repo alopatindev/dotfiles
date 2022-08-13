@@ -1,8 +1,14 @@
 #!/bin/sh
 
 DIR=$HOME'/screens'
-COUNTER=.counter
-#FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
-NUM=$(($(cat "$DIR/$COUNTER") + 1)) && echo $NUM > "$DIR/$COUNTER"
-FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
+#COUNTER=.counter
+##FILENAME=$DIR'/screenshot_'$((`ls -1 $DIR|tail -n1|tr -d '[a-z\._]'`+1))'.png'
+#NUM=$(($(cat "$DIR/$COUNTER") + 1)) && echo $NUM > "$DIR/$COUNTER"
+#FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
+
+WINDOW_ID=$(xdotool getwindowfocus)
+PROCESS_NAME=$(cat /proc/$(xdotool getwindowpid "${WINDOW_ID}")/comm)
+#WINDOW_TITLE=$(xdotool getwindowname "${WINDOW_ID}")
+FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.png"
+
 scrot ${FILENAME} && feh ${FILENAME}
