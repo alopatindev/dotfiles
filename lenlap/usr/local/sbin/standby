@@ -19,7 +19,7 @@ killall gpg-agent
 mpc stop
 /etc/init.d/alsasound restore
 mount | grep '/nfs/router' >> /dev/null && umount /nfs/router &
-chvt 5
+#chvt 5
 sync
 
 t1=$(date +%s)
@@ -36,7 +36,7 @@ sync
 echo "keycode 14 = BackSpace" | loadkeys &
 /etc/local.d/99-non-blinking-block-cursor.start &
 #(sleep 3 && /etc/init.d/net.ppp0 restart && /etc/init.d/mpdscribble restart) &
-(sleep 3 && /etc/init.d/mpdscribble restart) &
+(sleep 3 && /etc/init.d/mpdscribble restart ; /etc/init.d/bumblebee restart) &
 #/etc/init.d/hddtemp restart &
 #/etc/init.d/consolefont restart
 #/etc/init.d/hwclock restart

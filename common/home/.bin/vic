@@ -5,6 +5,16 @@ if [ $(tmux list-panes | wc -l) -gt 1 ]; then
     tmux new-window "cd ${current_dir} ; source ~/scripts/tmux-cd-to-current-dir.sh ; ${SHELL}"
 fi
 
-tmux split-window -h -l 180 "source ~/scripts/tmux-cd-to-current-dir.sh ; vi $@ ; ${SHELL}"
+screen_width=$(xdpyinfo | grep dimensions | awk '{print $2}' | sed 's!x.*!!')
+
+if [ "${screen_width}" -le 1920 ]; then
+    editor_width=100
+else
+    editor_width=180
+fi
+
+tmux split-window -h -l "${editor_width}" "source ~/scripts/tmux-cd-to-current-dir.sh ; vi $@ ; ${SHELL}"
 tmux split-window -v -l 12 "source ~/scripts/tmux-cd-to-current-dir.sh ; ${SHELL}"
 tmux select-pane -U
+
+~/git/workbooks-alopatindev/work-notes/scripts/vic-services

@@ -16,7 +16,7 @@ maybe_notify () {
     text="$2"
     mins_since_last_notification=$((( (${current_timestamp} - $(cat ${LAST_NOTIFICATION_TIME_PATH})) / 60 )))
     if [ "${mins_since_last_notification}" -gt "${PAUSE_BETWEEN_NOTIFICATIONS_IN_MINS}" ]; then
-        notify-send -t 0 -u "${priority}" "${text}"
+        notify-send -t $(((${PAUSE_BETWEEN_NOTIFICATIONS_IN_MINS} * 60 * 1000))) -u "${priority}" "${text}"
         echo "${current_timestamp}" > "${LAST_NOTIFICATION_TIME_PATH}"
     fi
 }
