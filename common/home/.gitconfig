@@ -36,6 +36,8 @@
     search = log --color=always --no-merges -i -E --pretty='%h (%ad) - [%an] %s %d' --date=format:'%b %d %Y' --grep
     diffuse = difftool --tool diffuse
     b = branch --sort=-committerdate
+    co = !git fetch -v origin $1 && git checkout $1 && git pull -v origin $1 && :
+    hco = !git fetch -v origin $1 && git checkout $1 && git reset --hard "origin/$1" && git pull -v origin $1 && :
 
 [pager]
     log = diff-highlight | less
