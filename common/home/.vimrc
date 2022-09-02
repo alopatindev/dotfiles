@@ -264,6 +264,9 @@ imap <F2> <esc>:wa<cr>i
 
 map cc <esc>:q<cr>
 
+imap <C-Del> X<Esc>ce
+map <C-Del> dw
+
 vmap s :sort<cr>
 
 " Tagbar
