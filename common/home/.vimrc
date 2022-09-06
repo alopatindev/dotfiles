@@ -194,6 +194,8 @@ endif
 "  noremap <bs> :tabp<cr>
 "endif
 
+" requires https://www.vinc17.net/unix/ctrl-backspace.en.html
+inoremap <C-Home> <C-w>
 
 
 " Keyboard shortcuts

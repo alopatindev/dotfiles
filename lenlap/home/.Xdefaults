@@ -58,3 +58,7 @@ Xft.dpi: 110
 ! XTerm*vt100.translations: #override \
 !     Shift Ctrl <Key> C: copy-selection(CLIPBOARD) \n\
 !     Shift Ctrl <Key> V: insert-selection(CLIPBOARD)
+
+! https://www.vinc17.net/unix/ctrl-backspace.en.html - maps C-bs to C-Home
+*VT100*translations: #override \n\
+        Ctrl<Key>BackSpace: string("\033[7;5~")
