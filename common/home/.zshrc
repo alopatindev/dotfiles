@@ -44,11 +44,46 @@ ZSH_THEME="gentoo"
 #plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting zsh-autosuggestions)
 #plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting)
 #plugins=(git autojump command-not-found zsh-syntax-highlighting)
-plugins=(git command-not-found zsh-syntax-highlighting)
+#plugins=(git command-not-found zsh-syntax-highlighting)
+plugins=(git command-not-found zsh-syntax-highlighting command-time)
 
 fpath+=~/.zsh/completions
 
+print_status() {
+    local exit_code="$?"
+    local last_cmd=(${(z)history[$((HISTCMD-1))]})
+    [ "${exit_code}" -ne 0 ] && [ "${exit_code}" -ne 130 ] && print -P "Exit code: %F{red}${exit_code}%f"
+    # TODO: [ "${exit_code}" -ne 0 ] && [ "${exit_code}" -ne 130 ] && [[ echo ${last_cmd} | grep -E '(cat|cd) .*' ]] && print -P "Exit code: %F{red}${exit_code}%f"
+}
+precmd_functions+=(print_status)
+#setopt print_exit_value
+
+ZSH_COMMAND_TIME_MSG='Execution time: %s'
+ZSH_COMMAND_TIME_COLOR="cyan"
+ZSH_COMMAND_TIME_EXCLUDE=(vi nvim vim mcedit nano mpv ncmpcpp xterm watch)
+
 source $ZSH/oh-my-zsh.sh
+
+zsh_command_time() {
+    if [ -n "$ZSH_COMMAND_TIME" ]; then
+        hours=$(($ZSH_COMMAND_TIME/3600))
+        min=$(($ZSH_COMMAND_TIME/60))
+        sec=$(($ZSH_COMMAND_TIME%60))
+        if [ "$ZSH_COMMAND_TIME" -le 60 ]; then
+            timer_show="$fg[green]${ZSH_COMMAND_TIME}s"
+        elif [ "$ZSH_COMMAND_TIME" -gt 60 ] && [ "$ZSH_COMMAND_TIME" -le 180 ]; then
+            timer_show="$fg[yellow]${min}m ${sec}s"
+        else
+            if [ "$hours" -gt 0 ]; then
+                min=$(($min%60))
+                timer_show="$fg[red]${hours}h ${min}m ${sec}s"
+            else
+                timer_show="$fg[red]${min}m ${sec}s"
+            fi
+        fi
+        printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
+    fi
+}
 
 autoload -U compinit && compinit
 
@@ -121,10 +156,16 @@ PERL_MB_OPT="--install_base \"/home/al/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/al/perl5"; export PERL_MM_OPT;
 
 precmd() {
-    pwd | grep "${HOME}/work/" >> /dev/null && {
-        export RUSTFLAGS='-C link-args=-lzstd -C force-frame-pointers=y'
+    pwd | grep "${HOME}/work/monorepo" | grep -v monorepo-deploy | grep -v monorepo-dynamic-data >> /dev/null && {
+        #(docker start dreamy_jones quizzical_hertz >>/dev/null &) >>/dev/null
+        export RUST_MIN_STACK="16777216"
+        export RUSTFLAGS='-C link-args=-lzstd -C link-args=-lcurl -C force-frame-pointers=y'
         export CFLAGS=
         export CXXFLAGS=
+
+        export RUSTC_BOOTSTRAP="1" ; export RUSTFLAGS="${RUSTFLAGS} -Z threads=16" # unstable compiler parallelism improvements
+        export CARGO_UNSTABLE_GC=true
+
         for i in target; do
             export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
             mkdir -p "${CARGO_TARGET_DIR}"
@@ -138,21 +179,31 @@ precmd() {
             unset CARGO_TARGET_DIR
         done
         export RUST_BACKTRACE=full
+        [ -d .git/info ] && echo 'Cargo.lock -diff' > .git/info/attributes
         unset -f precmd
     }
 
     [ -z "${TMUX}" ] || {
-        max_window_title_length=15
-        window_title=$(basename "${PWD}")
-        if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
-            window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
-        fi
-        tmux rename-window "${window_title}" 2&>>/dev/null
+        # FIXME: get window number of currently running zsh, not just window number of currently selected window
+        window_number="$(/usr/bin/tmux display-message -p '#I')"
+        [ "${window_number}" -ne 0 ] && [ "${window_number}" -ne 1 ] && {
+            max_window_title_length=15
+            window_title=$(basename "${PWD}")
+            if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
+                window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
+            fi
+            /usr/bin/tmux rename-window -t "${window_number}" "${window_title}" 2&>>/dev/null
+        }
     }
 }
 
-hostname_color='yellow'
-if [[ -z "${SSH_TTY}" ]]; then
-    hostname_color='green'
-fi
-export PS1='%(!.%B%F{red}.%B%F{green}%n)%F{'${hostname_color}'}@%m %F{blue}%(!.%1~.%~) ${vcs_info_msg_0_}%F{blue}%(!.#.$)%k%b%f '
+TRAPEXIT() {
+    # remove potentially destructive/sensitive commands from the history
+    sed -i '/.*;rm .*/d;/.*;srm .*/d;/.*;git .*commit .*--amend.*/d;/.*;git .*push .*-f.*/d;/.*;git .*please .*/d;/.*;sudo .*/d' ~/.zsh_history
+}
+
+#hostname_color='yellow'
+#if [[ -z "${SSH_TTY}" ]]; then
+#    hostname_color='green'
+#fi
+#export PS1='%(!.%B%F{red}.%B%F{green}%n)%F{'${hostname_color}'}@%m %F{blue}%(!.%1~.%~) ${vcs_info_msg_0_}%F{blue}%(!.#.$)%k%b%f '

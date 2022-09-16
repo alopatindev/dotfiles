@@ -4,7 +4,7 @@ export ANDROID_HOME="${HOME}/Android/sdk"
 #export PATH="${HOME}/.bin:${HOME}/necessitas/QtCreator/bin/:${PATH}"
 #export PATH="${HOME}/.bin:/usr/lib64/qt5/bin/:${PATH}"
 #export PATH="${HOME}/.bin:${HOME}/.cargo/bin:${HOME}/.gem/ruby/2.3.0/bin:/usr/lib64/qt5/bin:${PATH}:${HOME}/node_modules/.bin:${HOME}/.local/bin:${HOME}/go/bin"
-export PATH="${HOME}/.bin:${HOME}/.cargo/bin:${ANDROID_HOME}/emulator:${HOME}/.gem/ruby/2.6.0/bin:/usr/lib64/qt5/bin:${PATH}:${HOME}/node_modules/.bin:${HOME}/.local/bin:${HOME}/go/bin"
+export PATH="${HOME}/.bin:${HOME}/.cargo/bin:${ANDROID_HOME}/emulator:${HOME}/bin:/usr/lib64/qt5/bin:${PATH}:${HOME}/node_modules/.bin:${HOME}/.local/bin:${HOME}/go/bin"
 export OLDPWD=~
 export BROWSER=chromium
 #export TERM=rxvt-unicode
@@ -16,7 +16,7 @@ SAL_USE_VCLPLUGIN=gtk
 #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/sbar/necessitas/QtCreator/Qt/lib/"
 #export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/android-sdk-update-manager/tools/lib/"
 
-export EDITOR=vi
+export EDITOR=nvim
 export TERMINAL=xterm
 
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -36,3 +36,5 @@ export GPG_TTY=$(tty)
 #export RUSTFLAGS='-C link-args=-lzstd'
 
 export FZF_DEFAULT_OPTS="--hscroll-off=1000"
+
+export FZF_DEFAULT_OPTS="--height=100%"

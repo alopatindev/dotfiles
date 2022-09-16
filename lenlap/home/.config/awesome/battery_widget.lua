@@ -18,7 +18,7 @@ function battery_widget.new(format, timeout, timezone)
     local t
     function w._private.battery_widget_update_cb()
         b = battery.batclosure ('BAT0')()
-        w:set_markup('[' .. b .. ' ]')
+        w:set_markup('[ ' .. b .. ' ]')
         t.timeout = calc_timeout(timeout)
         t:again()
         return true -- Continue the timer

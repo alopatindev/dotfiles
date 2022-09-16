@@ -1,13 +1,15 @@
 # vim: filetype=conf:textwidth=0
 
 #"xterm -T 'terms' -e 'screen -DRm'"
-"xterm -T 'terms' -e 'tmux attach || tmux'"
+#"xterm -T 'terms' -e 'tmux attach || tmux'"
+"wezterm"
     m:0x41 + c:36
     Shift+Mod4 + Return
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
 #"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
-"xterm -T 'terms' -fs 28 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
+#"xterm -T 'terms' -fs 28 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
+"xterm -T 'terms' -fs 40 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
     m:0xd + c:36
     Control+Shift+Alt + Return
 
@@ -56,13 +58,17 @@
 #    Shift+Alt+Mod2 + r
 
 #"for i in /media/*; do umount $i; done"
-"mount | awk '{print $3}' | egrep --color=none '^/media' | xargs sudo umount"
+"fusermount -u ~/.private-mind ; mount | awk '{print $3}' | egrep --color=none '^/media' | xargs sudo umount"
     m:0x40 + c:41
     Mod4 + f
 
 "~/.bin/alock & sleep 0.5 && xset dpms force off"
     m:0x40 + c:46
     Mod4 + l
+
+"~/.bin/alock"
+    m:0x44 + c:46
+    Control+Mod4 + l
 
 #"alock"
 #    m:0x1c + c:64
@@ -104,7 +110,7 @@
     m:0x80 + c:39
     Mod5 + s
 
-"mpc -q stop &> /dev/null"
+"mpc -q stop &> /dev/null ; sleep 0.3s ; sudo /etc/init.d/mpd --nodeps restart"
     m:0x40 + c:39
     Mod4 + s
 
@@ -112,25 +118,27 @@
     m:0x0 + c:191
     XF86Tools
 
-#"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+    m:0x0 + c:121
+    XF86AudioMute
 #    m:0x10 + c:121
 #    Mod2 + XF86AudioMute
 
-"echo 'awesome.restart()' | awesome-client"
+"~/scripts/assign_tags_to_apps.rb > /tmp/.apps_to_tags ; echo 'awesome.restart()' | awesome-client"
     m:0xc + c:27
     Control+Alt + r
 
 ##"amixer set Master playback 1+ unmute"
-##"~/scripts/change_volume.sh +"
 #"~/scripts/show_volume.sh"
-#    m:0x0 + c:123
-#    XF86AudioRaiseVolume
-#
+"~/scripts/change_volume.sh +"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
 ##"amixer set Master playback 1-"
-##"~/scripts/change_volume.sh -"
 #"~/scripts/show_volume.sh"
-#    m:0x0 + c:122
-#    XF86AudioLowerVolume
+"~/scripts/change_volume.sh -"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
 
 "sudo /usr/local/sbin/bl-brightness.sh up"
     m:0x0 + c:233
@@ -143,3 +151,11 @@
 "sudo /usr/local/sbin/hdmi_hotplug.sh 0"
     m:0x40 + c:43
     Mod4 + h
+
+"~/scripts/rebind-ssh-ports.sh ; ~/scripts/update-awesome.sh"
+    m:0x48 + c:27
+    Alt+Mod4 + r
+
+"killall autocutsel ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh"
+    m:0x48 + c:25
+    Alt+Mod4 + w

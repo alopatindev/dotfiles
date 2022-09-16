@@ -1,0 +1,4 @@
+#!/bin/sh
+
+BINUTILS_DIR=$(ls -d1 /usr/$(uname -m)*linux-gnu)
+lld $@ || "${BINUTILS_DIR}/bin/ld.orig" $@

@@ -1,0 +1,1 @@
+mind -fstype=nfs,rw,relatime,rsize=1048576,wsize=1048576,soft,proto=tcp,timeo=600,retrans=2,sec=sys mind:/home/al/shared

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+logger "running $0"
+
+MAX_USED_MEM=90
+MIN_USED_MEM=50
+
+SWAP_DIR="/mnt/lenslowssd"
+SWAP_FILE="${SWAP_DIR}/swapfile"
+MAX_SWAP_SIZE=$((( 16 * 1024 * 1024 * 1024 ))) # 16G
+
+(while [ 1 ] ; do
+    used_swap_bytes=$(free | grep Swap: | awk '{print $3}')
+    used_mem=$(free | grep Mem: | awk '{print int((($3 + '${used_swap_bytes}') / $2) * 100)}')
+    if [ "${used_mem}" -gt "${MAX_USED_MEM}" ] ; then
+        logger "mem usage is ${used_mem}%"
+        #swapon /dev/disk/by-label/dellyswap
+        if [ -e "${SWAP_FILE}" ] ; then
+            logger "enabling existing swap file"
+        else
+            logger "creating swap file"
+
+            available_space_bytes=$((( $(df "${SWAP_DIR}" | awk '{print $4}' | tail -n1) * 1024 )))
+            swap_size="${MAX_SWAP_SIZE}"
+            if [ "${swap_size}" -ge "${available_space_bytes}" ] ; then
+                logger "NOT enough disk space: ${MAX_SWAP_SIZE} >= ${available_space_bytes}"
+                swap_size=$((( ${available_space_bytes} / 2 )))
+            else
+                logger "enough disk space"
+            fi
+
+            fallocate --length "${swap_size}" "${SWAP_FILE}"
+            chmod 600 "${SWAP_FILE}"
+            mkswap "${SWAP_FILE}"
+        fi
+        swapon "${SWAP_FILE}" || :
+    elif [ "${used_mem}" -lt "${MIN_USED_MEM}" ] && [ $(free | grep Swap: | awk '{print $2}') -gt 0 ] ; then
+        logger "swap is on, but it's probably not necessary"
+        sleep 1m
+        if [ "${used_mem}" -lt "${MIN_USED_MEM}" ] ; then
+            logger "swapoff"
+            swapoff -a #&& rm -f "${SWAP_FILE}"
+        fi
+    fi
+    sleep 3s
+done) &

@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+package_groups = %w[btcsuite changed-deps downgrade installed live-rebuild module-rebuild preserved-rebuild profile rebuilt-binaries security selected selected-packages selected-sets system ucimf unavailable unavailable-binaries world x11-module-rebuild]
+package_groups += package_groups.map { |i| '@' + i }
+
+args = []
+packages = []
+
+ARGV.each { |i|
+  if (i.start_with? '-') || (package_groups.any? i) || (i.include? '::')
+    args.push(i)
+  else
+    args.push(i + '::gentoo')
+    packages.push(i)
+  end
+}
+
+#p args
+
+for package in packages
+  system("emlop log --last 1 ^#{package}$ || emlop log --last 1 /#{package}$")
+end
+
+print(Time.new)
+#system("time sudo emerge #{args.join(' ')} ; aplay -q /usr/local/share/gajim/data/sounds/sent.wav")
+system("time sudo emerge #{args.join(' ')}")
+
+# sudo python3.9 /usr/lib/python-exec/python3.9/emerge -av1 emlop

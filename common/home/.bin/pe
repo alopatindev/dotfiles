@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+DEFAULT_TIME_LIMIT="10s"
+
+if [ $# -lt 1 ] ; then
+    echo "usage: $0 \`pidof tmux | awk '{print \$1}'\` [${DEFAULT_TIME_LIMIT}]"
+    exit 1
+fi
+
+app_pid="$1"
+time_limit="${2:-$DEFAULT_TIME_LIMIT}"
+
+cd
+echo "measuring ${app_pid} for ${time_limit} ..."
+sudo timeout "${time_limit}" perf record -g --call-graph=dwarf -p "${app_pid}"
+sudo perf report --no-inline

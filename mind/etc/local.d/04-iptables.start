@@ -1,19 +1,41 @@
 #!/bin/sh
 
-WAN_IFACE="eth0"
-WIFI_IFACE="wlan0"
-LAPTOP_IPV4="192.168.1.2"
-SMART_DEVICES_IPV4_RANGE="192.168.1.100-192.168.1.255"
+#WAN_IFACE="eth0"
+WAN_IFACE="wlan0"
 
-# allow laptop only to connect to some TCP ports of mind
-for port in 22 111 ; do
-    iptables -A INPUT -p tcp --dport "${port}" --source "${LAPTOP_IPV4}" -j ACCEPT
+WIFI_IFACE="wlp1s0u1u1"
+#ADMIN_IPV4=( "192.168.1.2" "192.168.1.4" )
+ADMIN_IPV4=( "192.168.1.2" )
+SMART_DEVICES_IPV4_RANGE="192.168.1.100-192.168.1.255" # currently unused
+
+# allow admin devices only to connect to some TCP ports of mind (ssh, NFS)
+for port in 22 111 2049 ; do
+    for ip in "${ADMIN_IPV4[@]}" ; do
+        iptables -A INPUT -p tcp --dport "${port}" --source "${ip}" -j ACCEPT
+    done
+
     iptables -A INPUT -p tcp --dport "${port}" -j DROP
+done
+
+# allow ICMP traffic from admin devices only
+for ip in "${ADMIN_IPV4[@]}" ; do
+    iptables -A INPUT -p icmp --icmp-type echo-request --source "${ip}" -j ACCEPT
 done
 
 # disallow smart devices connecting to internet
 iptables -I FORWARD -i "${WAN_IFACE}" -m iprange --dst-range "${SMART_DEVICES_IPV4_RANGE}" -j DROP
 
+# allow i2pd traffic https://superuser.com/questions/1138960/strict-detailed-iptables-rules-for-i2p
+iptables -A INPUT -j ACCEPT -m owner --uid-owner i2pd
+iptables -A OUTPUT -j ACCEPT -m owner --uid-owner i2pd
+
+# disallow all incoming connections by default
+iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i "${WAN_IFACE}" -j DROP
+iptables -A INPUT -i "${WIFI_IFACE}" -j DROP
+
 # enable gateway
 iptables -t nat -I POSTROUTING -o "${WAN_IFACE}" -j MASQUERADE
 iptables -I FORWARD -i "${WIFI_IFACE}" -j ACCEPT
+
+

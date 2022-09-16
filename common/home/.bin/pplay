@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'shellwords'
+
+videos = Dir['**/*.{mp4,mkv}']
+         .filter { |i| File.file?(i) }
+         .map { |i| [i, File.basename(i)] }
+         .sort_by { |_, i| i }
+         .uniq { |_, i| i }
+         .map { |i, _| i }
+
+videos = ARGV + videos.filter { |i| !ARGV.include?(i) }.shuffle
+print "#{videos.length}\n"
+
+mpv = ['mpv', '--fs', '--loop-playlist', '--no-resume-playback', '--volume=30', '--mute', '--start=40%', '--speed=1']
+system (mpv + videos).shelljoin

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+OUTPUT="multiget.bin"
+
+if [ $# -lt 1 ] ; then
+    echo "usage: $0 https://mirror1/filename [https://mirror2/filename ...]"
+    echo "output is ${OUTPUT}"
+    exit 1
+fi
+
+set -x
+
+# netselect -s 3 https://mirror1 [https://mirror2 ...]
+
+aria2c --max-concurrent-downloads=64 -o "${OUTPUT}" "$@"

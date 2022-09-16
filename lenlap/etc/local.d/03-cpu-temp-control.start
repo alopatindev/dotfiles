@@ -2,16 +2,22 @@
 
 logger "running $0"
 
-MAX_ALLOWED_TEMP=95
+MAX_ALLOWED_TEMP=100
+WARN_CPU_TEMP=90
 
 (while [ 1 ] ; do
-    MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort | tail -n1)
-    if [ "${MAX_CPU_TEMP}" -ge "${MAX_ALLOWED_TEMP}" ]; then
+    MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | xargs printf '%03d\n' | sort | tail -n1)
+    if [ "${MAX_CPU_TEMP}" -gt "${MAX_ALLOWED_TEMP}" ] || { [ "${MAX_CPU_TEMP}" -gt "${WARN_CPU_TEMP}" ] && [ -f /tmp/.thermal_alert ]; }; then
         logger "cpu temp was ${MAX_CPU_TEMP}"
         /usr/local/sbin/switch-governor.sh powersave
         sleep 1m
     else
-        if [ $(cat /sys/class/power_supply/BAT0/status) != 'Discharging' ]; then
+#        if [ $(cat /sys/class/power_supply/BAT0/status) != 'Discharging' ]; then
+#            /usr/local/sbin/switch-governor.sh performance
+#        fi
+        if [ $(cat /sys/class/power_supply/BAT0/status) == 'Discharging' ]; then
+            /usr/local/sbin/switch-governor.sh powersave
+        else
             /usr/local/sbin/switch-governor.sh performance
         fi
     fi

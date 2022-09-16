@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DATA_DIR="/tmp/co2mond"
+killall co2mond 2>>/dev/null
+rm -rf "${DATA_DIR}"

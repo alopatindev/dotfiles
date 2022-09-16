@@ -1,3 +1,5 @@
+"set verbosefile=~/.private/.nvim.log
+
 call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'git@github.com:vimwiki/vimwiki.git'
@@ -24,7 +26,8 @@ Plug 'git@github.com:carlitux/deoplete-ternjs'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
 "Plug 'git@github.com:elubow/cql-vim'
-Plug 'git@github.com:suan/vim-instant-markdown'
+Plug 'git@github.com:suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'junegunn/vim-easy-align'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'pandysong/ghost-text.vim'
@@ -34,29 +37,60 @@ Plug 'git@github.com:chiedojohn/vim-case-convert'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
-"Plug 'w0rp/ale' " autocompletion unused, used proselint
+"Plug 'simrat39/rust-tools.nvim'
+Plug 'MunifTanjim/rust-tools.nvim' " https://github.com/simrat39/rust-tools.nvim/issues/349 https://github.com/simrat39/rust-tools.nvim/commit/f3bc644c6adf18719bf4ec88aaa8dba43b9ad144
 Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
+"Plug 'weilbith/nvim-code-action-menu' " also https://github.com/aznhe21/actions-preview.nvim
 
-" for go to definition (autocompletion unused)
-Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh',
-  \ }
-
+" kotlin
+Plug 'udalov/kotlin-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim', { 'commit': 'd6aa21476b2854694e6aa7b0941b8992a906c5ec' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'ibhagwan/fzf-lua'
+"Plug '~/git-extra/fzf-lua-old'
+Plug 'ibhagwan/fzf-lua', { 'commit': 'fd4e94e7a4c139122dbe11f6caee6241c4ab8c00' }
+"Plug 'ibhagwan/fzf-lua'
+
+"Plug 'ibhagwan/fzf-lua' " TODO: update to fix references
 Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
-"Plug 'kyazdani42/nvim-web-devicons'
 
 
-Plug 'ncm2/ncm2' " autocompletion for rust
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
+" lsp references/etc.
+"Plug 'gfanto/fzf-lsp.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+
+" quickfix settings, for lsp references
+Plug 'kevinhwang91/nvim-bqf'
+
+
+
+
+
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+"Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" nowadays even Enter button in manual completion needs
+" couple of additional dependencies, fucking hilarious
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+
+" vim.ui.select => code actions, etc.
+Plug 'stevearc/dressing.nvim'
+
+" lsp symbol renaming with highlighting
+"Plug 'smjonas/inc-rename.nvim'
+"Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
+
+
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
 
@@ -106,17 +140,22 @@ se number
 " se relativenumber
 set shortmess=aoOtIT
 set nowritebackup
-set undodir=~/.vimundo
+set undodir=~/.private/.vimundo
 set undofile
+
+" put cursor to real end of line in normal mode
+set ve+=onemore
+nnoremap $ $l
+au InsertLeave * call cursor([getpos('.')[1], getpos('.')[2]+1])
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 set wildmenu
 set wcm=<Tab>
-menu Encoding.koi8-r :e ++enc=koi8-r<CR>
-menu Encoding.windows-1251 :e ++enc=cp1251<CR>
-menu Encoding.cp866 :e ++enc=cp866<CR>
-menu Encoding.utf-8 :e ++enc=utf8 <CR>
-menu Encoding.utf-16 :e ++enc=utf16 <CR>
+menu Encoding.koi8-r :e ++enc=koi8-r<Enter>
+menu Encoding.windows-1251 :e ++enc=cp1251<Enter>
+menu Encoding.cp866 :e ++enc=cp866<Enter>
+menu Encoding.utf-8 :e ++enc=utf8 <Enter>
+menu Encoding.utf-16 :e ++enc=utf16 <Enter>
 map <F8> :emenu Encoding.<TAB>
 
 " allow to use backspace instead of "x"
@@ -136,11 +175,22 @@ set laststatus=2
 set fo+=cr
 
 
+" got to last edited location
+map <C-k> ''
+map <C-j> ''
+imap <C-k> <esc>''
+imap <C-j> <esc>''
+vmap <C-k> ''
+vmap <C-j> ''
+
+
 " Indents
 set smartindent  " indent after {, etc.
 set autoindent
 vmap < <gv
 vmap > >gv
+vmap <tab> >gv
+vmap <S-tab> <gv
 "let g:indent_guides_auto_colors = 0
 "let g:indent_guides_start_level=2
 "let g:indent_guides_guide_size=1
@@ -150,15 +200,235 @@ vmap > >gv
 
 " auto closing character
 " imap [ []<LEFT>
-imap {<CR> {<CR>}<Esc>O
+imap {<Enter> {<Enter>}<Esc>O
 
 
-" ctags: go to definition in C and some other languages
-" requires running "ctags -R ." in the same dir first
-" TODO: tab drop
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-"map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+
+fun! CloseDuplicateTabs() abort
+  redraw!
+
+  let l:current_name = bufname('%')
+  let l:current_tab = tabpagenr()
+
+  tabfirst
+  while v:true
+    if tabpagenr() !=# l:current_tab && bufname('%') ==# l:current_name
+      tabclose
+      break
+    endif
+
+    if tabpagenr() ==# tabpagenr('$')
+      break
+    endif
+
+    tabnext
+  endwhile
+
+  if l:current_tab <= tabpagenr('$')
+    execute 'tabnext ' . l:current_tab
+  endif
+
+  redraw
+endf
+
+fun! GoToDefinition() abort
+  if luaeval('vim.lsp.buf.server_ready()')
+    lua vim.lsp.buf.definition()
+  else
+    " for ctags
+    tab split
+    exec("tag ".expand("<cword>"))
+    call CloseDuplicateTabs()
+  endif
+endf
+
+nnoremap <C-p> :call GoToDefinition()<Enter>
+
+"nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
+vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
+nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
+
+
+
+""map <C-\> :tab split<Enter>:exec("tag ".expand("<cword>"))<Enter>
+"""map <A-]> :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>
+"nnoremap <C-\> :tab split<Enter>:lua vim.lsp.buf.definition()<Enter>
+
+
+function! GenerateTags() abort
+  silent! execute "!sudo /usr/local/sbin/run_ctags.sh &"
+endfunction
+
+autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable("tags") | call GenerateTags() | endif
+
+
+
+
+
+
+
+
+
+" Auto close quick fix and open in new tab on select
+"autocmd FileType qf nnoremap <buffer> <Enter> <Enter>:cclose<Enter><C-W><Enter><C-W>T
+
+
+" Autoclose quickfix list after leaving it
+autocmd WinEnter * cclose
+
+
+lua << EOF
+local fn = vim.fn
+
+function _G.qftf(info)
+    local items
+    local ret = {}
+    if info.quickfix == 1 then
+        items = fn.getqflist({id = info.id, items = 0}).items
+    else
+        items = fn.getloclist(info.winid, {id = info.id, items = 0}).items
+    end
+    local limit = 31
+    local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
+    local validFmt = '%s │%5d:%-3d│%s %s'
+    for i = info.start_idx, info.end_idx do
+        local e = items[i]
+        local fname = ''
+        local str
+        if e.valid == 1 then
+            if e.bufnr > 0 then
+                fname = fn.bufname(e.bufnr)
+                if fname == '' then
+                    fname = '[No Name]'
+                else
+                    fname = fname:gsub('^' .. vim.env.HOME, '~')
+                end
+                if #fname <= limit then
+                    fname = fnameFmt1:format(fname)
+                else
+                    fname = fnameFmt2:format(fname:sub(1 - limit))
+                end
+            end
+            local lnum = e.lnum > 99999 and -1 or e.lnum
+            local col = e.col > 999 and -1 or e.col
+            local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            str = validFmt:format(fname, lnum, col, qtype, e.text)
+        else
+            str = e.text
+        end
+        table.insert(ret, str)
+    end
+    return ret
+end
+
+vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+require('bqf').setup({
+    preview = {
+        win_height = 200,
+    },
+    func_map = {
+        tabdrop = '<Enter>', -- Auto close quick fix and open in new or existing tab on select
+    },
+    filter = {
+        fzf = {
+            extra_opts = {'--bind', 'ctrl-o:toggle-all', '--delimiter', '│'}
+        }
+    }
+})
+EOF
+
+hi default link BqfPreviewTitle TabLineSel
+
+
+
+
+
+lua << EOF
+require("dressing").setup({
+  input = {
+    enabled = false, -- disable for symbol rename, etc.
+  },
+  select = {
+    backend = { "fzf", "fzf_lua", "telescope", "builtin", "nui" },
+  },
+})
+
+local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
+au(
+  "DiagnosticChanged",
+  "*",
+  function()
+    vim.notify("LSP is ready")
+  end,
+  true)
+
+local default_definition_handler = vim.lsp.handlers["textDocument/definition"]
+vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
+  local initial_file = vim.api.nvim_buf_get_name(0)
+  local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+
+  if #result == 1 then
+    local location = result[1]
+    local uri = location.uri or location.targetUri
+    if uri ~= nil then
+      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+    end
+  end
+  default_definition_handler(_, result, ctx, config)
+
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+  if same_location then
+    vim.lsp.buf.implementation()
+  end
+
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+  if same_location then
+    vim.notify("Finding references...")
+    vim.lsp.buf.references()
+  end
+end
+
+
+local default_references_handler = vim.lsp.handlers['textDocument/references']
+vim.lsp.handlers['textDocument/references'] = function(_, result, ctx, config)
+  if #result == 1 then
+    local location = result[1]
+    local uri = location.uri or location.targetUri
+    if uri ~= nil then
+      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+    end
+  end
+  default_references_handler(_, result, ctx, config)
+end
+
+
+
+local _border = "single"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = _border
+  }
+)
+
+vim.diagnostic.config{
+  float = { border = _border }
+}
+EOF
+
+"let g:fzf_lsp_layout = { 'window': { 'border': 'none', 'fullscreen': true } }
 
 
 " .viminfo settings: remember certain things when we exit
@@ -167,15 +437,14 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "  :30  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='30,\"500,:30,%,n~/.viminfo
-"set viminfo='100,n~/.config/nvim/nviminfo'
+set shada='30,\"500,:30,%,n~/.private/.viminfo
 
 
 " Terminal hacks
 
 " C-h for xterm + tmux + nvim
 "if &term == "screen"
-noremap <bs> :tabp<cr>
+noremap <bs> :tabp<Enter>
 "endif
 
 "set term=xterm
@@ -191,7 +460,7 @@ endif
 
 "" C-h for xterm => tmux => nvim
 "if &term ==? "screen"
-"  noremap <bs> :tabp<cr>
+"  noremap <bs> :tabp<Enter>
 "endif
 
 " requires https://www.vinc17.net/unix/ctrl-backspace.en.html
@@ -202,8 +471,8 @@ inoremap <C-Home> <C-w>
 
 map . /
 
-map U <esc>:redo<cr>
-map Г <esc>:redo<cr>
+map U <esc>:redo<Enter>
+map Г <esc>:redo<Enter>
 
 map К R
 map y y
@@ -234,54 +503,104 @@ vmap <C-C> "+yi
 imap <C-S-v> <esc>"*pi
 set clipboard=unnamedplus
 
-map <C-t> :tabnew<cr>
-imap <C-t> <esc>:tabnew<cr>
-vmap <C-t> <esc>:tabnew<cr>
+map <C-t> :tabnew<Enter>
+imap <C-t> <esc>:tabnew<Enter>
+vmap <C-t> <esc>:tabnew<Enter>
 
 " file browser
-map <C-F3> :tabnew<cr>:Ex<cr>
-imap <C-F3> <esc>:tabnew<cr>:Ex<cr>
-vmap <C-F3> <esc>:tabnew<cr>:Ex<cr>
+map <C-F3> :tabnew<Enter>:Ex<Enter>
+imap <C-F3> <esc>:tabnew<Enter>:Ex<Enter>
+vmap <C-F3> <esc>:tabnew<Enter>:Ex<Enter>
 command! E Explore
 
-noremap <C-l> :tabn<cr>
-noremap <C-h> :tabp<cr>
+noremap <C-l> :tabn<Enter>
+noremap <C-h> :tabp<Enter>
 
-noremap <S-H> :-tabmove<cr>
-noremap <S-L> :+tabmove<cr>
+noremap <S-H> :-tabmove<Enter>
+noremap <S-L> :+tabmove<Enter>
 
-vmap <C-l> <esc>:tabn<cr>
-vmap <C-h> <esc>:tabp<cr>
-vmap <bs> <esc>:tabp<cr>
+vmap <C-l> <esc>:tabn<Enter>
+vmap <C-h> <esc>:tabp<Enter>
+vmap <bs> <esc>:tabp<Enter>
+
+" TODO: https://stackoverflow.com/a/24047465/586755
+
 
 " shift-insert behavior is similar to xterm
-map <S-Insert> <MiddleMouse>
+"map <S-Insert> <MiddleMouse>
+
+" enter insert mode after the cursor
+map <S-i> a
+
+"" swap a and i
+" nnoremap i a
+" nnoremap a i
 
 " search and replace current word
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
+nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
-nmap <F2> :wa<cr>
-vmap <F2> <esc>:wa<cr>v
-imap <F2> <esc>:wa<cr>i
 
-map cc <esc>:q<cr>
+
+
+"let g:CargoLimitVerbosity = 2 " warnings level
+let g:CargoLimitVerbosity = 4 " debug level
+
+" TODO: naming
+fun! SaveAllFilesOrOpenNextLocation() abort
+  "echo 'SaveAllFilesOrOpenNextLocation 1'
+
+  " TODO: os-dependant? let l:workspace_root = g:CargoLimitWorkspaceRoot() . '/'
+  let l:workspace_root = g:CargoLimitWorkspaceRoot()
+  let l:all_rust_files_are_saved = v:true
+
+  "echo 'SaveAllFilesOrOpenNextLocation 2'
+  for i in getbufinfo({'bufmodified': 1})
+    "echo 'SaveAllFilesOrOpenNextLocation 3'
+    if i.name =~# l:workspace_root && !(i.name =~# '/BqfPreviewScrollBar$')
+      "echo 'SaveAllFilesOrOpenNextLocation 4'
+      let l:all_rust_files_are_saved = v:false
+      break
+    endif
+  endfor
+  "echo 'SaveAllFilesOrOpenNextLocation 5'
+
+  if l:all_rust_files_are_saved && exists('*CargoLimitOpenNextLocation')
+    "echo 'SaveAllFilesOrOpenNextLocation 6'
+    call g:CargoLimitOpenNextLocation()
+    "echo 'SaveAllFilesOrOpenNextLocation 7'
+  endif
+  "echo 'SaveAllFilesOrOpenNextLocation 8'
+  execute 'wa!'
+endf
+
+
+nmap <F1> :call g:CargoLimitOpenPrevLocation()<Enter>
+vmap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>v
+imap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>i
+
+nmap <F2> :call SaveAllFilesOrOpenNextLocation()<Enter>
+vmap <F2> <Esc>:call SaveAllFilesOrOpenNextLocation()<Enter>v
+imap <F2> <Esc>:call SaveAllFilesOrOpenNextLocation()<Enter>i
+
+map cc <esc>:q<Enter>
 
 imap <C-Del> X<Esc>ce
 map <C-Del> dw
 
-vmap s :sort<cr>
+" sort lines and remove empty ones
+vmap s :sort<Enter>:'<,'>g/^\s*$/d<Enter>
 
 " Tagbar
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
-map <F12> :TagbarToggle<cr>
-imap <F12> <esc>:TagbarToggle<cr>
-vmap <F12> <esc>:TagbarToggle<cr>
+map <F12> :TagbarToggle<Enter>
+imap <F12> <esc>:TagbarToggle<Enter>
+vmap <F12> <esc>:TagbarToggle<Enter>
 
 
-" Colors
-"colorscheme evening
-colorscheme peachpuff
+"" Colors
+""colorscheme evening
+"colorscheme peachpuff
 "hi clear
 hi SpellBad cterm=underline
 hi ModeMsg term=bold cterm=bold gui=bold
@@ -296,7 +615,7 @@ hi Title term=bold gui=bold
 hi DiffAdd term=bold
 hi DiffChange term=bold
 hi DiffDelete term=bold gui=bold
-hi Special term=bold
+hi Special term=bold ctermfg=red
 hi Statement term=bold cterm=bold gui=bold
 hi Type ctermfg=4 cterm=bold
 hi String ctermfg=5 cterm=bold
@@ -305,7 +624,7 @@ hi LineNr ctermfg=3 cterm=bold
 hi Search ctermfg=0
 hi Constant cterm=bold
 hi StatusLineNC cterm=bold ctermfg=0
-hi StatusLine cterm=bold ctermfg=2
+"hi StatusLine cterm=bold ctermfg=2
 hi Title ctermfg=LightBlue ctermbg=Magenta
 "hi TabLineFill cterm=bold ctermfg=2
 "hi TabLine cterm=bold ctermfg=2
@@ -325,20 +644,30 @@ set cursorline
 "hi Folded ctermfg=white ctermbg=black
 hi Folded ctermfg=darkgreen ctermbg=black
 "hi Visual ctermbg=darkcyan
+"hi Visual ctermbg=darkblue ctermfg=white term=reverse
+hi Visual ctermbg=darkblue term=bold
+"hi Visual ctermbg=darkgrey term=bold
 "hi StatusLine ctermfg=white ctermbg=darkcyan cterm=none
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
 "hi Pmenu ctermfg=black ctermbg=green cterm=none guibg=brown gui=bold
 "hi PmenuSel ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+hi PmenuSel ctermfg=black ctermbg=yellow cterm=none guibg=red gui=bold
 "hi PmenuSbar ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuThumb ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
-highlight Pmenu ctermbg=blue guibg=blue
+"highlight Pmenu ctermbg=blue guibg=blue
+"highlight Pmenu ctermbg=darkblue guibg=darkblue
+highlight Pmenu ctermfg=NONE ctermbg=NONE
 
 ""hi TabLineSel term=bold  ctermfg=white ctermbg=darkgreen
 hi TabLineSel term=bold  ctermfg=black ctermbg=green
 ""ctermbg=darkblue
 hi TabLine ctermfg=white ctermbg=black
 hi TabLineFill term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=black
+hi TabLineSel ctermfg=black ctermbg=darkgreen cterm=NONE
+
+
+
 "hi Comment cterm=bold
 "hi Directory ctermfg=3 cterm=none
 
@@ -364,10 +693,10 @@ highlight SpellRare cterm=underline
 "endif
 
 set spelllang=en,ru
-"map <S-s> :set spell!<cr>
-map <F7> :set spell!<cr>
-imap <F7> <esc>:set spell!<cr>
-map <A-n> :set nu!<cr>
+"map <S-s> :set spell!<Enter>
+map <F7> :set spell!<Enter>
+imap <F7> <esc>:set spell!<Enter>
+map <A-n> :set nu!<Enter>
 
 function! Browser ()
   let line0 = getline (".")
@@ -384,7 +713,7 @@ function! Browser ()
   exec ":!elinks-remote ".line
 endfunction
 
-map \w :call Browser ()<cr><cr>
+"map \w :call Browser ()<Enter><Enter>
 
 map z <C-o>
 
@@ -393,10 +722,10 @@ map <End> $
 
 
 " GIT
-map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
-nnoremap <C-d> :Git diff %<cr>
-imap <C-d> <esc>:Git diff %<cr>
-vmap <C-d> <esc>:Git diff %<cr>
+map <F10> :GitGutterToggle<Enter>:se nu!<Enter>:set paste!<Enter>
+nnoremap <C-d> :Git diff %<Enter>
+imap <C-d> <esc>:Git diff %<Enter>
+vmap <C-d> <esc>:Git diff %<Enter>
 
 function! s:BlameToggle() abort
   let found = 0
@@ -410,9 +739,9 @@ function! s:BlameToggle() abort
     Git blame
   endif
 endfunction
-nnoremap <C-b> :call <SID>BlameToggle()<cr>
-imap <C-b> <esc>:call <SID>BlameToggle()<cr>
-vmap <C-b> <esc>:call <SID>BlameToggle()<cr>
+nnoremap <C-b> :call <SID>BlameToggle()<Enter>
+imap <C-b> <esc>:call <SID>BlameToggle()<Enter>
+vmap <C-b> <esc>:call <SID>BlameToggle()<Enter>
 
 set updatetime=250
 let g:gitgutter_max_signs = 500
@@ -460,7 +789,7 @@ augroup END
   augroup END
 
   " rainbow_parentheses toggle
-  nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<CR>
+  nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<Enter>
 
   let g:rbpt_colorpairs = [
     \ ['blue',     'RoyalBlue3'],
@@ -495,6 +824,8 @@ au BufNewFile,BufRead Cargo.lock set filetype=toml
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl
 autocmd BufNewFile,BufRead *.ny set syntax=lisp
 autocmd BufNewFile,BufRead *.xges set syntax=xml
+autocmd BufNewFile,BufRead *.ncl set syntax=haskell
+autocmd BufNewFile,BufRead *.ym{a,}l_debug set syntax=yaml
 
 " txt
 " Disable annoying auto line break
@@ -517,85 +848,294 @@ augroup END
 
 
 " Rust
-let g:formatdef_rustfmt = '"rustfmt"'
-let g:formatters_rust = ['rustfmt']
-let g:rustfmt_autosave = 1
-let g:LanguageClient_loggingFile = expand('~/.local/share/nvim/LanguageClient.log')
-let g:LanguageClient_serverCommands = {
-\ 'rust': ['rust-analyzer'],
+autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
+
+nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<Enter> " TODO: add formatting
+
+function! g:CargoTomlToggle() abort
+  if bufname() =~ 'Cargo.toml'
+    " FIXME: doesn't close the file
+    "exe winnr() . 'close'
+    exe ':q'
+  else
+    lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()
+  endif
+endfunction
+
+nnoremap cc :vsplit<Enter>:call g:CargoTomlToggle()<Enter>
+
+
+lua << EOF
+  local cmp = require'cmp' -- nvim-cmp
+
+  local kind_icons = {
+    Text = "",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰇽",
+    Variable = "󰂡",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰅲",
+  }
+
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-Up>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-Down>'] = cmp.mapping.scroll_docs(4),
+      ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-j>'] = cmp.mapping.scroll_docs(4),
+      ['<C-p>'] = cmp.mapping.complete(),
+      ['<Enter>'] = cmp.mapping.confirm({
+        select = true,
+        behavior = cmp.ConfirmBehavior.Replace
+      }),
+      ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
+    }),
+    sources = cmp.config.sources(
+      {
+        { name = 'nvim_lsp' },
+        --{ name = "vsnip" },
+        { name = "path" },
+      },
+      {
+        { name = 'buffer' },
+      }
+    ),
+    formatting = {
+      format = function(entry, vim_item)
+        --vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        vim_item.kind = kind_icons[vim_item.kind]
+
+--        vim_item.menu = ({
+--          buffer = "[Buffer]",
+--          nvim_lsp = "[LSP]",
+--          luasnip = "[LuaSnip]",
+--          nvim_lua = "[Lua]",
+--          latex_symbols = "[LaTeX]",
+--        })[entry.source.name]
+        vim_item.menu = ''
+
+        local window_width = vim.api.nvim_win_get_width(0)
+        local _current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+        local free_right_area = window_width - current_column
+        vim_item.abbr = string.sub(vim_item.abbr, 1, free_right_area / 4) -- limit completion width
+
+        return vim_item
+      end
+    },
+  })
+
+--  -- gray
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg='#808080' })
+--  -- blue
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg='NONE', fg='#569CD6' })
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
+--  -- light blue
+--  vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg='NONE', fg='#9CDCFE' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
+--  -- pink
+--  vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg='NONE', fg='#C586C0' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
+--  -- front
+--  vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg='#D4D4D4' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
+
+--  cmp.setup.cmdline({ '/', '?' }, {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = {
+--      { name = 'buffer' }
+--    }
+--  })
+
+--  cmp.setup.cmdline(':', {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = cmp.config.sources({
+--      { name = 'path' }
+--    }, {
+--      { name = 'cmdline' }
+--    })
+--  })
+
+
+local nvim_lsp = require'lspconfig'
+--nvim_lsp.clangd.setup{}
+
+-- ~/.local/state/nvim/lsp.log
+-- vim.lsp.set_log_level('OFF')
+
+
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    capabilities = capabilities,
+    -- capabilities = require'lsp.handlers'.capabilities,
+    --capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function(client)
+        client.server_capabilities.semanticTokensProvider = nil
+        vim.highlight.priorities.semantic_tokens = 95
+
+        -- TODO: perhaps run before on_attach
+        --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+        --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
+        --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', 'r', vim.lsp.buf.rename)
+        vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
+
+        --require'completion'.on_attach(client)
+    end,
+    settings = {
+        ["rust-analyzer"] = {
+--            imports = {
+--                granularity = {
+--                    group = "module",
+--                },
+--                prefix = "self",
+--            },
+--            cargo = {
+--                buildScripts = {
+--                    enable = true,
+--                },
+--            },
+--            procMacro = {
+--                enable = true
+--            },
+--            diagnostics = {
+--                enable = false,
+--            },
+            rustfmt = {
+                overrideCommand = {
+--                "cat",
+                  "rustfmt",
+                  "--edition=2021", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+                  "--"
+                },
+            },
+        }
+    }
+  },
+  tools = {
+    inlay_hints = {
+      highlight = "Folded",
+      only_current_line = true,
+    },
+    --hover_with_actions = true,
+  }
+})
+
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = false,
+})
+
+EOF
+
+
+"" manual complete
+autocmd BufRead * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
 \ }
-let g:LanguageClient_useFloatingHover = 0
-"let g:LanguageClient_useVirtualText = 0
-let g:LanguageClient_useVirtualText = "No"
-let g:LanguageClient_diagnosticsDisplay={
-  \     '1': {
-  \         "name": "Error",
-  \         "texthl": "LanguageClientError",
-  \         "signText": "x",
-  \         "signTexthl": "LanguageClientWarningSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '2': {
-  \         "name": "Warning",
-  \         "texthl": "LanguageClientWarning",
-  \         "signText": "!",
-  \         "signTexthl": "LanguageClientWarningSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '3': {
-  \         "name": "Information",
-  \         "texthl": "LanguageClientInfo",
-  \         "signText": "i",
-  \         "signTexthl": "LanguageClientInfoSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \     '4': {
-  \         "name": "Hint",
-  \         "texthl": "LanguageClientInfo",
-  \         "signText": ">",
-  \         "signTexthl": "LanguageClientInfoSign",
-  \         "virtualTexthl": "Todo",
-  \     },
-  \ }
-autocmd BufEnter *.rs map <C-\> :tab call LanguageClient#textDocument_definition({'gotoCmd': 'tab drop'})<CR>
-nnoremap r :call LanguageClient#textDocument_rename()<CR>
-map f :call LanguageClient_textDocument_codeAction()<CR>
 
-" enable autocomplete for Rust
-autocmd BufEnter *.rs call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-let g:ncm2#auto_popup=0
-"g:ncm2#complete_length
-"g:ncm2#manual_complete_length
-"inoremap <your-key> <c-r>=ncm2#manual_trigger(...)<cr>
-autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
+autocmd TabEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
 
+autocmd BufEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
 
+autocmd WinEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
 
-" JavaScript/ECMAScript
-let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
-au BufWrite *.ts :Autoformat
-au BufWrite *.js :Autoformat
-au BufWrite *.json :Autoformat
+"" JavaScript/ECMAScript
+"let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
+"au BufWrite *.ts :Autoformat
+"au BufWrite *.js :Autoformat
+"au BufWrite *.json :Autoformat
 
 " Ruby
 au BufWrite *.rb :Autoformat
 
 
+au FileType markdown vmap a :EasyAlign*<Bar><Enter>
+
+
 autocmd BufEnter,FocusGained * checktime
 
 function! s:close_tab_if_empty()
-  "if empty(expand('%:p'))
-  "if mode() == 't'
-  "  q
-  "end
-  function! s:wat()
+  function! s:on_exit()
     if mode() == 't'
       q
     end
   endfunction
-  call jobstart(['sleep', '1'], {'on_exit': function('s:wat')})
+  call jobstart(['sleep', '1'], {'on_exit': function('s:on_exit')})
 endfunction
+
+
+
+
+fun! OnQuit()
+  call system('logger exiting nvim')
+  for i in getbufinfo()
+    if !empty(i.name) && !i.hidden
+      echo i.name
+      call system('logger -- ' . fnameescape(i.name))
+    endif
+  endfor
+  echo
+endf
+
+autocmd VimLeavePre * call OnQuit()
+
+
+
 
 " Search in filenames and file bodies
 
@@ -607,13 +1147,13 @@ if executable('rg') && executable('fd')
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
   let g:fd_opts = '--type f --exclude .git --exclude build --exclude node_modules --exclude vendor --exclude target'
 
-  nnoremap <F3> :lua relevant_files()<cr>
-  imap <F3> <esc>:lua relevant_files()<cr>
-  vmap <F3> <esc>:lua relevant_files()<cr>
+  nnoremap <F3> :lua relevant_files()<Enter>
+  imap <F3> <esc>:lua relevant_files()<Enter>
+  vmap <F3> <esc>:lua relevant_files()<Enter>
 
-  nnoremap <F4> :lua relevant_grep()<cr>
-  imap <F4> <esc>:lua relevant_grep()<cr>
-  vmap <F4> <esc>:lua relevant_grep()<cr>
+  nnoremap <F4> :lua relevant_grep()<Enter>
+  imap <F4> <esc>:lua relevant_grep()<Enter>
+  vmap <F4> <esc>:lua relevant_grep()<Enter>
 
 lua << EOF
   require('fzf-lua-ext')
@@ -642,6 +1182,9 @@ lua << EOF
     --fzf_opts = {
     --  ['--layout'] = 'default',
     --},
+    fzf_opts = {
+      ['--color'] = 'bg:black,bg+:black,fg:blue,fg+:yellow',
+    },
     grep = {
       rg_opts = vim.g.rg_opts,
       prompt = '> ',
@@ -652,5 +1195,7 @@ lua << EOF
   }
 EOF
 endif
+
+"echo 'start nvim'
 
 " vim:shiftwidth=2 softtabstop=2 tabstop=2

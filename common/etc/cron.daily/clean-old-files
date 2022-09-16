@@ -1,0 +1,43 @@
+#!/bin/bash
+
+logger "running $0"
+
+set -x
+#set -euo pipefail
+
+IFS=$'\n\t'
+PATH="/usr/sbin:/usr/bin:/sbin:/bin"
+
+# sanity and security checks
+cd ~ || exit 1
+shellcheck "$0" || exit 1
+mount | grep -i backups && exit 1
+mount | grep '/home/other' && exit 1
+mount | grep private-mind | grep encfs && exit 1
+
+# remove at least 30 days old non-dot files/directories
+find /coredumps/ /home/*/Downloads/ /var/tmp/portage/ /var/tmp/*_mpv_thumbnails/ -mindepth 1 -not -path '*/.*' -mtime +30 -exec rm -fr {} +
+
+find /home/*/.debug/ /root/.debug/ /home/*/.cache/thumbnails/*/ /home/*/.cache/go-build/ -type f -mtime +30 -delete
+find /home/*/.cache/kdenlive/proxy/ -type f -mtime +365 -delete
+find /home/*/.android/avd/*/snapshots -type d -mtime +30 -exec rm -fr {} +
+find /root/.vimundo/ -type f -mtime +90 -delete
+
+find ~al/video/screen/ -type f -size 0 -delete
+
+find /home/music -type f -name '.*' -and -not -name '.keep*' -delete
+find / /mnt/lenslowssd -xdev -type d -name __MACOSX -exec rm -rf {} +
+
+flatpak uninstall --unused --noninteractive
+su al -c 'flatpak uninstall --unused --noninteractive'
+
+docker image prune --all --force
+docker volume prune --force
+docker network prune --force
+docker builder prune --force
+
+su al -c '/home/al/scripts/compress_pictures.sh /home/al/.private/backups/phones'
+
+#su al -c 'cd /home/al/pictures && ~/.cargo/bin/deduplicator'
+
+logger "FINISHED running $0 OK"

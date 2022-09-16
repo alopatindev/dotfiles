@@ -8,7 +8,7 @@ mount | egrep '^encfs on.*\.private type fuse.encfs' >> /dev/null
 # mounting encrypted fs
 if [[ $? -ne 0 ]]
 then
-    sudo encfs --public ~/.private-encrypted ~/.private -- -o nonempty,noatime
+    sudo encfs --public ~/.private-encrypted ~/.private --idle=120 -- -o nonempty,noatime
 fi
 
 # running X

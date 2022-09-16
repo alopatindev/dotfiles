@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+BANLIST="/var/tmp/dns-banlist.txt"
+NEW="${BANLIST}.new"
+
+( wget -qO - https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts || wget -qO - http://sbc.io/hosts/hosts ) | \
+    awk '/Title: Hosts contributed by Steven Black/{p=1; fflush()} p' | \
+    grep --line-buffered --invert-match --extended-regexp '(^0.0.0.0 0.0.0.0$|^#)' | \
+    grep --line-buffered '^0\.0\.0\.0 ' | \
+    awk '{print $2; fflush()}' > "${NEW}"
+
+[ -s "${NEW}" ] && [ $(stat -c "%s" "${NEW}") -gt 1 ] && mv -f "${NEW}" "${BANLIST}"

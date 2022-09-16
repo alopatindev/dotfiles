@@ -1,0 +1,19 @@
+#!/bin/bash
+
+uris=0
+uri=
+for i in "${@}" ; do
+    if [[ "${i:0:1}" != '-' ]]; then
+        uris=$((($uris + 1)))
+        uri="$i"
+    fi
+done
+
+if [[ $uris -eq 1 ]] && [[ $(mediainfo --Output=JSON "${uri}" | jq --raw-output '.media.track[] | select(."@type" == "Video") | .FrameRate | tonumber < 30') = true ]]; then
+    echo 'less than 30 fps, apply interpolation'
+    /usr/bin/mpv --display-fps-override=60 --video-sync=display-resample --interpolation=yes --tscale=oversample "$@"
+else
+    echo 'more than 30 fps (or more than 1 arg)'
+    /usr/bin/mpv "$@"
+fi
+

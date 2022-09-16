@@ -1,9 +1,10 @@
 #!/bin/bash
 
-MPD_LOG="/var/lib/mpd/log"
+MPD_LOG=/var/lib/mpd/log
+MPD_OLD_LOG=$(ls --color=never -t1 /var/lib/mpd/log-* | grep -v gz$ | sort -r)
 
 logger "running $0"
 
 (
-    tail -n1 -F "${MPD_LOG}" | while read line ; do echo "${line}" | grep 'Broken pipe' >> /dev/null && sleep 1 && mpc play ; done
+    tail -n1 -F "${MPD_OLD_LOG}" "${MPD_LOG}" | while read line ; do echo "${line}" | grep 'Broken pipe' >> /dev/null && sleep 0.2s && mpc play ; done
 ) &

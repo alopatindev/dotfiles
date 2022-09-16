@@ -1,0 +1,96 @@
+ctrl_interface=/var/run/hostapd_ac
+ctrl_interface_group=0
+auth_algs=1
+beacon_int=100
+
+ssid=mind
+wpa_psk_file=/etc/hostapd/hostapd.wpa_psk
+
+#country_code=RU
+#country_code=US
+country_code=ID
+
+interface=wlp1s0u1u1
+driver=nl80211
+
+wpa=2
+wpa_key_mgmt=WPA-PSK
+#wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+
+macaddr_acl=0
+
+logger_syslog=0
+logger_syslog_level=4
+logger_stdout=-1
+logger_stdout_level=0
+
+hw_mode=a
+wmm_enabled=1
+
+# N
+ieee80211n=1
+require_ht=1
+#ht_capab=[MAX-AMSDU-3839][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40] # stable
+ht_capab=[MAX-AMSDU-3839][HT40-][HT40+][SHORT-GI-20][SHORT-GI-40][DSSS_CCK-40]
+
+# TODO: hw ht capab: 0x962
+# TODO: ht_capab=[HT40+][HT40-][SHORT-GI-20][SHORT-GI-40][RX-STBC1][MAX-AMSDU-7935]
+
+
+
+
+# AC
+ieee80211ac=1
+require_vht=1
+ieee80211d=0
+ieee80211h=0
+
+#vht_capab=[MAX-AMSDU-3839][SHORT-GI-80]
+vht_capab=[MAX-AMSDU-3839][SHORT-GI-80][MAX-MPDU-11454][RX-STBC-1][HTC-VHT][MAX-A-MPDU-LEN-EXP7] # stable
+#vht_capab=[MAX-AMSDU-3839][SHORT-GI-80][MAX-MPDU-11454][RX-STBC-1][HTC-VHT][MAX-A-MPDU-LEN-EXP7][DSSS_CCK-40]
+vht_oper_chwidth=1
+vht_oper_centr_freq_seg0_idx=42
+
+
+# TODO: hw vht capab: 0x3c00122
+# TODO: vht_capab=[MAX-MPDU-11454][SHORT-GI-80][RX-STBC-1][HTC-VHT][MAX-A-MPDU-LEN-EXP7]
+
+
+
+# US: nl80211: Mode IEEE 802.11a: 5180 5200 5220 5240 5260[RADAR] 5280[RADAR] 5300[RADAR] 5320[RADAR] 5500[RADAR] 5520[RADAR] 5540[RADAR] 5560[RADAR] 5580[RADAR] 5600[RADAR] 5620[RADAR] 5640[RADAR] 5660[RADAR] 5680[RADAR]
+#   means: 36, 40, 44, 48, RADAR: 52, 56, 60, 64, 100, 104, 108, 112, 116, 120, 128, 132, 136
+# allowed by 8821au: 1-13, 36, 40, 44, 48
+# actually allowed in Russia: 1-13, 36-68, no-outdoor: 132-169(-196)
+# works: 36, 40, 44
+# fails: 48
+
+#channel=36
+#channel=40
+#channel=44 # ok
+channel=48 # worked with patched hostapd!!!
+
+#channel=52 # nope?
+#channel=56 # nope?
+#channel=60 # nope?
+#channel=64 # nope
+
+#channel=149 # used by other router
+#channel=153 # worked with patched hostapd AND 8821au driver!!!
+#channel=157 # nope
+#channel=161 # worked with patched hostapd AND 8821au driver!!!
+
+# All environments of the current frequency band and country (default)
+#country3=0x20
+# Outdoor environment only
+#country3=0x4f
+# Indoor environment only
+#country3=0x49
+# Noncountry entity (country_code=XX)
+#country3=0x58
+# IEEE 802.11 standard Annex E table indication: 0x01 .. 0x1f
+# Annex E, Table E-4 (Global operating classes)
+#country3=0x04
+
+# 1 means hidden
+ignore_broadcast_ssid=0

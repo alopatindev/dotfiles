@@ -1,0 +1,5 @@
+pcm.!default {
+    type asym
+    playback.pcm "output_to_all_cards"
+    capture.pcm "input_from_intel"
+}

@@ -24,8 +24,8 @@ local limits = {{10, 3}, {0}}
 local notified = 0
 
 function get_bat_state (adapter)
-    local fcur = io.open("/sys/class/power_supply/"..adapter.."/energy_now")
-    local fcap = io.open("/sys/class/power_supply/"..adapter.."/energy_full")
+    local fcur = io.open("/sys/class/power_supply/"..adapter.."/charge_now")
+    local fcap = io.open("/sys/class/power_supply/"..adapter.."/charge_full")
     local fsta = io.open("/sys/class/power_supply/"..adapter.."/status")
     local cur = fcur:read()
     local cap = fcap:read()
@@ -63,7 +63,8 @@ end
 function batclosure (adapter)
     local nextlim = limits[1][1]
     return function ()
-        local prefix = "⚡"
+        --local prefix = "⚡"
+        local prefix = ""
         local battery, dir = get_bat_state(adapter)
         if dir == -1 then
             dirsign = "↓"
@@ -93,7 +94,7 @@ function batclosure (adapter)
             dirsign = ""
         end
         if dir ~= 0 then battery = battery.."%" end
-        return " "..prefix..""..dirsign..battery..dirsign
+        return ""..prefix..""..dirsign..battery..dirsign
     end
 end
 

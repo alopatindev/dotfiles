@@ -2,9 +2,10 @@
 
 logger "running $0"
 
-DEV=/dev/nvme0n1
-
 (while [ 1 ] ; do
-    smartctl -a "${DEV}" | grep Temperature | head -n1 | awk '{print $2}' > /tmp/nvme-temp
-    sleep 60s
+    echo -n > /tmp/.nvme-temp
+    for dev in nvme0n1 nvme1n1 ; do
+        smartctl -a "/dev/${dev}" | grep Temperature | head -n1 | awk '{print "'${dev}':",$2,"°C"}' >> /tmp/.nvme-temp
+    done
+    sleep 5s
 done) &

@@ -1,0 +1,9 @@
+# udevadm monitor --property | grep -i vendor
+
+ACTION=="add", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="ZOOM_Corporation", RUN+="/usr/local/sbin/switch-mic.sh"
+ACTION=="remove", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="ZOOM_Corporation", RUN+="/usr/local/sbin/switch-mic.sh"
+
+# Xonar U3 USB sound card
+ACTION=="add", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="C-Media_Electronics_Inc.", RUN+="/usr/local/sbin/switch-soundcard.sh"
+ACTION=="remove", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="C-Media_Electronics_Inc.", RUN+="/usr/local/sbin/switch-soundcard.sh"
+

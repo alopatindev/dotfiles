@@ -1,0 +1,95 @@
+#!/bin/bash
+
+set -e
+
+usage() {
+    echo "Usage:"
+    echo "    sudo $0 create sandbox-name /full/path/to/app allowed-user [sandbox-only]"
+    echo "    $0 run sandbox-name"
+    echo "    sudo $0 remove sandbox-name"
+    echo "        (this removes its home directory as well!)"
+    exit 1
+}
+
+sandbox_id() {
+    echo "sandbox_$1"
+}
+
+create() {
+    sandbox_name="$2"
+    app="$3"
+    user="$4"
+    sandbox_only="$5"
+
+    sandbox=$(sandbox_id ${sandbox_name})
+
+    new_home="/home/${sandbox}"
+    useradd \
+        --home-dir "${new_home}" \
+        --create-home \
+        --shell /bin/false \
+        --user-group "${sandbox}" \
+        --groups video,audio
+    chmod 700 "${new_home}"
+
+    mkdir -p /etc/sudoers.d
+    echo "${user} ALL=(${sandbox}) NOPASSWD: ${app}" > "/etc/sudoers.d/${sandbox}"
+
+    if [[ "${sandbox_only}" = "sandbox-only" ]]; then
+        chown root:${sandbox} "${app}"
+        chmod 650 "${app}"
+    fi
+}
+
+remove() {
+    sandbox_name="$2"
+    sandbox=$(sandbox_id ${sandbox_name})
+
+    userdel --remove "${sandbox}"
+    rm -fv "/etc/sudoers.d/${sandbox}"
+}
+
+run() {
+    sandbox_name="$2"
+    sandbox=$(sandbox_id ${sandbox_name})
+
+    allowed_user=$(grep "${sandbox}" /etc/sudoers.d/${sandbox} | head -n1 | awk '{print $1}')
+    app=$(grep "${sandbox}" /etc/sudoers.d/${sandbox} | head -n1 | awk '{print $4}')
+
+    if [[ "${USER}" != "${allowed_user}" ]]; then
+        echo "This user is disallowed to run this sandbox"
+        exit 1
+    fi
+
+    xhost "+SI:localuser:${sandbox}"
+    sudo -u "${sandbox}" "${app}"
+    xhost "-SI:localuser:${sandbox}"
+}
+
+cmd="$1"
+case "${cmd}" in
+    create)
+        if [ ${UID} -ne 0 ] || [ $# -lt 4 ]; then
+            usage
+        fi
+        create "$@"
+        ;;
+
+    remove)
+        if [ ${UID} -ne 0 ] || [ $# -ne 2 ]; then
+            usage
+        fi
+        remove "$@"
+        ;;
+
+    run)
+        if [ ${UID} -eq 0 ] || [ $# -ne 2 ]; then
+            usage
+        fi
+        run "$@"
+        ;;
+
+    *)
+        usage
+        ;;
+esac

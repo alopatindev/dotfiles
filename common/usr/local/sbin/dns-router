@@ -2,13 +2,19 @@
 
 require 'rubydns'
 
+Name = Resolv::DNS::Name
+IN = Resolv::DNS::Resource::IN
+
 # TODO: IPv6?
 
 LISTEN_INTERFACE = ['127.0.0.1', 53]
 DEFAULT_DNS = ['127.0.0.1', 5353]
-VPN_DNS = ['10.0.0.3', 53]
-#VPN_DNS = ['10.0.13.6', 53]
+
+VPN_DNS = ['work-dns', 53]
+
 VPN_HOSTS = %r{.*\.amazon$}
+
+BANLIST = '/var/tmp/dns-banlist.txt'
 
 def udp_and_tcp(interfaces)
   [[:udp] + interfaces, [:tcp] + interfaces]
@@ -19,18 +25,24 @@ def resolver(interfaces)
 end
 
 def main
+  banlist = (File.exist?(BANLIST) ? File.readlines(BANLIST).map { |i| Name.create(i.strip) } : []).to_set
+
   default_upstream = resolver(DEFAULT_DNS)
   vpn_upstream = resolver(VPN_DNS)
-
   RubyDNS::run_server(udp_and_tcp(LISTEN_INTERFACE)) do
+    #@logger.debug!
+
     match(VPN_HOSTS) do |transaction|
-      #puts "vpn #{transaction}\n"
       transaction.passthrough!(vpn_upstream)
     end
 
     otherwise do |transaction|
-      #puts "default #{transaction}\n"
-      transaction.passthrough!(default_upstream)
+      if banlist.include?(transaction.question)
+        @logger.debug "blocking #{transaction.question.inspect}"
+        transaction.fail!(:NXDomain)
+      else
+        transaction.passthrough!(default_upstream)
+      end
     end
   end
 end

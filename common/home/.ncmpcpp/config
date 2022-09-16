@@ -188,7 +188,7 @@ statusbar_color = "yellow"
 
 #allow_physical_files_deletion = "yes"
 
-visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
+#visualizer_fifo_path = "/var/lib/mpd/mpd.fifo"
 
 #ask_before_clearing_main_playlist = "yes"
 
@@ -196,3 +196,9 @@ display_bitrate = "yes"
 
 current_item_prefix = "$(white)$r"
 current_item_suffix = "$/r$(end)"
+
+#browser_sort_mode = ""
+#toggle_browser_sort_mode
+#toggle_media_library_sort_mode
+
+lyrics_fetchers = musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet

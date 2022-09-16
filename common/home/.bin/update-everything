@@ -2,65 +2,66 @@
 
 set -e
 
+export RUSTFLAGS="-C target-cpu=native"
+
 #RUST_NIGHTLY_VERSION="nightly-2020-07-18"
 #rustup +${RUST_NIGHTLY_VERSION} component add miri
 
 #RUST_NIGHTLY_VERSION="nightly-2021-05-07"
 #RUST_NIGHTLY_VERSION="nightly-2021-06-09"
-RUST_NIGHTLY_VERSION="nightly-2021-10-21"
-#RUST_STABLE_VERSION="1.54.0-x86_64-unknown-linux-gnu"
-#RUST_STABLE_VERSION="1.56.0-x86_64-unknown-linux-gnu"
-#RUST_STABLE_VERSION="1.57.0-x86_64-unknown-linux-gnu"
-RUST_STABLE_VERSION="1.58.1-x86_64-unknown-linux-gnu"
-#RUST_ANALYZER_VERSION="2021-05-10"
-#RUST_ANALYZER_VERSION="2021-06-21"
-RUST_ANALYZER_VERSION="2021-10-18"
-#RUST_ANALYZER_VERSION="2022-01-31"
+#RUST_NIGHTLY_VERSION="nightly-2021-10-21"
+RUST_NIGHTLY_VERSION="nightly-2023-02-09"
+RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
+#RUST_ANALYZER_VERSION="2023-03-06"
+#RUST_ANALYZER_VERSION="2023-09-04"
+RUST_ANALYZER_VERSION="2023-11-27"
 
-export RUSTFLAGS="-C target-cpu=native"
-
-rustup install "${RUST_NIGHTLY_VERSION}"
-rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
-ln -sf ~/.rustup/toolchains/${RUST_NIGHTLY_VERSION}-x86_64-unknown-linux-gnu/bin/rustfmt ~/.bin/rustfmt
+#rustup install "${RUST_NIGHTLY_VERSION}"
+#rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
+#ln -sf ~/.rustup/toolchains/${RUST_NIGHTLY_VERSION}-x86_64-unknown-linux-gnu/bin/rustfmt ~/.bin/rustfmt
 
 rustup install "${RUST_STABLE_VERSION}"
 rustup default "${RUST_STABLE_VERSION}"
-rustup component add clippy
-rustup component add rust-src
+#rustup component add clippy rust-src rust-analyzer
+rustup component add clippy rust-src
 
-ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
+rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
 
-RUSTFLAGS="-C target-cpu=native" cargo +${RUST_NIGHTLY_VERSION} install --features simd-accel ripgrep
+#cargo +${RUST_NIGHTLY_VERSION} install --locked --features simd-accel ripgrep
+#cargo +nightly install --locked --features simd-accel ripgrep
+#cargo install --locked skim fd-find
 
-cd git-extra/rust-analyzer
+cd ~/git-extra/rust-analyzer
 git checkout master
 git clean -f -x -d .
 git pull -v
+git fetch origin "${RUST_ANALYZER_VERSION}"
 git checkout "${RUST_ANALYZER_VERSION}"
 RUSTFLAGS="-C target-cpu=native" cargo xtask install --server
 RUSTFLAGS="-C target-cpu=native" cargo xtask install
 cd
 
-rustup self update
-rustup update
-rustup default stable
-
-npm update
-
-go get -u -v all
-go get -d github.com/google/fscrypt/...
-go get github.com/google/fscrypt/cmd/fscrypt
-
-pip3 list --outdated --format=freeze | grep -v '^\-e' | grep -v '^pip$' | cut -d = -f 1 | xargs -n1 pip3 install --upgrade --user
-pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -n1 pip2 install --upgrade --user
-
-/usr/bin/nvim +PlugInstall +UpdateRemotePlugins +qa
-
-gem install rubocop nokogiri acoc jekyll bundler open3 rubydns
-
-sudo layman -S
-sudo emerge --sync
-eix-update
-#emerge -pve @system
-#emerge -pvuDN @world
-em-auto-exclude.rb -uDNa @world
+##rustup self update
+##rustup update
+##rustup default stable
+##
+##npm update
+##
+##go get -u -v all
+##go get -d github.com/google/fscrypt/...
+##go get github.com/google/fscrypt/cmd/fscrypt
+##
+##pip3 list --outdated --format=freeze | grep -v '^\-e' | grep -v '^pip$' | cut -d = -f 1 | xargs -n1 pip3 install --upgrade --user
+##pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1 | grep -v '^pip$' | xargs -n1 pip2 install --upgrade --user
+##
+##/usr/bin/nvim +PlugInstall +UpdateRemotePlugins +qa
+##
+##gem install rubocop nokogiri acoc jekyll bundler open3 rubydns parallel inifile rubydns
+##sudo gem install rubydns
+##
+##sudo layman -S
+##sudo emerge --sync
+##eix-update
+###emerge -pve @system
+###emerge -pvuDN @world
+##em-auto-exclude.rb -uDNa @world

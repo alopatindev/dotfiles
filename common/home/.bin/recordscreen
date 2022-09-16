@@ -2,6 +2,7 @@
 
 # TODO: -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 -y out.mkv
 # TODO: time limit
+# TODO: stream segmenter https://stackoverflow.com/questions/31517081/ffmpeg-capture-x11grab-video-with-automatic-10mins-splitting/31520435#31520435
 
 if [ "$1" = '-h' ]; then
     echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high] [mouse|no-mouse]"
@@ -14,7 +15,7 @@ QUALITY="$2"
 MOUSE="$3"
 VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
 #VIDEO_SIZE="1696x73"
-OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mp4"
+OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds | sed 's! !_!g').mkv"
 
 kill_ffmpeg_on_error () {
     grep -m1 'ALSA read error: No such device' >>/dev/null && {
@@ -29,17 +30,16 @@ kill_ffmpeg_on_error () {
 
 case "${DEVICE}" in
     mic-only)
-        #SOUND_INPUT=shared_input_zoom_recorder_redirect_left_channel_to_right
-        SOUND_INPUT=zoom_recorder
+        SOUND_INPUT=default
         ;;
     system-only)
-        SOUND_INPUT=shared_input_loopback
+        SOUND_INPUT=input_from_loopback
         ;;
     no-sound)
         SOUND_INPUT=
         ;;
     *)
-        SOUND_INPUT=input_LOOPBACK_and_zoom_recorder
+        SOUND_INPUT=input_all_sounds
         ;;
 esac
 
@@ -50,11 +50,15 @@ if [ "${QUALITY}" = 'low' ]; then
     #CRF=23
     #CRF=18
     CRF=37
+    #FILTERS='-vf scale=1920x1080'
+    FILTERS='-vf hwupload_cuda,scale_cuda=1920:1080'
+    #FILTERS='-vf nlmeans_opencl'
 else
     CHANNELS=2
     SOUND_RATE=48000
     FRAMERATE=60
     CRF=18
+    FILTERS=''
 fi
 
 if [ "${MOUSE}" = 'no-mouse' ]; then
@@ -66,16 +70,20 @@ fi
 # -i :0.0+54,6
 if [ ! "${SOUND_INPUT}" ]; then
     ffmpeg \
+        -vsync 0 -hwaccel cuda -hwaccel_output_format cuda \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
         -f x11grab \
         -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
-        -vcodec libx264 -preset ultrafast -crf "${CRF}" \
+        ${FILTERS} \
+        -vcodec hevc_nvenc \
+        -movflags faststart \
         "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 else
     ffmpeg \
+        -vsync 0 -hwaccel cuda -hwaccel_output_format cuda \
         -thread_queue_size 512 \
         -video_size "${VIDEO_SIZE}" \
         -framerate "${FRAMERATE}" \
@@ -86,13 +94,19 @@ else
         -f alsa \
         -ac "${CHANNELS}" \
         -i "${SOUND_INPUT}"  \
+        ${FILTERS} \
         -ar "${SOUND_RATE}" \
-        -vcodec libx264 -preset ultrafast -crf "${CRF}" \
-        -acodec alac \
-        -f ipod \
+        -vcodec hevc_nvenc \
+        -acodec flac \
+        -movflags faststart \
         "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 fi
 
 EXIT_CODE="$?"
+
+printf "\n\n\n" >> /dev/stderr
+mediainfo "${OUTPUT}" | grep Duration | head -n1 | sed 's!.*:!Recording length is!' >> /dev/stderr
+ls -lh "${OUTPUT}" | awk '{print "Size:", $5}' >> /dev/stderr
+
 echo "${OUTPUT}"
 exit "${EXIT_CODE}"

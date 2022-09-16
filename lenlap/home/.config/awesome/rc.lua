@@ -17,6 +17,9 @@ require("awful.hotkeys_popup.keys")
 require("sizes")
 local battery_widget = require("battery_widget")
 local keyboardlayout = require("keyboardlayout")
+local compiler_processes = require('compiler_processes')
+local short_time = require('short_time')
+local mic = require('mic')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -98,9 +101,12 @@ mykeyboardlayout = keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
--- mytextclock = wibox.widget.textclock("[ %d %b %a | %H:%M ]")
-mytextclock = wibox.widget.textclock("[ %Y-%m-%d %a | %H:%M ]")
+mytextclock = wibox.widget.textclock("[ <b>%a</b> %F |", 60)
 mybattery = battery_widget()
+
+my_compiler_processes = compiler_processes()
+short_time = short_time()
+my_mic = mic()
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
@@ -146,10 +152,13 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            my_compiler_processes,
             mykeyboardlayout,
+            my_mic,
             mybattery,
             wibox.widget.systray(),
             mytextclock,
+            short_time,
             s.mylayoutbox,
         },
     }
@@ -365,22 +374,27 @@ awful.rules.rules = {
       }, properties = { tag = "7 misc" }
     },
 
+    -- { rule = { instance = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
+    { rule = { name = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
     { rule = { class = "Zathura" }, properties = { tag = "9 doc" }},
     { rule = { class = "Code" }, properties = { tag = "2 term" } },
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
+    { rule = { class = "libreoffice-calc" }, properties = { tag = "9 doc" } },
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
+    { rule = { class = "Pitivi" }, properties = { tag = "5 media" } },
+    { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
 }
 
 apps_to_tags = {}
 for line in io.lines("/tmp/.apps_to_tags") do
     local tab_position = string.find(line, "\t")
     local app = string.sub(line, 1, tab_position - 1)
-    if app ~= "qdevicemonitor" and app ~= "VirtualBox" then
+    if app ~= "qdevicemonitor" and app ~= "VirtualBox" and app ~= 'mpv' then
         local tag_index = string.sub(line, tab_position + 1)
         apps_to_tags[app] = tonumber(tag_index)
     end
@@ -438,3 +452,14 @@ client.connect_signal("property::instance", function(c)
 end)
 -- awful.rules.rules[#awful.rules.rules + 1] = line
 -- }}}
+
+-- https://github.com/awesomeWM/awesome/issues/3156#issuecomment-683533740
+client.connect_signal("property::fullscreen", function(c)
+  if c.fullscreen then
+    gears.timer.delayed_call(function()
+      if c.valid then
+        c:geometry(c.screen.geometry)
+      end
+    end)
+  end
+end)

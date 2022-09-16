@@ -57,6 +57,8 @@ xterm*secondaryScroll: true
 ! xterm*faceName: PragmataPro
 xterm*faceName: Iosevka Term SS08
 ! xterm*faceName: "Iosevka Term SS08 [BE5N]"
+! xterm*faceName: IosevkaTerm Nerd Font Mono
+! xterm*faceName: IosevkaTerm Nerd Font Propo
 xterm*scrollBar: false
 xterm*cursorColor: #EEE
 

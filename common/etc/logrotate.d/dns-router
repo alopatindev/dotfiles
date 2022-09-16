@@ -1,0 +1,12 @@
+/var/log/dns-router.log {
+    missingok
+    notifempty
+    daily
+    maxage 1
+    size 100M
+    compress
+    delaycompress
+    postrotate
+      /etc/init.d/local restart >/dev/null || true
+    endscript
+}

@@ -7,8 +7,7 @@
     excludesfile = ~/.gitignore.global
     ignorecase = false
     quotePath = false
-    #editor = "vi +0"
-    editor = "nvim -u DEFAULT +0"
+    editor = "nvim --clean +0"
 
 [color]
     ui = true
@@ -26,16 +25,16 @@
     prompt = false
 
 [checkout]
-    workers = 8
+    workers = 16
 
 [switch]
-    workers = 8
+    workers = 16
 
 [fetch]
-    parallel = 8
+    parallel = 16
 
 [submodule]
-    fetchJobs = 8
+    fetchJobs = 16
 
 [alias]
     s = status -s --untracked-files=no
@@ -89,3 +88,12 @@
 
 [includeIf "gitdir:~/.private/work/**/.git"]
     path = ~/.config/git/kupibilet.ini
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+[log]
+    date = iso-local

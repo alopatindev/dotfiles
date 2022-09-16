@@ -1,0 +1,54 @@
+# Global variables
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+
+# For details see man 5 crontab
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+
+###10 18 * * * al ssh mind '/etc/cron-scripts/control-bulbs.py rest'
+##00 20 * * * al /usr/local/bin/evening-mode.sh
+##00 22 * * * al /usr/local/bin/night-mode.sh
+#
+#
+#00 00 * * * al /usr/local/sbin/mute-speaker.sh
+#00 01 * * * al /usr/local/sbin/mute-speaker.sh
+#00 02 * * * al /usr/local/sbin/mute-speaker.sh
+#00 03 * * * al /usr/local/sbin/mute-speaker.sh
+#00 04 * * * al /usr/local/sbin/mute-speaker.sh
+#
+#
+#00 01 * * * al /usr/local/bin/evening-mode.sh
+#00 04 * * * al /usr/local/bin/night-mode.sh
+#
+## 04:00 AM - 09:00 AM sleep
+#
+#00 09 * * * al /usr/local/bin/day-mode.sh
+#50 12 * * * al /usr/local/bin/evening-mode.sh
+#
+## 13:00 PM - 16:00 PM sleep
+#
+#00 16 * * * al /usr/local/bin/day-mode.sh
+#
+## 21:00 PM - 22:00 PM optional nap (or work meeting)
+
+00 06 * * * root /usr/local/sbin/check-updates.sh
+
+
+
+
+
+
+#00 06 * * * al /usr/local/bin/day-mode.sh
+00 23 * * * al /usr/local/bin/evening-mode.sh
+00 00 * * * al /usr/local/bin/night-mode.sh
+
