@@ -1,0 +1,3 @@
+#!/bin/bash
+
+kill $(ps uax | grep 90-watch-compiler-processes.start | grep -v grep | awk '{print $2}')
