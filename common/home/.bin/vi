@@ -1,6 +1,16 @@
 #!/bin/bash
 
-project_dir=$(cargo metadata --quiet --format-version=1 2>>/dev/null | jq --raw-output '.workspace_root')
+find_up () {
+    while [[ $(pwd) != '/' ]]; do
+        if [[ $(ls -d $1 2>>/dev/null) ]]; then
+            pwd
+        fi
+        cd ..
+    done | tail -n1
+}
+
+project_dir=$(find_up Cargo.toml)
+#project_dir=$(cargo metadata --no-deps --quiet --format-version=1 2>>/dev/null | jq --raw-output '.workspace_root') # too slow when new toolchain needs to be downloaded
 project_dir_escaped=$(echo "${project_dir}" | sed 's!/!%!g')
 export CARGO_TARGET_DIR="${HOME}/tmp/${project_dir_escaped}/target.rust-analyzer"
 /usr/bin/nvim -p "$@"
