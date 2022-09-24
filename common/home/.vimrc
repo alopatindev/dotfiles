@@ -141,6 +141,8 @@ set smartindent  " indent after {, etc.
 set autoindent
 vmap < <gv
 vmap > >gv
+vmap <tab> >gv
+vmap <S-tab> <gv
 "let g:indent_guides_auto_colors = 0
 "let g:indent_guides_start_level=2
 "let g:indent_guides_guide_size=1
@@ -260,9 +262,18 @@ map <S-Insert> <MiddleMouse>
 " search and replace current word
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
-nmap <F2> :wa<cr>
-vmap <F2> <esc>:wa<cr>v
-imap <F2> <esc>:wa<cr>i
+
+function g:SaveAllOrOpenNextLocation()
+  if &l:modified == 0
+    call g:CargoLimitOpenNextLocation()
+  else
+    execute 'wa'
+  endif
+endfunction
+
+nmap <F2> :call g:SaveAllOrOpenNextLocation()<cr>
+vmap <F2> <esc>:call g:SaveAllOrOpenNextLocation()<cr>v
+imap <F2> <esc>:call g:SaveAllOrOpenNextLocation()<cr>i
 
 map cc <esc>:q<cr>
 
@@ -652,5 +663,8 @@ lua << EOF
   }
 EOF
 endif
+
+"set verbosefile=~/.nvim.log
+"echo 'start nvim'
 
 " vim:shiftwidth=2 softtabstop=2 tabstop=2
