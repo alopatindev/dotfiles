@@ -263,7 +263,7 @@ map <S-Insert> <MiddleMouse>
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
 
-function g:SaveAllOrOpenNextLocation()
+function! SaveAllOrOpenNextLocation()
   if &l:modified == 0
     call g:CargoLimitOpenNextLocation()
   else
@@ -271,9 +271,9 @@ function g:SaveAllOrOpenNextLocation()
   endif
 endfunction
 
-nmap <F2> :call g:SaveAllOrOpenNextLocation()<cr>
-vmap <F2> <esc>:call g:SaveAllOrOpenNextLocation()<cr>v
-imap <F2> <esc>:call g:SaveAllOrOpenNextLocation()<cr>i
+nmap <F2> :call SaveAllOrOpenNextLocation()<cr>
+vmap <F2> <esc>:call SaveAllOrOpenNextLocation()<cr>v
+imap <F2> <esc>:call SaveAllOrOpenNextLocation()<cr>i
 
 map cc <esc>:q<cr>
 
