@@ -122,7 +122,7 @@ PERL_MM_OPT="INSTALL_BASE=/home/al/perl5"; export PERL_MM_OPT;
 
 precmd() {
     pwd | grep "${HOME}/work/" >> /dev/null && {
-        export RUSTFLAGS='-C link-args=-lzstd -C force-frame-pointers=y'
+        export RUSTFLAGS='-C link-args=-lzstd -C link-args=-lcurl -C force-frame-pointers=y'
         export CFLAGS=
         export CXXFLAGS=
         for i in target; do

@@ -263,17 +263,25 @@ map <S-Insert> <MiddleMouse>
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
 
-function! SaveAllOrOpenNextLocation()
-  if &l:modified == 0
+function! SaveAllFilesOrOpenNextLocation()
+  let l:all_files_are_saved = 1
+  for i in getbufinfo({'bufmodified': 1})
+    if i.name != ''
+      let l:all_files_are_saved = 0
+      break
+    endif
+  endfor
+
+  if l:all_files_are_saved
     call g:CargoLimitOpenNextLocation()
   else
     execute 'wa'
   endif
 endfunction
 
-nmap <F2> :call SaveAllOrOpenNextLocation()<cr>
-vmap <F2> <esc>:call SaveAllOrOpenNextLocation()<cr>v
-imap <F2> <esc>:call SaveAllOrOpenNextLocation()<cr>i
+nmap <F2> :call SaveAllFilesOrOpenNextLocation()<cr>
+vmap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<cr>v
+imap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<cr>i
 
 map cc <esc>:q<cr>
 
