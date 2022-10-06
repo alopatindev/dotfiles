@@ -143,3 +143,7 @@
 "sudo /usr/local/sbin/hdmi_hotplug.sh 0"
     m:0x40 + c:43
     Mod4 + h
+
+"~/scripts/rebind-ssh-ports.sh"
+    m:0x48 + c:27
+    Alt+Mod4 + r
