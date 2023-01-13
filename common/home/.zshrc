@@ -121,7 +121,7 @@ PERL_MB_OPT="--install_base \"/home/al/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/al/perl5"; export PERL_MM_OPT;
 
 precmd() {
-    pwd | grep "${HOME}/work/" >> /dev/null && {
+    pwd | grep "${HOME}/work/monorepo" | grep -v monorepo-deploy | grep -v monorepo-dynamic-data >> /dev/null && {
         export RUSTFLAGS='-C link-args=-lzstd -C link-args=-lcurl -C force-frame-pointers=y'
         export CFLAGS=
         export CXXFLAGS=

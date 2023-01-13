@@ -24,7 +24,8 @@ Plug 'git@github.com:carlitux/deoplete-ternjs'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
 "Plug 'git@github.com:elubow/cql-vim'
-Plug 'git@github.com:suan/vim-instant-markdown'
+Plug 'git@github.com:suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'junegunn/vim-easy-align'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'pandysong/ghost-text.vim'
@@ -46,9 +47,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'commit': 'd6aa21476b2854694e6aa7b0941b8992a906c5ec' }
 
-Plug 'ibhagwan/fzf-lua'
+Plug 'ibhagwan/fzf-lua', { 'commit': 'fa006b8d9f24b4a58eb4220c871e432c3e5df1da' }
 Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 "Plug 'kyazdani42/nvim-web-devicons'
 
@@ -599,6 +600,9 @@ au BufWrite *.json :Autoformat
 
 " Ruby
 au BufWrite *.rb :Autoformat
+
+
+au FileType markdown vmap a :EasyAlign*<Bar><Enter>
 
 
 autocmd BufEnter,FocusGained * checktime

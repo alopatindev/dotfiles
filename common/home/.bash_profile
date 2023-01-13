@@ -9,7 +9,7 @@ ulimit -c unlimited
 # mounting encrypted fs
 if [[ ! $(mount | egrep '^encfs on.*\.private type fuse.encfs') ]]
 then
-    sudo encfs --public ~/.private-encrypted ~/.private -- -o nonempty,noatime
+    sudo encfs --public ~/.private-encrypted ~/.private --idle=10 -- -o nonempty,noatime
 fi
 
 # running X
