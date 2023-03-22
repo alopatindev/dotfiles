@@ -7,7 +7,8 @@
 
 #"xterm -T 'terms' -fs 20 -geometry 63x23-0-0 -e 'screen -DRm'"
 #"xterm -T 'terms' -fs 42 -geometry 55x20-0-0 -e 'screen -DRm'"
-"xterm -T 'terms' -fs 28 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
+#"xterm -T 'terms' -fs 28 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
+"xterm -T 'terms' -fs 40 -geometry 55x20-0-0 -e 'tmux attach || tmux'"
     m:0xd + c:36
     Control+Shift+Alt + Return
 
@@ -56,7 +57,7 @@
 #    Shift+Alt+Mod2 + r
 
 #"for i in /media/*; do umount $i; done"
-"mount | awk '{print $3}' | egrep --color=none '^/media' | xargs sudo umount"
+"fusermount -u ~/.private-mind ; mount | awk '{print $3}' | egrep --color=none '^/media' | xargs sudo umount"
     m:0x40 + c:41
     Mod4 + f
 

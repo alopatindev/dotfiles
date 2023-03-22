@@ -7,7 +7,7 @@ local spinner_states = "|/-\\"
 local compiler_processes_widget = { mt = {} }
 
 local function compiler_processes_text()
-    local f = io.open("/tmp/compiler_processes.txt")
+    local f = io.open("/tmp/.compiler_processes")
     local text = f:read()
     f:close()
 

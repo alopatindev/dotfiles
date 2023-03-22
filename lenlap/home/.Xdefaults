@@ -3,7 +3,9 @@
 urxvt*geometry: 84x25+0+0
 urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
 
-xterm*faceSize: 19
+! xterm*faceSize: 38
+xterm*faceSize: 34
+!xterm*faceSize: 19
 !xterm*faceSize: 15
 
 ! works good
@@ -25,8 +27,9 @@ XCalc*ti.bevel.screen*font:		-*-terminus-medium-r-normal-*-23-*-*-*-*-*-iso10646
 ! Xft.antialias:  true
 
 ! Xft.dpi: 96
-Xft.dpi: 110
+! Xft.dpi: 110
 ! Xft.dpi: 160
+! Xft.dpi: 340
 ! ##Xft.antialias: true
 !Xft.rgba: rgb
 !Xft.hinting: true
@@ -48,6 +51,11 @@ Xft.dpi: 110
 ! Xcursor.theme: /usr/share/cursors/xorg-x11/Bluecurve/cursors
 ! Xcursor.theme: Bluecurve
 
+
+! Xcursor.size: 2048
+Xcursor.size: 48
+! Xcursor.theme: MacOSxLike
+Xcursor.theme: Adwaita
 
 ! https://invisible-island.net/xterm/manpage/xterm.html#h3-Custom-Key-Bindings
 

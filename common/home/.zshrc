@@ -44,11 +44,37 @@ ZSH_THEME="gentoo"
 #plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting zsh-autosuggestions)
 #plugins=(git autojump command-not-found syntax-highlighting zsh-syntax-highlighting)
 #plugins=(git autojump command-not-found zsh-syntax-highlighting)
-plugins=(git command-not-found zsh-syntax-highlighting)
+#plugins=(git command-not-found zsh-syntax-highlighting)
+plugins=(git command-not-found zsh-syntax-highlighting command-time)
 
 fpath+=~/.zsh/completions
 
+ZSH_COMMAND_TIME_MSG="Execution time: %s"
+ZSH_COMMAND_TIME_COLOR="cyan"
+ZSH_COMMAND_TIME_EXCLUDE=(vi nvim vim mcedit nano mpv)
+
 source $ZSH/oh-my-zsh.sh
+
+zsh_command_time() {
+    if [ -n "$ZSH_COMMAND_TIME" ]; then
+        hours=$(($ZSH_COMMAND_TIME/3600))
+        min=$(($ZSH_COMMAND_TIME/60))
+        sec=$(($ZSH_COMMAND_TIME%60))
+        if [ "$ZSH_COMMAND_TIME" -le 60 ]; then
+            timer_show="$fg[green]${ZSH_COMMAND_TIME}s"
+        elif [ "$ZSH_COMMAND_TIME" -gt 60 ] && [ "$ZSH_COMMAND_TIME" -le 180 ]; then
+            timer_show="$fg[yellow]${min}m ${sec}s"
+        else
+            if [ "$hours" -gt 0 ]; then
+                min=$(($min%60))
+                timer_show="$fg[red]${hours}h ${min}m ${sec}s"
+            else
+                timer_show="$fg[red]${min}m ${sec}s"
+            fi
+        fi
+        printf "${ZSH_COMMAND_TIME_MSG}\n" "$timer_show"
+    fi
+}
 
 autoload -U compinit && compinit
 
@@ -138,6 +164,7 @@ precmd() {
             unset CARGO_TARGET_DIR
         done
         export RUST_BACKTRACE=full
+        [ -d .git/info ] && echo 'Cargo.lock -diff' > .git/info/attributes
         unset -f precmd
     }
 

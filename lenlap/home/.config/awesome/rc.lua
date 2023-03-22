@@ -18,6 +18,7 @@ require("sizes")
 local battery_widget = require("battery_widget")
 local keyboardlayout = require("keyboardlayout")
 local compiler_processes = require('compiler_processes')
+local mic = require('mic')
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -101,10 +102,11 @@ mykeyboardlayout = keyboardlayout()
 -- Create a textclock widget
 -- mytextclock = wibox.widget.textclock("[ %d %b %a | %H:%M ]")
 mytextclock = wibox.widget.textclock("[ %H:%M %a MSK ]", 60, 'Europe/Moscow')
-mytextclock_ind = wibox.widget.textclock("[ %Y-%m-%d %a | <b>%H:%M</b> CIT ]", 60, 'Asia/Makassar')
+mytextclock_ind = wibox.widget.textclock("[ %Y-%m-%d %a | <b>%H:%M</b> WITA ]", 60, 'Asia/Makassar')
 mybattery = battery_widget()
 
 my_compiler_processes = compiler_processes()
+my_mic = mic()
 
 -- Create a wibox for each screen and add it
 awful.screen.connect_for_each_screen(function(s)
@@ -152,6 +154,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             my_compiler_processes,
             mykeyboardlayout,
+            my_mic,
             mybattery,
             wibox.widget.systray(),
             mytextclock,

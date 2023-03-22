@@ -1,4 +1,6 @@
 #!/bin/bash
 
 FILENAME="${@: -1}"
-lbunzip2 -n8 $@ || bzip2 $@ || cat "${FILENAME}"
+#lbunzip2 -n16 $@ || bzip2 $@ || cat "${FILENAME}"
+lbzip2 -n16 $@ || bzip2 $@ || cat "${FILENAME}"
+#bzip2 $@ || cat "${FILENAME}"
