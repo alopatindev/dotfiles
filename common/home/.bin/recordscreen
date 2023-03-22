@@ -2,6 +2,7 @@
 
 # TODO: -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 -y out.mkv
 # TODO: time limit
+# TODO: stream segmenter https://stackoverflow.com/questions/31517081/ffmpeg-capture-x11grab-video-with-automatic-10mins-splitting/31520435#31520435
 
 if [ "$1" = '-h' ]; then
     echo "syntax: $0 [all-sound|mic-only|system-only|no-sound] [low|high] [mouse|no-mouse]"
@@ -29,17 +30,16 @@ kill_ffmpeg_on_error () {
 
 case "${DEVICE}" in
     mic-only)
-        #SOUND_INPUT=shared_input_zoom_recorder_redirect_left_channel_to_right
-        SOUND_INPUT=zoom_recorder
+        SOUND_INPUT=default
         ;;
     system-only)
-        SOUND_INPUT=shared_input_loopback
+        SOUND_INPUT=input_from_loopback
         ;;
     no-sound)
         SOUND_INPUT=
         ;;
     *)
-        SOUND_INPUT=input_LOOPBACK_and_zoom_recorder
+        SOUND_INPUT=input_all_sounds
         ;;
 esac
 
@@ -92,6 +92,9 @@ else
         -f ipod \
         "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 fi
+
+printf "\n\n\n" >> /dev/stderr
+mediainfo "${OUTPUT}" | grep Duration | head -n1 | sed 's!.*:!Recording length is!' >> /dev/stderr
 
 EXIT_CODE="$?"
 echo "${OUTPUT}"
