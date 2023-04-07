@@ -4,7 +4,7 @@ set -e
 
 usage() {
     echo "Usage:"
-    echo "    sudo $0 create sandbox-name /full/path/to/app allowed-user"
+    echo "    sudo $0 create sandbox-name /full/path/to/app allowed-user [sandbox-only]"
     echo "    $0 run sandbox-name"
     echo "    sudo $0 remove sandbox-name"
     echo "        (this removes its home directory as well!)"
@@ -19,6 +19,7 @@ create() {
     sandbox_name="$2"
     app="$3"
     user="$4"
+    sandbox_only="$5"
 
     sandbox=$(sandbox_id ${sandbox_name})
 
@@ -33,6 +34,11 @@ create() {
 
     mkdir -p /etc/sudoers.d
     echo "${user} ALL=(${sandbox}) NOPASSWD: ${app}" > "/etc/sudoers.d/${sandbox}"
+
+    if [[ "${sandbox_only}" = "sandbox-only" ]]; then
+        chown root:${sandbox} "${app}"
+        chmod 650 "${app}"
+    fi
 }
 
 remove() {
@@ -63,7 +69,7 @@ run() {
 cmd="$1"
 case "${cmd}" in
     create)
-        if [ ${UID} -ne 0 ] || [ $# -ne 4 ]; then
+        if [ ${UID} -ne 0 ] || [ $# -lt 4 ]; then
             usage
         fi
         create "$@"
