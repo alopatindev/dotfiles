@@ -7,8 +7,7 @@
     excludesfile = ~/.gitignore.global
     ignorecase = false
     quotePath = false
-    #editor = "vi +0"
-    editor = "nvim -u DEFAULT +0"
+    editor = "nvim --clean +0"
 
 [color]
     ui = true
