@@ -383,6 +383,7 @@ awful.rules.rules = {
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
+    { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
 }
 
 apps_to_tags = {}

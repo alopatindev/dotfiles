@@ -258,7 +258,10 @@ vmap <C-h> <esc>:tabp<cr>
 vmap <bs> <esc>:tabp<cr>
 
 " shift-insert behavior is similar to xterm
-map <S-Insert> <MiddleMouse>
+"map <S-Insert> <MiddleMouse>
+
+" enter insert mode after the cursor
+map <S-i> a
 
 " search and replace current word
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
@@ -299,9 +302,9 @@ imap <F12> <esc>:TagbarToggle<cr>
 vmap <F12> <esc>:TagbarToggle<cr>
 
 
-" Colors
-"colorscheme evening
-colorscheme peachpuff
+"" Colors
+""colorscheme evening
+"colorscheme peachpuff
 "hi clear
 hi SpellBad cterm=underline
 hi ModeMsg term=bold cterm=bold gui=bold
@@ -345,6 +348,7 @@ set cursorline
 "hi Folded ctermfg=white ctermbg=black
 hi Folded ctermfg=darkgreen ctermbg=black
 "hi Visual ctermbg=darkcyan
+hi Visual ctermbg=darkblue
 "hi StatusLine ctermfg=white ctermbg=darkcyan cterm=none
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
@@ -592,11 +596,11 @@ autocmd BufEnter *.rs inoremap <C-p> <c-r>=ncm2#manual_trigger()<cr>
 
 
 
-" JavaScript/ECMAScript
-let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
-au BufWrite *.ts :Autoformat
-au BufWrite *.js :Autoformat
-au BufWrite *.json :Autoformat
+"" JavaScript/ECMAScript
+"let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
+"au BufWrite *.ts :Autoformat
+"au BufWrite *.js :Autoformat
+"au BufWrite *.json :Autoformat
 
 " Ruby
 au BufWrite *.rb :Autoformat
@@ -665,6 +669,9 @@ lua << EOF
     --fzf_opts = {
     --  ['--layout'] = 'default',
     --},
+    fzf_opts = {
+      ['--color'] = 'bg:black,bg+:black,fg:blue,fg+:yellow',
+    },
     grep = {
       rg_opts = vim.g.rg_opts,
       prompt = '> ',

@@ -1,5 +1,6 @@
 source ~/.bash_env
 
+#gsettings set org.gtk.Settings.FileChooser window-size '(1400,600)'
 #xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto
 
 xrdb -merge ~/.Xdefaults
