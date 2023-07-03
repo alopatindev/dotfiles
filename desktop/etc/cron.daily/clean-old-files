@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# remove at least 30 days old files/directories
+find /coredumps/ /home/*/Downloads/ /var/tmp/ -mindepth 1 -not -path '*/.*' -mtime +30 -exec rm -fr {} \;

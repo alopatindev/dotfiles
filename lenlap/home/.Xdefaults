@@ -3,13 +3,10 @@
 urxvt*geometry: 84x25+0+0
 urxvt*font: xft:DejaVu Sans Mono:size=16:pixelsize=18
 
-! xterm*faceSize: 38
-xterm*faceSize: 34
-!xterm*faceSize: 19
-!xterm*faceSize: 15
-
 ! works good
-!xterm*faceSize: 22
+! xterm*faceSize: 22
+! xterm*faceSize: 21
+xterm*faceSize: 19
 
 ! xterm*faceSize: 23
 xterm*geometry: 84x25+0+0
