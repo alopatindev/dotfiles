@@ -161,11 +161,27 @@ imap {<CR> {<CR>}<Esc>O
 "nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
 
 lua << EOF
-function go_to_definition_and_close_duplicate_tabs()
-  vim.lsp.buf.definition()
+local lsp_is_ready = false
+local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
+au(
+  "DiagnosticChanged",
+  "*",
+  function()
+    lsp_is_ready = true
+    vim.notify("LSP is ready")
+  end,
+  true)
 
-  -- FIXME: subscribe to "textDocument/definition" handler instead
-  vim.defer_fn(function() vim.cmd('call CloseDuplicateTabs()') end, 10)
+function go_to_definition_and_close_duplicate_tabs()
+    if lsp_is_ready then
+      vim.lsp.buf.definition()
+
+      -- FIXME: if file is already open - we may not even switch there
+      -- FIXME: subscribe to "textDocument/definition" handler instead? check that lsp/rust analyzer is ready?
+--      vim.defer_fn(function()
+--          vim.cmd('call CloseDuplicateTabs()')
+--      end, 1000)
+    end
 end
 EOF
 
@@ -618,6 +634,8 @@ lua << EOF
 
 local nvim_lsp = require'lspconfig'
 
+-- vim.lsp.set_log_level('off')
+
 local on_attach = function(client)
     -- https://github.com/neovim/neovim/issues/21588#issuecomment-1486216312 /usr/share/nvim/runtime/lua/vim/lsp.lua https://github.com/NvChad/NvChad/issues/1907
     --client.server_capabilities.semanticTokensProvider = nil
@@ -647,7 +665,7 @@ nvim_lsp.rust_analyzer.setup({
                 enable = true
             },
             diagnostics = {
-              enable = false
+                enable = false
             },
         }
     }
