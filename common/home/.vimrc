@@ -158,35 +158,24 @@ imap {<CR> {<CR>}<Esc>O
 
 ""map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 """map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-"nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
+nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
 
 lua << EOF
-local lsp_is_ready = false
 local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
 au(
   "DiagnosticChanged",
   "*",
   function()
-    lsp_is_ready = true
     vim.notify("LSP is ready")
   end,
   true)
 
-function go_to_definition_and_close_duplicate_tabs()
-    if lsp_is_ready then
-      vim.lsp.buf.definition()
-
-      -- FIXME: if file is already open - we may not even switch there
-      -- FIXME: subscribe to "textDocument/definition" handler instead? check that lsp/rust analyzer is ready?
---      vim.defer_fn(function()
---          vim.cmd('call CloseDuplicateTabs()')
---      end, 1000)
-    end
+local default_definition_handler = vim.lsp.handlers["textDocument/definition"]
+vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
+  default_definition_handler(_, result, ctx, config)
+  vim.cmd('call CloseDuplicateTabs()')
 end
 EOF
-
-nnoremap <C-\> :tab split<CR>:lua go_to_definition_and_close_duplicate_tabs()<cr>
-
 
 
 
@@ -634,7 +623,7 @@ lua << EOF
 
 local nvim_lsp = require'lspconfig'
 
--- vim.lsp.set_log_level('off')
+-- vim.lsp.set_log_level('OFF')
 
 local on_attach = function(client)
     -- https://github.com/neovim/neovim/issues/21588#issuecomment-1486216312 /usr/share/nvim/runtime/lua/vim/lsp.lua https://github.com/NvChad/NvChad/issues/1907
