@@ -160,6 +160,9 @@ imap {<CR> {<CR>}<Esc>O
 "nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 
+" auto close quick fix on select
+autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+
 lua << EOF
 local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
 au(
@@ -676,11 +679,10 @@ nvim_lsp.rust_analyzer.setup({
     }
 })
 
-    --vim.keymap.set('n', '<C-\\>', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'r', vim.lsp.buf.rename)
     vim.diagnostic.config({
       virtual_text = false,
