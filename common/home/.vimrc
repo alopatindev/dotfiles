@@ -159,6 +159,7 @@ imap {<CR> {<CR>}<Esc>O
 """map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
+nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
 " auto close quick fix on select
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
@@ -195,7 +196,6 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
   end
 end
 EOF
-
 
 
 
@@ -683,6 +683,7 @@ nvim_lsp.rust_analyzer.setup({
     --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', 'r', vim.lsp.buf.rename)
     vim.diagnostic.config({
       virtual_text = false,
