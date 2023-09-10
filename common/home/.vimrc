@@ -32,6 +32,7 @@ Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'git@github.com:vigoux/LanguageTool.nvim'
 "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'git@github.com:chiedojohn/vim-case-convert'
+Plug 'vim-scripts/close-duplicate-tabs'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -155,14 +156,22 @@ vmap <S-tab> <gv
 imap {<CR> {<CR>}<Esc>O
 
 
-" ctags: go to definition in C and some other languages
-" requires running "ctags -R ." in the same dir first
-" TODO: tab drop
-"map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-"nnoremap <C-\> <cmd>tab split \| lua vim.lsp.buf.definition()<cr>
-"nnoremap <C-\> <cmd>tab split \| lua vim.lsp.buf.definition()<cr>
-nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
-""map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+""map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"""map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+"nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
+
+lua << EOF
+function go_to_definition_and_close_duplicate_tabs()
+  vim.lsp.buf.definition()
+
+  -- FIXME: subscribe to "textDocument/definition" handler instead
+  vim.defer_fn(function() vim.cmd('call CloseDuplicateTabs()') end, 10)
+end
+EOF
+
+nnoremap <C-\> :tab split<CR>:lua go_to_definition_and_close_duplicate_tabs()<cr>
+
+
 
 
 
@@ -573,6 +582,8 @@ lua << EOF
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
       ['<C-p>'] = cmp.mapping.complete(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
+      ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
       ["<c-y>"] = cmp.mapping(
         cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Insert,
@@ -588,21 +599,21 @@ lua << EOF
     })
   })
 
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
+--  cmp.setup.cmdline({ '/', '?' }, {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = {
+--      { name = 'buffer' }
+--    }
+--  })
 
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
+--  cmp.setup.cmdline(':', {
+--    mapping = cmp.mapping.preset.cmdline(),
+--    sources = cmp.config.sources({
+--      { name = 'path' }
+--    }, {
+--      { name = 'cmdline' }
+--    })
+--  })
 
 
 local nvim_lsp = require'lspconfig'
@@ -648,7 +659,10 @@ nvim_lsp.rust_analyzer.setup({
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', 'r', vim.lsp.buf.rename)
-    vim.diagnostic.config({virtual_text = false})
+    vim.diagnostic.config({
+      virtual_text = false,
+      signs = false,
+    })
 
 
     local rt = require("rust-tools")
