@@ -373,9 +373,11 @@ hi Visual ctermbg=darkblue
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
 "hi Pmenu ctermfg=black ctermbg=green cterm=none guibg=brown gui=bold
 "hi PmenuSel ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
+hi PmenuSel ctermfg=black ctermbg=yellow cterm=none guibg=red gui=bold
 "hi PmenuSbar ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
 "hi PmenuThumb ctermfg=green ctermbg=black cterm=none guibg=red gui=bold
-highlight Pmenu ctermbg=blue guibg=blue
+"highlight Pmenu ctermbg=blue guibg=blue
+highlight Pmenu ctermbg=darkblue guibg=darkblue
 
 ""hi TabLineSel term=bold  ctermfg=white ctermbg=darkgreen
 hi TabLineSel term=bold  ctermfg=black ctermbg=green
@@ -631,11 +633,13 @@ lua << EOF
     },
     window = {
       -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Up>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-Down>'] = cmp.mapping.scroll_docs(4),
+      ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-j>'] = cmp.mapping.scroll_docs(4),
       --['<C-Space>'] = cmp.mapping.complete(),
       ['<C-p>'] = cmp.mapping.complete(),
 
