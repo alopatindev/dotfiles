@@ -172,6 +172,9 @@ au(
 
 local default_definition_handler = vim.lsp.handlers["textDocument/definition"]
 vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
+  local initial_file = vim.api.nvim_buf_get_name(0)
+  local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+
   if #result == 1 then
     local location = result[1]
     local uri = location.uri or location.targetUri
@@ -180,6 +183,13 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
     end
   end
   default_definition_handler(_, result, ctx, config)
+
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+  if same_location then
+    vim.lsp.buf.implementation()
+  end
 end
 EOF
 
