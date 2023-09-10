@@ -32,7 +32,6 @@ Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'git@github.com:vigoux/LanguageTool.nvim'
 "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'git@github.com:chiedojohn/vim-case-convert'
-Plug 'vim-scripts/close-duplicate-tabs'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -158,7 +157,8 @@ imap {<CR> {<CR>}<Esc>O
 
 ""map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 """map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
+"nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
+nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 
 lua << EOF
 local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
@@ -172,8 +172,14 @@ au(
 
 local default_definition_handler = vim.lsp.handlers["textDocument/definition"]
 vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
+  if #result == 1 then
+    local location = result[1]
+    local uri = location.uri or location.targetUri
+    if uri ~= nil then
+      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+    end
+  end
   default_definition_handler(_, result, ctx, config)
-  vim.cmd('call CloseDuplicateTabs()')
 end
 EOF
 
