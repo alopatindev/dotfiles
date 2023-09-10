@@ -696,7 +696,23 @@ autocmd BufRead * lua require'cmp'.setup.buffer {
 \   }
 \ }
 
+autocmd TabEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
 
+autocmd BufEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
+
+autocmd WinEnter * lua require'cmp'.setup.buffer {
+\   completion = {
+\     autocomplete = false
+\   }
+\ }
 
 "" JavaScript/ECMAScript
 "let g:formatdef_jsbeautify_json = '"js-beautify --indent-size 2"'
