@@ -586,6 +586,7 @@ augroup END
 
 " Rust
 autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
+nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<CR> " TODO: add formatting
 
 lua << EOF
   local cmp = require'cmp' -- nvim-cmp
@@ -646,69 +647,74 @@ local nvim_lsp = require'lspconfig'
 
 local on_attach = function(client)
     -- https://github.com/neovim/neovim/issues/21588#issuecomment-1486216312 /usr/share/nvim/runtime/lua/vim/lsp.lua https://github.com/NvChad/NvChad/issues/1907
-    --client.server_capabilities.semanticTokensProvider = nil
-    --vim.highlight.priorities.semantic_tokens = 95
+    client.server_capabilities.semanticTokensProvider = nil
+    vim.highlight.priorities.semantic_tokens = 95
 
     require'completion'.on_attach(client)
 end
 
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-nvim_lsp.rust_analyzer.setup({
+
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    -- TODO: "rust-analyzer.rustfmt.extraArgs": ["+nightly"] https://github.com/rust-lang/rust-analyzer/issues/3916#issuecomment-1193154832
+    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
     capabilities = capabilities,
     on_attach=on_attach,
     settings = {
         ["rust-analyzer"] = {
-            imports = {
-                granularity = {
-                    group = "module",
-                },
-                prefix = "self",
-            },
-            cargo = {
-                buildScripts = {
-                    enable = true,
-                },
-            },
-            procMacro = {
-                enable = true
-            },
-            diagnostics = {
-                enable = false
-            },
+--            imports = {
+--                granularity = {
+--                    group = "module",
+--                },
+--                prefix = "self",
+--            },
+--            cargo = {
+--                buildScripts = {
+--                    enable = true,
+--                },
+--            },
+--            procMacro = {
+--                enable = true
+--            },
+--            diagnostics = {
+--                enable = false
+--            },
+--            rustfmt = {
+--                overrideCommand = {
+--                  "rustfmt",
+--                  "--edition=2021",
+--                  "--"
+--                },
+--            },
         }
     }
+  },
+  tools = {
+    inlay_hints = {
+      highlight = "Folded",
+      only_current_line = true,
+    }
+  }
 })
 
-    --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', 'r', vim.lsp.buf.rename)
-    vim.diagnostic.config({
-      virtual_text = false,
-      signs = false,
-    })
 
+--vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+--vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+--vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+--vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+vim.keymap.set('n', 'r', vim.lsp.buf.rename)
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = false,
+})
 
-    local rt = require("rust-tools")
-
-    rt.setup({
-      server = {
-        on_attach = function(_, bufnr)
-        end,
-      },
-      tools = {
-        inlay_hints = {
-          highlight = "Folded",
-          only_current_line = true,
-        }
-      }
-    })
 EOF
 
 
-"" manual autocomplete
+"" manual complete
 autocmd BufRead * lua require'cmp'.setup.buffer {
 \   completion = {
 \     autocomplete = false
