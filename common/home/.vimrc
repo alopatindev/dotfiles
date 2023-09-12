@@ -389,7 +389,7 @@ hi LineNr ctermfg=3 cterm=bold
 hi Search ctermfg=0
 hi Constant cterm=bold
 hi StatusLineNC cterm=bold ctermfg=0
-hi StatusLine cterm=bold ctermfg=2
+"hi StatusLine cterm=bold ctermfg=2
 hi Title ctermfg=LightBlue ctermbg=Magenta
 "hi TabLineFill cterm=bold ctermfg=2
 "hi TabLine cterm=bold ctermfg=2
@@ -409,7 +409,9 @@ set cursorline
 "hi Folded ctermfg=white ctermbg=black
 hi Folded ctermfg=darkgreen ctermbg=black
 "hi Visual ctermbg=darkcyan
-hi Visual ctermbg=darkblue
+"hi Visual ctermbg=darkblue ctermfg=white term=reverse
+hi Visual ctermbg=darkblue term=bold
+"hi Visual ctermbg=darkgrey term=bold
 "hi StatusLine ctermfg=white ctermbg=darkcyan cterm=none
 "hi StatusLine ctermfg=black ctermbg=darkgreen cterm=none
 hi StatusLine ctermfg=white ctermbg=darkblue cterm=none
@@ -427,6 +429,10 @@ hi TabLineSel term=bold  ctermfg=black ctermbg=green
 ""ctermbg=darkblue
 hi TabLine ctermfg=white ctermbg=black
 hi TabLineFill term=bold,reverse  cterm=bold ctermfg=lightblue ctermbg=black
+hi TabLineSel ctermfg=black ctermbg=darkgreen cterm=NONE
+
+
+
 "hi Comment cterm=bold
 "hi Directory ctermfg=3 cterm=none
 
@@ -608,7 +614,13 @@ augroup END
 
 " Rust
 autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
+
 nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<CR> " TODO: add formatting
+
+function! CargoToml()
+  vsplit
+  lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()
+endfunction
 
 lua << EOF
   local cmp = require'cmp' -- nvim-cmp
@@ -644,8 +656,7 @@ lua << EOF
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-    }, {
-      { name = 'buffer' },
+      -- { name = 'buffer' },
     })
   })
 
@@ -670,28 +681,36 @@ local nvim_lsp = require'lspconfig'
 
 -- vim.lsp.set_log_level('OFF')
 
-local on_attach = function(client)
-    -- https://github.com/neovim/neovim/issues/21588#issuecomment-1486216312 /usr/share/nvim/runtime/lua/vim/lsp.lua https://github.com/NvChad/NvChad/issues/1907
-    client.server_capabilities.semanticTokensProvider = nil
-    vim.highlight.priorities.semantic_tokens = 95
-
-    require'completion'.on_attach(client)
-end
-
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local rt = require("rust-tools")
 rt.setup({
   server = {
-    -- TODO: "rust-analyzer.rustfmt.extraArgs": ["+nightly"] https://github.com/rust-lang/rust-analyzer/issues/3916#issuecomment-1193154832
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    -- capabilities = capabilities,
-    --capabilities = require'vim.lsp.handlers'.capabilities,
-    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = on_attach,
-    settings = {
-        ["rust-analyzer"] = {
+    capabilities = capabilities,
+    -- capabilities = require'lsp.handlers'.capabilities,
+    --capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function(client)
+        client.server_capabilities.semanticTokensProvider = nil
+        vim.highlight.priorities.semantic_tokens = 95
+
+        --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+        --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
+        --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', 'r', vim.lsp.buf.rename)
+        vim.keymap.set('v', '<C-p>', rt.hover_range.hover_range)
+        --vim.keymap.set('n', '<C-e>', rt.hover_actions.hover_actions)
+
+        require'completion'.on_attach(client)
+    end,
+--    settings = {
+--        ["rust-analyzer"] = {
 --            imports = {
 --                granularity = {
 --                    group = "module",
@@ -707,7 +726,8 @@ rt.setup({
 --                enable = true
 --            },
 --            diagnostics = {
---                enable = false
+--                enable = false,
+----                experimental = true,
 --            },
 --            rustfmt = {
 --                overrideCommand = {
@@ -716,24 +736,18 @@ rt.setup({
 --                  "--"
 --                },
 --            },
-        }
-    }
+--        }
+--    }
   },
   tools = {
     inlay_hints = {
       highlight = "Folded",
       only_current_line = true,
-    }
+    },
+    --hover_with_actions = true,
   }
 })
 
-
---vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
---vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
---vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
---vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-vim.keymap.set('n', 'r', vim.lsp.buf.rename)
 vim.diagnostic.config({
   virtual_text = false,
   signs = false,
