@@ -378,7 +378,7 @@ hi Title term=bold gui=bold
 hi DiffAdd term=bold
 hi DiffChange term=bold
 hi DiffDelete term=bold gui=bold
-hi Special term=bold
+hi Special term=bold ctermfg=red
 hi Statement term=bold cterm=bold gui=bold
 hi Type ctermfg=4 cterm=bold
 hi String ctermfg=5 cterm=bold
@@ -626,16 +626,19 @@ lua << EOF
       ['<C-k>'] = cmp.mapping.scroll_docs(-4),
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
       ['<C-p>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<CR>'] = cmp.mapping.confirm({
+        select = true,
+        behavior = cmp.ConfirmBehavior.Insert
+      }),
       ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
-      ["<c-y>"] = cmp.mapping(
-        cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-        { "i", "c" }
-      ),
+--      ["<C-y>"] = cmp.mapping(
+--        cmp.mapping.confirm {
+--          behavior = cmp.ConfirmBehavior.Insert,
+--          select = true,
+--        },
+--        { "i", "c" }
+--      ),
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
