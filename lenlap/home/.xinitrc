@@ -21,7 +21,8 @@ xgamma -gamma 0.9
 chromium &
 #pidgin &
 #qtox &
-xterm -T 'terms' -e 'tmux attach || tmux' &
+#xterm -T 'terms' -e 'tmux attach || tmux' &
+wezterm
 stardict &
 #qdevicemonitor &
 xbindkeys
@@ -44,7 +45,8 @@ eval $(luarocks path --bin)
 
 #night-mode.sh
 #feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/pine_trees_forest-wallpaper-2560x1440_1.png &
-feh -q --no-fehbg --bg-fill ~/pictures/wallpapers/space/cosmos-1853491.jpg &
+feh -q --no-fehbg --bg-fill ~/pictures/wallpapers/space/milky-way-3840x2160-stars-4k-18250.jpg
+#feh -q --no-fehbg --bg-fill ~/pictures/wallpapers/space/cosmos-1853491.jpg &
 #feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/wallhaven-551538.png &
 #feh -q --no-fehbg --bg-center ~/pictures/wallpapers/nature/leaves.jpg &
 
