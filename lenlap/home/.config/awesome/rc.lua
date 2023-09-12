@@ -101,8 +101,8 @@ mykeyboardlayout = keyboardlayout()
 -- {{{ Wibar
 -- Create a textclock widget
 -- mytextclock = wibox.widget.textclock("[ %d %b %a | %H:%M ]")
-mytextclock = wibox.widget.textclock("[ %H:%M %a MSK ]", 60, 'Europe/Moscow')
-mytextclock_ind = wibox.widget.textclock("[ %Y-%m-%d %a | <b>%H:%M</b> WITA ]", 60, 'Asia/Makassar')
+mytextclock = wibox.widget.textclock("[ %a %H:%M MSK ]", 60, 'Europe/Moscow')
+mytextclock_ind = wibox.widget.textclock("[ %a %d %b %Y | <b>%H:%M</b> WITA ]", 60, 'Asia/Makassar')
 mybattery = battery_widget()
 
 my_compiler_processes = compiler_processes()
@@ -380,9 +380,11 @@ awful.rules.rules = {
     { rule = { class = "Zathura" }, properties = { tag = "9 doc" }},
     { rule = { class = "Code" }, properties = { tag = "2 term" } },
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
+    { rule = { class = "libreoffice-calc" }, properties = { tag = "9 doc" } },
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
+    { rule = { class = "Pitivi" }, properties = { tag = "5 media" } },
     { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
 }
 
@@ -448,3 +450,14 @@ client.connect_signal("property::instance", function(c)
 end)
 -- awful.rules.rules[#awful.rules.rules + 1] = line
 -- }}}
+
+-- https://github.com/awesomeWM/awesome/issues/3156#issuecomment-683533740
+client.connect_signal("property::fullscreen", function(c)
+  if c.fullscreen then
+    gears.timer.delayed_call(function()
+      if c.valid then
+        c:geometry(c.screen.geometry)
+      end
+    end)
+  end
+end)
