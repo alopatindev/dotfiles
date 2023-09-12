@@ -161,6 +161,8 @@ imap {<CR> {<CR>}<Esc>O
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
+vnoremap <C-p> :lua vim.lsp.buf.code_action()<CR>
+
 " auto close quick fix on select
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
@@ -677,14 +679,17 @@ local on_attach = function(client)
 end
 
 
-local rt = require("rust-tools")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+local rt = require("rust-tools")
 rt.setup({
   server = {
     -- TODO: "rust-analyzer.rustfmt.extraArgs": ["+nightly"] https://github.com/rust-lang/rust-analyzer/issues/3916#issuecomment-1193154832
     -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    capabilities = capabilities,
-    on_attach=on_attach,
+    -- capabilities = capabilities,
+    --capabilities = require'vim.lsp.handlers'.capabilities,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = on_attach,
     settings = {
         ["rust-analyzer"] = {
 --            imports = {
