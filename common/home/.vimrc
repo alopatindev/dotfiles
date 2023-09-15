@@ -41,11 +41,20 @@ Plug 'airblade/vim-rooter' " changes current dir to project root (that contains 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim', { 'commit': 'd6aa21476b2854694e6aa7b0941b8992a906c5ec' }
+"Plug 'junegunn/fzf.vim', { 'commit': 'd6aa21476b2854694e6aa7b0941b8992a906c5ec' }
+Plug 'junegunn/fzf.vim'
 
+"Plug '~/git-extra/fzf-lua-old'
 Plug 'ibhagwan/fzf-lua', { 'commit': 'fa006b8d9f24b4a58eb4220c871e432c3e5df1da' }
+
+"Plug 'ibhagwan/fzf-lua' " TODO: update to fix references
 Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 "Plug 'kyazdani42/nvim-web-devicons'
+
+
+" lsp references/etc.
+"Plug 'gfanto/fzf-lsp.nvim'
+"Plug 'nvim-lua/plenary.nvim'
 
 
 Plug 'neovim/nvim-lspconfig'
@@ -56,6 +65,10 @@ Plug 'hrsh7th/cmp-path'
 "Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+" nowadays even Enter button in manual completion needs
+" couple of additional dependencies, fucking hilarious
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
@@ -161,8 +174,6 @@ imap {<CR> {<CR>}<Esc>O
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
-vnoremap <C-p> :lua vim.lsp.buf.code_action()<CR>
-
 " auto close quick fix on select
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
@@ -196,6 +207,13 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
   if same_location then
     vim.lsp.buf.implementation()
   end
+
+  local current_file = vim.api.nvim_buf_get_name(0)
+  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+  if same_location then
+    vim.lsp.buf.references()
+  end
 end
 
 
@@ -213,11 +231,17 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
+--local fzf_lsp = require'fzf_lsp'
+--fzf_lsp.setup()
+--vim.lsp.handlers["textDocument/references"] = fzf_lsp.references_handler
+
+
 vim.diagnostic.config{
   float = { border = _border }
 }
 EOF
 
+"let g:fzf_lsp_layout = { 'window': { 'border': 'none', 'fullscreen': true } }
 
 
 " .viminfo settings: remember certain things when we exit
@@ -617,10 +641,7 @@ autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
 
 nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<CR> " TODO: add formatting
 
-function! CargoToml()
-  vsplit
-  lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()
-endfunction
+nnoremap cc :vsplit<cr>:lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()<cr> " TODO: toggle
 
 lua << EOF
   local cmp = require'cmp' -- nvim-cmp
@@ -628,6 +649,7 @@ lua << EOF
   cmp.setup({
     snippet = {
       expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
       end,
     },
     window = {
@@ -646,18 +668,17 @@ lua << EOF
       }),
       ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
---      ["<C-y>"] = cmp.mapping(
---        cmp.mapping.confirm {
---          behavior = cmp.ConfirmBehavior.Insert,
---          select = true,
---        },
---        { "i", "c" }
---      ),
     }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      -- { name = 'buffer' },
-    })
+    sources = cmp.config.sources(
+      {
+        { name = 'nvim_lsp' },
+        --{ name = "vsnip" },
+        { name = "path" },
+      },
+      {
+        { name = 'buffer' },
+      }
+    )
   })
 
 --  cmp.setup.cmdline({ '/', '?' }, {
@@ -682,7 +703,8 @@ local nvim_lsp = require'lspconfig'
 -- vim.lsp.set_log_level('OFF')
 
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+--local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local rt = require("rust-tools")
@@ -696,6 +718,7 @@ rt.setup({
         client.server_capabilities.semanticTokensProvider = nil
         vim.highlight.priorities.semantic_tokens = 95
 
+        -- TODO: perhaps run before on_attach
         --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
         --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
         --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -704,10 +727,9 @@ rt.setup({
         --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', 'r', vim.lsp.buf.rename)
-        vim.keymap.set('v', '<C-p>', rt.hover_range.hover_range)
-        --vim.keymap.set('n', '<C-e>', rt.hover_actions.hover_actions)
+        vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
 
-        require'completion'.on_attach(client)
+        --require'completion'.on_attach(client)
     end,
 --    settings = {
 --        ["rust-analyzer"] = {
@@ -727,7 +749,6 @@ rt.setup({
 --            },
 --            diagnostics = {
 --                enable = false,
-----                experimental = true,
 --            },
 --            rustfmt = {
 --                overrideCommand = {
@@ -797,16 +818,12 @@ au FileType markdown vmap a :EasyAlign*<Bar><Enter>
 autocmd BufEnter,FocusGained * checktime
 
 function! s:close_tab_if_empty()
-  "if empty(expand('%:p'))
-  "if mode() == 't'
-  "  q
-  "end
-  function! s:wat()
+  function! s:on_exit()
     if mode() == 't'
       q
     end
   endfunction
-  call jobstart(['sleep', '1'], {'on_exit': function('s:wat')})
+  call jobstart(['sleep', '1'], {'on_exit': function('s:on_exit')})
 endfunction
 
 " Search in filenames and file bodies
