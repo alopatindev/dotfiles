@@ -56,6 +56,12 @@ Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 "Plug 'gfanto/fzf-lsp.nvim'
 "Plug 'nvim-lua/plenary.nvim'
 
+Plug 'kevinhwang91/nvim-bqf'
+"Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+
+
+
 
 Plug 'neovim/nvim-lspconfig'
 
@@ -73,6 +79,11 @@ Plug 'hrsh7th/vim-vsnip'
 
 " vim.ui.select => code actions, etc.
 Plug 'stevearc/dressing.nvim'
+
+" lsp symbol renaming with highlighting
+"Plug 'smjonas/inc-rename.nvim'
+"Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
+
 
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
@@ -182,6 +193,66 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
 lua << EOF
+local fn = vim.fn
+
+function _G.qftf(info)
+    local items
+    local ret = {}
+    if info.quickfix == 1 then
+        items = fn.getqflist({id = info.id, items = 0}).items
+    else
+        items = fn.getloclist(info.winid, {id = info.id, items = 0}).items
+    end
+    local limit = 31
+    local fnameFmt1, fnameFmt2 = '%-' .. limit .. 's', '…%.' .. (limit - 1) .. 's'
+    local validFmt = '%s │%5d:%-3d│%s %s'
+    for i = info.start_idx, info.end_idx do
+        local e = items[i]
+        local fname = ''
+        local str
+        if e.valid == 1 then
+            if e.bufnr > 0 then
+                fname = fn.bufname(e.bufnr)
+                if fname == '' then
+                    fname = '[No Name]'
+                else
+                    fname = fname:gsub('^' .. vim.env.HOME, '~')
+                end
+                if #fname <= limit then
+                    fname = fnameFmt1:format(fname)
+                else
+                    fname = fnameFmt2:format(fname:sub(1 - limit))
+                end
+            end
+            local lnum = e.lnum > 99999 and -1 or e.lnum
+            local col = e.col > 999 and -1 or e.col
+            local qtype = e.type == '' and '' or ' ' .. e.type:sub(1, 1):upper()
+            str = validFmt:format(fname, lnum, col, qtype, e.text)
+        else
+            str = e.text
+        end
+        table.insert(ret, str)
+    end
+    return ret
+end
+
+vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
+
+-- Adapt fzf's delimiter in nvim-bqf
+require('bqf').setup({
+    filter = {
+        fzf = {
+            extra_opts = {'--bind', 'ctrl-o:toggle-all', '--delimiter', '│'}
+        }
+    }
+})
+EOF
+
+
+
+
+
+lua << EOF
 require("dressing").setup({
   input = {
     enabled = false, -- disable for symbol rename, etc.
@@ -245,11 +316,15 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
-vim.lsp.handlers['textDocument/references'] = function()
-  local result = require'fzf-lua'.lsp_references() -- FIXME: fallbacks to Quickfix list if codebase is large
-  vim.notify('')
-  return result
-end
+--vim.lsp.handlers['textDocument/references'] = function(_, _, result)
+--  --if not result then return end
+--  --vim.lsp.util.set_loclist(vim.lsp.util.locations_to_items(result))
+--
+--  --local result = require'fzf-lua'.lsp_references() -- FIXME: fallbacks to Quickfix list if codebase is large
+--  local result = require'fzf_lsp'.references_call()
+--  vim.notify('')
+--  return result
+--end
 
 vim.diagnostic.config{
   float = { border = _border }
