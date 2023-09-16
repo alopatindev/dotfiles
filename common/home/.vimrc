@@ -187,7 +187,7 @@ imap {<CR> {<CR>}<Esc>O
 ""map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 """map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
-nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
+nnoremap <C-p> :lua vim.lsp.buf.definition()<cr>
 vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
@@ -448,6 +448,10 @@ vmap <bs> <esc>:tabp<cr>
 
 " enter insert mode after the cursor
 map <S-i> a
+
+" swap a and i
+nnoremap i a
+nnoremap a i
 
 " search and replace current word
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
