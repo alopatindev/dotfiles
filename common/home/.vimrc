@@ -231,10 +231,10 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
---local fzf_lsp = require'fzf_lsp'
---fzf_lsp.setup()
---vim.lsp.handlers["textDocument/references"] = fzf_lsp.references_handler
-
+-- TODO: vim.lsp.handlers["textDocument/codeAction"] = ?
+--vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(require'fzf-lua'.code_actions)
+--vim.lsp.handlers["textDocument/codeAction"] = require'fzf-lua'.lsp_code_actions
+--vim.lsp.handlers["textDocument/codeAction"] = require'fzf-lua'.code_action_handler
 
 vim.diagnostic.config{
   float = { border = _border }
@@ -664,7 +664,7 @@ lua << EOF
       ['<C-p>'] = cmp.mapping.complete(),
       ['<CR>'] = cmp.mapping.confirm({
         select = true,
-        behavior = cmp.ConfirmBehavior.Insert
+        behavior = cmp.ConfirmBehavior.Replace
       }),
       ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "s" }),
