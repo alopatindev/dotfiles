@@ -376,7 +376,8 @@ map cc <esc>:q<cr>
 imap <C-Del> X<Esc>ce
 map <C-Del> dw
 
-vmap s :sort<cr>
+" sort lines and remove empty ones
+vmap s :sort<cr>:'<,'>g/^\s*$/d<cr>
 
 " Tagbar
 let g:tagbar_autoclose = 1
