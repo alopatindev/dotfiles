@@ -745,7 +745,16 @@ autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
 
 nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<CR> " TODO: add formatting
 
-nnoremap cc :vsplit<cr>:lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()<cr> " TODO: toggle
+function! g:CargoTomlToggle() abort
+  if bufname() =~ 'Cargo.toml'
+    exe winnr() . 'close' " FIXME: doesn't close the file
+  else
+    lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()
+  endif
+endfunction
+
+nnoremap cc :vsplit<cr>:call g:CargoTomlToggle()<cr>
+
 
 lua << EOF
   local cmp = require'cmp' -- nvim-cmp
