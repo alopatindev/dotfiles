@@ -58,9 +58,6 @@ Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 
 " quickfix settings, for lsp references
 Plug 'kevinhwang91/nvim-bqf'
-"Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-
-"Plug 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
 
 
 
@@ -192,8 +189,8 @@ imap {<CR> {<CR>}<Esc>O
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
-" auto close quick fix on select
-autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+" Auto close quick fix and open in new tab on select
+autocmd FileType qf nnoremap <buffer> <Enter> <CR>:cclose<CR><C-W><Enter><C-W>T
 
 lua << EOF
 local fn = vim.fn
