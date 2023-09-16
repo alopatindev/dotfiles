@@ -37,6 +37,7 @@ Plug 'git@github.com:chiedojohn/vim-case-convert'
 Plug 'git@github.com:rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
+"Plug 'weilbith/nvim-code-action-menu' " also https://github.com/aznhe21/actions-preview.nvim
 
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -310,6 +311,20 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
 end
 
 
+local default_references_handler = vim.lsp.handlers['textDocument/references']
+vim.lsp.handlers['textDocument/references'] = function(_, result, ctx, config)
+  if #result == 1 then
+    local location = result[1]
+    local uri = location.uri or location.targetUri
+    if uri ~= nil then
+      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+    end
+  end
+  default_references_handler(_, result, ctx, config)
+end
+
+
+
 local _border = "single"
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -323,16 +338,6 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     border = _border
   }
 )
-
---vim.lsp.handlers['textDocument/references'] = function(_, _, result)
---  --if not result then return end
---  --vim.lsp.util.set_loclist(vim.lsp.util.locations_to_items(result))
---
---  --local result = require'fzf-lua'.lsp_references() -- FIXME: fallbacks to Quickfix list if codebase is large
---  local result = require'fzf_lsp'.references_call()
---  vim.notify('')
---  return result
---end
 
 vim.diagnostic.config{
   float = { border = _border }
