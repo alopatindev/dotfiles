@@ -46,7 +46,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 "Plug '~/git-extra/fzf-lua-old'
-Plug 'ibhagwan/fzf-lua', { 'commit': 'fa006b8d9f24b4a58eb4220c871e432c3e5df1da' }
+Plug 'ibhagwan/fzf-lua', { 'commit': 'fd4e94e7a4c139122dbe11f6caee6241c4ab8c00' }
 "Plug 'ibhagwan/fzf-lua'
 
 "Plug 'ibhagwan/fzf-lua' " TODO: update to fix references
