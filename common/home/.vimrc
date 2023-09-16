@@ -187,6 +187,7 @@ imap {<CR> {<CR>}<Esc>O
 """map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
 nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
+vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
 " Auto close quick fix and open in new tab on select
