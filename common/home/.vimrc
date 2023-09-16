@@ -56,8 +56,11 @@ Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
 "Plug 'gfanto/fzf-lsp.nvim'
 "Plug 'nvim-lua/plenary.nvim'
 
+" quickfix settings, for lsp references
 Plug 'kevinhwang91/nvim-bqf'
 "Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+"Plug 'https://gitlab.com/yorickpeterse/nvim-pqf.git'
 
 
 
@@ -238,8 +241,10 @@ end
 
 vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 
--- Adapt fzf's delimiter in nvim-bqf
 require('bqf').setup({
+    preview = {
+        win_height = 200,
+    },
     filter = {
         fzf = {
             extra_opts = {'--bind', 'ctrl-o:toggle-all', '--delimiter', '│'}
@@ -247,6 +252,8 @@ require('bqf').setup({
     }
 })
 EOF
+
+hi default link BqfPreviewTitle TabLineSel
 
 
 
