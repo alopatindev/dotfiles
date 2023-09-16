@@ -49,7 +49,6 @@ Plug 'ibhagwan/fzf-lua', { 'commit': 'fa006b8d9f24b4a58eb4220c871e432c3e5df1da' 
 
 "Plug 'ibhagwan/fzf-lua' " TODO: update to fix references
 Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
-"Plug 'kyazdani42/nvim-web-devicons'
 
 
 " lsp references/etc.
@@ -646,6 +645,34 @@ nnoremap cc :vsplit<cr>:lua require 'rust-tools.open_cargo_toml'.open_cargo_toml
 lua << EOF
   local cmp = require'cmp' -- nvim-cmp
 
+  local kind_icons = {
+    Text = "",
+    Method = "󰆧",
+    Function = "󰊕",
+    Constructor = "",
+    Field = "󰇽",
+    Variable = "󰂡",
+    Class = "󰠱",
+    Interface = "",
+    Module = "",
+    Property = "󰜢",
+    Unit = "",
+    Value = "󰎠",
+    Enum = "",
+    Keyword = "󰌋",
+    Snippet = "",
+    Color = "󰏘",
+    File = "󰈙",
+    Reference = "",
+    Folder = "󰉋",
+    EnumMember = "",
+    Constant = "󰏿",
+    Struct = "",
+    Event = "",
+    Operator = "󰆕",
+    TypeParameter = "󰅲",
+  }
+
   cmp.setup({
     snippet = {
       expand = function(args)
@@ -678,8 +705,47 @@ lua << EOF
       {
         { name = 'buffer' },
       }
-    )
+    ),
+    formatting = {
+      format = function(entry, vim_item)
+        --vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+        vim_item.kind = kind_icons[vim_item.kind]
+
+--        vim_item.menu = ({
+--          buffer = "[Buffer]",
+--          nvim_lsp = "[LSP]",
+--          luasnip = "[LuaSnip]",
+--          nvim_lua = "[Lua]",
+--          latex_symbols = "[LaTeX]",
+--        })[entry.source.name]
+        vim_item.menu = ''
+
+        local window_width = vim.api.nvim_win_get_width(0)
+        local _current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+        local free_right_area = window_width - current_column
+        vim_item.abbr = string.sub(vim_item.abbr, 1, free_right_area / 4) -- limit completion width
+
+        return vim_item
+      end
+    },
   })
+
+--  -- gray
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg='#808080' })
+--  -- blue
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg='NONE', fg='#569CD6' })
+--  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
+--  -- light blue
+--  vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg='NONE', fg='#9CDCFE' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
+--  -- pink
+--  vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg='NONE', fg='#C586C0' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
+--  -- front
+--  vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg='#D4D4D4' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
+--  vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
 
 --  cmp.setup.cmdline({ '/', '?' }, {
 --    mapping = cmp.mapping.preset.cmdline(),
