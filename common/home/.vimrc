@@ -182,6 +182,15 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
 
 lua << EOF
+require("dressing").setup({
+  input = {
+    enabled = false, -- disable for symbol rename, etc.
+  },
+  select = {
+    backend = { "fzf", "fzf_lua", "telescope", "builtin", "nui" },
+  },
+})
+
 local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
 au(
   "DiagnosticChanged",
@@ -216,7 +225,7 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
   local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
   local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
   if same_location then
-    --vim.notify("Finding references...")
+    vim.notify("Finding references...")
     vim.lsp.buf.references()
   end
 end
@@ -236,7 +245,11 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
-vim.lsp.handlers['textDocument/references'] = require'fzf-lua'.lsp_references
+vim.lsp.handlers['textDocument/references'] = function()
+  local result = require'fzf-lua'.lsp_references() -- FIXME: fallbacks to Quickfix list if codebase is large
+  vim.notify('')
+  return result
+end
 
 vim.diagnostic.config{
   float = { border = _border }
