@@ -190,7 +190,7 @@ nnoremap <C-\> :lua vim.lsp.buf.definition()<cr>
 nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
 
 " Auto close quick fix and open in new tab on select
-autocmd FileType qf nnoremap <buffer> <Enter> <CR>:cclose<CR><C-W><Enter><C-W>T
+"autocmd FileType qf nnoremap <buffer> <Enter> <CR>:cclose<CR><C-W><Enter><C-W>T
 
 lua << EOF
 local fn = vim.fn
@@ -241,6 +241,9 @@ vim.o.qftf = '{info -> v:lua._G.qftf(info)}'
 require('bqf').setup({
     preview = {
         win_height = 200,
+    },
+    func_map = {
+      tabdrop = '<Enter>', -- Auto close quick fix and open in new or existing tab on select
     },
     filter = {
         fzf = {
