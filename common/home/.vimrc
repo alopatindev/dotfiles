@@ -46,6 +46,7 @@ Plug 'junegunn/fzf.vim'
 
 "Plug '~/git-extra/fzf-lua-old'
 Plug 'ibhagwan/fzf-lua', { 'commit': 'fa006b8d9f24b4a58eb4220c871e432c3e5df1da' }
+"Plug 'ibhagwan/fzf-lua'
 
 "Plug 'ibhagwan/fzf-lua' " TODO: update to fix references
 Plug 'vijaymarupudi/nvim-fzf', { 'do': 'cargo install skim fd-find' }
@@ -68,6 +69,10 @@ Plug 'hrsh7th/nvim-cmp'
 " couple of additional dependencies, fucking hilarious
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+
+
+" vim.ui.select => code actions, etc.
+Plug 'stevearc/dressing.nvim'
 
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
@@ -211,6 +216,7 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
   local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
   local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
   if same_location then
+    --vim.notify("Finding references...")
     vim.lsp.buf.references()
   end
 end
@@ -230,10 +236,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   }
 )
 
--- TODO: vim.lsp.handlers["textDocument/codeAction"] = ?
---vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(require'fzf-lua'.code_actions)
---vim.lsp.handlers["textDocument/codeAction"] = require'fzf-lua'.lsp_code_actions
---vim.lsp.handlers["textDocument/codeAction"] = require'fzf-lua'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'fzf-lua'.lsp_references
 
 vim.diagnostic.config{
   float = { border = _border }

@@ -5,6 +5,7 @@ local libuv = require "fzf-lua.libuv"
 local path = require "fzf-lua.path"
 local utils = require "fzf-lua.utils"
 local win = require "fzf-lua.win"
+local uv = vim.loop
 
 --local function dbg(data)
 --  f = io.open("/tmp/dbg.txt", "a+")
@@ -37,6 +38,7 @@ local function make_buffer_entries(opts, bufnrs, tabnr)
 
     if tabnr then
       local winid = utils.winid_from_tab_buf(tabnr, bufnr)
+      -- local winid = utils.winid_from_tabh(tabnr, bufnr)
       if winid then
         element.info.lnum = vim.api.nvim_win_get_cursor(winid)[1]
         element.info.cnum = vim.api.nvim_win_get_cursor(winid)[2]
