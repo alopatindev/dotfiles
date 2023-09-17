@@ -449,9 +449,9 @@ vmap <bs> <esc>:tabp<cr>
 " enter insert mode after the cursor
 map <S-i> a
 
-" swap a and i
-nnoremap i a
-nnoremap a i
+"" swap a and i
+" nnoremap i a
+" nnoremap a i
 
 " search and replace current word
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
@@ -915,8 +915,8 @@ rt.setup({
 
         --require'completion'.on_attach(client)
     end,
---    settings = {
---        ["rust-analyzer"] = {
+    settings = {
+        ["rust-analyzer"] = {
 --            imports = {
 --                granularity = {
 --                    group = "module",
@@ -934,15 +934,15 @@ rt.setup({
 --            diagnostics = {
 --                enable = false,
 --            },
---            rustfmt = {
---                overrideCommand = {
---                  "rustfmt",
---                  "--edition=2021",
---                  "--"
---                },
---            },
---        }
---    }
+            rustfmt = {
+                overrideCommand = {
+                  "rustfmt",
+                  "--edition=2021", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+                  "--"
+                },
+            },
+        }
+    }
   },
   tools = {
     inlay_hints = {
