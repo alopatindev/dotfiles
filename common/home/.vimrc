@@ -35,7 +35,8 @@ Plug 'git@github.com:chiedojohn/vim-case-convert'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
-Plug 'simrat39/rust-tools.nvim'
+"Plug 'simrat39/rust-tools.nvim'
+Plug 'MunifTanjim/rust-tools.nvim' " https://github.com/simrat39/rust-tools.nvim/issues/349 https://github.com/simrat39/rust-tools.nvim/commit/f3bc644c6adf18719bf4ec88aaa8dba43b9ad144
 Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
 "Plug 'weilbith/nvim-code-action-menu' " also https://github.com/aznhe21/actions-preview.nvim
 
@@ -137,6 +138,11 @@ set shortmess=aoOtIT
 set nowritebackup
 set undodir=~/.vimundo
 set undofile
+
+" put cursor to real end of line in normal mode
+set ve+=onemore
+nnoremap $ $l
+au InsertLeave * call cursor([getpos('.')[1], getpos('.')[2]+1])
 
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 set wildmenu
@@ -245,7 +251,7 @@ require('bqf').setup({
         win_height = 200,
     },
     func_map = {
-      tabdrop = '<Enter>', -- Auto close quick fix and open in new or existing tab on select
+        tabdrop = '<Enter>', -- Auto close quick fix and open in new or existing tab on select
     },
     filter = {
         fzf = {
