@@ -15,7 +15,7 @@ QUALITY="$2"
 MOUSE="$3"
 VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
 #VIDEO_SIZE="1696x73"
-OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mp4"
+OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mkv"
 
 kill_ffmpeg_on_error () {
     grep -m1 'ALSA read error: No such device' >>/dev/null && {
@@ -78,7 +78,8 @@ if [ ! "${SOUND_INPUT}" ]; then
         -draw_mouse "${DRAW_MOUSE}" \
         -i :0.0+0,0 \
         ${FILTERS} \
-        -vcodec h264_nvenc \
+        -vcodec hevc_nvenc \
+        -movflags faststart \
         "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 else
     ffmpeg \
@@ -95,9 +96,9 @@ else
         -i "${SOUND_INPUT}"  \
         ${FILTERS} \
         -ar "${SOUND_RATE}" \
-        -vcodec h264_nvenc \
-        -acodec alac \
-        -f ipod \
+        -vcodec hevc_nvenc \
+        -acodec flac \
+        -movflags faststart \
         "${OUTPUT}" 2>>/dev/stdout | tee /dev/stderr | kill_ffmpeg_on_error
 fi
 
