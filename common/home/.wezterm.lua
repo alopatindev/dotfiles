@@ -9,10 +9,15 @@ config.default_prog = { 'sh', '-c', 'DISPLAY=:0 tmux attach || tmux' }
 
 config.font = wezterm.font_with_fallback {
     'Iosevka Term SS08',
-    'IosevkaTerm Nerd Font Mono'
+    { family = 'IosevkaTerm Nerd Font Mono', weight = 'Medium' },
+    --{ family = 'IosevkaTerm Nerd Font Mono', weight = 'Medium', harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' } },
+    --{ family = 'IosevkaTerm Nerd Font Mono', weight = 'Medium', scale = 1.01 },
+    --{ family = 'IosevkaTerm Nerd Font Mono', weight = 'Ultra-Bold' },
 }
 config.font_size = 33
 config.cell_width = 0.92
+
+config.text_blink_rate = 0
 
 config.colors = {
   -- The default text color
@@ -92,9 +97,9 @@ config.colors = {
 }
 
 config.window_padding = {
-  left = 0,
+  left = 4,
   right = 0,
-  top = 0,
+  top = 4,
   bottom = 0,
 }
 
@@ -108,9 +113,9 @@ config.keys = {
     action = wezterm.action.ToggleFullScreen,
   },
   {
-    key="Backspace",
-    mods="CTRL",
-    action=wezterm.action.SendKey { mods = 'CTRL', key = 'w' },
+    key = "Backspace",
+    mods = "CTRL",
+    action = wezterm.action.SendKey { mods = 'CTRL', key = 'w' },
   },
 }
 
