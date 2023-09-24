@@ -147,11 +147,11 @@ au InsertLeave * call cursor([getpos('.')[1], getpos('.')[2]+1])
 set fileencodings=utf-8,cp1251,koi8-r,cp866
 set wildmenu
 set wcm=<Tab>
-menu Encoding.koi8-r :e ++enc=koi8-r<CR>
-menu Encoding.windows-1251 :e ++enc=cp1251<CR>
-menu Encoding.cp866 :e ++enc=cp866<CR>
-menu Encoding.utf-8 :e ++enc=utf8 <CR>
-menu Encoding.utf-16 :e ++enc=utf16 <CR>
+menu Encoding.koi8-r :e ++enc=koi8-r<Enter>
+menu Encoding.windows-1251 :e ++enc=cp1251<Enter>
+menu Encoding.cp866 :e ++enc=cp866<Enter>
+menu Encoding.utf-8 :e ++enc=utf8 <Enter>
+menu Encoding.utf-16 :e ++enc=utf16 <Enter>
 map <F8> :emenu Encoding.<TAB>
 
 " allow to use backspace instead of "x"
@@ -187,18 +187,18 @@ vmap <S-tab> <gv
 
 " auto closing character
 " imap [ []<LEFT>
-imap {<CR> {<CR>}<Esc>O
+imap {<Enter> {<Enter>}<Esc>O
 
 
-""map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-"""map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-"nnoremap <C-\> :tab split<CR>:lua vim.lsp.buf.definition()<cr>
-nnoremap <C-p> :lua vim.lsp.buf.definition()<cr>
+""map <C-\> :tab split<Enter>:exec("tag ".expand("<cword>"))<Enter>
+"""map <A-]> :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>
+"nnoremap <C-\> :tab split<Enter>:lua vim.lsp.buf.definition()<Enter>
+nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
 vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
-nnoremap <C-]> :lua vim.lsp.buf.references()<CR>
+nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 
 " Auto close quick fix and open in new tab on select
-"autocmd FileType qf nnoremap <buffer> <Enter> <CR>:cclose<CR><C-W><Enter><C-W>T
+"autocmd FileType qf nnoremap <buffer> <Enter> <Enter>:cclose<Enter><C-W><Enter><C-W>T
 
 lua << EOF
 local fn = vim.fn
@@ -367,7 +367,7 @@ set viminfo='30,\"500,:30,%,n~/.viminfo
 
 " C-h for xterm + tmux + nvim
 "if &term == "screen"
-noremap <bs> :tabp<cr>
+noremap <bs> :tabp<Enter>
 "endif
 
 "set term=xterm
@@ -383,7 +383,7 @@ endif
 
 "" C-h for xterm => tmux => nvim
 "if &term ==? "screen"
-"  noremap <bs> :tabp<cr>
+"  noremap <bs> :tabp<Enter>
 "endif
 
 " requires https://www.vinc17.net/unix/ctrl-backspace.en.html
@@ -394,8 +394,8 @@ inoremap <C-Home> <C-w>
 
 map . /
 
-map U <esc>:redo<cr>
-map Г <esc>:redo<cr>
+map U <esc>:redo<Enter>
+map Г <esc>:redo<Enter>
 
 map К R
 map y y
@@ -426,25 +426,25 @@ vmap <C-C> "+yi
 imap <C-S-v> <esc>"*pi
 set clipboard=unnamedplus
 
-map <C-t> :tabnew<cr>
-imap <C-t> <esc>:tabnew<cr>
-vmap <C-t> <esc>:tabnew<cr>
+map <C-t> :tabnew<Enter>
+imap <C-t> <esc>:tabnew<Enter>
+vmap <C-t> <esc>:tabnew<Enter>
 
 " file browser
-map <C-F3> :tabnew<cr>:Ex<cr>
-imap <C-F3> <esc>:tabnew<cr>:Ex<cr>
-vmap <C-F3> <esc>:tabnew<cr>:Ex<cr>
+map <C-F3> :tabnew<Enter>:Ex<Enter>
+imap <C-F3> <esc>:tabnew<Enter>:Ex<Enter>
+vmap <C-F3> <esc>:tabnew<Enter>:Ex<Enter>
 command! E Explore
 
-noremap <C-l> :tabn<cr>
-noremap <C-h> :tabp<cr>
+noremap <C-l> :tabn<Enter>
+noremap <C-h> :tabp<Enter>
 
-noremap <S-H> :-tabmove<cr>
-noremap <S-L> :+tabmove<cr>
+noremap <S-H> :-tabmove<Enter>
+noremap <S-L> :+tabmove<Enter>
 
-vmap <C-l> <esc>:tabn<cr>
-vmap <C-h> <esc>:tabp<cr>
-vmap <bs> <esc>:tabp<cr>
+vmap <C-l> <esc>:tabn<Enter>
+vmap <C-h> <esc>:tabp<Enter>
+vmap <bs> <esc>:tabp<Enter>
 
 " TODO: https://stackoverflow.com/a/24047465/586755
 
@@ -460,7 +460,7 @@ map <S-i> a
 " nnoremap a i
 
 " search and replace current word
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
+nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
 
 function! SaveAllFilesOrOpenNextLocation()
@@ -481,24 +481,24 @@ function! SaveAllFilesOrOpenNextLocation()
   endif
 endfunction
 
-nmap <F2> :call SaveAllFilesOrOpenNextLocation()<cr>
-vmap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<cr>v
-imap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<cr>i
+nmap <F2> :call SaveAllFilesOrOpenNextLocation()<Enter>
+vmap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<Enter>v
+imap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<Enter>i
 
-map cc <esc>:q<cr>
+map cc <esc>:q<Enter>
 
 imap <C-Del> X<Esc>ce
 map <C-Del> dw
 
 " sort lines and remove empty ones
-vmap s :sort<cr>:'<,'>g/^\s*$/d<cr>
+vmap s :sort<Enter>:'<,'>g/^\s*$/d<Enter>
 
 " Tagbar
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
-map <F12> :TagbarToggle<cr>
-imap <F12> <esc>:TagbarToggle<cr>
-vmap <F12> <esc>:TagbarToggle<cr>
+map <F12> :TagbarToggle<Enter>
+imap <F12> <esc>:TagbarToggle<Enter>
+vmap <F12> <esc>:TagbarToggle<Enter>
 
 
 "" Colors
@@ -596,10 +596,10 @@ highlight SpellRare cterm=underline
 "endif
 
 set spelllang=en,ru
-"map <S-s> :set spell!<cr>
-map <F7> :set spell!<cr>
-imap <F7> <esc>:set spell!<cr>
-map <A-n> :set nu!<cr>
+"map <S-s> :set spell!<Enter>
+map <F7> :set spell!<Enter>
+imap <F7> <esc>:set spell!<Enter>
+map <A-n> :set nu!<Enter>
 
 function! Browser ()
   let line0 = getline (".")
@@ -616,7 +616,7 @@ function! Browser ()
   exec ":!elinks-remote ".line
 endfunction
 
-"map \w :call Browser ()<cr><cr>
+"map \w :call Browser ()<Enter><Enter>
 
 map z <C-o>
 
@@ -625,10 +625,10 @@ map <End> $
 
 
 " GIT
-map <F10> :GitGutterToggle<cr>:se nu!<cr>:set paste!<cr>
-nnoremap <C-d> :Git diff %<cr>
-imap <C-d> <esc>:Git diff %<cr>
-vmap <C-d> <esc>:Git diff %<cr>
+map <F10> :GitGutterToggle<Enter>:se nu!<Enter>:set paste!<Enter>
+nnoremap <C-d> :Git diff %<Enter>
+imap <C-d> <esc>:Git diff %<Enter>
+vmap <C-d> <esc>:Git diff %<Enter>
 
 function! s:BlameToggle() abort
   let found = 0
@@ -642,9 +642,9 @@ function! s:BlameToggle() abort
     Git blame
   endif
 endfunction
-nnoremap <C-b> :call <SID>BlameToggle()<cr>
-imap <C-b> <esc>:call <SID>BlameToggle()<cr>
-vmap <C-b> <esc>:call <SID>BlameToggle()<cr>
+nnoremap <C-b> :call <SID>BlameToggle()<Enter>
+imap <C-b> <esc>:call <SID>BlameToggle()<Enter>
+vmap <C-b> <esc>:call <SID>BlameToggle()<Enter>
 
 set updatetime=250
 let g:gitgutter_max_signs = 500
@@ -692,7 +692,7 @@ augroup END
   augroup END
 
   " rainbow_parentheses toggle
-  nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<CR>
+  nnoremap <silent> <Leader>t :call rainbow_parentheses#toggle()<Enter>
 
   let g:rbpt_colorpairs = [
     \ ['blue',     'RoyalBlue3'],
@@ -753,7 +753,7 @@ augroup END
 " Rust
 autocmd BufWritePre *.rs lua vim.lsp.buf.format({ async = false })
 
-nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<CR> " TODO: add formatting
+nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<Enter> " TODO: add formatting
 
 function! g:CargoTomlToggle() abort
   if bufname() =~ 'Cargo.toml'
@@ -763,7 +763,7 @@ function! g:CargoTomlToggle() abort
   endif
 endfunction
 
-nnoremap cc :vsplit<cr>:call g:CargoTomlToggle()<cr>
+nnoremap cc :vsplit<Enter>:call g:CargoTomlToggle()<Enter>
 
 
 lua << EOF
@@ -813,7 +813,7 @@ lua << EOF
       ['<C-k>'] = cmp.mapping.scroll_docs(-4),
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
       ['<C-p>'] = cmp.mapping.complete(),
-      ['<CR>'] = cmp.mapping.confirm({
+      ['<Enter>'] = cmp.mapping.confirm({
         select = true,
         behavior = cmp.ConfirmBehavior.Replace
       }),
@@ -1026,13 +1026,13 @@ if executable('rg') && executable('fd')
     \ --glob "!{.git,build,node_modules,vendor,target}/*" '
   let g:fd_opts = '--type f --exclude .git --exclude build --exclude node_modules --exclude vendor --exclude target'
 
-  nnoremap <F3> :lua relevant_files()<cr>
-  imap <F3> <esc>:lua relevant_files()<cr>
-  vmap <F3> <esc>:lua relevant_files()<cr>
+  nnoremap <F3> :lua relevant_files()<Enter>
+  imap <F3> <esc>:lua relevant_files()<Enter>
+  vmap <F3> <esc>:lua relevant_files()<Enter>
 
-  nnoremap <F4> :lua relevant_grep()<cr>
-  imap <F4> <esc>:lua relevant_grep()<cr>
-  vmap <F4> <esc>:lua relevant_grep()<cr>
+  nnoremap <F4> :lua relevant_grep()<Enter>
+  imap <F4> <esc>:lua relevant_grep()<Enter>
+  vmap <F4> <esc>:lua relevant_grep()<Enter>
 
 lua << EOF
   require('fzf-lua-ext')
