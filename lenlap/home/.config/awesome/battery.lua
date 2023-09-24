@@ -63,7 +63,8 @@ end
 function batclosure (adapter)
     local nextlim = limits[1][1]
     return function ()
-        local prefix = "⚡"
+        --local prefix = "⚡"
+        local prefix = ""
         local battery, dir = get_bat_state(adapter)
         if dir == -1 then
             dirsign = "↓"
@@ -93,7 +94,7 @@ function batclosure (adapter)
             dirsign = ""
         end
         if dir ~= 0 then battery = battery.."%" end
-        return " "..prefix..""..dirsign..battery..dirsign
+        return ""..prefix..""..dirsign..battery..dirsign
     end
 end
 
