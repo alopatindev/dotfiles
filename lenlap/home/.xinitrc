@@ -22,7 +22,7 @@ chromium &
 #pidgin &
 #qtox &
 #xterm -T 'terms' -e 'tmux attach || tmux' &
-wezterm
+wezterm &
 stardict &
 #qdevicemonitor &
 xbindkeys

@@ -15,3 +15,6 @@ map <C-i> recolor
 
 map <C-=> zoom in
 map <C--> zoom out
+
+set sandbox strict
+set dbus-service false

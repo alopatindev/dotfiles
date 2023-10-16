@@ -1,7 +1,8 @@
 # vim: filetype=conf:textwidth=0
 
 #"xterm -T 'terms' -e 'screen -DRm'"
-"xterm -T 'terms' -e 'tmux attach || tmux'"
+#"xterm -T 'terms' -e 'tmux attach || tmux'"
+"wezterm"
     m:0x41 + c:36
     Shift+Mod4 + Return
 
@@ -65,6 +66,10 @@
     m:0x40 + c:46
     Mod4 + l
 
+"~/.bin/alock"
+    m:0x44 + c:46
+    Control+Mod4 + l
+
 #"alock"
 #    m:0x1c + c:64
 #    Control+Alt+Mod2 + Alt_L
@@ -113,7 +118,9 @@
     m:0x0 + c:191
     XF86Tools
 
-#"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+"amixer -q sset Master toggle && ~/scripts/sound_status.sh"
+    m:0x0 + c:121
+    XF86AudioMute
 #    m:0x10 + c:121
 #    Mod2 + XF86AudioMute
 
@@ -122,16 +129,16 @@
     Control+Alt + r
 
 ##"amixer set Master playback 1+ unmute"
-##"~/scripts/change_volume.sh +"
 #"~/scripts/show_volume.sh"
-#    m:0x0 + c:123
-#    XF86AudioRaiseVolume
-#
+"~/scripts/change_volume.sh +"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
 ##"amixer set Master playback 1-"
-##"~/scripts/change_volume.sh -"
 #"~/scripts/show_volume.sh"
-#    m:0x0 + c:122
-#    XF86AudioLowerVolume
+"~/scripts/change_volume.sh -"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
 
 "sudo /usr/local/sbin/bl-brightness.sh up"
     m:0x0 + c:233

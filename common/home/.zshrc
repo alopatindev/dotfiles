@@ -148,6 +148,8 @@ PERL_MM_OPT="INSTALL_BASE=/home/al/perl5"; export PERL_MM_OPT;
 
 precmd() {
     pwd | grep "${HOME}/work/monorepo" | grep -v monorepo-deploy | grep -v monorepo-dynamic-data >> /dev/null && {
+        (docker start dreamy_jones quizzical_hertz >>/dev/null &) >>/dev/null
+        export RUST_MIN_STACK="16777216"
         export RUSTFLAGS='-C link-args=-lzstd -C link-args=-lcurl -C force-frame-pointers=y'
         export CFLAGS=
         export CXXFLAGS=
