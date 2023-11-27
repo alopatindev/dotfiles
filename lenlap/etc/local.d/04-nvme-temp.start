@@ -5,7 +5,7 @@ logger "running $0"
 (while [ 1 ] ; do
     echo -n > /tmp/.nvme-temp
     for dev in nvme0n1 nvme1n1 ; do
-        smartctl -a "/dev/${dev}" | grep Temperature | head -n1 | awk '{print "'${dev}'",$2,"°C"}' >> /tmp/.nvme-temp
+        smartctl -a "/dev/${dev}" | grep Temperature | head -n1 | awk '{print "'${dev}':",$2,"°C"}' >> /tmp/.nvme-temp
     done
     sleep 5s
 done) &

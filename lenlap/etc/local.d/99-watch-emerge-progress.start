@@ -1,0 +1,12 @@
+#!/bin/bash
+
+logger "running $0"
+package="www-client/ungoogled-chromium"
+
+(while [ 1 ] ; do
+    progress=$(ps uax | grep "${package}" | grep -qv grep && tail -n100 /var/tmp/portage/${package}-*/temp/build.log | grep --color=no --line-buffered -Eo '^\[[0-9/]*] ' | sed --unbuffered 's!\[!!' | sed --unbuffered 's!\]! * 100!' | bc -ql | tail -n1)
+    if [ ! -z "${progress}" ]; then
+        logger "emerge ${package} ${progress}"
+    fi
+    sleep 10s
+done) &

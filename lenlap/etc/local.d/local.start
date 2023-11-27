@@ -1,6 +1,22 @@
 #!/bin/bash
 
-chmod 700 /home/al
+# new.adblockplus.org
+iptables -A OUTPUT -d 199.36.158.100 -j REJECT
+
+# getadblock.com
+iptables -A OUTPUT -d 104.22.42.139 -j REJECT
+iptables -A OUTPUT -d 172.67.27.164 -j REJECT
+iptables -A OUTPUT -d 104.22.43.139 -j REJECT
+
+chown al: /dev/tty{0,7,8}
+
+mkswap -L dellyswap /dev/disk/by-label/dellyswap
+
+chmod 700 /home/al /home/other
+
+mkdir /tmp/docs /tmp/.vimswaps
+chmod 700 /tmp/docs /tmp/.vimswaps
+chown al:al /tmp/docs /tmp/.vimswaps
 
 #hdparm -B 254 /dev/sda
 #hdparm -B 254 /dev/sdb
@@ -44,9 +60,12 @@ echo -n 0 > /proc/sys/net/netfilter/nf_conntrack_helper
 #chown -R al:al /tmp/sbt-temp
 
 #mpv --really-quiet --loop-file=inf /usr/share/sounds/silence.flac --audio-device=alsa/dmixer_loopback &
+#mpv --no-terminal --loop-file=inf /usr/share/sounds/silence.flac &
 
 iw wlp147s0 set power_save off
 
 /usr/local/sbin/dns-router 2>>/var/log/dns-router.log &
 
 /usr/local/sbin/switch-mic.sh
+
+rfkill block bluetooth
