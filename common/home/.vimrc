@@ -1,3 +1,5 @@
+"set verbosefile=~/.private/.nvim.log
+
 call plug#begin('~/.config/nvim/plugged')
 
 "Plug 'git@github.com:vimwiki/vimwiki.git'
@@ -475,7 +477,9 @@ function! SaveAllFilesOrOpenNextLocation()
   endfor
 
   if l:all_files_are_saved
-    call g:CargoLimitOpenNextLocation()
+    if exists('*CargoLimitOpenNextLocation')
+      call g:CargoLimitOpenNextLocation()
+    endif
   else
     execute 'wa'
   endif
@@ -942,6 +946,7 @@ rt.setup({
 --            },
             rustfmt = {
                 overrideCommand = {
+--                "cat",
                   "rustfmt",
                   "--edition=2021", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
                   "--"

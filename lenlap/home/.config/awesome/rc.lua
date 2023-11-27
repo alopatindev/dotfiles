@@ -374,6 +374,7 @@ awful.rules.rules = {
       }, properties = { tag = "7 misc" }
     },
 
+    { rule = { instance = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
@@ -392,7 +393,7 @@ apps_to_tags = {}
 for line in io.lines("/tmp/.apps_to_tags") do
     local tab_position = string.find(line, "\t")
     local app = string.sub(line, 1, tab_position - 1)
-    if app ~= "qdevicemonitor" and app ~= "VirtualBox" then
+    if app ~= "qdevicemonitor" and app ~= "VirtualBox" and app ~= 'mpv' then
         local tag_index = string.sub(line, tab_position + 1)
         apps_to_tags[app] = tonumber(tag_index)
     end

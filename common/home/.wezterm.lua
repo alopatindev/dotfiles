@@ -74,7 +74,8 @@ config.colors = {
   -- When the IME, a dead key or a leader key are being processed and are effectively
   -- holding input pending the result of input composition, change the cursor
   -- to this color to give a visual cue about the compose state.
-  compose_cursor = 'orange',
+  --compose_cursor = 'orange',
+  compose_cursor = 'black',
 
   -- Colors for copy_mode and quick_select
   -- available since: 20220807-113146-c2fee766
@@ -122,5 +123,7 @@ config.keys = {
 wezterm.on('format-window-title', function(tab)
   return 'wezterm'
 end)
+
+--config.ime_preedit_rendering = 'Builtin'
 
 return config
