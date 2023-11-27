@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+#ntpdate -s -t60 194.186.254.22 195.2.64.5 && hwclock --systohc && logger 'time has been updated'
+#ntpdate 195.2.64.5
+/etc/init.d/ntp-client restart
+logger 'ntpdate worked ok, now updating hwclock'
+hwclock --systohc
+logger 'time has been updated'
