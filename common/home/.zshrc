@@ -153,6 +153,9 @@ precmd() {
         export RUSTFLAGS='-C link-args=-lzstd -C link-args=-lcurl -C force-frame-pointers=y'
         export CFLAGS=
         export CXXFLAGS=
+
+        export RUSTC_BOOTSTRAP="1" ; export RUSTFLAGS="${RUSTFLAGS} -Z threads=16" # unstable compiler parallelism improvements
+
         for i in target; do
             export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
             mkdir -p "${CARGO_TARGET_DIR}"
@@ -171,12 +174,15 @@ precmd() {
     }
 
     [ -z "${TMUX}" ] || {
-        max_window_title_length=15
-        window_title=$(basename "${PWD}")
-        if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
-            window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
-        fi
-        tmux rename-window "${window_title}" 2&>>/dev/null
+        window_number="$(tmux display-message -p '#I')"
+        [ "${window_number}" -ne 0 ] && [ "${window_number}" -ne 1 ] && {
+            max_window_title_length=15
+            window_title=$(basename "${PWD}")
+            if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
+                window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
+            fi
+            tmux rename-window "${window_title}" 2&>>/dev/null
+        }
     }
 }
 
