@@ -80,6 +80,7 @@ alias jq='jq --unbuffered'
 alias yq='yq --unbuffered'
 alias trim="sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'"
 #alias hh="history | hstr-rs"
+alias tt='tailt'
 
 for i in w ps ping traceroute ifconfig whereis lsmod ap vmstat top df route ldd nm strace id nmap netstat
 do

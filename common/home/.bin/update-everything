@@ -14,6 +14,7 @@ RUST_NIGHTLY_VERSION="nightly-2023-02-09"
 RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
 #RUST_ANALYZER_VERSION="2023-03-06"
 #RUST_ANALYZER_VERSION="2023-09-04"
+RUST_ANALYZER_VERSION="2023-11-27"
 
 #rustup install "${RUST_NIGHTLY_VERSION}"
 #rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
@@ -21,22 +22,24 @@ RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
 
 rustup install "${RUST_STABLE_VERSION}"
 rustup default "${RUST_STABLE_VERSION}"
-rustup component add clippy rust-src rust-analyzer
+#rustup component add clippy rust-src rust-analyzer
+rustup component add clippy rust-src
 
 rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
 
 #cargo +${RUST_NIGHTLY_VERSION} install --locked --features simd-accel ripgrep
+#cargo +nightly install --locked --features simd-accel ripgrep
 #cargo install --locked skim fd-find
 
-#cd ~/git-extra/rust-analyzer
-#git checkout master
-#git clean -f -x -d .
-#git pull -v
-#git fetch origin "${RUST_ANALYZER_VERSION}"
-#git checkout "${RUST_ANALYZER_VERSION}"
-#RUSTFLAGS="-C target-cpu=native" cargo xtask install --server
-#RUSTFLAGS="-C target-cpu=native" cargo xtask install
-#cd
+cd ~/git-extra/rust-analyzer
+git checkout master
+git clean -f -x -d .
+git pull -v
+git fetch origin "${RUST_ANALYZER_VERSION}"
+git checkout "${RUST_ANALYZER_VERSION}"
+RUSTFLAGS="-C target-cpu=native" cargo xtask install --server
+RUSTFLAGS="-C target-cpu=native" cargo xtask install
+cd
 
 ##rustup self update
 ##rustup update
