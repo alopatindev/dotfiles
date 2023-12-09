@@ -49,9 +49,16 @@ plugins=(git command-not-found zsh-syntax-highlighting command-time)
 
 fpath+=~/.zsh/completions
 
-ZSH_COMMAND_TIME_MSG="Execution time: %s"
+print_status() {
+    exit_code="$?"
+    [ "${exit_code}" -ne 0 ] && [ "${exit_code}" -ne 130 ] && print -P "Exit code: %F{red}${exit_code}%f"
+}
+precmd_functions+=(print_status)
+#setopt print_exit_value
+
+ZSH_COMMAND_TIME_MSG='Execution time: %s'
 ZSH_COMMAND_TIME_COLOR="cyan"
-ZSH_COMMAND_TIME_EXCLUDE=(vi nvim vim mcedit nano mpv)
+ZSH_COMMAND_TIME_EXCLUDE=(vi nvim vim mcedit nano mpv ncmpcpp xterm)
 
 source $ZSH/oh-my-zsh.sh
 
