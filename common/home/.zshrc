@@ -50,8 +50,10 @@ plugins=(git command-not-found zsh-syntax-highlighting command-time)
 fpath+=~/.zsh/completions
 
 print_status() {
-    exit_code="$?"
+    local exit_code="$?"
+    local last_cmd=(${(z)history[$((HISTCMD-1))]})
     [ "${exit_code}" -ne 0 ] && [ "${exit_code}" -ne 130 ] && print -P "Exit code: %F{red}${exit_code}%f"
+    # TODO: [ "${exit_code}" -ne 0 ] && [ "${exit_code}" -ne 130 ] && [[ echo ${last_cmd} | grep -E '(cat|cd) .*' ]] && print -P "Exit code: %F{red}${exit_code}%f"
 }
 precmd_functions+=(print_status)
 #setopt print_exit_value
@@ -188,7 +190,7 @@ precmd() {
             if [ "${#window_title}" -gt "${max_window_title_length}" ]; then
                 window_title=$(echo -n "\u2026${window_title: -${max_window_title_length}}")
             fi
-            tmux rename-window "${window_title}" 2&>>/dev/null
+            tmux rename-window -t "${window_number}" "${window_title}" 2&>>/dev/null
         }
     }
 }
