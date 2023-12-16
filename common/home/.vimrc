@@ -138,7 +138,7 @@ se number
 " se relativenumber
 set shortmess=aoOtIT
 set nowritebackup
-set undodir=~/.vimundo
+set undodir=~/.private/.vimundo
 set undofile
 
 " put cursor to real end of line in normal mode
@@ -361,8 +361,7 @@ EOF
 "  :30  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='30,\"500,:30,%,n~/.viminfo
-"set viminfo='100,n~/.config/nvim/nviminfo'
+set shada='30,\"500,:30,%,n~/.private/.viminfo
 
 
 " Terminal hacks
@@ -466,12 +465,12 @@ nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
 
 function! SaveAllFilesOrOpenNextLocation()
-  let l:all_files_are_saved = 1
+  let l:all_files_are_saved = v:true
   for i in getbufinfo({'bufmodified': 1})
-    if i.hidden && i.name == ''
+    if i.hidden && i.name ==# ''
       bdelete! i.bufnr " FIXME
-    elseif i.name != ''
-      let l:all_files_are_saved = 0
+    elseif i.name !=# ''
+      let l:all_files_are_saved = v:false
       break
     endif
   endfor
@@ -481,13 +480,17 @@ function! SaveAllFilesOrOpenNextLocation()
       call g:CargoLimitOpenNextLocation()
     endif
   else
-    execute 'wa'
+    execute 'wa!'
   endif
 endfunction
 
+nmap <F1> :call g:CargoLimitOpenPrevLocation()<Enter>
+vmap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>v
+imap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>i
+
 nmap <F2> :call SaveAllFilesOrOpenNextLocation()<Enter>
-vmap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<Enter>v
-imap <F2> <esc>:call SaveAllFilesOrOpenNextLocation()<Enter>i
+vmap <F2> <Esc>:call SaveAllFilesOrOpenNextLocation()<Enter>v
+imap <F2> <Esc>:call SaveAllFilesOrOpenNextLocation()<Enter>i
 
 map cc <esc>:q<Enter>
 
@@ -761,7 +764,9 @@ nnoremap <C-r> :lua require'rust-tools.expand_macro'.expand_macro()<Enter> " TOD
 
 function! g:CargoTomlToggle() abort
   if bufname() =~ 'Cargo.toml'
-    exe winnr() . 'close' " FIXME: doesn't close the file
+    " FIXME: doesn't close the file
+    "exe winnr() . 'close'
+    exe ':q'
   else
     lua require 'rust-tools.open_cargo_toml'.open_cargo_toml()
   endif
@@ -1080,7 +1085,6 @@ lua << EOF
 EOF
 endif
 
-"set verbosefile=~/.nvim.log
 "echo 'start nvim'
 
 " vim:shiftwidth=2 softtabstop=2 tabstop=2

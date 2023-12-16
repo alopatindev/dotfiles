@@ -15,7 +15,7 @@ QUALITY="$2"
 MOUSE="$3"
 VIDEO_SIZE=$(xdpyinfo | awk '/dimensions:/ { print $2; exit }')
 #VIDEO_SIZE="1696x73"
-OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds).mkv"
+OUTPUT="${HOME}/video/screen/$(date --rfc-3339=seconds | sed 's! !_!g').mkv"
 
 kill_ffmpeg_on_error () {
     grep -m1 'ALSA read error: No such device' >>/dev/null && {
