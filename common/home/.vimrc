@@ -202,6 +202,10 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 " Auto close quick fix and open in new tab on select
 "autocmd FileType qf nnoremap <buffer> <Enter> <Enter>:cclose<Enter><C-W><Enter><C-W>T
 
+" Autoclose quickfix list after leaving it
+autocmd WinEnter * cclose
+
+
 lua << EOF
 local fn = vim.fn
 
