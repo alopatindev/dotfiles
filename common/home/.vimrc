@@ -223,7 +223,9 @@ fun! CloseDuplicateTabs() abort
     tabnext
   endwhile
 
-  execute 'tabnext ' . l:current_tab
+  if l:current_tab <= tabpagenr('$')
+    execute 'tabnext ' . l:current_tab
+  endif
 
   redraw
 endf
@@ -253,7 +255,7 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 
 
 function! GenerateTags()
-  :silent! execute "!ctags -R . &"
+  :silent! execute "!sudo ctags -R . &"
 endfunction
 
 autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable("tags") | call GenerateTags() | endif
