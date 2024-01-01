@@ -254,8 +254,8 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 "nnoremap <C-\> :tab split<Enter>:lua vim.lsp.buf.definition()<Enter>
 
 
-function! GenerateTags()
-  :silent! execute "!sudo ctags -R . &"
+function! GenerateTags() abort
+  silent! execute "!sudo /usr/local/sbin/run_ctags.sh &"
 endfunction
 
 autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable("tags") | call GenerateTags() | endif

@@ -179,7 +179,7 @@ al ALL=(root) NOPASSWD: \
     /usr/sbin/openvpn, \
     /sbin/modprobe, \
     /sbin/rmmod, \
-    /usr/bin/ctags
+    /usr/local/sbin/run_ctags.sh
 
 
 #al ALL=(root) NOPASSWD: /sbin/chown al:tty /dev/tty7
