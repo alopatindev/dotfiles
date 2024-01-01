@@ -164,6 +164,7 @@ precmd() {
         export CXXFLAGS=
 
         export RUSTC_BOOTSTRAP="1" ; export RUSTFLAGS="${RUSTFLAGS} -Z threads=16" # unstable compiler parallelism improvements
+        export CARGO_UNSTABLE_GC=true
 
         for i in target; do
             export CARGO_TARGET_DIR="${HOME}/tmp/$(pwd | sed 's!/!%!g')/${i}"
@@ -183,6 +184,7 @@ precmd() {
     }
 
     [ -z "${TMUX}" ] || {
+        # FIXME: get window number of currently running zsh, not just window number of currently selected window
         window_number="$(tmux display-message -p '#I')"
         [ "${window_number}" -ne 0 ] && [ "${window_number}" -ne 1 ] && {
             max_window_title_length=15

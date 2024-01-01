@@ -173,6 +173,15 @@ set laststatus=2
 set fo+=cr
 
 
+" got to last edited location
+map <C-k> ''
+map <C-j> ''
+imap <C-k> <esc>''
+imap <C-j> <esc>''
+vmap <C-k> ''
+vmap <C-j> ''
+
+
 " Indents
 set smartindent  " indent after {, etc.
 set autoindent
@@ -192,15 +201,74 @@ vmap <S-tab> <gv
 imap {<Enter> {<Enter>}<Esc>O
 
 
-""map <C-\> :tab split<Enter>:exec("tag ".expand("<cword>"))<Enter>
-"""map <A-]> :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>
-"nnoremap <C-\> :tab split<Enter>:lua vim.lsp.buf.definition()<Enter>
-nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
+
+
+fun! CloseDuplicateTabs() abort
+  redraw!
+
+  let l:current_name = bufname('%')
+  let l:current_tab = tabpagenr()
+
+  tabfirst
+  while v:true
+    if tabpagenr() !=# l:current_tab && bufname('%') ==# l:current_name
+      tabclose
+      break
+    endif
+
+    if tabpagenr() ==# tabpagenr('$')
+      break
+    endif
+
+    tabnext
+  endwhile
+
+  execute 'tabnext ' . l:current_tab
+
+  redraw
+endf
+
+fun! GoToDefinition() abort
+  if luaeval('vim.lsp.buf.server_ready()')
+    lua vim.lsp.buf.definition()
+  else
+    " for ctags
+    tab split
+    exec("tag ".expand("<cword>"))
+    call CloseDuplicateTabs()
+  endif
+endf
+
+nnoremap <C-p> :call GoToDefinition()<Enter>
+
+"nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
 vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
 nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 
+
+
+""map <C-\> :tab split<Enter>:exec("tag ".expand("<cword>"))<Enter>
+"""map <A-]> :vsp <Enter>:exec("tag ".expand("<cword>"))<Enter>
+"nnoremap <C-\> :tab split<Enter>:lua vim.lsp.buf.definition()<Enter>
+
+
+function! GenerateTags()
+  :silent! execute "!ctags -R . &"
+endfunction
+
+autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable("tags") | call GenerateTags() | endif
+
+
+
+
+
+
+
+
+
 " Auto close quick fix and open in new tab on select
 "autocmd FileType qf nnoremap <buffer> <Enter> <Enter>:cclose<Enter><C-W><Enter><C-W>T
+
 
 " Autoclose quickfix list after leaving it
 autocmd WinEnter * cclose
@@ -468,25 +536,37 @@ map <S-i> a
 nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
 
-function! SaveAllFilesOrOpenNextLocation()
-  let l:all_files_are_saved = v:true
+
+
+
+" TODO: naming
+fun! SaveAllFilesOrOpenNextLocation() abort
+  "echo 'SaveAllFilesOrOpenNextLocation 1'
+
+  " TODO: os-dependant? let l:workspace_root = g:CargoLimitWorkspaceRoot() . '/'
+  let l:workspace_root = g:CargoLimitWorkspaceRoot()
+  let l:all_rust_files_are_saved = v:true
+
+  "echo 'SaveAllFilesOrOpenNextLocation 2'
   for i in getbufinfo({'bufmodified': 1})
-    if i.hidden && i.name ==# ''
-      bdelete! i.bufnr " FIXME
-    elseif i.name !=# ''
-      let l:all_files_are_saved = v:false
+    "echo 'SaveAllFilesOrOpenNextLocation 3'
+    if i.name =~# l:workspace_root && !(i.name =~# '/BqfPreviewScrollBar$')
+      "echo 'SaveAllFilesOrOpenNextLocation 4'
+      let l:all_rust_files_are_saved = v:false
       break
     endif
   endfor
+  "echo 'SaveAllFilesOrOpenNextLocation 5'
 
-  if l:all_files_are_saved
-    if exists('*CargoLimitOpenNextLocation')
-      call g:CargoLimitOpenNextLocation()
-    endif
-  else
-    execute 'wa!'
+  if l:all_rust_files_are_saved && exists('*CargoLimitOpenNextLocation')
+    "echo 'SaveAllFilesOrOpenNextLocation 6'
+    call g:CargoLimitOpenNextLocation()
+    "echo 'SaveAllFilesOrOpenNextLocation 7'
   endif
-endfunction
+  "echo 'SaveAllFilesOrOpenNextLocation 8'
+  execute 'wa!'
+endf
+
 
 nmap <F1> :call g:CargoLimitOpenPrevLocation()<Enter>
 vmap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>v
@@ -902,6 +982,7 @@ lua << EOF
 
 
 local nvim_lsp = require'lspconfig'
+--nvim_lsp.clangd.setup{}
 
 -- vim.lsp.set_log_level('OFF')
 
@@ -1029,6 +1110,25 @@ function! s:close_tab_if_empty()
   endfunction
   call jobstart(['sleep', '1'], {'on_exit': function('s:on_exit')})
 endfunction
+
+
+
+
+fun! OnQuit()
+  call system('logger exiting nvim')
+  for i in getbufinfo()
+    if !empty(i.name) && !i.hidden
+      echo i.name
+      call system('logger -- ' . fnameescape(i.name))
+    endif
+  endfor
+  echo
+endf
+
+autocmd VimLeavePre * call OnQuit()
+
+
+
 
 " Search in filenames and file bodies
 
