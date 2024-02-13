@@ -1,2 +1,0 @@
-ACTION=="add", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="ZOOM_Corporation", RUN+="/usr/local/sbin/switch-mic.sh"
-ACTION=="remove", SUBSYSTEM=="sound", ENV{ID_VENDOR}=="ZOOM_Corporation", RUN+="/usr/local/sbin/switch-mic.sh"
