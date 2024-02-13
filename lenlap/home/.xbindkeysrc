@@ -124,7 +124,7 @@
 #    m:0x10 + c:121
 #    Mod2 + XF86AudioMute
 
-"echo 'awesome.restart()' | awesome-client"
+"~/scripts/assign_tags_to_apps.rb > /tmp/.apps_to_tags ; echo 'awesome.restart()' | awesome-client"
     m:0xc + c:27
     Control+Alt + r
 
