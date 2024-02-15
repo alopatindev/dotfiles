@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/usr/bin/mpv --script-opts=sponsorblock-skip_categories="" --no-resume-playback --af=scaletempo2 --speed=1 "$@"
+#/usr/bin/mpv --no-resume-playback --af=scaletempo2 --speed=1 "$@"
+#/usr/bin/mpv --no-resume-playback --speed=1 "$@"

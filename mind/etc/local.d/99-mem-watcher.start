@@ -1,0 +1,24 @@
+#!/bin/bash
+
+logger "running $0"
+
+MAX_USED_MEM=90
+MIN_USED_MEM=50
+
+(while [ 1 ] ; do
+    used_swap_bytes=$(free | grep Swap: | awk '{print $3}')
+    used_mem=$(free | grep Mem: | awk '{print int((($3 + '${used_swap_bytes}') / $2) * 100)}')
+    #used_mem=$(free | grep Mem: | awk '{print int(($3 / $2) * 100)}')
+    if [ "${used_mem}" -gt "${MAX_USED_MEM}" ] ; then
+        logger "mem usage is ${used_mem}%"
+        swapon /swapfile
+    elif [ "${used_mem}" -lt "${MIN_USED_MEM}" ] && [ $(free | grep Swap: | awk '{print $2}') -gt 0 ] ; then
+        logger "swap is on, but it's probably not necessary"
+        sleep 3s
+        if [ "${used_mem}" -lt "${MIN_USED_MEM}" ] ; then
+            logger "swapoff"
+            swapoff -a
+        fi
+    fi
+    sleep 3s
+done) &

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+DATA_DIR="/tmp/co2mond"
+
+mkdir -p "${DATA_DIR}"
+chown al:al "${DATA_DIR}"
+su al -c "/usr/local/bin/co2mond -d -D ${DATA_DIR}"

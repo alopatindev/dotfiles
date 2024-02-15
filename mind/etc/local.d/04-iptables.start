@@ -1,13 +1,19 @@
 #!/bin/sh
 
-WAN_IFACE="eth0"
-WIFI_IFACE="wlan0"
-LAPTOP_IPV4="192.168.1.2"
-SMART_DEVICES_IPV4_RANGE="192.168.1.100-192.168.1.255"
+#WAN_IFACE="eth0"
+WAN_IFACE="wlan0"
 
-# allow laptop only to connect to some TCP ports of mind
+WIFI_IFACE="wlp1s0u1u1"
+#LAPTOP_IPV4=( "192.168.1.2" "192.168.1.4" )
+LAPTOP_IPV4=( "192.168.1.2" )
+SMART_DEVICES_IPV4_RANGE="192.168.1.100-192.168.1.255" # currently unused
+
+# allow laptop only to connect to some TCP ports of mind (ssh, NFS)
 for port in 22 111 ; do
-    iptables -A INPUT -p tcp --dport "${port}" --source "${LAPTOP_IPV4}" -j ACCEPT
+    for ip in "${LAPTOP_IPV4[@]}" ; do
+        iptables -A INPUT -p tcp --dport "${port}" --source "${ip}" -j ACCEPT
+    done
+
     iptables -A INPUT -p tcp --dport "${port}" -j DROP
 done
 
@@ -17,3 +23,19 @@ iptables -I FORWARD -i "${WAN_IFACE}" -m iprange --dst-range "${SMART_DEVICES_IP
 # enable gateway
 iptables -t nat -I POSTROUTING -o "${WAN_IFACE}" -j MASQUERADE
 iptables -I FORWARD -i "${WIFI_IFACE}" -j ACCEPT
+
+
+
+
+
+#WIFI_IFACE="wlan0"
+#SMART_DEVICES_IPV4_RANGE="192.168.2.100-192.168.2.255"
+#
+## disallow smart devices connecting to internet
+#iptables -I FORWARD -i "${WAN_IFACE}" -m iprange --dst-range "${SMART_DEVICES_IPV4_RANGE}" -j DROP
+#
+## enable gateway
+#iptables -t nat -I POSTROUTING -o "${WAN_IFACE}" -j MASQUERADE
+#iptables -I FORWARD -i "${WIFI_IFACE}" -j ACCEPT
+
+

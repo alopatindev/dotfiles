@@ -1,5 +1,69 @@
 #!/bin/sh
 
+chvt 12
+
+iw reg set 00
+
+chmod 700 /home/al
+
+chown al: /dev/tty{0,7,8}
+
 touch /fastboot
-setterm -blank 0 -powersave off
+
+setterm -blank 0
+setterm -powersave off
+setterm -powerdown 0
+
 #(sleep 30 && /etc/init.d/ntp-client restart) &
+#echo -n '-1' > /sys/module/usbcore/parameters/autosuspend
+
+#iw wlan0 set power_save off
+#iw wlp1s0u1u1 set power_save off
+for i in $(iw dev | grep Interface | awk '{print $2}'); do
+    iw "$i" set power_save off
+done
+
+(uname -a
+iwconfig
+ip addr
+rfkill list
+lsusb
+lsmod
+lshw) | logger
+
+#(sleep 1m ; (iwconfig ; ip addr ; ps uax | grep hostapd ; echo wat ; /etc/init.d/hostapd restart ; sleep 20s ; ps uax | grep hostapd) | logger ; halt) &
+
+#tvservice --monitor # HDMI is attached
+#tvservice --preferred # HDMI display on
+
+fbset -accel true
+#fbset -xres 1920 -yres 1080
+
+/etc/init.d/mpd restart
+
+##strace modprobe ath9k_htc 2>>/dev/stdout | logger
+#for attempt in 1 2 ; do
+#    # find . -type f -name '*.ko.xz' -print0 | xargs -0 xz -d
+#    #xz -d "/lib/modules/6.1.21_p20230405-raspberrypi-v8/kernel/drivers/net/wireless/ath/$i.ko.xz"
+#    strace insmod "/lib/modules/6.1.21_p20230405-raspberrypi-v8/kernel/drivers/net/wireless/ath/$i.ko" 2>>/dev/stdout | logger
+#    for i in ath9k_common ath9k_htc ath9k_hw ; do
+#        strace insmod "/lib/modules/6.1.21_p20230405-raspberrypi-v8/kernel/drivers/net/wireless/ath/ath9k/$i.ko" 2>>/dev/stdout | logger
+#    done
+#done
+
+#(cd /usr/src/linux
+#make clean
+#sync
+#sh ../install-kernel.sh
+#sync
+#
+#cd /home/al/git-extra/8821au-20210708
+#make clean
+#sh build.sh
+#sync
+#modprobe 8821au
+#
+#echo 'modules'
+#lsmod) 2>>/dev/stdout | logger
+#
+#sleep 20 && halt
