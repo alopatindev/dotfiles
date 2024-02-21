@@ -155,3 +155,7 @@
 "~/scripts/rebind-ssh-ports.sh"
     m:0x48 + c:27
     Alt+Mod4 + r
+
+"sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh"
+    m:0x48 + c:25
+    Alt+Mod4 + w

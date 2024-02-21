@@ -200,3 +200,5 @@ current_item_suffix = "$/r$(end)"
 #browser_sort_mode = ""
 #toggle_browser_sort_mode
 #toggle_media_library_sort_mode
+
+lyrics_fetchers = musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet

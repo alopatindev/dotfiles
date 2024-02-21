@@ -36,3 +36,5 @@ export GPG_TTY=$(tty)
 #export RUSTFLAGS='-C link-args=-lzstd'
 
 export FZF_DEFAULT_OPTS="--hscroll-off=1000"
+
+export FZF_DEFAULT_OPTS="--height=100%"

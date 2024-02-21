@@ -374,7 +374,8 @@ awful.rules.rules = {
       }, properties = { tag = "7 misc" }
     },
 
-    { rule = { instance = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
+    -- { rule = { instance = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
+    { rule = { name = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},

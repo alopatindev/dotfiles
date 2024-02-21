@@ -81,6 +81,8 @@ alias yq='yq --unbuffered'
 alias trim="sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'"
 #alias hh="history | hstr-rs"
 alias tt='tailt'
+#alias yt='ytfzf --show-thumbnails --async-thumbnails --force-youtube --nsfw --thumb-viewer=chafa-tty --thumbnail-quality=medium -u mpv'
+alias yt='ytfzf --show-thumbnails --async-thumbnails --force-youtube --nsfw --thumb-viewer=chafa --thumbnail-quality=medium -u mpv'
 
 for i in w ps ping traceroute ifconfig whereis lsmod ap vmstat top df route ldd nm strace id nmap netstat
 do
