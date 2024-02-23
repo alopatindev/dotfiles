@@ -42,6 +42,8 @@ Plug 'MunifTanjim/rust-tools.nvim' " https://github.com/simrat39/rust-tools.nvim
 Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
 "Plug 'weilbith/nvim-code-action-menu' " also https://github.com/aznhe21/actions-preview.nvim
 
+" kotlin
+Plug 'udalov/kotlin-vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -540,6 +542,8 @@ nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
 
 
+"let g:CargoLimitVerbosity = 2 " warnings level
+let g:CargoLimitVerbosity = 4 " debug level
 
 " TODO: naming
 fun! SaveAllFilesOrOpenNextLocation() abort
@@ -986,6 +990,7 @@ lua << EOF
 local nvim_lsp = require'lspconfig'
 --nvim_lsp.clangd.setup{}
 
+-- ~/.local/state/nvim/lsp.log
 -- vim.lsp.set_log_level('OFF')
 
 
