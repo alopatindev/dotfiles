@@ -1,6 +1,0 @@
-#!/bin/bash
-
-docker image prune --all --force
-docker volume prune --force
-docker network prune --force
-docker builder prune --force
