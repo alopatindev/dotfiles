@@ -1,3 +1,5 @@
 #!/bin/bash
 
+sync
+sudo /usr/local/sbin/drop-caches
 exec VirtualBox $@

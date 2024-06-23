@@ -26,7 +26,8 @@ wezterm &
 stardict &
 #qdevicemonitor &
 xbindkeys
-conky -d
+#conky -d
+(sleep 30 && conky -d) &
 
 # keep clipboard in sync with primary buffer
 autocutsel -selection CLIPBOARD -fork
@@ -50,9 +51,9 @@ feh -q --no-fehbg --bg-fill ~/pictures/wallpapers/space/milky-way-3840x2160-star
 #feh -q --no-fehbg --bg-scale ~/pictures/wallpapers/wallhaven-551538.png &
 #feh -q --no-fehbg --bg-center ~/pictures/wallpapers/nature/leaves.jpg &
 
-(camset & sleep 5 && killall camset) &
+(camset & sleep 10 && killall camset) &
 
-~/scripts/assign_tags_to_apps.rb > /tmp/.apps_to_tags
+~/scripts/update-awesome.sh
 exec awesome
 
 # vim: textwidth=0:ft=sh

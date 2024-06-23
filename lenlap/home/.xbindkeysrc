@@ -45,6 +45,10 @@
     m:0x9 + c:61
     Shift+Alt + slash
 
+"~/scripts/screenshot_android"
+    m:0x41 + c:60
+    Shift+Mod4 + period
+
 "xkill"
     m:0x40 + c:45
     Mod4 + k
@@ -98,7 +102,7 @@
     m:0x40 + c:60
     Mod4 + period
         
-"mpc -q toggle &> /dev/null ; rhythmbox-client --play-pause --no-start &> /dev/null"
+"mpc -q toggle &> /dev/null ; rhythmbox-client --play-pause --no-start &> /dev/null ; sleep 0.3s ; sudo /etc/init.d/mpd --nodeps restart"
     m:0x40 + c:33
     Mod4 + p
 
@@ -156,6 +160,6 @@
     m:0x48 + c:27
     Alt+Mod4 + r
 
-"killall autocutsel ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh"
+"~/scripts/clear-clipboard.sh ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh ; sync ; sudo /usr/local/sbin/drop-caches"
     m:0x48 + c:25
     Alt+Mod4 + w

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+DEFAULT_ARGS=( --no-resume-playback -v )
+
+set -x
+
+if [[ ${NORMAL} -eq 1 ]]; then
+    echo "normal mode"
+    DEFAULT_ARGS+=( --script-opts=sponsorblock-skip_categories="" --af=scaletempo2 --speed=1 )
+fi
+
+# TODO
+
+remote=0
+urisn=0
+uri=
+uris=()
+for i in "${@}" ; do
+    if [[ "${i:0:1}" != '-' ]]; then
+        urisn=$((($urisn + 1)))
+        uri="$i"
+        uris+=("${uri}")
+        if [[ "${uri}" == *://* || "${uri}" == magnet:* ]]; then
+          remote=1
+        fi
+    else
+        DEFAULT_ARGS+=( "$i" )
+    fi
+done
+
+cat /proc/cpuinfo | grep Raspberry >>/dev/null
+if [ $? -eq 0 ] ; then
+    echo 'running on raspberry'
+    DEFAULT_ARGS+=( --display-fps-override=60 --video-sync=display-resample --tscale=oversample )
+    if [[ $(mediainfo --Output=JSON "${uri}" | jq --raw-output '.media.track[] | select(."@type" == "Video") | .FrameRate | tonumber < 30') = true ]]; then
+        echo 'less than 30 fps, apply interpolation'
+        DEFAULT_ARGS+=( --interpolation=yes )
+    fi
+fi
+
+echo "${DEFAULT_ARGS[@]}"
+
+[ "${remote}" == 0 ] && /usr/bin/mpv ${DEFAULT_ARGS[@]} "${uris[@]}" && exit
+
+for i in ${uris[@]} ; do
+    if [[ "$i" == magnet:* || "$i" == *.torrent ]]; then
+        webtorrent --mpv --player-args="${DEFAULT_ARGS}" "$i"
+        continue
+    fi
+
+    if [[ "${uri}" == *://* || "${uri}" == magnet:* ]]; then
+        played=0
+        for y in 'bestvideo[height<=1080]+bestaudio/best[height<=1080]' 'best[height<1080]' 'best' ; do
+            /usr/bin/mpv ${DEFAULT_ARGS[@]} "--ytdl-format=${y}" "$i" && played=1 && break
+        done
+
+        [[ "${played}" == 1 ]] && continue
+
+        yt-dlp --external-downloader ffmpeg --external-downloader-args "ffmpeg_i:-ss 0" "$i" --flat-playlist --output - | /usr/bin/mpv ${DEFAULT_ARGS[@]} - || \
+            yt-dlp "$i" --flat-playlist --output - --downloader ffmpeg -f "bv*+ba/b" | /usr/bin/mpv ${DEFAULT_ARGS[@]} -
+    fi
+done

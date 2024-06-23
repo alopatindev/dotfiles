@@ -26,7 +26,7 @@ Plug 'git@github.com:carlitux/deoplete-ternjs'
 "Plug 'git@github.com:timburgess/extempore.vim.git'
 Plug 'git@github.com:jparise/vim-graphql'
 "Plug 'git@github.com:elubow/cql-vim'
-Plug 'git@github.com:suan/vim-instant-markdown', {'for': 'markdown'}
+"Plug 'git@github.com:suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'junegunn/vim-easy-align'
 Plug 'git@github.com:tpope/vim-fugitive' "for git diff
 Plug 'git@github.com:jremmen/vim-ripgrep'
@@ -34,6 +34,7 @@ Plug 'git@github.com:jremmen/vim-ripgrep'
 "Plug 'git@github.com:vigoux/LanguageTool.nvim'
 "Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'git@github.com:chiedojohn/vim-case-convert'
+Plug 'git@github.com:vim-crystal/vim-crystal'
 
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
@@ -44,6 +45,8 @@ Plug 'airblade/vim-rooter' " changes current dir to project root (that contains 
 
 " kotlin
 Plug 'udalov/kotlin-vim'
+
+Plug 'peterhoeg/vim-qml'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -138,7 +141,7 @@ set tags=tags,.tags,rusty-tags.vi
 set tags+=tags;/
 se number
 " se relativenumber
-set shortmess=aoOtIT
+set shortmess=aAoOtIT
 set nowritebackup
 set undodir=~/.private/.vimundo
 set undofile
@@ -715,7 +718,7 @@ endfunction
 
 "map \w :call Browser ()<Enter><Enter>
 
-map z <C-o>
+"map z <C-o>
 
 "urxvt and others terminals hack
 map <End> $
@@ -826,6 +829,7 @@ autocmd BufNewFile,BufRead *.ny set syntax=lisp
 autocmd BufNewFile,BufRead *.xges set syntax=xml
 autocmd BufNewFile,BufRead *.ncl set syntax=haskell
 autocmd BufNewFile,BufRead *.ym{a,}l_debug set syntax=yaml
+autocmd BufNewFile,BufRead *.cr set syntax=ruby
 
 " txt
 " Disable annoying auto line break
@@ -1102,6 +1106,9 @@ autocmd WinEnter * lua require'cmp'.setup.buffer {
 
 " Ruby
 au BufWrite *.rb :Autoformat
+
+
+let g:crystal_auto_format = 1
 
 
 au FileType markdown vmap a :EasyAlign*<Bar><Enter>
