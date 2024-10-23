@@ -7,7 +7,7 @@ conky.config = {
 --font -*-terminus-*-*-*-*-12-*-*-*-*-*-*-*
 
 	use_xft = true,
-	font = 'DejaVu Sans Mono:size=30',
+	font = 'DejaVu Sans Mono:size=17',
 --xftfont Terminus:size=10
 	override_utf8_locale = true,
 	default_color = '#CCCCCC',
@@ -16,25 +16,35 @@ conky.config = {
 	draw_shades = false,
 	double_buffer = true,
 	text_buffer_size = 8096,
+    own_window_type = 'desktop',
 };
 
 conky.text = [[
 
-${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp147s0}KiB/s${offset 290}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp147s0}KiB/s
-${downspeedgraph wlp147s0 120,600 CCCCCC FFFFFF} ${upspeedgraph wlp147s0 120,600 CCCCCC FFFFFF}
-${color #FFFFFF}disk I/O${offset 440}memory: $mem
-${diskiograph 120,600 CCCCCC FFFFFF} ${memgraph 120,600 CCCCCC FFFFFF}
-${color #CCCCCC}${swapbar 35,300} swap: $swap
+${color #FFFFFF}down: ${color #CCCCCC}${downspeedf wlp147s0}KiB/s${offset 125}${color #FFFFFF}up: ${color #CCCCCC}${upspeedf wlp147s0}KiB/s
+${downspeedgraph wlp147s0 60,300 CCCCCC FFFFFF} ${upspeedgraph wlp147s0 60,300 CCCCCC FFFFFF}
+${color #FFFFFF}disk I/O${offset 205}memory: $mem${offset 110}swap: $swap
+${diskiograph 60,300 CCCCCC FFFFFF} ${memgraph 60,300 CCCCCC FFFFFF} ${color #CCCCCC}${swapbar 60,300}
 
-${fs_bar 35,150 /} /      ${fs_used /} of ${fs_size /}
-${fs_bar 35,150 /home} /home  ${fs_used /home} of ${fs_size /home}
-${fs_bar 35,150 /mnt/lenslowssd} /mnt/lenslowssd  ${fs_used /mnt/lenslowssd} of ${fs_size /mnt/lenslowssd}
+${fs_bar 20,150 /} /      ${fs_used /} of ${fs_size /}
+${fs_bar 20,150 /home} /home  ${fs_used /home} of ${fs_size /home}
+${fs_bar 20,150 /mnt/lenslowssd} /mnt/lenslowssd  ${fs_used /mnt/lenslowssd} of ${fs_size /mnt/lenslowssd}
 
 ${color #CCCCCC}${cpu cpu0}%${offset 25} ${color #CCCCCC}${cpu cpu1}%${offset 25} ${color #CCCCCC}${cpu cpu2}%${offset 25} ${color #CCCCCC}${cpu cpu3}%${offset 25}${cpu cpu4}%${offset 25} ${color #CCCCCC}${cpu cpu5}%${offset 25} ${color #CCCCCC}${cpu cpu6}%${offset 25} ${color #CCCCCC}${cpu cpu7}%${offset 25} ${color #CCCCCC}${cpu cpu8}%${offset 25} ${color #CCCCCC}${cpu cpu9}%${offset 25} ${color #CCCCCC}${cpu cpu10}%${offset 25} ${color #CCCCCC}${cpu cpu11}%${offset 25}${cpu cpu12}%${offset 25} ${color #CCCCCC}${cpu cpu13}%${offset 25} ${color #CCCCCC}${cpu cpu14}%${offset 25} ${color #CCCCCC}${cpu cpu15}%
-${cpugraph cpu0 120,70 CCCCCC FFFFFF} ${cpugraph cpu1 120,70 CCCCCC FFFFFF} ${cpugraph cpu2 120,70 CCCCCC FFFFFF} ${cpugraph cpu3 120,70 CCCCCC FFFFFF} ${cpugraph cpu4 120,70 CCCCCC FFFFFF} ${cpugraph cpu5 120,70 CCCCCC FFFFFF} ${cpugraph cpu6 120,70 CCCCCC FFFFFF} ${cpugraph cpu7 120,70 CCCCCC FFFFFF} ${cpugraph cpu8 120,70 CCCCCC FFFFFF} ${cpugraph cpu9 120,70 CCCCCC FFFFFF} ${cpugraph cpu10 120,70 CCCCCC FFFFFF} ${cpugraph cpu11 120,70 CCCCCC FFFFFF} ${cpugraph cpu12 120,70 CCCCCC FFFFFF} ${cpugraph cpu13 120,70 CCCCCC FFFFFF} ${cpugraph cpu14 120,70 CCCCCC FFFFFF} ${cpugraph cpu15 120,70 CCCCCC FFFFFF}
+${cpugraph cpu0 60,50 CCCCCC FFFFFF} ${cpugraph cpu1 60,50 CCCCCC FFFFFF} ${cpugraph cpu2 60,50 CCCCCC FFFFFF} ${cpugraph cpu3 60,50 CCCCCC FFFFFF} ${cpugraph cpu4 60,50 CCCCCC FFFFFF} ${cpugraph cpu5 60,50 CCCCCC FFFFFF} ${cpugraph cpu6 60,50 CCCCCC FFFFFF} ${cpugraph cpu7 60,50 CCCCCC FFFFFF} ${cpugraph cpu8 60,50 CCCCCC FFFFFF} ${cpugraph cpu9 60,50 CCCCCC FFFFFF} ${cpugraph cpu10 60,50 CCCCCC FFFFFF} ${cpugraph cpu11 60,50 CCCCCC FFFFFF} ${cpugraph cpu12 60,50 CCCCCC FFFFFF} ${cpugraph cpu13 60,50 CCCCCC FFFFFF} ${cpugraph cpu14 60,50 CCCCCC FFFFFF} ${cpugraph cpu15 60,50 CCCCCC FFFFFF}
 ${exec ~/scripts/temp.sh}
-${exec cat /tmp/.nvme-temp}
-nvidia ${nvidia temp} °C
+#nvidia ${nvidia temp} °C
+
+#${color #FFFFFF}${offset 1450}${font DejaVu Sans Mono:bold:size=25}Joy   Trust   Knowledge${font}
+#${offset 2115}Wim Hof, Meditation
+${color #FF8C15}${font DejaVu Sans Mono:bold:size=17}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh -180 2 20 high}${font}${color #FF8C15}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 3 7 20}${color #FF9F00}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 8 14 20}${color #FFC076}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 15 30 20}${color #99BA8E}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 31 60 20}${color #CCCCCC}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 61 180 20}${color #AAAAAA}${texeci 10 ~/git/workbooks-alopatindev/tasks/deadlines.sh 181 365 1}
+
+
+
+
+
+
+${color #FFFFFF}${offset 2020}${font Roboto:Light:size=25}codonaft${font}
 
 #${texeci 600 ~/scripts/exchange-rates.sh}
 

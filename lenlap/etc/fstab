@@ -34,8 +34,10 @@ LABEL=DELLYBOOT	/boot		vfat		noauto,noatime,nodiratime,discard 0 1
 LABEL=dellyhome	/home		ext4		defaults,noatime,nodiratime,discard,commit=60,errors=remount-ro 0 2
 LABEL=dellysmall	/mnt/lenslowssd		ext4		defaults,noatime,nodiratime,discard,commit=60,errors=remount-ro 0 2
 LABEL=dellybackups	/mnt/dellybackups		ext4		noauto,defaults,noatime,nodiratime,discard,commit=60,errors=remount-ro 0 2
-LABEL=dellyswap	none		swap		noauto,sw		0 0
+#LABEL=dellyswap	none		swap		noauto,sw		0 0
 tmpfs			/tmp		tmpfs		defaults,nodev,nosuid,mode=1777,size=5G 0 0
 tmpfs			/var/lock	tmpfs		defaults,nodev,nosuid,noexec,mode=1777 0 0
 tmpfs			/var/run	tmpfs		defaults,nodev,nosuid,noexec,mode=0755 0 0
 /tmp/.img.iso   /mnt/iso    iso9660     defaults,noauto,users,ro 0 0
+
+tmpfs /home/al/tmp          tmpfs       nosuid,nodev,mode=1700,uid=1000,gid=1000,size=128M 0 0

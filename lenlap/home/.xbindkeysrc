@@ -30,6 +30,14 @@
     Mod4 + Return
 
 "~/scripts/screenshot"
+    m:0x0 + c:148
+    XF86Calculator
+
+"~/scripts/screenshot_area"
+    m:0x8 + c:148
+    Alt + XF86Calculator
+
+"~/scripts/screenshot"
     m:0x10 + c:107
     Mod2 + Print
 
@@ -163,3 +171,8 @@
 "~/scripts/clear-clipboard.sh ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh ; sync ; sudo /usr/local/sbin/drop-caches"
     m:0x48 + c:25
     Alt+Mod4 + w
+
+# workaround for malfunctioning dell keyboard
+"xdotool key ctrl+a"
+    m:0x0 + c:210
+    XF86Launch3
