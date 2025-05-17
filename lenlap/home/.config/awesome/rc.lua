@@ -208,11 +208,25 @@ globalkeys = gears.table.join(
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
         function ()
-            --awful.client.focus.history.previous()
-            awful.client.focus.byidx(1)
-            if client.focus then
-                client.focus:raise()
-            end
+--            --awful.client.focus.history.previous()
+--            awful.client.focus.byidx(1)
+--            if client.focus then
+--                client.focus:raise()
+--            end
+            awful.client.cycle(false) -- FIXME: https://stackoverflow.com/a/15105494/586755 works weird, but at least it does
+            awful.client.focus.byidx(0, awful.client.getmaster())
+        end,
+        {description = "go back", group = "client"}),
+
+    awful.key({ modkey, "Shift"   }, "Tab",
+        function ()
+--            --awful.client.focus.history.previous()
+--            awful.client.focus.byidx(-1)
+--            if client.focus then
+--                client.focus:raise()
+--            end
+            awful.client.cycle(true)
+            awful.client.focus.byidx(0, awful.client.getmaster())
         end,
         {description = "go back", group = "client"}),
 
@@ -388,6 +402,7 @@ awful.rules.rules = {
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
     { rule = { class = "Pitivi" }, properties = { tag = "5 media" } },
     { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
+    { rule = { class = "Gimp" }, properties = { tag = "6 graphics" } },
 }
 
 apps_to_tags = {}

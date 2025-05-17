@@ -14,7 +14,8 @@ config.font = wezterm.font_with_fallback {
     --{ family = 'IosevkaTerm Nerd Font Mono', weight = 'Medium', scale = 1.01 },
     --{ family = 'IosevkaTerm Nerd Font Mono', weight = 'Ultra-Bold' },
 }
-config.font_size = 33
+-- config.font_size = 33
+config.font_size = 40
 config.cell_width = 0.92
 
 config.text_blink_rate = 0

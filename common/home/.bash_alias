@@ -58,7 +58,8 @@ alias tagconvert='find -iname "*.mp3" -print0 | xargs -0 mid3iconv -eCP1251 --re
 #alias vi='nvim -p'
 #alias vim='nvim -p'
 #alias vim='vim -X'
-alias wget='wget --timeout=30 --tries=10 --no-check-certificate -c'
+alias wget='wget --timeout=30 --tries=10 -c'
+alias curl='curl -C -'
 alias quickpkg='sudo quickpkg --include-config=y --include-unmodified-config=y'
 alias cal='cal -m'
 alias ya='sudo yaourt'
@@ -84,6 +85,7 @@ alias trim="sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'"
 alias tt='tailt'
 #alias yt='ytfzf --show-thumbnails --async-thumbnails --force-youtube --nsfw --thumb-viewer=chafa-tty --thumbnail-quality=medium -u mpv'
 alias yt='ytfzf --show-thumbnails --async-thumbnails --force-youtube --nsfw --thumb-viewer=chafa --thumbnail-quality=medium -u mpv'
+alias ytdlp='yt-dlp --write-sub --write-auto-sub --sub-lang "en.*"'
 
 for i in w ps ping traceroute ifconfig whereis lsmod ap vmstat top df route ldd nm strace id nmap netstat
 do
@@ -98,5 +100,8 @@ do
 		alias ${i}="TERM=xterm ${i}"
 	fi
 done
+
+unalias strace
+alias strace='intentrace'
 
 # vim: filetype=sh

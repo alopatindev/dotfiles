@@ -119,6 +119,7 @@ set nocompatible
 set ruler  
 set showcmd  
 set nu
+set relativenumber
 set incsearch
 set nohlsearch
 set scrolljump=4
@@ -545,8 +546,8 @@ nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 
 
 
-"let g:CargoLimitVerbosity = 2 " warnings level
-let g:CargoLimitVerbosity = 4 " debug level
+let g:CargoLimitVerbosity = 2 " warnings level
+"let g:CargoLimitVerbosity = 4 " debug level
 
 " TODO: naming
 fun! SaveAllFilesOrOpenNextLocation() abort
@@ -623,7 +624,8 @@ hi Statement term=bold cterm=bold gui=bold
 hi Type ctermfg=4 cterm=bold
 hi String ctermfg=5 cterm=bold
 hi Comment ctermfg=6 cterm=bold
-hi LineNr ctermfg=3 cterm=bold
+"hi LineNr ctermfg=3 cterm=bold " yellow line numbers
+hi LineNr ctermfg=242
 hi Search ctermfg=0
 hi Constant cterm=bold
 hi StatusLineNC cterm=bold ctermfg=0
@@ -635,7 +637,7 @@ hi Title ctermfg=LightBlue ctermbg=Magenta
 hi PreProc cterm=bold ctermfg=4
 "hi CursorLine ctermbg=LightBlue term=none cterm=none
 hi CursorLineNr ctermfg=Yellow
-set cursorline
+"set cursorline " underline current line
 
 
 " colorscheme slate
@@ -699,7 +701,7 @@ set spelllang=en,ru
 "map <S-s> :set spell!<Enter>
 map <F7> :set spell!<Enter>
 imap <F7> <esc>:set spell!<Enter>
-map <A-n> :set nu!<Enter>
+map <C-n> :set relativenumber!<Enter>:set nu!<Enter>
 
 function! Browser ()
   let line0 = getline (".")
@@ -1049,7 +1051,7 @@ rt.setup({
                 overrideCommand = {
 --                "cat",
                   "rustfmt",
-                  "--edition=2021", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+                  "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
                   "--"
                 },
             },

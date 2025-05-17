@@ -56,7 +56,7 @@ function setdsm() {
     echo "DJANGO_SETTINGS_MODULE set to $DJANGO_SETTINGS_MODULE"
 }
 
-mkdir -p /tmp/.vimswaps/ && chmod 700 /tmp/.vimswaps/
+mkdir --mode 700 -p /tmp/.vimswaps/ "${XDG_RUNTIME_DIR}"
 
 source ~/.bash_env
 source ~/.bash_completes
@@ -66,3 +66,5 @@ source ~/.bash_alias
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

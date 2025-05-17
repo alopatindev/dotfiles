@@ -9,8 +9,8 @@ videos = Dir['**/*.{mp4,mkv}']
          .uniq { |_, i| i }
          .map { |i, _| i }
 
-videos = ARGV + videos.filter { |i| !ARGV.include?(i) }.shuffle
+videos = ARGV + videos.reject { |i| ARGV.include?(i) }.shuffle
 print "#{videos.length}\n"
 
-mpv = ['mpv', '--fs', '--loop-playlist', '--no-resume-playback', '--volume=30', '--mute', '--start=40%', '--speed=1']
+mpv = ['mpv', '--fs', '--loop-playlist', '--no-resume-playback', '--volume=30', '--mute', '--start=35%', '--speed=1']
 system (mpv + videos).shelljoin
