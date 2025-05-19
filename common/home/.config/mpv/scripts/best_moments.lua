@@ -5,6 +5,7 @@ local utils = require 'mp.utils'
 local min_skip = 0.15
 local max_skip = 0.45
 local min_view_duration = 6
+local max_view_duration = 10 * 60
 
 local options = {
   start_normal = true,
@@ -444,16 +445,19 @@ end
 local function filter_unpopular(views)
   local counts = {}
   for _, durations in pairs(views) do
-    print(" filter " .. _)
     table.insert(counts, #durations)
   end
   local threshold = median(counts)
-  print(" threshold" .. threshold)
   local filtered = {}
   for time, durations in pairs(views) do
-    print(" " .. #durations .. " >= " .. threshold)
-    if #durations >= threshold then
-      filtered[time] = durations
+    new_durations = {}
+    for _, duration in ipairs(durations) do
+      if duration <= max_view_duration then
+        table.insert(new_durations, duration)
+      end
+    end
+    if #new_durations >= threshold then
+      filtered[time] = new_durations
     end
   end
   return filtered
