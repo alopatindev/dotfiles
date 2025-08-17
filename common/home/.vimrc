@@ -237,10 +237,58 @@ fun! CloseDuplicateTabs() abort
   redraw
 endf
 
-fun! GoToDefinition() abort
+fun! GoToDefinitionOrReferences() abort
   "if luaeval('vim.lsp.buf.server_ready()')
   if luaeval('#vim.lsp.get_clients({ bufnr = bufnr }) > 0')
-    lua vim.lsp.buf.definition()
+lua << EOF
+    local params = vim.lsp.util.make_position_params(0, "utf-16")
+
+    local on_references = function(_, result, ctx, config)
+      -- FIXME: result is always nil?
+      if result ~= nil and #result == 1 then
+        local location = result[1]
+        local uri = location.uri or location.targetUri
+        if uri ~= nil then
+          vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+        end
+      else
+        vim.lsp.buf.references()
+      end
+    end
+
+    local on_goto_definition = function(_, result, ctx, config)
+      local initial_file = vim.api.nvim_buf_get_name(0)
+      local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+
+      if result ~= nil and #result == 1 then
+        local location = result[1]
+        local uri = location.uri or location.targetUri
+        if uri ~= nil then
+          vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+        end
+      else
+        vim.lsp.buf.definition()
+        return
+      end
+
+      local current_file = vim.api.nvim_buf_get_name(0)
+      local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+      local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+      if same_location then
+        vim.lsp.buf.implementation()
+      end
+
+      local current_file = vim.api.nvim_buf_get_name(0)
+      local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
+      local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
+      if same_location then
+        vim.notify("Finding references...")
+        vim.lsp.buf_request(0, "textDocument/references", params, on_references)
+      end
+    end
+
+    vim.lsp.buf_request(0, "textDocument/definition", params, on_goto_definition)
+EOF
   else
     " for ctags
     tab split
@@ -249,7 +297,7 @@ fun! GoToDefinition() abort
   endif
 endf
 
-nnoremap <C-p> :call GoToDefinition()<Enter>
+nnoremap <C-p> :call GoToDefinitionOrReferences()<Enter>
 
 "nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
 vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
@@ -369,49 +417,6 @@ au(
     vim.notify("LSP is ready")
   end,
   true)
-
-local default_definition_handler = vim.lsp.handlers["textDocument/definition"]
-vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx, config)
-  local initial_file = vim.api.nvim_buf_get_name(0)
-  local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
-
-  if #result == 1 then
-    local location = result[1]
-    local uri = location.uri or location.targetUri
-    if uri ~= nil then
-      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
-    end
-  end
-  default_definition_handler(_, result, ctx, config)
-
-  local current_file = vim.api.nvim_buf_get_name(0)
-  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
-  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
-  if same_location then
-    vim.lsp.buf.implementation()
-  end
-
-  local current_file = vim.api.nvim_buf_get_name(0)
-  local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
-  local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
-  if same_location then
-    vim.notify("Finding references...")
-    vim.lsp.buf.references()
-  end
-end
-
-
-local default_references_handler = vim.lsp.handlers['textDocument/references']
-vim.lsp.handlers['textDocument/references'] = function(_, result, ctx, config)
-  if #result == 1 then
-    local location = result[1]
-    local uri = location.uri or location.targetUri
-    if uri ~= nil then
-      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
-    end
-  end
-  default_references_handler(_, result, ctx, config)
-end
 
 
 
