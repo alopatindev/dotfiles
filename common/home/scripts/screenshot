@@ -7,8 +7,9 @@ DIR=$HOME'/screens'
 #FILENAME=$(printf "$DIR/screenshot_%08d.png" $NUM)
 
 WINDOW_ID=$(xdotool getwindowfocus)
-PROCESS_NAME=$(cat /proc/$(xdotool getwindowpid "${WINDOW_ID}")/comm)
+PROCESS_NAME=$(cat /proc/$(xdotool getwindowpid "${WINDOW_ID}")/comm | sed 's!/!_!g')
 #WINDOW_TITLE=$(xdotool getwindowname "${WINDOW_ID}")
-FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.png"
+FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.webp"
 
-scrot ${FILENAME} && feh ${FILENAME}
+scrot - | convert - -define webp:lossless=true "${FILENAME}" && gimp "${FILENAME}"
+#scrot -p ${FILENAME} && feh ${FILENAME}

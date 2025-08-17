@@ -29,6 +29,9 @@ xbindkeys
 #conky -d
 (sleep 30 && conky -d) &
 
+# There's a separate boiler in hell for electron developers https://github.com/electron/electron/issues/34211#issuecomment-1749743855
+xmodmap -e 'keycode 64 = Control_R'
+
 # keep clipboard in sync with primary buffer
 autocutsel -selection CLIPBOARD -fork
 # keep primary buffer in sync with clipboard

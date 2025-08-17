@@ -5,5 +5,5 @@ mkdir -p "${CDIR}"
 chmod 700 "${CDIR}"
 #exec /usr/bin/chromium --incognito --user-data-dir=/home/al/.private/chromium-anon --disk-cache-dir=${CDIR} --ppapi-flash-path=/usr/lib64/nsbrowser/plugins/PepperFlash/libpepflashplayer.so --ppapi-flash-version=15.0.0.152 $@
 #exec /usr/bin/chromium --incognito --user-data-dir=/home/al/.private/chromium-anon --enable-native-gpu-memory-buffers --disk-cache-dir=${CDIR} $@ # "Failed to mmap dmabuf: Permission denied"
-exec /usr/bin/chromium-bin --ignore-gpu-blacklist --enable-gpu-rasterization --incognito --user-data-dir=/home/al/.private/chromium-anon  --disk-cache-dir=${CDIR} --force-device-scale-factor=2.5 $@
+TZ=UTC /usr/bin/chromium-bin --ignore-gpu-blacklist --enable-gpu-rasterization --incognito --user-data-dir=/home/al/.private/chromium-anon  --disk-cache-dir=${CDIR} --force-device-scale-factor=2.5 $@
 rm -rf "${CDIR}"

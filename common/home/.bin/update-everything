@@ -2,7 +2,8 @@
 
 set -e
 
-export RUSTFLAGS="-C target-cpu=native"
+#export RUSTFLAGS="-C target-cpu=native"
+export RUSTFLAGS="-C target-cpu=native -C force-frame-pointers=y"
 
 #RUST_NIGHTLY_VERSION="nightly-2020-07-18"
 #rustup +${RUST_NIGHTLY_VERSION} component add miri
@@ -10,26 +11,34 @@ export RUSTFLAGS="-C target-cpu=native"
 #RUST_NIGHTLY_VERSION="nightly-2021-05-07"
 #RUST_NIGHTLY_VERSION="nightly-2021-06-09"
 #RUST_NIGHTLY_VERSION="nightly-2021-10-21"
-RUST_NIGHTLY_VERSION="nightly-2023-02-09"
-RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
+#RUST_NIGHTLY_VERSION="nightly-2023-02-09"
+RUST_NIGHTLY_VERSION="nightly-2025-04-14" # https://rust-lang.github.io/rustup-components-history/
+#RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.81.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.86.0-x86_64-unknown-linux-gnu"
+RUST_STABLE_VERSION="1.89.0-x86_64-unknown-linux-gnu"
 #RUST_ANALYZER_VERSION="2023-03-06"
 #RUST_ANALYZER_VERSION="2023-09-04"
-RUST_ANALYZER_VERSION="2023-11-27"
+#RUST_ANALYZER_VERSION="2023-11-27"
+#RUST_ANALYZER_VERSION="2024-10-07"
+#RUST_ANALYZER_VERSION="2025-04-07"
+RUST_ANALYZER_VERSION="2025-08-11"
 
-#rustup install "${RUST_NIGHTLY_VERSION}"
-#rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
-#ln -sf ~/.rustup/toolchains/${RUST_NIGHTLY_VERSION}-x86_64-unknown-linux-gnu/bin/rustfmt ~/.bin/rustfmt
+rustup install "${RUST_NIGHTLY_VERSION}"
+rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
+ln -sf ~/.rustup/toolchains/${RUST_NIGHTLY_VERSION}-x86_64-unknown-linux-gnu/bin/rustfmt ~/.bin/rustfmt
 
 rustup install "${RUST_STABLE_VERSION}"
 rustup default "${RUST_STABLE_VERSION}"
 #rustup component add clippy rust-src rust-analyzer
 rustup component add clippy rust-src
 
-rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
+#rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
 
 #cargo +${RUST_NIGHTLY_VERSION} install --locked --features simd-accel ripgrep
 #cargo +nightly install --locked --features simd-accel ripgrep
-#cargo install --locked skim fd-find
+#cargo install --locked skim fd-find xcp deduplicator hyperfine intentrace
+#cargo install --locked --force --git https://github.com/lbeder/qrcode-cli --tag 0.4.0
 
 cd ~/git-extra/rust-analyzer
 git checkout master
@@ -46,6 +55,7 @@ cd
 ##rustup default stable
 ##
 ##npm update
+##npm audit fix --force
 ##
 ##go get -u -v all
 ##go get -d github.com/google/fscrypt/...
@@ -65,3 +75,22 @@ cd
 ###emerge -pve @system
 ###emerge -pvuDN @world
 ##em-auto-exclude.rb -uDNa @world
+
+#go install github.com/fiatjaf/nak@latest
+#go install github.com/mdzz-club/nkcli@latest
+## go install github.com/slok/grafterm@latest
+#
+#omz update
+
+
+#flatpak remote-add --if-not-exists futr-stable https://flatpak.futrnostr.com/futr-stable.flatpakrepo
+#flatpak install com.futrnostr.futr
+
+##flatpak remote-add --if-not-exists futr-continuous https://flatpak.futrnostr.com/futr-continuous.flatpakrepo
+##flatpak install com.futrnostr.futr
+
+#cargo install --locked --force --git https://github.com/lumehq/coop --tag 0.1.4-alpha
+#cargo install --locked --force --git https://github.com/lumehq/coop --branch master
+
+
+#cargo install --locked --force --git https://github.com/damus-io/notedeck --tag v0.3.0

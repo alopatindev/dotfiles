@@ -130,7 +130,8 @@ set t_vb=
 set mouse=n
 set mousemodel=popup
 set mousehide
-set termencoding=utf-8
+"set termencoding=utf-8 " NOTE: E519: Option not supported: termencoding=utf-8
+set notermguicolors
 set guioptions-=T
 set ch=1
 set sessionoptions=curdir,buffers,tabpages
@@ -237,7 +238,8 @@ fun! CloseDuplicateTabs() abort
 endf
 
 fun! GoToDefinition() abort
-  if luaeval('vim.lsp.buf.server_ready()')
+  "if luaeval('vim.lsp.buf.server_ready()')
+  if luaeval('#vim.lsp.get_clients({ bufnr = bufnr }) > 0')
     lua vim.lsp.buf.definition()
   else
     " for ctags
@@ -640,6 +642,18 @@ hi CursorLineNr ctermfg=Yellow
 "set cursorline " underline current line
 
 
+
+"colorscheme torte
+"colorscheme koehler
+"colorscheme vim
+"colorscheme murphy
+"colorscheme ron
+"colorscheme industry
+"colorscheme elflord
+"colorscheme wildcharm
+
+
+
 " colorscheme slate
 "colorscheme evening
 "hi Normal ctermfg=lightgrey
@@ -688,6 +702,21 @@ highlight SpellCap cterm=underline
 highlight SpellLocal cterm=underline
 highlight SpellRare cterm=underline
 
+hi Statement cterm=bold ctermfg=11 gui=bold guifg=#ffff60
+hi clear Pmenu
+
+
+
+
+
+
+
+
+
+
+
+
+
 "let xterm16_colormap = 'allblue'
 "colo xterm16
 
@@ -702,6 +731,9 @@ set spelllang=en,ru
 map <F7> :set spell!<Enter>
 imap <F7> <esc>:set spell!<Enter>
 map <C-n> :set relativenumber!<Enter>:set nu!<Enter>
+"vunmap <C-n>
+"imap <C-n> <Esc>:set relativenumber!<Enter>:set nu!<Enter>
+"vmap <C-n> <Esc>:set relativenumber!<Enter>:set nu!<Enter>
 
 function! Browser ()
   let line0 = getline (".")
@@ -1134,7 +1166,7 @@ fun! OnQuit()
   call system('logger exiting nvim')
   for i in getbufinfo()
     if !empty(i.name) && !i.hidden
-      echo i.name
+      "echo i.name
       call system('logger -- ' . fnameescape(i.name))
     endif
   endfor

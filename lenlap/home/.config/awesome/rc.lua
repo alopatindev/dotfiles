@@ -114,16 +114,19 @@ awful.screen.connect_for_each_screen(function(s)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1 tasks", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[3])
+    awful.tag({ "1 im", "2 term", "3 web", "4 main", "5 media", "6 graphics", "7 misc", "8 misc", "9 doc", "0 logs" }, s, awful.layout.layouts[3])
 
     -- FIXME: ugly hack, just to set the 3rd tag's layout to max
     --awful.tag.viewonly(s.tags[3])
     --awful.layout.inc(-3)
 
     --FIXME
-    --awful.tag.viewonly(s.tags[1])
-    s.tags[1]:view_only()
-    awful.tag.incmwfact(0.20)
+    ----awful.tag.viewonly(s.tags[1])
+    --s.tags[1]:view_only()
+    --awful.tag.incmwfact(0.20)
+
+    awful.layout.inc(1)
+    --awful.tag.incmwfact(0.20)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -348,7 +351,9 @@ awful.rules.rules = {
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen
+                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+                     maximized_vertical = false,
+                     maximized_horizontal = false,
      }
     },
 
@@ -397,8 +402,9 @@ awful.rules.rules = {
     { rule = { class = "Code" }, properties = { tag = "2 term" } },
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
     { rule = { class = "libreoffice-calc" }, properties = { tag = "9 doc" } },
-    { rule = { class = "TelegramDesktop" }, properties = { tag = "1 tasks" } },
-    { rule = { class = "Signal" }, properties = { tag = "1 tasks" } },
+    { rule = { class = "TelegramDesktop" }, properties = { tag = "1 im" } },
+    { rule = { class = "Signal" }, properties = { tag = "1 im" } },
+    { rule = { class = "Session" }, properties = { tag = "1 im" } },
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
     { rule = { class = "Pitivi" }, properties = { tag = "5 media" } },
     { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },

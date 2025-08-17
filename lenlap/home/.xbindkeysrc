@@ -172,7 +172,7 @@
     m:0x48 + c:25
     Alt+Mod4 + w
 
-# workaround for malfunctioning dell keyboard
-"xdotool key ctrl+a"
-    m:0x0 + c:210
-    XF86Launch3
+## workaround for malfunctioning dell keyboard
+#"xdotool key ctrl+a"
+#    m:0x0 + c:210
+#    XF86Launch3

@@ -8,7 +8,6 @@ DIR=$HOME'/screens'
 WINDOW_ID=$(xdotool getwindowfocus)
 PROCESS_NAME=$(cat /proc/$(xdotool getwindowpid "${WINDOW_ID}")/comm)
 #WINDOW_TITLE=$(xdotool getwindowname "${WINDOW_ID}")
-FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.png"
+FILENAME="${DIR}/Screenshot-$(date +%Y%m%d-%H%M%S)_${PROCESS_NAME}.webp"
 
-(import $FILENAME && feh $FILENAME) || xmessage 'import failed'
-#(scrot -s $FILENAME && feh $FILENAME) || xmessage 'import failed'
+(import -define webp:lossless=true "${FILENAME}" && gimp "$FILENAME") || xmessage 'import failed'

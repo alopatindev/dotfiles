@@ -8,10 +8,12 @@ mkdir -p "${CDIR}"
 
 # --enable-native-gpu-memory-buffers
 #
-#--proxy-server=http://127.0.0.1:58889 \
 
-/usr/bin/chromium --incognito \
-        --proxy-server=socks5://127.0.0.1:59050 \
+PROXY=http://127.0.0.1:58889
+#PROXY=socks5://127.0.0.1:1024
+
+TZ=UTC /usr/bin/chromium-bin --incognito \
+        --proxy-server=${PROXY} \
          --disk-cache-dir=${CDIR} \
             --disable-sync-preferences --ignore-gpu-blacklist --enable-gpu-rasterization --disable-crashpad --force-device-scale-factor=2.5 --process-per-site --enable-features=WebUIDarkMode --enable-features=VaapiIgnoreDriverChecks --disable-features=UseChromeOSDirectVideoDecoder --disable-gpu-vsync=beginframe \
          --user-data-dir=/home/al/.private/chromium-anon-proxy $@

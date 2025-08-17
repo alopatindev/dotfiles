@@ -17,4 +17,8 @@ map <C-=> zoom in
 map <C--> zoom out
 
 set sandbox strict
+#set sandbox none
+
 set dbus-service false
+
+set poppler-disable-javascript true
