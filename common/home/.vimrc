@@ -237,7 +237,7 @@ fun! CloseDuplicateTabs() abort
   redraw
 endf
 
-fun! GoToDefinitionOrReferences() abort
+fun! GoToDefinitionOrReferencesOrImplementation() abort
 lua << EOF
   --if not vim.lsp.buf.server_ready()
   if #vim.lsp.get_clients({ bufnr = bufnr }) == 0 then
@@ -248,37 +248,46 @@ lua << EOF
   end
 
   local initial_file = vim.api.nvim_buf_get_name(0)
-  local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+  local initial_line, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
 
   local params = vim.lsp.util.make_position_params(0, "utf-16")
 
   local goto_single_location = function(result)
-    for index, location in ipairs(result) do
+    local filtered_result = {}
+    local remove_lines = {}
+    remove_lines[vim.json.encode({initial_file, initial_line})] = true
+    for _, location in ipairs(result) do
       local uri = location.uri or location.targetUri
-      if uri ~= nil and location.targetSelectionRange.start.line + 1 == initial_row and vim.fn.fnamemodify(vim.uri_to_fname(uri), ':p') == initial_file then
-        table.remove(result, index)
-        break
+      if uri ~= nil then
+        local key = vim.json.encode({
+          vim.fn.fnamemodify(vim.uri_to_fname(uri), ':p'),
+          location.targetSelectionRange.start.line + 1})
+        if not remove_lines[key] then
+          table.insert(filtered_result, location)
+          remove_lines[key] = true
+        end
       end
     end
 
-    if #result == 1 then
-      local location = result[1]
+    if #filtered_result == 1 then
+      local location = filtered_result[1]
       local uri = location.uri or location.targetUri
-      if uri ~= nil then
-        vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
-        vim.cmd(string.format('call cursor(%d, %d)', location.targetSelectionRange.start.line + 1, location.targetSelectionRange.start.character + 1))
-        return true, result
-      end
+      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+      vim.cmd(string.format(
+        'call cursor(%d, %d)',
+        location.targetSelectionRange.start.line + 1,
+        location.targetSelectionRange.start.character + 1))
+      return true, filtered_result
     end
-    return false, result
+    return false, filtered_result
   end
 
   local on_implementation = function(_, result, ctx, config)
     if result ~= nil and #result > 0 then
-      local found, result = goto_single_location(result)
+      local found, filtered_result = goto_single_location(result)
       if found then
         return
-      elseif #result > 1 then
+      elseif #filtered_result > 1 then
         vim.lsp.buf.implementation()
         return
       end
@@ -288,10 +297,10 @@ lua << EOF
 
   local on_references = function(_, result, ctx, config)
     if result ~= nil and #result > 0 then
-      local found, result = goto_single_location(result)
+      local found, filtered_result = goto_single_location(result)
       if found then
         return
-      elseif #result > 1 then
+      elseif #filtered_result > 1 then
         vim.lsp.buf.references()
         return
       end
@@ -302,10 +311,10 @@ lua << EOF
 
   local on_goto_definition = function(_, result, ctx, config)
     if result ~= nil and #result > 0 then
-      local found, result = goto_single_location(result)
+      local found, filtered_result = goto_single_location(result)
       if found then
         return
-      elseif #result > 1 then
+      elseif #filtered_result > 1 then
         vim.lsp.buf.definition()
         return
       end
@@ -319,7 +328,7 @@ lua << EOF
 EOF
 endf
 
-nnoremap <C-p> :call GoToDefinitionOrReferences()<Enter>
+nnoremap <C-p> :call GoToDefinitionOrReferencesOrImplementation()<Enter>
 
 "nnoremap <C-p> :lua vim.lsp.buf.definition()<Enter>
 vnoremap <C-\> :lua vim.lsp.buf.workspace_symbol(vim.fn.expand('<cword>'))<Enter>
