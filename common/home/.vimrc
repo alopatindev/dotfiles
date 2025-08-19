@@ -238,63 +238,85 @@ fun! CloseDuplicateTabs() abort
 endf
 
 fun! GoToDefinitionOrReferences() abort
-  "if luaeval('vim.lsp.buf.server_ready()')
-  if luaeval('#vim.lsp.get_clients({ bufnr = bufnr }) > 0')
 lua << EOF
-    local params = vim.lsp.util.make_position_params(0, "utf-16")
+  --if not vim.lsp.buf.server_ready()
+  if #vim.lsp.get_clients({ bufnr = bufnr }) == 0 then
+    vim.cmd('tab split')
+    vim.cmd('exec("tag ".expand("<cword>"))')
+    vim.cmd('call CloseDuplicateTabs()')
+    return
+  end
 
-    local on_references = function(_, result, ctx, config)
-      -- FIXME: result is always nil?
-      if result ~= nil and #result == 1 then
-        local location = result[1]
-        local uri = location.uri or location.targetUri
-        if uri ~= nil then
-          vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
-        end
-      else
-        vim.lsp.buf.references()
+  local initial_file = vim.api.nvim_buf_get_name(0)
+  local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+
+  local params = vim.lsp.util.make_position_params(0, "utf-16")
+
+  local goto_single_location = function(result)
+    for index, location in ipairs(result) do
+      local uri = location.uri or location.targetUri
+      if uri ~= nil and location.targetSelectionRange.start.line + 1 == initial_row and vim.fn.fnamemodify(vim.uri_to_fname(uri), ':p') == initial_file then
+        table.remove(result, index)
+        break
       end
     end
 
-    local on_goto_definition = function(_, result, ctx, config)
-      local initial_file = vim.api.nvim_buf_get_name(0)
-      local initial_row, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
+    if #result == 1 then
+      local location = result[1]
+      local uri = location.uri or location.targetUri
+      if uri ~= nil then
+        vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+        vim.cmd(string.format('call cursor(%d, %d)', location.targetSelectionRange.start.line + 1, location.targetSelectionRange.start.character + 1))
+        return true, result
+      end
+    end
+    return false, result
+  end
 
-      if result ~= nil and #result == 1 then
-        local location = result[1]
-        local uri = location.uri or location.targetUri
-        if uri ~= nil then
-          vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
-        end
-      else
+  local on_implementation = function(_, result, ctx, config)
+    if result ~= nil and #result > 0 then
+      local found, result = goto_single_location(result)
+      if found then
+        return
+      elseif #result > 1 then
+        vim.lsp.buf.implementation()
+        return
+      end
+    end
+    vim.notify("Not Found")
+  end
+
+  local on_references = function(_, result, ctx, config)
+    if result ~= nil and #result > 0 then
+      local found, result = goto_single_location(result)
+      if found then
+        return
+      elseif #result > 1 then
+        vim.lsp.buf.references()
+        return
+      end
+    end
+    vim.notify("Finding implementation...")
+    vim.lsp.buf_request(0, "textDocument/implementation", params, on_implementation)
+  end
+
+  local on_goto_definition = function(_, result, ctx, config)
+    if result ~= nil and #result > 0 then
+      local found, result = goto_single_location(result)
+      if found then
+        return
+      elseif #result > 1 then
         vim.lsp.buf.definition()
         return
       end
-
-      local current_file = vim.api.nvim_buf_get_name(0)
-      local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
-      local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
-      if same_location then
-        vim.lsp.buf.implementation()
-      end
-
-      local current_file = vim.api.nvim_buf_get_name(0)
-      local current_row, current_column = unpack(vim.api.nvim_win_get_cursor(0))
-      local same_location = current_file == initial_file and current_row == initial_row and current_column == initial_column
-      if same_location then
-        vim.notify("Finding references...")
-        vim.lsp.buf_request(0, "textDocument/references", params, on_references)
-      end
     end
+    vim.notify("Finding references...")
+    vim.lsp.buf_request(0, "textDocument/references", params, on_references)
+  end
 
-    vim.lsp.buf_request(0, "textDocument/definition", params, on_goto_definition)
+  vim.notify("Finding definition...")
+  vim.lsp.buf_request(0, "textDocument/definition", params, on_goto_definition)
 EOF
-  else
-    " for ctags
-    tab split
-    exec("tag ".expand("<cword>"))
-    call CloseDuplicateTabs()
-  endif
 endf
 
 nnoremap <C-p> :call GoToDefinitionOrReferences()<Enter>
@@ -558,32 +580,32 @@ let g:CargoLimitVerbosity = 2 " warnings level
 
 " TODO: naming
 fun! SaveAllFilesOrOpenNextLocation() abort
-  "echo 'SaveAllFilesOrOpenNextLocation 1'
-
   " TODO: os-dependant? let l:workspace_root = g:CargoLimitWorkspaceRoot() . '/'
   let l:workspace_root = g:CargoLimitWorkspaceRoot()
   let l:all_rust_files_are_saved = v:true
+  let l:all_files_are_saved = v:true
 
-  "echo 'SaveAllFilesOrOpenNextLocation 2'
-  for i in getbufinfo({'bufmodified': 1})
-    "echo 'SaveAllFilesOrOpenNextLocation 3'
-    if i.name =~# l:workspace_root && !(i.name =~# '/BqfPreviewScrollBar$')
-      "echo 'SaveAllFilesOrOpenNextLocation 4'
-      let l:all_rust_files_are_saved = v:false
-      break
+  for l:i in getbufinfo({'bufmodified': 1})
+    if !s:starts_with(l:i.name, 'BqfPreviewScrollBar')
+      let l:all_files_are_saved = v:false
+      if s:starts_with(l:i.name, l:workspace_root)
+        let l:all_rust_files_are_saved = v:false
+        break
+      endif
     endif
   endfor
-  "echo 'SaveAllFilesOrOpenNextLocation 5'
 
   if l:all_rust_files_are_saved && exists('*CargoLimitOpenNextLocation')
-    "echo 'SaveAllFilesOrOpenNextLocation 6'
     call g:CargoLimitOpenNextLocation()
-    "echo 'SaveAllFilesOrOpenNextLocation 7'
   endif
-  "echo 'SaveAllFilesOrOpenNextLocation 8'
-  execute 'wa!'
+  if !l:all_files_are_saved
+    execute 'wa!'
+  endif
 endf
 
+fun! s:starts_with(text, pattern) abort
+  return stridx(a:text, a:pattern) ==# 0
+endf
 
 nmap <F1> :call g:CargoLimitOpenPrevLocation()<Enter>
 vmap <F1> <Esc>:call g:CargoLimitOpenPrevLocation()<Enter>v
