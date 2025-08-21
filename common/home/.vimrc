@@ -587,24 +587,16 @@ nmap ; :%s/\<<c-r>=expand("<cword>")<Enter>\>/
 let g:CargoLimitVerbosity = 2 " warnings level
 "let g:CargoLimitVerbosity = 4 " debug level
 
-" TODO: naming
 fun! SaveAllFilesOrOpenNextLocation() abort
-  " TODO: os-dependant? let l:workspace_root = g:CargoLimitWorkspaceRoot() . '/'
-  let l:workspace_root = g:CargoLimitWorkspaceRoot()
-  let l:all_rust_files_are_saved = v:true
   let l:all_files_are_saved = v:true
 
   for l:i in getbufinfo({'bufmodified': 1})
-    if !s:starts_with(l:i.name, 'BqfPreviewScrollBar')
+    if exists('l:i.name') && !s:ends_with(l:i.name, '/BqfPreviewScrollBar')
       let l:all_files_are_saved = v:false
-      if s:starts_with(l:i.name, l:workspace_root)
-        let l:all_rust_files_are_saved = v:false
-        break
-      endif
     endif
   endfor
 
-  if l:all_rust_files_are_saved && exists('*CargoLimitOpenNextLocation')
+  if exists('*CargoLimitOpenNextLocation')
     call g:CargoLimitOpenNextLocation()
   endif
   if !l:all_files_are_saved
@@ -612,8 +604,8 @@ fun! SaveAllFilesOrOpenNextLocation() abort
   endif
 endf
 
-fun! s:starts_with(text, pattern) abort
-  return stridx(a:text, a:pattern) ==# 0
+fun! s:ends_with(text, pattern) abort
+  return stridx(a:text, a:pattern) ==# len(a:text) - len(a:pattern)
 endf
 
 nmap <F1> :call g:CargoLimitOpenPrevLocation()<Enter>
