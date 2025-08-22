@@ -272,7 +272,7 @@ lua << EOF
     if #filtered_result == 1 then
       local location = filtered_result[1]
       local uri = location.uri or location.targetUri
-      vim.cmd('tab drop ' .. vim.uri_to_fname(uri))
+      vim.cmd('silent! tab drop ' .. vim.uri_to_fname(uri))
       vim.cmd(string.format(
         'call cursor(%d, %d)',
         location.targetSelectionRange.start.line + 1,
