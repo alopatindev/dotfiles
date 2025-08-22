@@ -97,7 +97,7 @@ Plug 'stevearc/dressing.nvim'
 
 Plug 'markonm/traces.vim' " due to https://github.com/vim/vim/issues/8795#issuecomment-905734865
 
-Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit nvim-send' }
+Plug 'alopatindev/cargo-limit', { 'do': 'cargo install cargo-limit' }
 
 " :PlugInstall
 
@@ -132,6 +132,7 @@ set mousemodel=popup
 set mousehide
 "set termencoding=utf-8 " NOTE: E519: Option not supported: termencoding=utf-8
 set notermguicolors
+set guicursor=a:blinkoff100
 set guioptions-=T
 set ch=1
 set sessionoptions=curdir,buffers,tabpages
