@@ -132,7 +132,7 @@ set mousemodel=popup
 set mousehide
 "set termencoding=utf-8 " NOTE: E519: Option not supported: termencoding=utf-8
 set notermguicolors
-set guicursor=a:blinkoff100
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-blinkoff100-blinkoff100-TermCursor
 set guioptions-=T
 set ch=1
 set sessionoptions=curdir,buffers,tabpages
@@ -456,22 +456,7 @@ au(
   end,
   true)
 
-
-
 local _border = "single"
-
---vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
---  vim.lsp.handlers.hover, {
---    border = _border
---  }
---)
---
---vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
---  vim.lsp.handlers.signature_help, {
---    border = _border
---  }
---)
-
 vim.diagnostic.config{
   float = { border = _border },
   virtual_text = false,
@@ -658,7 +643,7 @@ hi Title term=bold gui=bold
 hi DiffAdd term=bold
 hi DiffChange term=bold
 hi DiffDelete term=bold gui=bold
-hi Special term=bold ctermfg=red
+hi Special term=bold cterm=bold ctermfg=6
 hi Statement term=bold cterm=bold gui=bold
 hi Type ctermfg=4 cterm=bold
 hi String ctermfg=5 cterm=bold
@@ -1028,116 +1013,14 @@ lua << EOF
     },
   })
 
---  -- gray
---  vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { bg='NONE', strikethrough=true, fg='#808080' })
---  -- blue
---  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { bg='NONE', fg='#569CD6' })
---  vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { link='CmpIntemAbbrMatch' })
---  -- light blue
---  vim.api.nvim_set_hl(0, 'CmpItemKindVariable', { bg='NONE', fg='#9CDCFE' })
---  vim.api.nvim_set_hl(0, 'CmpItemKindInterface', { link='CmpItemKindVariable' })
---  vim.api.nvim_set_hl(0, 'CmpItemKindText', { link='CmpItemKindVariable' })
---  -- pink
---  vim.api.nvim_set_hl(0, 'CmpItemKindFunction', { bg='NONE', fg='#C586C0' })
---  vim.api.nvim_set_hl(0, 'CmpItemKindMethod', { link='CmpItemKindFunction' })
---  -- front
---  vim.api.nvim_set_hl(0, 'CmpItemKindKeyword', { bg='NONE', fg='#D4D4D4' })
---  vim.api.nvim_set_hl(0, 'CmpItemKindProperty', { link='CmpItemKindKeyword' })
---  vim.api.nvim_set_hl(0, 'CmpItemKindUnit', { link='CmpItemKindKeyword' })
-
---  cmp.setup.cmdline({ '/', '?' }, {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = {
---      { name = 'buffer' }
---    }
---  })
-
---  cmp.setup.cmdline(':', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = cmp.config.sources({
---      { name = 'path' }
---    }, {
---      { name = 'cmdline' }
---    })
---  })
-
-
---local nvim_lsp = require'lspconfig'
-----nvim_lsp.clangd.setup{}
---
----- ~/.local/state/nvim/lsp.log
----- vim.lsp.set_log_level('OFF')
---
---
-----local capabilities = vim.lsp.protocol.make_client_capabilities()
---local capabilities = require('cmp_nvim_lsp').default_capabilities()
----- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
---
---local rt = require("rust-tools")
---rt.setup({
---  server = {
---    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
---    capabilities = capabilities,
---    -- capabilities = require'lsp.handlers'.capabilities,
---    --capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
---    on_attach = function(client)
---        client.server_capabilities.semanticTokensProvider = nil
---        vim.highlight.priorities.semantic_tokens = 95
---
---        -- TODO: perhaps run before on_attach
---        --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
---        --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
---        --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
---        --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
---        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
---        --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
---        --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
---        vim.keymap.set('n', 'r', vim.lsp.buf.rename)
---        vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
---
---        --require'completion'.on_attach(client)
---    end,
---    settings = {
---        ["rust-analyzer"] = {
-----            imports = {
-----                granularity = {
-----                    group = "module",
-----                },
-----                prefix = "self",
-----            },
-----            cargo = {
-----                buildScripts = {
-----                    enable = true,
-----                },
-----            },
-----            procMacro = {
-----                enable = true
-----            },
-----            diagnostics = {
-----                enable = false,
-----            },
---            rustfmt = {
---                overrideCommand = {
-----                "cat",
---                  "rustfmt",
---                  "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
---                  "--"
---                },
---            },
---        }
---    }
---  },
---  tools = {
---    inlay_hints = {
---      highlight = "Folded",
---      only_current_line = true,
---    },
---    --hover_with_actions = true,
---  }
---})
---
 
 vim.lsp.config('rust_analyzer', {
+  on_attach = function(client)
+    client.server_capabilities.semanticTokensProvider = nil
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'r', vim.lsp.buf.rename)
+    vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
+  end,
   settings = {
     ['rust-analyzer'] = {
       diagnostics = {
@@ -1145,6 +1028,11 @@ vim.lsp.config('rust_analyzer', {
       },
       inlayHints = {
         enable = true;
+--        closureCaptureHints = { enable = true; };
+--        closureReturnTypeHints = { enable = "always"; };
+--        discriminantHints = { enable = true; };
+--        --expressionAdjustmentHints = { enable = true; };
+--        genericParameterHints = { type = { enable = true; }; };
       },
       typeHints = {
         enable = true;
@@ -1207,7 +1095,7 @@ local function show_rust_inlay_hint_on_current_line()
         end
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, hint.position.line, hint.position.character, {
-          virt_text = { { "→ " .. label, "Comment" } },
+          virt_text = { { "=> " .. label:gsub("^: ", ""), "LineNr" } },
           virt_text_pos = "eol",
         })
       end
