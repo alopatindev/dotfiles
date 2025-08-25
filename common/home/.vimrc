@@ -259,10 +259,11 @@ lua << EOF
     remove_lines[vim.json.encode({initial_file, initial_line})] = true
     for _, location in ipairs(result) do
       local uri = location.uri or location.targetUri
-      if uri ~= nil then
+      local range = location.targetSelectionRange or location.targetRange or location.range
+      if uri ~= nil and range ~= nil then
         local key = vim.json.encode({
           vim.fn.fnamemodify(vim.uri_to_fname(uri), ':p'),
-          location.targetSelectionRange.start.line + 1})
+          range.start.line + 1})
         if not remove_lines[key] then
           table.insert(filtered_result, location)
           remove_lines[key] = true
@@ -273,11 +274,12 @@ lua << EOF
     if #filtered_result == 1 then
       local location = filtered_result[1]
       local uri = location.uri or location.targetUri
+      local range = location.targetSelectionRange or location.targetRange or location.range
       vim.cmd('silent! tab drop ' .. vim.uri_to_fname(uri))
       vim.cmd(string.format(
         'call cursor(%d, %d)',
-        location.targetSelectionRange.start.line + 1,
-        location.targetSelectionRange.start.character + 1))
+        range.start.line + 1,
+        range.start.character + 1))
       return true, filtered_result
     end
     return false, filtered_result
@@ -296,7 +298,7 @@ lua << EOF
     vim.notify("Not Found")
   end
 
-  local on_references = function(_, result, ctx, config)
+  local on_references = function(err, result, ctx, config)
     if result ~= nil and #result > 0 then
       local found, filtered_result = goto_single_location(result)
       if found then
@@ -320,6 +322,10 @@ lua << EOF
         return
       end
     end
+
+    params.context = {
+      includeDeclaration = true,
+    }
     vim.notify("Finding references...")
     vim.lsp.buf_request(0, "textDocument/references", params, on_references)
   end
