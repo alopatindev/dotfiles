@@ -39,7 +39,7 @@ Plug 'git@github.com:vim-crystal/vim-crystal'
 " rust
 Plug 'git@github.com:rust-lang/rust.vim'
 "Plug 'simrat39/rust-tools.nvim'
-Plug 'MunifTanjim/rust-tools.nvim' " https://github.com/simrat39/rust-tools.nvim/issues/349 https://github.com/simrat39/rust-tools.nvim/commit/f3bc644c6adf18719bf4ec88aaa8dba43b9ad144
+"Plug 'MunifTanjim/rust-tools.nvim' " https://github.com/simrat39/rust-tools.nvim/issues/349 https://github.com/simrat39/rust-tools.nvim/commit/f3bc644c6adf18719bf4ec88aaa8dba43b9ad144
 Plug 'airblade/vim-rooter' " changes current dir to project root (that contains .git)
 "Plug 'weilbith/nvim-code-action-menu' " also https://github.com/aznhe21/actions-preview.nvim
 
@@ -460,20 +460,22 @@ au(
 
 local _border = "single"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
+--vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+--  vim.lsp.handlers.hover, {
+--    border = _border
+--  }
+--)
+--
+--vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+--  vim.lsp.handlers.signature_help, {
+--    border = _border
+--  }
+--)
 
 vim.diagnostic.config{
-  float = { border = _border }
+  float = { border = _border },
+  virtual_text = false,
+  signs = false,
 }
 EOF
 
@@ -1060,83 +1062,163 @@ lua << EOF
 --  })
 
 
-local nvim_lsp = require'lspconfig'
---nvim_lsp.clangd.setup{}
-
--- ~/.local/state/nvim/lsp.log
--- vim.lsp.set_log_level('OFF')
-
-
---local capabilities = vim.lsp.protocol.make_client_capabilities()
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    capabilities = capabilities,
-    -- capabilities = require'lsp.handlers'.capabilities,
-    --capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    on_attach = function(client)
-        client.server_capabilities.semanticTokensProvider = nil
-        vim.highlight.priorities.semantic_tokens = 95
-
-        -- TODO: perhaps run before on_attach
-        --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-        --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
-        --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', 'r', vim.lsp.buf.rename)
-        vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
-
-        --require'completion'.on_attach(client)
-    end,
-    settings = {
-        ["rust-analyzer"] = {
---            imports = {
---                granularity = {
---                    group = "module",
+--local nvim_lsp = require'lspconfig'
+----nvim_lsp.clangd.setup{}
+--
+---- ~/.local/state/nvim/lsp.log
+---- vim.lsp.set_log_level('OFF')
+--
+--
+----local capabilities = vim.lsp.protocol.make_client_capabilities()
+--local capabilities = require('cmp_nvim_lsp').default_capabilities()
+---- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+--
+--local rt = require("rust-tools")
+--rt.setup({
+--  server = {
+--    -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+--    capabilities = capabilities,
+--    -- capabilities = require'lsp.handlers'.capabilities,
+--    --capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+--    on_attach = function(client)
+--        client.server_capabilities.semanticTokensProvider = nil
+--        vim.highlight.priorities.semantic_tokens = 95
+--
+--        -- TODO: perhaps run before on_attach
+--        --vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+--        --vim.keymap.set("n", "<C-e>", rt.code_action_group.code_action_group, { buffer = bufnr })
+--        --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+--        --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+--        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+--        --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+--        --vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+--        vim.keymap.set('n', 'r', vim.lsp.buf.rename)
+--        vim.keymap.set('v', '<C-p>', vim.lsp.buf.code_action)
+--
+--        --require'completion'.on_attach(client)
+--    end,
+--    settings = {
+--        ["rust-analyzer"] = {
+----            imports = {
+----                granularity = {
+----                    group = "module",
+----                },
+----                prefix = "self",
+----            },
+----            cargo = {
+----                buildScripts = {
+----                    enable = true,
+----                },
+----            },
+----            procMacro = {
+----                enable = true
+----            },
+----            diagnostics = {
+----                enable = false,
+----            },
+--            rustfmt = {
+--                overrideCommand = {
+----                "cat",
+--                  "rustfmt",
+--                  "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+--                  "--"
 --                },
---                prefix = "self",
 --            },
---            cargo = {
---                buildScripts = {
---                    enable = true,
---                },
---            },
---            procMacro = {
---                enable = true
---            },
---            diagnostics = {
---                enable = false,
---            },
-            rustfmt = {
-                overrideCommand = {
---                "cat",
-                  "rustfmt",
-                  "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
-                  "--"
-                },
-            },
-        }
+--        }
+--    }
+--  },
+--  tools = {
+--    inlay_hints = {
+--      highlight = "Folded",
+--      only_current_line = true,
+--    },
+--    --hover_with_actions = true,
+--  }
+--})
+--
+
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false;
+      },
+      inlayHints = {
+        enable = true;
+      },
+      typeHints = {
+        enable = true;
+      },
+----         imports = {
+----           granularity = {
+----             group = "module",
+----           },
+----           prefix = "self",
+----         },
+----         cargo = {
+----           buildScripts = {
+----             enable = true,
+----           },
+----         },
+----         procMacro = {
+----           enable = true
+----         },
+--         rustfmt = {
+--           overrideCommand = {
+----           "cat",
+--             "rustfmt",
+--             "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+--             "--"
+--           },
+--         },
     }
-  },
-  tools = {
-    inlay_hints = {
-      highlight = "Folded",
-      only_current_line = true,
-    },
-    --hover_with_actions = true,
   }
 })
+vim.lsp.enable('rust_analyzer')
 
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = false,
+
+
+local ns = vim.api.nvim_create_namespace("rust_inlay_hints_line")
+
+local function show_rust_inlay_hint_on_current_line()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+    range = {
+      start = { line = row, character = 0 },
+      ["end"] = { line = row + 1, character = 0 },
+    },
+  }
+
+  vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+
+  vim.lsp.buf_request(bufnr, "textDocument/inlayHint", params, function(err, result, _, _)
+    if err or not result then return end
+
+    for _, hint in ipairs(result) do
+      if hint.label then
+        local label = type(hint.label) == "string" and hint.label or vim.tbl_map(function(part)
+          return part.value
+        end, hint.label)
+        if type(label) == "table" then
+          label = table.concat(label)
+        end
+
+        vim.api.nvim_buf_set_extmark(bufnr, ns, hint.position.line, hint.position.character, {
+          virt_text = { { "→ " .. label, "Comment" } },
+          virt_text_pos = "eol",
+        })
+      end
+    end
+  end)
+end
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+  callback = function()
+    show_rust_inlay_hint_on_current_line()
+  end,
 })
 
 EOF
