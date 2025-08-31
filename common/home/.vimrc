@@ -447,7 +447,9 @@ require("dressing").setup({
   },
 })
 
-local au = function(events, ptn, cb, once) vim.api.nvim_create_autocmd(events, {pattern=ptn, callback=cb, once=once}) end
+local au = function(events, ptn, cb, once)
+  vim.api.nvim_create_autocmd(events, { pattern=ptn, callback=cb, once=once })
+end
 au(
   "DiagnosticChanged",
   "*",
@@ -1027,7 +1029,7 @@ vim.lsp.config('rust_analyzer', {
         enable = false;
       },
       inlayHints = {
-        enable = true;
+--        enable = true;
 --        closureCaptureHints = { enable = true; };
 --        closureReturnTypeHints = { enable = "always"; };
 --        discriminantHints = { enable = true; };
@@ -1103,11 +1105,21 @@ local function show_rust_inlay_hint_on_current_line()
   end)
 end
 
-vim.api.nvim_create_autocmd("CursorMoved", {
-  callback = function()
-    show_rust_inlay_hint_on_current_line()
-  end,
+local function show_rust_diagnostic_for_current_line()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local line = vim.fn.line('.') - 1
+  local diag = vim.diagnostic.get(bufnr, { lnum = line })
+  vim.opt.statusline = #diag > 0 and diag[1].message:gsub('\n', ' ') or ''
+end
+
+vim.api.nvim_create_autocmd("CursorMoved", { callback = show_rust_inlay_hint_on_current_line })
+
+vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+  pattern = '*.rs',
+  callback = show_rust_diagnostic_for_current_line,
 })
+
+vim.opt.updatetime = 10
 
 EOF
 
