@@ -447,16 +447,16 @@ require("dressing").setup({
   },
 })
 
-local au = function(events, ptn, cb, once)
-  vim.api.nvim_create_autocmd(events, { pattern=ptn, callback=cb, once=once })
-end
-au(
-  "DiagnosticChanged",
-  "*",
-  function()
-    vim.notify("LSP is ready")
-  end,
-  true)
+--local au = function(events, ptn, cb, once)
+--  vim.api.nvim_create_autocmd(events, { pattern=ptn, callback=cb, once=once })
+--end
+--au(
+--  "DiagnosticChanged",
+--  "*",
+--  function()
+--    vim.notify("LSP is ready")
+--  end,
+--  true)
 
 local _border = "single"
 vim.diagnostic.config{
@@ -1105,11 +1105,19 @@ local function show_rust_inlay_hint_on_current_line()
   end)
 end
 
+-- https://github.com/nvim-lualine/lualine.nvim/issues/1201#issuecomment-2763357226
+local function stl_escape(str)
+  if type(str) ~= 'string' then
+    return str
+  end
+  return str:gsub('%%', '%%%%')
+end
+
 local function show_rust_diagnostic_for_current_line()
   local bufnr = vim.api.nvim_get_current_buf()
   local line = vim.fn.line('.') - 1
   local diag = vim.diagnostic.get(bufnr, { lnum = line })
-  vim.opt.statusline = #diag > 0 and diag[1].message:gsub('\n', ' ') or ''
+  vim.opt.statusline = #diag > 0 and stl_escape(diag[1].message:gsub('\n', ' ')) or ''
 end
 
 vim.api.nvim_create_autocmd("CursorMoved", { callback = show_rust_inlay_hint_on_current_line })
