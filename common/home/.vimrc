@@ -973,6 +973,10 @@ lua << EOF
       ['<C-Down>'] = cmp.mapping.scroll_docs(4),
       ['<C-k>'] = cmp.mapping.scroll_docs(-4),
       ['<C-j>'] = cmp.mapping.scroll_docs(4),
+      ['<S-Up>'] = cmp.mapping.scroll_docs(-4),
+      ['<S-Down>'] = cmp.mapping.scroll_docs(4),
+      ['<S-k>'] = cmp.mapping.scroll_docs(-4),
+      ['<S-j>'] = cmp.mapping.scroll_docs(4),
       ['<C-p>'] = cmp.mapping.complete(),
       ['<Enter>'] = cmp.mapping.confirm({
         select = true,
