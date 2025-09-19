@@ -15,12 +15,18 @@ log_unhandled() {
 }
 
 case "$group" in
+#    '9DBB5994-A997-')
+#        logger "probably unhealthy temperature: $*"
+#        #touch /tmp/.thermal_alert && sleep 20 && rm /tmp/.thermal_alert
+#        ;;
+
     button)
         case "$action" in
             power)
                 logger 'power event' $*
                 if [[ $2 -eq PBTN ]] ; then
-                    /usr/local/sbin/hibernate
+                    logger 'power button'
+                    #/usr/local/sbin/hibernate
                     #/etc/acpi/actions/powerbtn.sh
                 fi
                 ;;
@@ -32,8 +38,9 @@ case "$group" in
             lid)
                 logger 'lid event' $*
                 if [[ $3 -eq close ]] ; then
-                    /usr/local/sbin/standby
-                    #xset dpms force off
+                    /usr/local/sbin/lock_screen.sh
+                #    /usr/local/sbin/standby
+                #    #xset dpms force off
                 fi
                 ;;
 
@@ -43,6 +50,9 @@ case "$group" in
 
             volumedown)
                 /usr/local/sbin/change_volume.sh -
+                ;;
+
+            left | right | up | down)
                 ;;
 
             *)    log_unhandled $* ;;

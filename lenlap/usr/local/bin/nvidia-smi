@@ -1,0 +1,3 @@
+#!/bin/bash
+
+firejail --noprofile --private /usr/bin/nvidia-smi "$@"

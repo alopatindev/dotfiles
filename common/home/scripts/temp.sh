@@ -16,7 +16,7 @@ echo '°C'
 
 echo -n 'nvidia: '
 #nvidia-smi --format=csv,noheader --query-gpu=temperature.gpu | grep -v NVIDIA
-nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | tr '\r\n' ' '
+/usr/local/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | tr '\r\n' ' '
 echo -n '°C '
 
 echo -n ' RPM: '

@@ -2,24 +2,41 @@
 
 logger "running $0"
 
-MAX_ALLOWED_TEMP=100
-WARN_CPU_TEMP=90
+MAX_ALLOWED_CPU_TEMP=100
+MAX_ALLOWED_GPU_TEMP=80
 
 (while [ 1 ] ; do
-    MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | xargs printf '%03d\n' | sort | tail -n1)
-    if [ "${MAX_CPU_TEMP}" -gt "${MAX_ALLOWED_TEMP}" ] || { [ "${MAX_CPU_TEMP}" -gt "${WARN_CPU_TEMP}" ] && [ -f /tmp/.thermal_alert ]; }; then
-        logger "cpu temp was ${MAX_CPU_TEMP}"
-        /usr/local/sbin/switch-governor.sh powersave
-        sleep 1m
-    else
-#        if [ $(cat /sys/class/power_supply/BAT0/status) != 'Discharging' ]; then
-#            /usr/local/sbin/switch-governor.sh performance
-#        fi
-        if [ $(cat /sys/class/power_supply/BAT0/status) == 'Discharging' ]; then
-            /usr/local/sbin/switch-governor.sh powersave
-        else
-            /usr/local/sbin/switch-governor.sh performance
-        fi
-    fi
-    sleep 3s
+  ps uax | grep -E '\.bin/(chromium-pr|(p|pp)play)' | grep -v grep >>/dev/null || [ $(cat /sys/class/power_supply/BAT0/status) == 'Discharging' ] && {
+    /usr/local/sbin/switch-governor.sh powersave
+    sleep 5s
+    continue
+  }
+
+  MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort -nr | head -n1)
+  GPU_TEMP=$(/usr/local/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+  if [ "${MAX_CPU_TEMP}" -gt "${MAX_ALLOWED_CPU_TEMP}" ] || [ "${GPU_TEMP}" -gt "${MAX_ALLOWED_GPU_TEMP}" ] ; then
+    logger "cpu temp was ${MAX_CPU_TEMP}, gpu temp was ${GPU_TEMP}"
+    /usr/local/sbin/switch-governor.sh powersave
+    sleep 1m
+    continue
+  fi
+
+  if [ $(cat /tmp/.compiler_processes) -gt 0 ]; then
+    #logger 'compiler is active'
+    /usr/local/sbin/switch-governor.sh performance
+    sleep 5s
+    continue
+  fi
+
+  MAX_HEAVY_PROCESS_UPTIME_MS=$( ( for i in $(ps uax | grep -E '( chromium-browser | encfs |/equery | ollama |/opt/libreoffice|/7z |/Telegram )' | grep -v grep | awk '{ print $2 }') ; do cat /proc/$i/stat | cut -d' ' -f22 ; done ; echo 0 ) | sort -nr | head -n1)
+  OS_UPTIME_SEC=$(cut -d' ' -f1 < /proc/uptime)
+  TIME_SINCE_HEAVY_PROCESS_INIT_SEC=$( printf '%.0f' $(bc -ql <<< "${OS_UPTIME_SEC} - (${MAX_HEAVY_PROCESS_UPTIME_MS} / 100)") )
+  #logger "time since heavy process init: ${TIME_SINCE_HEAVY_PROCESS_INIT_SEC} uptime=${OS_UPTIME_SEC}"
+  if [ "${TIME_SINCE_HEAVY_PROCESS_INIT_SEC}" -lt 10 ] ; then
+    #logger 'temporarily using performance governor'
+    /usr/local/sbin/switch-governor.sh performance
+  else
+    /usr/local/sbin/switch-governor.sh powersave
+  fi
+  sleep 1s
 done) &

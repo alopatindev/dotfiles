@@ -1,3 +1,5 @@
 #!/bin/bash
 
-~/.bin/$(echo -e 'standby-and-lights-off\nstandby\nhibernate\nreboot\nhalt\n' | ~/.bin/dmenu -p 'quit??!!')
+#~/.bin/$(echo -e 'standby-and-lights-off\nstandby\nhibernate\nreboot\nhalt\n' | ~/.bin/dmenu -p 'quit??!!')
+#~/.bin/$(echo -e 'hibernate\nreboot\nhalt\n' | ~/.bin/dmenu -p 'quit??!!')
+~/.bin/$(echo -e 'reboot\nhalt' | ~/.bin/dmenu -p 'quit??!!')
