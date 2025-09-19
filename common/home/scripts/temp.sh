@@ -21,4 +21,4 @@ echo -n '°C '
 
 echo -n ' RPM: '
 echo "${SENSORS_OUT}" | grep RPM | awk '{print $2}' | tr '\r\n' ' '
-cat /tmp/.nvme-temp | tr '\r\n' ' '
+echo "NVMe: $(cat /tmp/.nvme-temp | tr '\r\n' ' ')°C"

@@ -2,8 +2,11 @@
 
 logger "running $0"
 
-MAX_ALLOWED_CPU_TEMP=100
-MAX_ALLOWED_GPU_TEMP=80
+TURBO_BOOST_TIME_SEC=25
+
+MAX_CPU_TEMP=100
+MAX_GPU_TEMP=80
+MAX_NVME_TEMP=80
 
 (while [ 1 ] ; do
   ps uax | grep -E '\.bin/(chromium-pr|(p|pp)play)' | grep -v grep >>/dev/null || [ $(cat /sys/class/power_supply/BAT0/status) == 'Discharging' ] && {
@@ -12,10 +15,11 @@ MAX_ALLOWED_GPU_TEMP=80
     continue
   }
 
-  MAX_CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort -nr | head -n1)
-  GPU_TEMP=$(/usr/local/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
-  if [ "${MAX_CPU_TEMP}" -gt "${MAX_ALLOWED_CPU_TEMP}" ] || [ "${GPU_TEMP}" -gt "${MAX_ALLOWED_GPU_TEMP}" ] ; then
-    logger "cpu temp was ${MAX_CPU_TEMP}, gpu temp was ${GPU_TEMP}"
+  CPU_TEMP=$(sensors | grep '^Core' | awk '{print $3}' | sed 's/\.[0-9]//g;s/[^0-9]*//g' | sort -nr | head -n1)
+  GPU_TEMP=$(/usr/local/bin/nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | sort -nr | head -n1)
+  NVME_TEMP=$(cat /tmp/.nvme-temp | sort -nr | head -n1)
+  if [ "${CPU_TEMP}" -gt "${MAX_CPU_TEMP}" ] || [ "${GPU_TEMP}" -gt "${MAX_GPU_TEMP}" ] || [ "${NVME_TEMP}" -gt "${MAX_NVME_TEMP}" ] ; then
+    logger "CPU temp was ${CPU_TEMP}, GPU temp was ${GPU_TEMP}, NVME temp was ${NVME_TEMP}"
     /usr/local/sbin/switch-governor.sh powersave
     sleep 1m
     continue
@@ -28,11 +32,26 @@ MAX_ALLOWED_GPU_TEMP=80
     continue
   fi
 
-  MAX_HEAVY_PROCESS_UPTIME_MS=$( ( for i in $(ps uax | grep -E '( chromium-browser | encfs |/equery | ollama |/opt/libreoffice|/7z |/Telegram )' | grep -v grep | awk '{ print $2 }') ; do cat /proc/$i/stat | cut -d' ' -f22 ; done ; echo 0 ) | sort -nr | head -n1)
+  ps uax | grep ' ffmpeg ' | grep -v ' x11grab' | grep -v grep >>/dev/null && {
+    /usr/local/sbin/switch-governor.sh performance
+    sleep 5s
+    continue
+  }
+
+  ACTIVE_WIN=$(DISPLAY=:0 XAUTHORITY=~al/.Xauthority xprop -id $(DISPLAY=:0 XAUTHORITY=~al/.Xauthority xprop -root _NET_ACTIVE_WINDOW | awk '{print $5}') _NET_WM_NAME)
+  grep ' Oracle VirtualBox"' <<< "${ACTIVE_WIN}" >>/dev/null && {
+    /usr/local/sbin/switch-governor.sh performance
+    sleep 1s
+    continue
+  }
+
+  MAX_HEAVY_PROCESS_CLOCK_TICKS=$( ( for i in $(ps uax | grep -E '( chromium-browser | encfs |/equery | ollama |/opt/libreoffice|/7z |/Telegram |/VirtualBoxVM )' | grep -v grep | awk '{ print $2 }') ; do cat /proc/$i/stat | cut -d' ' -f22 ; done ; echo 0 ) | sort -nr | head -n1)
   OS_UPTIME_SEC=$(cut -d' ' -f1 < /proc/uptime)
-  TIME_SINCE_HEAVY_PROCESS_INIT_SEC=$( printf '%.0f' $(bc -ql <<< "${OS_UPTIME_SEC} - (${MAX_HEAVY_PROCESS_UPTIME_MS} / 100)") )
+  TIME_SINCE_HEAVY_PROCESS_INIT_SEC=$( printf '%.0f' $(bc -ql <<< "${OS_UPTIME_SEC} - (${MAX_HEAVY_PROCESS_CLOCK_TICKS} / $(getconf CLK_TCK))") )
+  TIME_SINCE_TURBO_BOOST_SEC=$( printf '%.0f' $(bc -ql <<< "$(date '+%s') - $(stat -c '%Y' /tmp/.turbo-boost || echo 0)") )
+  #logger "time since turbo boost: ${TIME_SINCE_TURBO_BOOST_SEC}"
   #logger "time since heavy process init: ${TIME_SINCE_HEAVY_PROCESS_INIT_SEC} uptime=${OS_UPTIME_SEC}"
-  if [ "${TIME_SINCE_HEAVY_PROCESS_INIT_SEC}" -lt 10 ] ; then
+  if [ "${TIME_SINCE_HEAVY_PROCESS_INIT_SEC}" -lt "${TURBO_BOOST_TIME_SEC}" ] || [ "${TIME_SINCE_TURBO_BOOST_SEC}" -lt "${TURBO_BOOST_TIME_SEC}" ] ; then
     #logger 'temporarily using performance governor'
     /usr/local/sbin/switch-governor.sh performance
   else

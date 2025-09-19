@@ -243,7 +243,7 @@ lua << EOF
   --if not vim.lsp.buf.server_ready()
   if #vim.lsp.get_clients({ bufnr = bufnr }) == 0 then
     vim.cmd('tab split')
-    vim.cmd('exec("tag ".expand("<cword>"))')
+    vim.cmd('silent! exec("tag ".expand("<cword>"))')
     vim.cmd('call CloseDuplicateTabs()')
     return
   end

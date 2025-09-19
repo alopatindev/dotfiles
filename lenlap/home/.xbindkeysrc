@@ -74,6 +74,10 @@
     m:0x40 + c:41
     Mod4 + f
 
+"touch /tmp/.turbo-boost"
+    m:0x40 + c:56
+    Mod4 + b
+
 "~/.bin/alock & sleep 0.5 && xset dpms force off"
     m:0x40 + c:46
     Mod4 + l
