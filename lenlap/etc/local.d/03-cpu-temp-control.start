@@ -45,7 +45,7 @@ MAX_NVME_TEMP=80
     continue
   }
 
-  MAX_HEAVY_PROCESS_CLOCK_TICKS=$( ( for i in $(ps uax | grep -E '( chromium-browser | encfs |/equery | ollama |/opt/libreoffice|/7z |/Telegram |/VirtualBoxVM )' | grep -v grep | awk '{ print $2 }') ; do cat /proc/$i/stat | cut -d' ' -f22 ; done ; echo 0 ) | sort -nr | head -n1)
+  MAX_HEAVY_PROCESS_CLOCK_TICKS=$( ( for i in $(ps uax | grep -E '( chromium-browser | encfs |/equery | ollama |/opt/libreoffice|/7z |/Telegram |/VirtualBoxVM | gimp| rsync |/firefox-bin |/emerge |/libtool )' | grep -v grep | awk '{ print $2 }') ; do cat /proc/$i/stat | cut -d' ' -f22 ; done ; echo 0 ) | sort -nr | head -n1)
   OS_UPTIME_SEC=$(cut -d' ' -f1 < /proc/uptime)
   TIME_SINCE_HEAVY_PROCESS_INIT_SEC=$( printf '%.0f' $(bc -ql <<< "${OS_UPTIME_SEC} - (${MAX_HEAVY_PROCESS_CLOCK_TICKS} / $(getconf CLK_TCK))") )
   TIME_SINCE_TURBO_BOOST_SEC=$( printf '%.0f' $(bc -ql <<< "$(date '+%s') - $(stat -c '%Y' /tmp/.turbo-boost || echo 0)") )
