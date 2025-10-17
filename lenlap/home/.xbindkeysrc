@@ -78,7 +78,7 @@
     m:0x40 + c:56
     Mod4 + b
 
-"~/.bin/alock & sleep 0.5 && xset dpms force off"
+"logger 'alock screen off start' && ~/.bin/alock & sleep 0.5 && xset dpms force off && logger 'alock screen off stop'"
     m:0x40 + c:46
     Mod4 + l
 

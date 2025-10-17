@@ -3,6 +3,6 @@
 logger "running $0"
 
 (while [ 1 ] ; do
-ps uax | grep -E '/((rustc|ld|g(cc|\+\+)|cc(1|)|clang(|\+\+)|as)|x86_64-pc-linux-gnu-clang(|\+\+)) ' | grep -v rust-analyzer | grep -v grep | wc -l > /tmp/.compiler_processes
+ps uax | grep -E '(/| )((rustc|ld|g(cc|\+\+)|cc(1|)|clang(|\+\+)|as)|x86_64-pc-linux-gnu-clang(|\+\+)) ' | grep -v rust-analyzer | grep -v grep | wc -l > /tmp/.compiler_processes
     sleep 1s
 done) &

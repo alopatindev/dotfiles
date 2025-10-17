@@ -42,7 +42,7 @@ ${color #FF8C15}${font DejaVu Sans Mono:bold:size=17}${texeci 10 ~/git/workbooks
 
 
 
-
+${texeci 60 ~/scripts/uptime.sh}
 
 ${color #FFFFFF}${offset 2020}${font Roboto:Light:size=25}codonaft${font}
 

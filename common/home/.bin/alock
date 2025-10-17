@@ -2,5 +2,6 @@
 
 killall -9 xkill 2&> /dev/null
 ~/scripts/clear-clipboard.sh
-~/git/alock/src/alock -bg image:center,file=/home/al/.pix/locked.png -cursor theme:name=mini -auth pam
+
+{ time ~/git/alock/src/alock -bg image:center,file=/home/al/.pix/locked.png -cursor theme:name=mini -auth pam; } 2>&1 | grep '^real' | awk '{print $2}' | logger -t alock
 #~/git/alock/src/alock -auth pam
