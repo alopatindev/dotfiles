@@ -251,7 +251,7 @@ lua << EOF
   local initial_file = vim.api.nvim_buf_get_name(0)
   local initial_line, initial_column = unpack(vim.api.nvim_win_get_cursor(0))
 
-  local params = vim.lsp.util.make_position_params(0, "utf-16")
+  local params = vim.lsp.util.make_position_params(0, 'utf-16')
 
   local goto_single_location = function(result)
     local filtered_result = {}
@@ -295,7 +295,7 @@ lua << EOF
         return
       end
     end
-    vim.notify("Not Found")
+    vim.notify('Not Found')
   end
 
   local on_references = function(err, result, ctx, config)
@@ -308,8 +308,8 @@ lua << EOF
         return
       end
     end
-    vim.notify("Finding implementation...")
-    vim.lsp.buf_request(0, "textDocument/implementation", params, on_implementation)
+    vim.notify('Finding implementation...')
+    vim.lsp.buf_request(0, 'textDocument/implementation', params, on_implementation)
   end
 
   local on_goto_definition = function(_, result, ctx, config)
@@ -326,12 +326,20 @@ lua << EOF
     params.context = {
       includeDeclaration = true,
     }
-    vim.notify("Finding references...")
-    vim.lsp.buf_request(0, "textDocument/references", params, on_references)
+    vim.notify('Finding references...')
+    vim.lsp.buf_request(0, 'textDocument/references', params, on_references)
   end
 
-  vim.notify("Finding definition...")
-  vim.lsp.buf_request(0, "textDocument/definition", params, on_goto_definition)
+  local boost = function()
+    local file = io.open('/tmp/.turbo-boost', 'a')
+    if file then
+      file:close()
+    end
+  end
+
+  boost()
+  vim.notify('Finding definition...')
+  vim.lsp.buf_request(0, 'textDocument/definition', params, on_goto_definition)
 EOF
 endf
 
@@ -349,10 +357,10 @@ nnoremap <C-]> :lua vim.lsp.buf.references()<Enter>
 
 
 function! GenerateTags() abort
-  silent! execute "!sudo /usr/local/sbin/run_ctags.sh &"
+  silent! execute '!sudo /usr/local/sbin/run_ctags.sh &'
 endfunction
 
-autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable("tags") | call GenerateTags() | endif
+autocmd BufRead,BufNewFile *.{c,h,C,cpp,hpp} if !filereadable('tags') | call GenerateTags() | endif
 
 
 
@@ -438,12 +446,12 @@ hi default link BqfPreviewTitle TabLineSel
 
 
 lua << EOF
-require("dressing").setup({
+require('dressing').setup({
   input = {
     enabled = false, -- disable for symbol rename, etc.
   },
   select = {
-    backend = { "fzf", "fzf_lua", "telescope", "builtin", "nui" },
+    backend = { 'fzf', 'fzf_lua', 'telescope', 'builtin', 'nui' },
   },
 })
 
@@ -451,14 +459,14 @@ require("dressing").setup({
 --  vim.api.nvim_create_autocmd(events, { pattern=ptn, callback=cb, once=once })
 --end
 --au(
---  "DiagnosticChanged",
---  "*",
+--  'DiagnosticChanged',
+--  '*',
 --  function()
---    vim.notify("LSP is ready")
+--    vim.notify('LSP is ready')
 --  end,
 --  true)
 
-local _border = "single"
+local _border = 'single'
 vim.diagnostic.config{
   float = { border = _border },
   virtual_text = false,
@@ -987,11 +995,11 @@ lua << EOF
         vim_item.kind = kind_icons[vim_item.kind]
 
 --        vim_item.menu = ({
---          buffer = "[Buffer]",
---          nvim_lsp = "[LSP]",
---          luasnip = "[LuaSnip]",
---          nvim_lua = "[Lua]",
---          latex_symbols = "[LaTeX]",
+--          buffer = '[Buffer]',
+--          nvim_lsp = '[LSP]',
+--          luasnip = '[LuaSnip]',
+--          nvim_lua = '[Lua]',
+--          latex_symbols = '[LaTeX]',
 --        })[entry.source.name]
         vim_item.menu = ''
 
@@ -1021,7 +1029,7 @@ vim.lsp.config('rust_analyzer', {
       inlayHints = {
 --        enable = true;
 --        closureCaptureHints = { enable = true; };
---        closureReturnTypeHints = { enable = "always"; };
+--        closureReturnTypeHints = { enable = 'always'; };
 --        discriminantHints = { enable = true; };
 --        --expressionAdjustmentHints = { enable = true; };
 --        genericParameterHints = { type = { enable = true; }; };
@@ -1031,9 +1039,9 @@ vim.lsp.config('rust_analyzer', {
       },
 ----         imports = {
 ----           granularity = {
-----             group = "module",
+----             group = 'module',
 ----           },
-----           prefix = "self",
+----           prefix = 'self',
 ----         },
 ----         cargo = {
 ----           buildScripts = {
@@ -1045,10 +1053,10 @@ vim.lsp.config('rust_analyzer', {
 ----         },
 --         rustfmt = {
 --           overrideCommand = {
-----           "cat",
---             "rustfmt",
---             "--edition=2024", -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
---             "--"
+----           'cat',
+--             'rustfmt',
+--             '--edition=2024', -- TODO: rustfmt --help | grep '\s--edition' | awk '{print $2}' | sed 's!.*|!!;s!]!!'
+--             '--'
 --           },
 --         },
     }
@@ -1058,7 +1066,7 @@ vim.lsp.enable('rust_analyzer')
 
 
 
-local ns = vim.api.nvim_create_namespace("rust_inlay_hints_line")
+local ns = vim.api.nvim_create_namespace('rust_inlay_hints_line')
 
 local function show_rust_inlay_hint_on_current_line()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -1068,27 +1076,27 @@ local function show_rust_inlay_hint_on_current_line()
     textDocument = vim.lsp.util.make_text_document_params(),
     range = {
       start = { line = row, character = 0 },
-      ["end"] = { line = row + 1, character = 0 },
+      ['end'] = { line = row + 1, character = 0 },
     },
   }
 
   vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 
-  vim.lsp.buf_request(bufnr, "textDocument/inlayHint", params, function(err, result, _, _)
+  vim.lsp.buf_request(bufnr, 'textDocument/inlayHint', params, function(err, result, _, _)
     if err or not result then return end
 
     for _, hint in ipairs(result) do
       if hint.label then
-        local label = type(hint.label) == "string" and hint.label or vim.tbl_map(function(part)
+        local label = type(hint.label) == 'string' and hint.label or vim.tbl_map(function(part)
           return part.value
         end, hint.label)
-        if type(label) == "table" then
+        if type(label) == 'table' then
           label = table.concat(label)
         end
 
         vim.api.nvim_buf_set_extmark(bufnr, ns, hint.position.line, hint.position.character, {
-          virt_text = { { "=> " .. label:gsub("^: ", ""), "LineNr" } },
-          virt_text_pos = "eol",
+          virt_text = { { '=> ' .. label:gsub('^: ', ''), 'LineNr' } },
+          virt_text_pos = 'eol',
         })
       end
     end
@@ -1110,7 +1118,7 @@ local function show_rust_diagnostic_for_current_line()
   vim.opt.statusline = #diag > 0 and stl_escape(diag[1].message:gsub('\n', ' ')) or ''
 end
 
-vim.api.nvim_create_autocmd("CursorMoved", { callback = show_rust_inlay_hint_on_current_line })
+vim.api.nvim_create_autocmd('CursorMoved', { callback = show_rust_inlay_hint_on_current_line })
 
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
   pattern = '*.rs',
@@ -1231,8 +1239,8 @@ lua << EOF
     },
     previewers = {
       bat = {
-        theme = "zenburn",
-        args = "--line-range :50 --style=plain --color=always",
+        theme = 'zenburn',
+        args = '--line-range :50 --style=plain --color=always',
       }
     },
     --fzf_opts = {

@@ -5,8 +5,8 @@ logger "running $0"
 TURBO_BOOST_TIME_SEC=25
 
 MAX_CPU_TEMP=100
-MAX_GPU_TEMP=80
-MAX_NVME_TEMP=80
+MAX_GPU_TEMP=95
+MAX_NVME_TEMP=84
 
 (while [ 1 ] ; do
   ps uax | grep -E '\.bin/(chromium-pr|(p|pp)play)' | grep -v grep >>/dev/null || [ $(cat /sys/class/power_supply/BAT0/status) == 'Discharging' ] && {
@@ -33,6 +33,12 @@ MAX_NVME_TEMP=80
   fi
 
   ps uax | grep ' ffmpeg ' | grep -v ' x11grab' | grep -v grep >>/dev/null && {
+    /usr/local/sbin/switch-governor.sh performance
+    sleep 5s
+    continue
+  }
+
+  ps uax | grep '/emerge ' | grep -v grep >>/dev/null && {
     /usr/local/sbin/switch-governor.sh performance
     sleep 5s
     continue

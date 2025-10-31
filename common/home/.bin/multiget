@@ -11,5 +11,6 @@ fi
 set -x
 
 # netselect -s 3 https://mirror1 [https://mirror2 ...]
+# multiget https://mirror.amscloud.co.id/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso https://mirror.papua.go.id/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso https://mirror.gi.co.id/ubuntu-releases/24.04/ubuntu-24.04-desktop-amd64.iso
 
 aria2c --max-concurrent-downloads=64 -o "${OUTPUT}" "$@"
