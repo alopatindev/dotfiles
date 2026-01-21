@@ -1,6 +1,6 @@
 [user]
     name = Alexander Lopatin
-    email = alopatindev@gmail.com
+    email = alopatindev@codonaft.com
     signingkey = 44FB438EDA183EF0
 
 [core]
@@ -20,6 +20,13 @@
 
 [merge]
     conflictstyle = diff3
+
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
+[diff]
+    algorithm = histogram
 
 [difftool]
     prompt = false
@@ -76,12 +83,14 @@
 
 [commit]
     gpgsign = true
+    #template = ~/.gitcommit
 
 [gpg]
     program = gpg
 
 [init]
-    defaultBranch = master
+    #defaultBranch = master
+    defaultBranch = main
 
 [includeIf "gitdir:~/work/**/.git"]
     path = ~/.config/git/kupibilet.ini

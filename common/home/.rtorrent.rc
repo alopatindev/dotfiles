@@ -1,24 +1,45 @@
+# https://github.com/rakshasa/rtorrent/wiki/Performance-Tuning
+# https://wiki.archlinux.org/title/RTorrent
 min_peers = 1
 max_peers = 65536
 download_rate = 0
 upload_rate = 0
-directory = /home/al/downloads
-session = /home/al/.sessions
+
+session = ~/.sessions
+directory = ~/torrents
 
 # check out new *.torrent files once per 5 seconds
-schedule = watch_directory,5,5,load.start=/home/al/Downloads/*.torrent
+schedule2 = watch_directory,5,5,load.start=~/downloads/*.torrent
+schedule2 = untied_directory,5,5,stop_untied=
+schedule2 = tied_directory,5,5,start_tied=
+schedule2 = low_diskspace,5,60,((close_low_diskspace,100M))
 
-port_range = 6881-6889
+#port_range = 6881-6889
+network.port_range.set = 49164-49172
 port_random = no
+
+protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+# protocol.encryption.set = require,require_RC4,allow_incoming,try_outgoing # entirely forbid unencrypted connections
 
 trackers.use_udp.set = yes
 
+dht.mode.set = auto
+#dht.port.set = 6881
+dht.port.set = 49169
+protocol.pex.set = yes
+
 #session_save = yes # causes crash
 
-network.http.proxy_address.set=127.0.0.1:8889
+network.http.proxy_address.set=127.0.0.1:58889
+
+#network.http.proxy_address.set=mind:48889
 
 #scgi_port = localhost:5000
 
 check_hash = no
+pieces.hash.on_completion.set = yes
+
+# TODO: import=~/.rtorrent.rc
+# TODO: system.daemon.set = true
 
 # vim: filetype=conf

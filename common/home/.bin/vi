@@ -12,5 +12,9 @@ find_up () {
 project_dir=$(find_up Cargo.toml)
 #project_dir=$(cargo metadata --no-deps --quiet --format-version=1 2>>/dev/null | jq --raw-output '.workspace_root') # too slow when new toolchain needs to be downloaded
 project_dir_escaped=$(echo "${project_dir}" | sed 's!/!%!g')
-export CARGO_TARGET_DIR="${HOME}/tmp/${project_dir_escaped}/target.rust-analyzer"
-/usr/bin/nvim -p "$@"
+export CARGO_TARGET_DIR="${HOME}/tmp1/${project_dir_escaped}/target.rust-analyzer"
+export NUM_JOBS=16
+#export RUSTUP_TOOLCHAIN=$(realpath `which rustfmt` | sed 's!.*\/nightly-!nightly-!;s!-x86.*!!')
+#export RA_LOG="off"
+unset XDG_RUNTIME_DIR
+/usr/local/bin/nvim -p "$@"
