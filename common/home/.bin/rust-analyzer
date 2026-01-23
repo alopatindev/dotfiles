@@ -1,0 +1,37 @@
+#!/bin/sh
+
+logger "fetching dependencies $(pwd)"
+cargo fetch --quiet
+
+logger "rust-analyzer $(pwd)"
+exec firejail \
+  --quiet \
+  --noprofile \
+  --caps.drop=all \
+  --net=none \
+  --x11=none \
+  --nosound \
+  --novideo \
+  --noroot \
+  --private-dev \
+  --private-tmp \
+  --private-cache \
+  --private-etc \
+  --seccomp \
+  --disable-mnt \
+  --restrict-namespaces \
+  --whitelist="$HOME/git" \
+  --read-only="$HOME/git" \
+  --whitelist="$HOME/git-extra" \
+  --read-only="$HOME/git-extra" \
+  --whitelist="$HOME/work" \
+  --read-only="$HOME/work" \
+  --whitelist="$HOME/.cargo" \
+  --read-only="$HOME/.cargo" \
+  --whitelist="$HOME/.rustup" \
+  --read-only="$HOME/.rustup" \
+  --read-only=/usr \
+  --read-only=/lib \
+  --read-only=/lib64 \
+  --whitelist="$HOME/tmp1" \
+  -- ~/.cargo/bin/rust-analyzer "$@"

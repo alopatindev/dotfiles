@@ -1,0 +1,23 @@
+#!/bin/sh
+
+exec firejail \
+  --quiet \
+  --noprofile \
+  --caps.drop=all \
+  --noroot \
+  --private-dev \
+  --private-cache \
+  --private-etc \
+  --seccomp \
+  --disable-mnt \
+  --restrict-namespaces \
+  --whitelist="$HOME/git" \
+  --whitelist="$HOME/git-extra" \
+  --whitelist="$HOME/work" \
+  --whitelist="$HOME/.cargo" \
+  --whitelist="$HOME/.rustup" \
+  --read-only=/usr \
+  --read-only=/lib \
+  --read-only=/lib64 \
+  --whitelist="$HOME/tmp1" \
+  -- ~/.cargo/bin/cargo "$@"
