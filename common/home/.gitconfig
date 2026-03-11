@@ -1,5 +1,5 @@
 [user]
-    name = Alexander Lopatin
+    name = Alex
     email = alopatindev@codonaft.com
     signingkey = 44FB438EDA183EF0
 
@@ -24,6 +24,11 @@
 [merge "mergiraf"]
     name = mergiraf
     driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
+[merge "weave"]
+    # https://github.com/Ataraxy-Labs/weave
+    name = Entity-level semantic merge
+    driver = /home/al/git-extra/weave/target/release/weave-driver %O %A %B %L %P
 
 [diff]
     algorithm = histogram
@@ -106,3 +111,6 @@
 
 [log]
     date = iso-local
+
+[safe]
+    directory = /opt/flutter

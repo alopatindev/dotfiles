@@ -172,7 +172,7 @@
     m:0x48 + c:27
     Alt+Mod4 + r
 
-"~/scripts/clear-clipboard.sh ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh ; sync ; sudo /usr/local/sbin/drop-caches"
+"~/scripts/clear-clipboard.sh ; ~/scripts/update-awesome.sh ; sudo /usr/local/sbin/switch-wifi.sh ; ~/scripts/rebind-ssh-ports.sh ; rm -f /tmp/.dmenu ; sync ; sudo /usr/local/sbin/drop-caches"
     m:0x48 + c:25
     Alt+Mod4 + w
 

@@ -18,7 +18,7 @@ xgamma -gamma 0.9
 
 #sudo /usr/local/sbin/hdmi_hotplug.sh 0 &
 
-chromium &
+"${BROWSER}" &
 #pidgin &
 #qtox &
 #xterm -T 'terms' -e 'tmux attach || tmux' &
@@ -27,7 +27,7 @@ stardict &
 #qdevicemonitor &
 xbindkeys
 #conky -d
-(sleep 30 && conky -d) &
+(sleep 2m && conky -d) &
 
 # There's a separate boiler in hell for electron developers https://github.com/electron/electron/issues/34211#issuecomment-1749743855
 xmodmap -e 'keycode 64 = Control_R'
