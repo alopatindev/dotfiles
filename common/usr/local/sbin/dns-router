@@ -5,23 +5,25 @@ require 'rubydns'
 Name = Resolv::DNS::Name
 IN = Resolv::DNS::Resource::IN
 
-# TODO: IPv6?
-
 LISTEN_INTERFACE = ['127.0.0.1', 53]
 DEFAULT_DNS = ['127.0.0.1', 5353]
 
 VPN_DNS = ['work-dns', 53]
+VPN_HOSTS = %r{.*\.(amazon|office|kpb\.lt)$}
 
-VPN_HOSTS = %r{.*\.amazon$}
+ENS_HOSTS = %r{.*\.eth$}
+
+FIPS_HOSTS = %r{.*\.fips$}
+FIPS_DNS = ['127.0.0.1', 5354]
 
 BANLIST = '/var/tmp/dns-banlist.txt'
 
-def udp_and_tcp(interfaces)
-  [[:udp] + interfaces, [:tcp] + interfaces]
+def udp_and_tcp(addr)
+  [[:udp] + addr, [:tcp] + addr]
 end
 
-def resolver(interfaces)
-  RubyDNS::Resolver.new(udp_and_tcp(interfaces))
+def resolver(addr)
+  RubyDNS::Resolver.new(udp_and_tcp(addr))
 end
 
 def main
@@ -29,18 +31,33 @@ def main
 
   default_upstream = resolver(DEFAULT_DNS)
   vpn_upstream = resolver(VPN_DNS)
+  fips_upstream = RubyDNS::Resolver.new([[:udp] + FIPS_DNS])
   RubyDNS::run_server(udp_and_tcp(LISTEN_INTERFACE)) do
     #@logger.debug!
+
+#    banlist.each { |name| match(name, IN::A) do |transaction|
+#        @logger.debug!("detected banned host #{transaction}")
+#        transaction.respond!('0.0.0.0')
+#      end
+#    }
 
     match(VPN_HOSTS) do |transaction|
       transaction.passthrough!(vpn_upstream)
     end
 
+    match(FIPS_HOSTS, Resolv::DNS::Resource::IN::A) do |transaction|
+    end
+    match(FIPS_HOSTS, Resolv::DNS::Resource::IN::AAAA) do |transaction|
+      transaction.passthrough!(fips_upstream)
+    end
+
     otherwise do |transaction|
+      @logger.debug "otherwise name: #{transaction.name.inspect}"
       if banlist.include?(transaction.question)
         @logger.debug "blocking #{transaction.question.inspect}"
         transaction.fail!(:NXDomain)
       else
+        @logger.debug "passthrough #{transaction.question.inspect}"
         transaction.passthrough!(default_upstream)
       end
     end
