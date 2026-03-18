@@ -45,9 +45,7 @@ def main
       transaction.passthrough!(vpn_upstream)
     end
 
-    match(FIPS_HOSTS, Resolv::DNS::Resource::IN::A) do |transaction|
-    end
-    match(FIPS_HOSTS, Resolv::DNS::Resource::IN::AAAA) do |transaction|
+    match(FIPS_HOSTS) do |transaction|
       transaction.passthrough!(fips_upstream)
     end
 
