@@ -1,0 +1,17 @@
+{
+  "udp_mtu": 1280,
+  "udp_timeout": 120,
+  "udp_max_associations": 65535,
+  "timeout": 7200,
+  "no_delay": true,
+  "fast_open": true,
+  "locals": [
+    {
+      "local_address": "127.0.0.1",
+      "local_port": 5353,
+      "protocol": "tunnel",
+      "forward_address": "127.0.0.1",
+      "forward_port": 53
+    }
+  ]
+}
