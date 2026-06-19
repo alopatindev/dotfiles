@@ -3,8 +3,8 @@
 logger "running $0"
 
 (while [ 1 ] ; do
-    for dev in nvme0n1 nvme1n1 ; do
-        smartctl --all "/dev/${dev}" | grep Temperature | sed 's!.*:\s*!!;s!\s.*!!' | sort -nr | head -n1
+    for dev in /dev/nvme[0-9]*n1 ; do
+        smartctl --all "${dev}" | grep Temperature | sed 's!.*:\s*!!;s!\s.*!!' | sort -nr | head -n1
     done > /tmp/.nvme-temp.temp
     mv /tmp/.nvme-temp{.temp,}
     sleep 5s

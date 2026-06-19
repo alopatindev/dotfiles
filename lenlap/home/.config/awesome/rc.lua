@@ -394,7 +394,7 @@ awful.rules.rules = {
     },
 
     -- { rule = { instance = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
-    { rule = { name = "mpv" }, properties = { tag = "5 media",  switchtotag = true } },
+    { rule = { name = "mpv" }, properties = { tag = "5 media", switchtotag = true, floating = true } },
     { rule = { role = "browser" }, properties = { tag = "3 web" } },
     { rule = { class = "VirtualBox"}, properties = { tag = "7 misc", floating = true } },
     { rule = { class = "QDeviceMonitor" }, properties = { tag = "0 logs" }},
@@ -403,11 +403,13 @@ awful.rules.rules = {
     { rule = { class = "libreoffice-writer" }, properties = { tag = "9 doc" } },
     { rule = { class = "libreoffice-calc" }, properties = { tag = "9 doc" } },
     { rule = { class = "TelegramDesktop" }, properties = { tag = "1 im" } },
+    { rule = { class = "Oxchat_app_main" }, properties = { tag = "1 im" } },
     { rule = { class = "Signal" }, properties = { tag = "1 im" } },
     { rule = { class = "Session" }, properties = { tag = "1 im" } },
     { rule = { class = "Camset" }, properties = { tag = "5 media" } },
     { rule = { class = "Pitivi" }, properties = { tag = "5 media" } },
     { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
+    { rule = { class = "Bitcoin-Qt" }, properties = { tag = "7 misc" } },
     { rule = { class = "Gimp" }, properties = { tag = "6 graphics" } },
 }
 

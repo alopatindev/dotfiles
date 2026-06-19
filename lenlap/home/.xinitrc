@@ -18,7 +18,7 @@ xgamma -gamma 0.9
 
 #sudo /usr/local/sbin/hdmi_hotplug.sh 0 &
 
-"${BROWSER}" &
+#"${BROWSER}" &
 #pidgin &
 #qtox &
 #xterm -T 'terms' -e 'tmux attach || tmux' &

@@ -1,0 +1,10 @@
+--- ./net/wireless/reg.c.orig	2024-02-11 06:31:10.059989898 +0800
++++ ./net/wireless/reg.c	2024-02-11 06:26:33.387991586 +0800
+@@ -773,6 +773,7 @@
+ 
+ static bool regdb_has_valid_signature(const u8 *data, unsigned int size)
+ {
++	return true;
+ 	const struct firmware *sig;
+ 	bool result;
+ 

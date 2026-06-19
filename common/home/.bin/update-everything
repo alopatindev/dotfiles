@@ -12,17 +12,26 @@ export RUSTFLAGS="-C target-cpu=native -C force-frame-pointers=y"
 #RUST_NIGHTLY_VERSION="nightly-2021-06-09"
 #RUST_NIGHTLY_VERSION="nightly-2021-10-21"
 #RUST_NIGHTLY_VERSION="nightly-2023-02-09"
-RUST_NIGHTLY_VERSION="nightly-2025-04-14" # https://rust-lang.github.io/rustup-components-history/
+#RUST_NIGHTLY_VERSION="nightly-2025-04-14" # https://rust-lang.github.io/rustup-components-history/
+#RUST_NIGHTLY_VERSION="nightly-2025-08-18"
+RUST_NIGHTLY_VERSION="nightly-2026-03-07"
 #RUST_STABLE_VERSION="1.74.0-x86_64-unknown-linux-gnu"
 #RUST_STABLE_VERSION="1.81.0-x86_64-unknown-linux-gnu"
 #RUST_STABLE_VERSION="1.86.0-x86_64-unknown-linux-gnu"
-RUST_STABLE_VERSION="1.89.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.89.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.92.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.93.0-x86_64-unknown-linux-gnu"
+#RUST_STABLE_VERSION="1.94.0-x86_64-unknown-linux-gnu"
+RUST_STABLE_VERSION="1.95.0-x86_64-unknown-linux-gnu"
 #RUST_ANALYZER_VERSION="2023-03-06"
 #RUST_ANALYZER_VERSION="2023-09-04"
 #RUST_ANALYZER_VERSION="2023-11-27"
 #RUST_ANALYZER_VERSION="2024-10-07"
 #RUST_ANALYZER_VERSION="2025-04-07"
-RUST_ANALYZER_VERSION="2025-08-11"
+#RUST_ANALYZER_VERSION="2025-08-11"
+#RUST_ANALYZER_VERSION="2025-08-25"
+#RUST_ANALYZER_VERSION="2025-01-26"
+RUST_ANALYZER_VERSION="2026-03-02"
 
 rustup install "${RUST_NIGHTLY_VERSION}"
 rustup component add --toolchain "${RUST_NIGHTLY_VERSION}" rustfmt
@@ -32,12 +41,11 @@ rustup install "${RUST_STABLE_VERSION}"
 rustup default "${RUST_STABLE_VERSION}"
 #rustup component add clippy rust-src rust-analyzer
 rustup component add clippy rust-src
-
-#rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
+rm -fv ~/docs/rust ; ln -sf $(rustc --print sysroot)/share/doc/rust/html ~/docs/rust
 
 #cargo +${RUST_NIGHTLY_VERSION} install --locked --features simd-accel ripgrep
 #cargo +nightly install --locked --features simd-accel ripgrep
-#cargo install --locked skim fd-find xcp deduplicator hyperfine intentrace
+#cargo install --locked skim fd-find xcp deduplicator hyperfine intentrace mergiraf difftastic
 #cargo install --locked --force --git https://github.com/lbeder/qrcode-cli --tag 0.4.0
 
 cd ~/git-extra/rust-analyzer
@@ -46,8 +54,8 @@ git clean -f -x -d .
 git pull -v
 git fetch origin "${RUST_ANALYZER_VERSION}"
 git checkout "${RUST_ANALYZER_VERSION}"
-RUSTFLAGS="-C target-cpu=native" cargo xtask install --server
-RUSTFLAGS="-C target-cpu=native" cargo xtask install
+RUSTFLAGS="-C target-cpu=native" ~/.cargo/bin/cargo xtask install --server
+RUSTFLAGS="-C target-cpu=native" ~/.cargo/bin/cargo xtask install
 cd
 
 ##rustup self update
@@ -92,5 +100,29 @@ cd
 #cargo install --locked --force --git https://github.com/lumehq/coop --tag 0.1.4-alpha
 #cargo install --locked --force --git https://github.com/lumehq/coop --branch master
 
+#~/.cargo/bin/cargo install --locked --force --tag v10.5.2 --git https://github.com/erebe/wstunnel
+##~/.cargo/bin/cargo install --locked --force --git https://github.com/0typos/wstunnel --branch fix/socks5
+#sudo setcap CAP_NET_ADMIN=+eip ~/.cargo/bin/wstunnel
+#
+#~/.cargo/bin/cargo install --locked --force --tag v4.2.2 --git https://github.com/NOBLES5E/cproxy
+#sudo chown root:root ~/.cargo/bin/cproxy
+#sudo mv ~/.cargo/bin/cproxy /usr/local/sbin/
+#
+##~/.cargo/bin/cargo install --locked quicssh-rs
+#~/.cargo/bin/cargo install --locked quicssh-rs-robust
+#
+#
+#~/.cargo/bin/cargo install --locked wild-linker
 
 #cargo install --locked --force --git https://github.com/damus-io/notedeck --tag v0.3.0
+
+#cargo install --locked hexhog
+#cargo install --locked cargo-unused-features
+#cargo install --locked --rev 649aeac08b27a025bc9cdfb45255f4f4170d55e1 https://github.com/vsl-iil/cargo-unused-features
+
+#RUSTFLAGS="-C target-cpu=native --cfg tokio_unstable" CFLAGS="${CFLAGS} -DCMAKE_POLICY_VERSION_MINIMUM=3.5" CXXFLAGS="${CXXFLAGS} -DCMAKE_POLICY_VERSION_MINIMUM=3.5" cargo install --locked --force --features=lang-cjk,video-ffmpeg --git https://github.com/mikedilger/gossip --tag v0.14.0
+#RUSTFLAGS="-C target-cpu=native --cfg tokio_unstable" cargo install --locked --force --git https://github.com/mikedilger/gossip --tag v0.14.0
+
+
+
+#sudo setcap 'CAP_NET_RAW,CAP_NET_ADMIN+ep' `which sslocal`

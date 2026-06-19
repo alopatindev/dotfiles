@@ -1,7 +1,7 @@
 #!/bin/bash
 
 msg () {
-  printf "%17s: %s\n" "$1" "$2"
+  printf "%27s: %s\n" "$1" "$2"
 }
 
 ping -c1 1.1.1.1 >>/dev/null || {
@@ -9,7 +9,7 @@ ping -c1 1.1.1.1 >>/dev/null || {
   exit
 }
 
-for i in $(grep '\.codonaft' /etc/hosts | awk '{ print $2 }') ; do
+for i in $(grep '\.codonaft' /etc/hosts | grep -vE '^#' | awk '{ print $2 }') ; do
   ps uax | grep ssh: | grep "$i" | grep '\[mux\]' | grep -v grep >>/dev/null || {
     msg "$i" "is NOT connected"
     continue
