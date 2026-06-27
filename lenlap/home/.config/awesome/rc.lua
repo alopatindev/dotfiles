@@ -411,6 +411,7 @@ awful.rules.rules = {
     { rule = { class = "Webcamoid" }, properties = { tag = "8 misc" } },
     { rule = { class = "Bitcoin-Qt" }, properties = { tag = "7 misc" } },
     { rule = { class = "Gimp" }, properties = { tag = "6 graphics" } },
+    { rule = { name = "tasks", class = "Helium" }, properties = { tag = "1 im" } },
 }
 
 apps_to_tags = {}
